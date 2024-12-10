@@ -4,10 +4,10 @@ import {Box , Breadcrumbs , Link , Typography} from "@mui/material"
 const MyBreadcrumbs = ({ breadcrumbPages }) => {
   return (
     <Box m={2}>
-        <Breadcrumbs separator='>'>    
+        <Breadcrumbs separator='>' sx={{ fontSize: '2.0rem' }}>    
             {breadcrumbPages.map((item, index) => {
             if (index === breadcrumbPages.length - 1) {
-                return <Typography key={index} color='text.primary'> {item.name} </Typography>
+                return <Typography key={index} color='text.primary' sx={{ fontSize: '2.0rem' }}> {item.name} </Typography>
             } else {
                 return <Link key={index} underline='always' href={item.link}> {item.name}</Link>
             }

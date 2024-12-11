@@ -11,7 +11,7 @@ const ReviewCardBabySitter = ({ picLink, name, start, end, ratingscore, parentco
 
   
   let truncatedComment;
-    if(parentcomment.length > 150){ // Περικοπή σχολίου αν ξεπερνά τους 150 χαρακτήρες
+    if(parentcomment.length > 150){ // Περικοπή σχολίου αν ξεπερνά τους 150 χαρακτήρες 
         truncatedComment = parentcomment.slice(0, 150) + "...";
     }
     else if (parentcomment.length === 0){

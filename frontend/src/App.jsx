@@ -1,9 +1,9 @@
-import ParentContractPayment from './pages/ParentContractPayment/ParentContractPayment';
+import ParentContractEnd from './pages/ParentContractEnd/ParentContractEnd';
 
 function App() {
   return (
     <>
-    <ParentContractPayment/>
+    <ParentContractEnd/>
     </>
   );
 }

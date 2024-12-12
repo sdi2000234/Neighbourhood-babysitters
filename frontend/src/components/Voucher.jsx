@@ -3,7 +3,7 @@ import './Voucher.css'
 import checkMark from '../assets/checkmark.png'
 import crossMark from '../assets/crossmark.png'
 import defaultQR from '../assets/QRCode.jpeg'
-import epmtyProfile from '../assets/empty_profile.png'
+import emptyProfile from '../assets/empty_profile.png'
 
 function Voucher()
 {
@@ -22,7 +22,7 @@ function Voucher()
         <div>
     		<div className="payPannel">
                 <div className="userInfo">
-                    <img className="userPfp" src={professionalPfp===null ? epmtyProfile : professionalPfp}/>
+                    <img className="userPfp" src={professionalPfp===null ? emptyProfile : professionalPfp}/>
                     <p>{professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName}</p>
                 </div>
                 <div className="payDetails">

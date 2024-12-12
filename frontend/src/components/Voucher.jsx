@@ -1,6 +1,7 @@
 import React from 'react'
 import './Voucher.css'
-
+import checkMark from '../assets/checkmark.png'
+import crossMark from '../assets/crossmark.png'
 
 function Voucher()
 {
@@ -14,17 +15,15 @@ function Voucher()
 	const year = null;
 	const voucherAmount = null;
 	const voucherRecieved = null; // boolean
-	const checkMark = "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fclipart-library.com%2Fimages_k%2Fcheck-mark-symbol-transparent-background%2Fcheck-mark-symbol-transparent-background-2.png&f=1&nofb=1&ipt=b3b3db4b1cc41b96d33dc1b4854ae36ff91c050d8273f2f5369cbb29ae8ce192&ipo=images";
-	const crossMark = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F75%2F75519.png&f=1&nofb=1&ipt=defd5cab76a161dc2c02c20ab8e125154d2b85ffe931e25a0d13ce068857b4f7&ipo=images"
 
 	return	(
         <div>
-    		<div className="paypannel">
+    		<div className="payPannel">
                 <div className="userInfo">
-                    <img className="userpfp" src={professionalPfp}/>
+                    <img className="userPfp" src={professionalPfp}/>
                     <p>{professionalFirstName} {professionalLastName}</p>
                 </div>
-                <div className="paydetails">
+                <div className="payDetails">
                     <p><b>ΔΙΑΡΚΕΙΑ ΣΥΜΦΩΝΗΤΙΚΟΥ &emsp; ΕΝΑΡΞΗ: {startWork} &emsp; ΛΗΞΗ: {finishWork}</b></p>
                     <p><b>VOUCHER:</b></p>
                     <div className="voucher">

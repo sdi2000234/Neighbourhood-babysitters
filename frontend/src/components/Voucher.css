@@ -5,7 +5,7 @@
     font-family: arial;
 }
 
-.paypannel
+.payPannel
 {
     margin-left: 60px;
     margin-right: 60px;
@@ -14,7 +14,7 @@
     color: #000;
 }
 
-.paypannel .userInfo
+.payPannel .userInfo
 {
     display: flex;
     margin-top: 20px;
@@ -24,7 +24,7 @@
     color: #fff;
 }
 
-.paypannel .userInfo p
+.payPannel .userInfo p
 {
     align-self: center;
     font-weight: bold;
@@ -32,7 +32,7 @@
     margin-left: 10px;
 }
 
-.paypannel .userInfo img
+.payPannel .userInfo img
 {
     height: 50;
     width: 50px;
@@ -42,7 +42,7 @@
     margin-left: 35px;
 }
 
-.paydetails
+.payDetails
 {
     background-color: #DDDDDD;
     border-bottom-left-radius: 5px;
@@ -51,7 +51,7 @@
     padding-bottom: 30px;
 }
 
-.paydetails p
+.payDetails p
 {
     margin-top: 20px;
     margin-right: 20px;
@@ -59,12 +59,12 @@
     margin-bottom: 0px;
 }
 
-.paydetails .confirmation
+.payDetails .confirmation
 {
     display: flex;
 }
 
-.paydetails .confirmation img
+.payDetails .confirmation img
 {
     margin-top: 20px;
     height: 20px;
@@ -99,7 +99,7 @@
     margin-bottom: 20px;
 }
 
-.paydetails input
+.payDetails input
 {
     margin-left: 15px;
     height: 20px;

@@ -1,0 +1,35 @@
+.breadcrumbs
+{
+    display: flex;
+    align-items: left;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.breadcrumbs p
+{
+    margin-right: 5px;
+}
+
+.breadcrumbs p.contract
+{
+    color: #737373;
+    cursor: pointer;
+}
+
+.sorting button
+{
+    font-size: 14px;
+    padding: 5px;
+    background-color: #013372;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 60px;
+}

@@ -41,7 +41,7 @@ function Voucher()
                     <p>Αφού τσεκάρετε το προηγούμενο κουτί, το παρακάτω στοιχείο θα εμφανιστεί τσεκαρισμένο όταν η/ο επαγγελματίας {professionalFirstName} {professionalLastName} επιβεβαιώσει ότι έλαβε το voucher για τον μήνα {month} του {year}.</p>
                     <div className="confirmation">
                         <p><b>ΕΠΙΒΑΙΒΕΩΣΗ ΛΗΨΗΣ VOUCHER ΑΠΟ {professionalFirstName} {professionalLastName}: </b></p>
-                        <img src={voucherRecieved==true ? ckeckMark : crossMark}/>
+                        <img src={voucherRecieved==true ? checkMark : crossMark}/>
                     </div>
                 </div>
             </div>

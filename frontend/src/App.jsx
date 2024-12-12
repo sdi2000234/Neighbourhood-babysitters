@@ -1,14 +1,9 @@
-//import './App.css';
-import HomePage from './pages/HomePage/HomePage';
-import ParentNavigation from './components/ParentNavigation';
-import Footer from './components/Footer';
+import ParentContractPayment from './pages/ParentContractPayment/ParentContractPayment';
 
 function App() {
   return (
     <>
-    <ParentNavigation/>
-    <HomePage/> 
-    <Footer/>
+    <ParentContractPayment/>
     </>
   );
 }

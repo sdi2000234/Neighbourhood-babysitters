@@ -2,6 +2,7 @@ import React from 'react'
 import './Voucher.css'
 import checkMark from '../assets/checkmark.png'
 import crossMark from '../assets/crossmark.png'
+import defaultQR from '../assets/QRCode.jpeg'
 
 function Voucher()
 {
@@ -28,7 +29,7 @@ function Voucher()
                     <p><b>VOUCHER:</b></p>
                     <div className="voucher">
                         <div className="code">
-                            <img className="QRCode" src={QR}/>
+                            <img className="QRCode" src={QR===null ? defaultQR : QR}/>
                         </div>
                         <div className="info">
                             <p className="date">{month} {year}</p>

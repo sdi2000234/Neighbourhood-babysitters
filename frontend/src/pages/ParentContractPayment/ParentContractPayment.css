@@ -40,3 +40,9 @@
     margin-top: 10px;
     margin-left: 60px;
 }
+
+.pageIndex p
+{
+    display: flex;
+    justify-content: center;
+}

@@ -1,8 +1,8 @@
 import React from 'react'
 import './ParentContractPayment.css'
-import ParentNavigation from '../components/ParentNavigation'
-import Voucher from '../components/Voucher'
-import Footer from '../components/Footer'
+import ParentNavigation from '../../components/ParentNavigation'
+import Voucher from '../../components/Voucher'
+import Footer from '../../components/Footer'
 
 
 function ParentContractPayment()

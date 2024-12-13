@@ -26,8 +26,8 @@
 
 .adPannels
 {
-    gap: 60px;
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .adPannels .createNewAd button
@@ -35,6 +35,7 @@
     background-color: #dddddd;
     border-radius: 5px;
     margin-left: 60px;
+    margin-bottom: 60px;
     border: none;
     cursor: pointer;
 }
@@ -43,4 +44,6 @@
 {
     height: 80px;
     margin: 100px;
+    margin-left: 125px;
+    margin-right: 125px;
 }

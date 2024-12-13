@@ -21,6 +21,7 @@ function ProfessionalMyAds()
         </div>
         <AdPreview/>
         <AdEdit/>
+        <AdEdit/>
       </div>
       <Footer/>
     </div>

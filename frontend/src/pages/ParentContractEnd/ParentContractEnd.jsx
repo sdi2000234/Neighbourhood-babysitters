@@ -10,15 +10,15 @@ function ParentContractPayment()
 	return	(
         <div>
             <ParentNavigation/>
-            <div class="breadcrumbs">
-                <p class="contract">ΣΥΜΦΩΝΗΤΙΚΟ &gt;</p>
-                <p class="payment">ΛΗΞΗ</p>
+            <div className="breadcrumbs">
+                <p className="contract">ΣΥΜΦΩΝΗΤΙΚΟ &gt;</p>
+                <p className="payment">ΛΗΞΗ</p>
             </div>
             <div className="sorting">
                 <button>Ταξινόμηση v</button>
             </div>
             <ContractEnd/>
-            <div class="pageIndex">
+            <div className="pageIndex">
                 <p>&lt;&emsp;1&emsp;&gt;</p>
             </div>
             <Footer/>

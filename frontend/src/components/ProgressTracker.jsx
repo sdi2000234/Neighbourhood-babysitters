@@ -5,25 +5,29 @@ import './ProgressTracker.css'
 function ProgressTracker()
 {
     return (
-        <div className="progressTracker">
-            <div className="step">
-                <p className="number">1</p>
-                <p className="name">Προσωπικά Στοιχεία</p>
+        <div>
+            <div className="progressTracker">
+                <div className="step">
+                    <p className="number1">1</p>
+                </div>
+                <div className="bar"></div>
+                <div className="step">
+                    <p className="number2">2</p>
+                </div>
+                <div className="bar"></div>
+                <div className="step">
+                    <p className="number3">3</p>
+                </div>
+                <div className="bar"></div>
+                <div className="step">
+                    <p className="number4">4</p>
+                </div>
             </div>
-            <div className="bar"></div>
-            <div className="step">
-                <p className="number">2</p>
-                <p className="name">Πιστοποιητικά</p>
-            </div>
-            <div className="bar"></div>
-            <div className="step">
-                <p className="number">3</p>
-                <p className="name">Στοιχεία Παροχής Υπηρεσίας</p>
-            </div>
-            <div className="bar"></div>
-            <div className="step">
-                <p className="number">4</p>
-                <p className="name">Υποβολή</p>
+            <div className="stepName">
+                <p>Προσωπικά Στοιχεία</p>
+                <p>Πιστοποιητικά</p>
+                <p>Στοιχεία Παροχής Υπηρεσίας</p>
+                <p>Υποβολή</p>
             </div>
         </div>
     );

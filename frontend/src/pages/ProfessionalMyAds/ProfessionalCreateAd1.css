@@ -1,0 +1,82 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.personInfo
+{
+    background-color: #ddd;
+    color: #373737;
+    margin: 160px;
+    margin-top: 60px;
+    padding: 60px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 5px;
+}
+
+.personInfo h1
+{
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.personInfo .infoBox
+{
+    border: none;
+    border-radius: 5px;
+    color: #737373;
+    background-color: #fff;
+    height: 25px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: stretch;
+}
+
+.personInfo .infoType
+{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.message
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #737373;
+}
+
+.options
+{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+button
+{
+    font-size: 20px;
+    padding: 8px;
+    padding-left: 13px;
+    padding-right: 13px;
+    background-color: #013372;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.number1
+{
+    background-color: #013372;
+    color: #fff;
+    border-radius: 50%;
+    height: 60px;
+    aspect-ratio: 1 / 1;
+    align-content: center;
+    text-align: center;
+}

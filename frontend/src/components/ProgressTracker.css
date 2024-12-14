@@ -9,32 +9,65 @@
 {
     display: flex;
     justify-content: center;
+    margin-top: 60px;
 }
 
 .bar
 {
     background-color: #00aeef;
-    height: 5px;
-    width: 100px;    
+    height: 7px;
+    width: 100px;
+    align-self: center;
 }
 
-.step .number
+/* 
+This part is to signify the current step we're on.
+Add it to the .css of the page you want the progress bar to be on.
+Change .number1 to whatever the page's current step number is.
+
+.number1
+{
+    background-color: #013372;
+    color: #fff;
+    border-radius: 50%;
+    height: 60px;
+    aspect-ratio: 1 / 1;
+    align-content: center;
+    text-align: center;
+}
+
+*/
+
+.step
 {
     font-weight: bold;
     font-size: 25px;
-    color: #000;
+    color: #373737;
     background-color: #ddd;
     border-radius: 50%;
-    border-color: #00aeef;
-    border-width: 5px;
-    width: 60px;
+    outline-style: solid;
+    outline-width: 6px;
+    outline-color: #00aeef;
     height: 60px;
+    aspect-ratio: 1 / 1;
     align-content: center;
+    text-align: center;
 }
 
-.step .name
+.stepName
 {
+    display: flex;
+    justify-content: center;
     font-weight: bold;
     font-size: 15px;
+    margin-top: 12px;
+    margin-bottom: 30px;
+    gap: 10px;
     color: #737373;
+}
+
+.stepName p
+{
+    width: 150px;
+    text-align: center;
 }

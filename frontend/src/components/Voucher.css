@@ -1,0 +1,107 @@
+* 
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.payPannel
+{
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-bottom: 50px;
+    align-self: center;
+    color: #000;
+}
+
+.payPannel .userInfo
+{
+    display: flex;
+    margin-top: 20px;
+    background-color: #013372;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #fff;
+}
+
+.payPannel .userInfo p
+{
+    align-self: center;
+    font-weight: bold;
+    font-size: 22px;
+    margin-left: 10px;
+}
+
+.payPannel .userInfo img
+{
+    height: 50;
+    width: 50px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover;
+    margin: 15px;
+    margin-left: 35px;
+}
+
+.payDetails
+{
+    background-color: #DDDDDD;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 15px;
+    padding-bottom: 30px;
+}
+
+.payDetails p
+{
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 0px;
+}
+
+.payDetails .confirmation
+{
+    display: flex;
+}
+
+.payDetails .confirmation img
+{
+    margin-top: 20px;
+    height: 20px;
+}
+
+.voucher
+{
+    display: flex;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.voucher .code
+{
+    margin: 5px;
+}
+
+.voucher .info
+{
+    align-self: center;
+    margin-left: 10px;
+}
+
+.voucher .info .amount
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.payDetails input
+{
+    margin-left: 15px;
+    height: 20px;
+    width: 20px;
+}

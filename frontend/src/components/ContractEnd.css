@@ -1,0 +1,103 @@
+* 
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.contractPannel
+{
+    width: fit-content;
+    text-align: left;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-bottom: 50px;
+    color: #000;
+}
+
+.contractPannel .userInfo
+{
+    display: flex;
+    margin-top: 20px;
+    background-color: #013372;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #fff;
+}
+
+.contractPannel .userInfo p
+{
+    align-self: center;
+    font-weight: bold;
+    font-size: 22px;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+
+.contractPannel .userInfo img
+{
+    height: 50;
+    width: 50px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover;
+    margin: 15px;
+    margin-left: 35px;
+}
+
+.contractDetails
+{
+    background-color: #DDDDDD;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 15px;
+    padding-bottom: 30px;
+}
+
+.contractDetails p
+{
+    margin: 20px;
+}
+
+.options
+{
+    display: flex; /* Use flexbox */
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.options p
+{
+    margin: 10px;
+}
+
+.options button
+{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 18px;
+    padding: 5px;
+    background-color: #013372;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.rating
+{
+    display: flex; /* Use flexbox */
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.stars img
+{
+    height: 20px;
+    margin-bottom: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+}

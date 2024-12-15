@@ -1,0 +1,49 @@
+* 
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.breadcrumbs
+{
+    display: flex;
+    align-items: left;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.createText
+{
+    color: #737373;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 60px;
+}
+
+.adPannels
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.adPannels .createNewAd button
+{
+    background-color: #dddddd;
+    border-radius: 5px;
+    margin-left: 60px;
+    margin-bottom: 60px;
+    border: none;
+    cursor: pointer;
+}
+
+.adPannels .createNewAd button img
+{
+    height: 80px;
+    margin: 100px;
+    margin-left: 125px;
+    margin-right: 125px;
+}

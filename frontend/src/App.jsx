@@ -1,9 +1,9 @@
-import Schedule from './components/Schedule';
+import ProfessionalCreateAd3 from './pages/ProfessionalMyAds/ProfessionalCreateAd3';
 
 function App() {
   return (
     <>
-    <Schedule/>
+    <ProfessionalCreateAd3/>
     </>
   );
 }

@@ -12,11 +12,6 @@
     margin-left: 60px;
 }
 
-.sorting
-{
-    display: block;
-}
-
 .sorting .dropdown-content button
 {
     background-color: transparent;
@@ -25,11 +20,14 @@
     border: none;
     display: block;
     text-align: left;
-    width: 119px;
+    float: none;
+    min-width: 119px;
+    cursor: pointer;
 }
 
 .sorting .dropdown-content
 {
+    position: absolute;
     display: none;
     margin-left: 60px;
     background-color: #013372;

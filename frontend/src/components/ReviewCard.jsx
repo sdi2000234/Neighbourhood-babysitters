@@ -29,7 +29,7 @@ const ReviewCard = ({picLink , name }) => {
         </Grid>
 
         {/* 2η Γραμμή: Βαθμολογία με αστέρια */}
-        <Grid container spacing={2} mt={3} alignItems="center"        >
+        <Grid container spacing={2} mt={3} alignItems="center">
           <Grid item>
           <Typography variant="subtitle1" sx={{ fontWeight: 'bold', fontSize: '1.25rem' }}> Βαθμολογία: </Typography>
           </Grid>

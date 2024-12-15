@@ -5,31 +5,30 @@ const Schedule = () => {
     const hours = ["8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"];
     const days = ["ΔΕΥ", "ΤΡΙ", "ΤΕΤ", "ΠΕΜ", "ΠΑΡ", "ΣΑΒ", "ΚΥΡ"];
 
-    const [checkedState, setCheckedState] = useState(
-        Array(hours.length).fill(Array(days.length).fill(false))
-      );
+    const [checkedState, setCheckedState] = useState(Array(hours.length).fill(Array(days.length).fill(false)));
     
-      const handleRowCheck = (rowIndex) => {
+    const handleRowCheck = (rowIndex) => 
+    {
         const newCheckedState = [...checkedState];
         const isChecked = !newCheckedState[rowIndex].every(Boolean);
         newCheckedState[rowIndex] = newCheckedState[rowIndex].map(() => isChecked);
         setCheckedState(newCheckedState);
-      };
-    
-      const handleColumnCheck = (colIndex) => {
+    };
+
+    const handleColumnCheck = (colIndex) => 
+    {
         const isChecked = !checkedState.every((row) => row[colIndex]);
-        const newCheckedState = checkedState.map((row) =>
-          row.map((cell, index) => (index === colIndex ? isChecked : cell))
-        );
+        const newCheckedState = checkedState.map((row) => row.map((cell, index) => (index === colIndex ? isChecked : cell)));
         setCheckedState(newCheckedState);
-      };
-    
-      const handleCellCheck = (rowIndex, colIndex) => {
+    };
+
+    const handleCellCheck = (rowIndex, colIndex) => 
+    {
         const newCheckedState = [...checkedState];
         newCheckedState[rowIndex] = [...newCheckedState[rowIndex]];
         newCheckedState[rowIndex][colIndex] = !newCheckedState[rowIndex][colIndex];
         setCheckedState(newCheckedState);
-      };
+    };
 
     return (
         <table cellSpacing="0">

@@ -11,7 +11,7 @@
     color: #373737;
     margin: 160px;
     margin-top: 60px;
-    padding: 60px;
+    padding: 80px;
     padding-top: 40px;
     padding-bottom: 40px;
     border-radius: 5px;
@@ -23,65 +23,12 @@
     text-align: center;
 }
 
-.personInfo .infoBox
-{
-    border: none;
-    border-radius: 5px;
-    color: #737373;
-    background-color: #fff;
-    height: 25px;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    width: stretch;
-}
-
-.personInfo .infoType
-{
-    font-weight: bold;
-    font-size: 20px;
-}
-
 .message
 {
-    margin-top: 30px;
+    margin-top: 40px;
     margin-bottom: 20px;
-    color: #737373;
-}
-
-h3
-{
-    margin-top: 50px;
-}
-
-.healthVerifications
-{
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-}
-
-.healthVerifications p
-{
-    padding: 20px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
-    width: 25%;
-}
-
-.healthVerifications .valid
-{
-    background-color: #fff;
     color: #373737;
-}
-
-.healthVerifications .invalid
-{
-    background-color: #b5001e;
-    color: #fff;
+    font-weight: bold;
 }
 
 .options
@@ -102,7 +49,7 @@ button
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 80px;
+    margin-top: 30px;
 }
 
 button a
@@ -111,7 +58,7 @@ button a
     color: #fff;
 }
 
-.number2
+.number4
 {
     background-color: #013372;
     color: #fff;

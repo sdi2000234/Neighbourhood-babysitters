@@ -49,6 +49,41 @@
     color: #737373;
 }
 
+h3
+{
+    margin-top: 50px;
+}
+
+.healthVerifications
+{
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+.healthVerifications p
+{
+    padding: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    width: 25%;
+}
+
+.healthVerifications .valid
+{
+    background-color: #fff;
+    color: #373737;
+}
+
+.healthVerifications .invalid
+{
+    background-color: #b5001e;
+    color: #fff;
+}
+
 .options
 {
     display: flex;
@@ -67,7 +102,7 @@ button
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 30px;
+    margin-top: 80px;
 }
 
 button a
@@ -76,7 +111,7 @@ button a
     color: #fff;
 }
 
-.number1
+.number2
 {
     background-color: #013372;
     color: #fff;

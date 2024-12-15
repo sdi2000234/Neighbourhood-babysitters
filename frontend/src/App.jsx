@@ -1,9 +1,9 @@
-import ProfessionalCreateAd1 from './pages/ProfessionalMyAds/ProfessionalCreateAd1';
+import ProfessionalCreateAd2 from './pages/ProfessionalMyAds/ProfessionalCreateAd2';
 
 function App() {
   return (
     <>
-    <ProfessionalCreateAd1/>
+    <ProfessionalCreateAd2/>
     </>
   );
 }

@@ -5,6 +5,19 @@
     font-family: arial;
 }
 
+.aboutMe
+{
+    background-color: #ddd;
+    color: #373737;
+    border-color: #373737;
+    margin: 160px;
+    margin-top: 60px;
+    padding: 60px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 5px;
+}
+
 .personInfo
 {
     background-color: #ddd;

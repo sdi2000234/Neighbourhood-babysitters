@@ -5,13 +5,6 @@ const Schedule = () => {
     const hours = ["8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"];
     const days = ["ΔΕΥ", "ΤΡΙ", "ΤΕΤ", "ΠΕΜ", "ΠΑΡ", "ΣΑΒ", "ΚΥΡ"];
 
-    // State to track the checked state of all checkboxes
-    const [schedule, setSchedule] = useState(
-        Array(hours.length).fill().map(() => Array(days.length).fill(false))
-    );
-    const [rowChecked, setRowChecked] = useState(Array(hours.length).fill(false));
-    const [columnChecked, setColumnChecked] = useState(Array(days.length).fill(false));
-
     const [checkedState, setCheckedState] = useState(
         Array(hours.length).fill(Array(days.length).fill(false))
       );

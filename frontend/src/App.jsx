@@ -1,10 +1,10 @@
-import ProfessionalMyAds from './pages/ProfessionalMyAds/ProfessionalMyAds';
+import ParentContractEnd from './pages/ParentContractEnd/ParentContractEnd';
 
 function App()
 {
   return (
     <>
-    <ProfessionalMyAds/>
+    <ParentContractEnd/>
     </>
   );
 }

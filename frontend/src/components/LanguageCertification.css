@@ -1,0 +1,31 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.infoBox
+{
+    border: none;
+    border-radius: 5px;
+    color: #737373;
+    background-color: #fff;
+    height: 25px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: stretch;
+}
+
+.infoType
+{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.languages
+{
+    display: flex;
+    gap: 60px;
+}

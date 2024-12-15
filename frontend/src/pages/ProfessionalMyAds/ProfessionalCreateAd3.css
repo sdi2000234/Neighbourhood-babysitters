@@ -5,17 +5,28 @@
     font-family: arial;
 }
 
+.seperatorBar
+{
+    height: 2px;
+    background-color: #999999;
+    width: stretch;
+    border-radius: 1px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
 .aboutMe
 {
-    background-color: #ddd;
+    background-color: #fff;
     color: #373737;
-    border-color: #373737;
-    margin: 160px;
-    margin-top: 60px;
-    padding: 60px;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    border-color: #737373;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
     border-radius: 5px;
+    width: stretch;
+    height: 100px;
+    text-wrap: wrap;
 }
 
 .personInfo
@@ -55,11 +66,53 @@
     font-size: 20px;
 }
 
+.languages
+{
+    display: flex;
+}
+
 .message
 {
     margin-top: 30px;
     margin-bottom: 20px;
     color: #737373;
+}
+
+.occupationType
+{
+    margin-top: 50px;
+}
+
+.occupationType input
+{
+    margin-top: 20px;
+    height: 20px;
+    width: 20px;
+}
+
+.occupationType label
+{
+    font-size: 18px;
+    font-weight: bold;
+    color: #555555;
+}
+
+.schedule
+{
+    display: flex;
+    justify-content: center;
+}
+
+h3
+{
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+table
+{
+    margin-top: 10px;
+    margin-bottom: 40px;
 }
 
 .options

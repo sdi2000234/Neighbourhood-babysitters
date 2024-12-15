@@ -1,17 +1,25 @@
 import React from "react";
-import './ProfessionalCreateAd3.css'
+import './ProfessionalCreateAd3.css';
 import ProfessionalNavigation from '../../components/ProfessionalNavigation';
 import Schedule from '../../components/Schedule';
 import Footer from '../../components/Footer';
 import ProgressTracker from '../../components/ProgressTracker';
+import Dropdown from '../../components/Dropdown';
+import LanguageCertification from "../../components/LanguageCertification";
 
+
+const handleChange = (event) =>
+{
+    console.log("Selected:", event.target.value);
+};
 
 function ProfessionalCreateAd3()
 {
-    const userLanguages = [];
-
-
-    const langCount = userLanguages.length;
+    const municipalities = ["ΔΗΜΟΣ Α", "ΔΗΜΟΣ Β", "ΔΗΜΟΣ Γ"];
+    const languages = ["αγγλικά"];
+    const langCertificates = ["πιστοποιητικό_αγγλικών.pdf"];
+    const signCertificate = "certificate.pdf";
+    let index = 0;
 
     return (
         <div>
@@ -22,22 +30,31 @@ function ProfessionalCreateAd3()
                 <div>
                     <p className="infoType">Σύντομη Αυτοπαρουσίαση:</p>
                     <p className="subtitle">(Θα εμφανίζεται στην περίληψη της αγγελίας)</p>
-                    <input className="aboutMe" type="text" placeholder="Γράψτε μια μικρή αυτοπαρουσίαση"/>
+                    <textarea className="aboutMe" placeholder="Γράψτε μια μικρή αυτοπαρουσίαση" ></textarea>
                     <br/>
                     <div className="seperatorBar"></div>
-                    <p className="infoType">Γνώση Ξένης Γλώσσας {langCount}:</p>
-                    <p className="infoBox">{userLanguageCount==0 ? "" : userLanguages[langCount]}</p>
+                    <LanguageCertification index={index+1} name={languages[index]} certificate={langCertificates[index]}/>
+                    <LanguageCertification index={index+2} name="νοηματικη" certificate={signCertificate}/>
                     <p className="message">Τα παραπάνω στοιχεία Γλωσσομάθειας, καθώς και τα έτη εμπειρίας έχουν συμπληρωθεί αυτόματα με βάση τα στοιχεία που έχετε υποβάλει μέσω του Προφίλ σας. Αν κάποιο από αυτά λείπει ή χρειάζεται αλλαγή θα πρέπει να γίνει μέσω της επεξεργασίας του Προφίλ σας. Η αλλαγή θα εμφανιστεί αυτόματα σε όλες τις αγγελίες που έχετε δημιουργήσει.</p>
                     <div className="seperatorBar"></div>
-                    <p className="infoType">Επιλέξτε Δήμο Δραστηριοποίησης:</p>
-                    <select name="Δήμος" id="municipality">
-                        <option value={municipality}>{municipality}</option>
-                    </select>
-                    <p className="infoType">Επιλέξτε Είδος Απασχόλησης:</p>
-                    <input type="radio" value="Μερική Απασχόληση"></input>
-                    <input type="radio" value="Πλήρης Απασχόληση"></input>
+                    <div className="municipalitiesDropdown">
+                        <p className="infoType">Επιλέξτε Δήμο Δραστηριοποίησης:</p>
+                        <Dropdown defaultoption="Επιλέξτε Δήμο" options={municipalities}/>
+                    </div>
+                    <div className="occupationType">
+                        <p className="infoType">Επιλέξτε Είδος Απασχόλησης:</p>
+                        <form>
+                            <input type="radio" id="partTime" value="partTime" name="occupation"></input>
+                            <label for="partTime">Μερική Απασχόληση</label>
+                            <br/>
+                            <input type="radio" id="partTime" value="fullTime" name="occupation"></input>
+                            <label for="fullTime">Πλήρης Απασχόληση</label>
+                        </form>
+                    </div>
                     <h3>Επιλέξτε Διαθεσιμότητα:</h3>
-                    <Schedule/>
+                    <div className="schedule">
+                        <Schedule/>
+                    </div>
                 </div>
                 <div className="options">
                     <button><b><a href='./ProfessionalCreateAd2'>Προηγούμενο Βήμα</a></b></button>

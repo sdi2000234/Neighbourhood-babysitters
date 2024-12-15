@@ -1,9 +1,10 @@
-import ProfessionalCreateAd3 from './pages/ProfessionalMyAds/ProfessionalCreateAd3';
+import ProfessionalMyAds from './pages/ProfessionalMyAds/ProfessionalMyAds';
 
-function App() {
+function App()
+{
   return (
     <>
-    <ProfessionalCreateAd3/>
+    <ProfessionalMyAds/>
     </>
   );
 }

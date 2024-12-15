@@ -41,6 +41,12 @@
     margin-left: 60px;
 }
 
+.sorting img
+{
+    height: 8px;
+    margin-left: 8px;
+}
+
 .pageIndex p
 {
     display: flex;

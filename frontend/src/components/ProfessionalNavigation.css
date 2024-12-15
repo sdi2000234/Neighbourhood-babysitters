@@ -52,9 +52,13 @@
     width: 60px;
     margin-left: 20px;
     margin-right: 5px;
-    cursor: pointer;
     border-radius: 50%; /* Makes the image circular */
     object-fit: cover;
+}
+
+.profile
+{
+    cursor: pointer;
 }
 
 .switchRole
@@ -83,4 +87,16 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+}
+
+.switchRole button a
+{
+    color: #fff;
+    text-decoration: none
+}
+
+.arrow
+{
+    height: 8px;
+    margin-left: 5px;
 }

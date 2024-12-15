@@ -1,13 +1,8 @@
 import React from 'react'
-import './ParentNavigation.css'
+import './NavigationBar.css'
 import govgr from '../assets/govgr_logo_white.png'
 import emptyProfile from '../assets/empty_profile.png'
-/* import ParentHome from '../../pages/ParentHome'
-import ParentFindProfessional from '../../pages/ParentFindProfessional'
-import ParentHireProfessional from '../../pages/ParentHireProfessional'
-import ParentContract from '../../pages/ParentContract'
-import ParentHistory from '../../pages/ParentHistory'
-import ParentProfile from '../../pages/ParentProfile' */
+import arrow from '../assets/arrow_white.png'
 
 
 function ParentNavigation()
@@ -17,21 +12,43 @@ function ParentNavigation()
 	return 	(
         <div>
     		<div className="navBar">
-                <nav>
-                    <img className="logo" alt="logo" src={govgr}/>
-                    <ul>
-                        <li><a href="../pages/ParentHome">ΑΡΧΙΚΗ</a></li>
-                        <li><a href="../pages/ParentFindProfessional">ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</a></li>
-                        <li><a href="../pages/ParentHireProfessional">ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</a></li>
-                        <li><a href="../pages/ParentContract" >ΣΥΜΦΩΝΗΤΙΚΟ</a></li>
-                        <li><a href="../pages/ParentHistory" >ΙΣΤΟΡΙΚΟ</a></li>
-                    </ul>
+                <img className="logo" alt="logo" src={govgr}/>
+                <div className="navOptions">
+                    <button><a href="../pages/ParentHome/ParentHome">ΑΡΧΙΚΗ</a></button>
+                    <button><a href="../pages/ParentFindProfessional/ParentFindProfessional">ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</a></button>
+                    <button><a href="../pages/ParentHireProfessional/ParentHireProfessional">ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</a></button>
+                    <div class="dropdown">
+                        <button><a href="../pages/ParentContractPayment/ParentContractPayment" >ΣΥΜΦΩΝΗΤΙΚΟ<img className="arrow" alt="arrow" src={arrow}/></a></button>
+                        <div class="dropdown-content">
+                            <a href="./pages/ParentContractPayment/ParentContractPayment">ΠΛΗΡΩΜΗ</a>
+                            <a href="./pages/ParentContractEnd/ParentContractEnd">ΛΗΞΗ</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button><a href="../pages/ParentHistory/RequestHistory" >ΙΣΤΟΡΙΚΟ<img className="arrow" alt="arrow" src={arrow}/></a></button>
+                        <div class="dropdown-content">
+                            <a href="./pages/ParentHistory/RequestHistory">ΑΙΤΗΣΕΙΣ</a>
+                            <a href="./pages/ParentHistory/ContractHistory">ΣΥΜΦΩΝΗΤΙΚΑ</a>
+                            <a href="./pages/ParentHistory/PaymentHistory">ΠΛΗΡΩΜΕΣ</a>
+                        </div>
+                    </div>
+                </div>
+                <div className="profile">
                     <img className="pfp" alt="profile" src={userPfp==="" ? emptyProfile : userPfp}/>
-                </nav>
+                    <img className="arrow" alt="arrow" src={arrow}/>
+                    <div class="dropdown-content">
+                            <a href="./pages/ParentProfile/ParentProfile">ΠΡΟΦΙΛ</a>
+                            <a href="./pages/ParentProfile/ParentMessages">ΜΗΝΥΜΑΤΑ</a>
+                            <a href="./pages/ParentProfile/ParentNotifications">ΕΙΔΟΠΟΙΗΣΕΙΣ</a>
+                            <a href="./pages/ParentProfile/ParentAppointments">ΡΑΝΤΕΒΟΥ</a>
+                            <a href="./pages/ParentProfile/ParentRequests">ΑΙΤΗΣΕΙΣ</a>
+                            <a href="./pages/Home/Home">ΑΠΟΣΥΝΔΕΣΗ</a>
+                        </div>
+                </div>
             </div>
             <div className="switchRole">
                 <p>Έχετε συνδεθεί ως Γονέας/Κηδεμόνας</p>
-                <button>Σύνδεση ως Επαγγελματίας</button>
+                <button><a href="../pages/ProfessionalHome/Professional/Home" >Σύνδεση ως Επαγγελματίας</a></button>
             </div>
         </div>
 	);

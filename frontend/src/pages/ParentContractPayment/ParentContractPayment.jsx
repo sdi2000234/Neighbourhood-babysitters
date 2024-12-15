@@ -3,6 +3,7 @@ import './ParentContractPayment.css'
 import ParentNavigation from '../../components/ParentNavigation'
 import Voucher from '../../components/Voucher'
 import Footer from '../../components/Footer'
+import arrow from '../../assets/arrow_white.png'
 
 
 function ParentContractPayment()
@@ -15,7 +16,7 @@ function ParentContractPayment()
                 <p className="payment">ΠΛΗΡΩΜΗ</p>
             </div>
             <div classNameName="sorting">
-                <button>Ταξινόμηση v</button>
+                <button>Ταξινόμηση<img src={arrow} alt="arrow"/></button>
             </div>
             <Voucher/>
             <div className="pageIndex">

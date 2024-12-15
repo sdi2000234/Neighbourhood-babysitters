@@ -1,4 +1,12 @@
-.sort
+.sorting
+{
+    display: block;
+    margin-top: 10px;
+    margin-left: 60px;
+    margin-inline-end: 87.2%;
+}
+
+.sort button
 {
     font-size: 14px;
     padding: 5px;
@@ -8,8 +16,6 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    margin-top: 10px;
-    margin-left: 60px;
 }
 
 .sorting .dropdown-content button
@@ -29,7 +35,6 @@
 {
     position: absolute;
     display: none;
-    margin-left: 60px;
     background-color: #013372;
     z-index: 1;
     width: 119px;
@@ -45,7 +50,6 @@
     background-color: #00aeef;
     color: #000;
 }
-
 
 .sorting .arrow
 {

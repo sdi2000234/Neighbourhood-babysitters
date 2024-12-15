@@ -27,26 +27,6 @@
     cursor: pointer;
 }
 
-.sorting button
-{
-    font-size: 14px;
-    padding: 5px;
-    background-color: #013372;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 10px;
-    margin-left: 60px;
-}
-
-.sorting img
-{
-    height: 8px;
-    margin-left: 8px;
-}
-
 .pageIndex p
 {
     display: flex;

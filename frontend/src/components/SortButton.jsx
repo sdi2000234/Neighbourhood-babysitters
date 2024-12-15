@@ -7,7 +7,9 @@ function SortButton()
 {
     return (
         <div class="sorting">
-            <button className="sort">Ταξινόμηση <img className="arrow" alt="arrow" src={arrow}/></button>
+            <div className="sort">
+            <button>Ταξινόμηση <img className="arrow" alt="arrow" src={arrow}/></button>
+            </div>
             <div class="dropdown-content">
                 <button>A → Z</button>
                 <button>Z → A</button>

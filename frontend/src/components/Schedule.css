@@ -36,10 +36,10 @@ input
 
 .r8, .r10, .r12, .r14, .r16, .r18, .r20
 {
-    background-color: #fff;
+    background-color: #ddd;
 }
 
 .r9, .r11, .r13, .r15, .r17, .r19, .r21
 {
-    background-color: #ddd;
+    background-color: #fff;
 }

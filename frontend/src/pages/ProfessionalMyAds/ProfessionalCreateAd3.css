@@ -47,30 +47,6 @@
     text-align: center;
 }
 
-.personInfo .infoBox
-{
-    border: none;
-    border-radius: 5px;
-    color: #737373;
-    background-color: #fff;
-    height: 25px;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    width: stretch;
-}
-
-.personInfo .infoType
-{
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.languages
-{
-    display: flex;
-}
-
 .message
 {
     margin-top: 30px;

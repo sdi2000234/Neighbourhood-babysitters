@@ -5,20 +5,19 @@
     font-family: arial;
 }
 
-.infoBox
+.dataBox
 {
     border: none;
     border-radius: 5px;
     color: #737373;
     background-color: #fff;
-    height: 25px;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 20px;
     width: stretch;
 }
 
-.infoType
+.dataKind
 {
     font-weight: bold;
     font-size: 20px;

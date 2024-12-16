@@ -1,10 +1,10 @@
-import ParentContractEnd from './pages/ParentContractEnd/ParentContractEnd';
+import ParentContractRenew from './pages/ParentContractEnd/ParentContractRenew';
 
 function App()
 {
   return (
     <>
-    <ParentContractEnd/>
+    <ParentContractRenew/>
     </>
   );
 }

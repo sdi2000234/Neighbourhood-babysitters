@@ -8,11 +8,6 @@ import Dropdown from '../../components/Dropdown';
 import LanguageCertification from "../../components/LanguageCertification";
 
 
-const handleChange = (event) =>
-{
-    console.log("Selected:", event.target.value);
-};
-
 function ProfessionalCreateAd3()
 {
     const municipalities = ["ΔΗΜΟΣ Α", "ΔΗΜΟΣ Β", "ΔΗΜΟΣ Γ"];
@@ -47,7 +42,7 @@ function ProfessionalCreateAd3()
                             <input type="radio" id="partTime" value="partTime" name="occupation"></input>
                             <label for="partTime">Μερική Απασχόληση</label>
                             <br/>
-                            <input type="radio" id="partTime" value="fullTime" name="occupation"></input>
+                            <input type="radio" id="fullTime" value="fullTime" name="occupation"></input>
                             <label for="fullTime">Πλήρης Απασχόληση</label>
                         </form>
                     </div>

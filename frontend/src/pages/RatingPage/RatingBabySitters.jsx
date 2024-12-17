@@ -2,6 +2,8 @@ import React from 'react'
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import ReviewCardBabySitter from '../../components/ReviewCardBabySitter.jsx';
 import Grid from "@mui/material/Grid2";
+import ProfessionalNavigation from '../../components/ProfessionalNavigation';
+import Footer from '../../components/Footer';
 
 const RatingBabySitters = () => {
 
@@ -34,25 +36,29 @@ const RatingBabySitters = () => {
   ];
   
   return (
-    <Grid container spacing={2} direction={'column'}>
-        <Grid item> 
-            <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
-        </Grid>
-        
-        <Grid container spacing={2} direction={'row'}>
-            <Grid item> 
-                <ReviewCardBabySitter picLink={imageUrl1} name={name1} start={start1} end={end1} ratingscore={ratingscore1} parentcomment={parentcomment1}/>
-            </Grid>
-            <Grid item> 
-                <ReviewCardBabySitter picLink={imageUrl2} name={name2} start={start2} end={end2} ratingscore={ratingscore2} parentcomment={parentcomment2}/>
-            </Grid>
-            <Grid item> 
-                <ReviewCardBabySitter picLink={imageUrl3} name={name3} start={start3} end={end3} ratingscore={ratingscore3} parentcomment={parentcomment3}/>
-            </Grid>
-        </Grid>
-        
+    <>
+      <ProfessionalNavigation/>
+      <Grid container spacing={2} direction={'column'}>
+          <Grid item> 
+              <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
+          </Grid>
+          
+          <Grid container spacing={2} direction={'row'}>
+              <Grid item> 
+                  <ReviewCardBabySitter picLink={imageUrl1} name={name1} start={start1} end={end1} ratingscore={ratingscore1} parentcomment={parentcomment1}/>
+              </Grid>
+              <Grid item> 
+                  <ReviewCardBabySitter picLink={imageUrl2} name={name2} start={start2} end={end2} ratingscore={ratingscore2} parentcomment={parentcomment2}/>
+              </Grid>
+              <Grid item> 
+                  <ReviewCardBabySitter picLink={imageUrl3} name={name3} start={start3} end={end3} ratingscore={ratingscore3} parentcomment={parentcomment3}/>
+              </Grid>
+          </Grid>
+          
 
-    </Grid>
+      </Grid>
+      <Footer/>
+    </>
   )
 }
 

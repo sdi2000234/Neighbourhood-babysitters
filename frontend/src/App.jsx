@@ -14,8 +14,8 @@ function App() {
   //   { name: 'Here'} // Η σελίδα που είμαι ήδη (χωρίς σύνδεσμο) 
   // ];
 
-  // const imageUrl = "https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*";
-  // const name = "Άννα Δασκαλάκη"
+  const imageUrl = "https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*";
+  const name = "Άννα Δασκαλάκη"
 
   return (
     <>

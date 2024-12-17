@@ -15,7 +15,7 @@
     margin-bottom: 40px;
 }
 
-.aboutMe
+.messagePannel
 {
     background-color: #fff;
     color: #373737;
@@ -47,6 +47,26 @@
     text-align: center;
 }
 
+
+.personInfo .infoBox
+{
+    border: none;
+    border-radius: 5px;
+    color: #737373;
+    background-color: #fff;
+    height: 25px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: stretch;
+}
+
+.personInfo .infoType
+{
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .message
 {
     margin-top: 30px;
@@ -54,19 +74,19 @@
     color: #737373;
 }
 
-.occupationType
+.where
 {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
-.occupationType input
+.where input
 {
     margin-top: 20px;
     height: 20px;
     width: 20px;
 }
 
-.occupationType label
+.where label
 {
     font-size: 18px;
     font-weight: bold;
@@ -87,8 +107,58 @@ h3
 
 table
 {
-    margin-top: 10px;
-    margin-bottom: 40px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.address
+{
+    margin-top: 50px;
+}
+
+.duration
+{
+    margin-top: 50px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.duration label
+{
+    margin-right: 10px;
+    font-weight: bold;
+    align-self: center;
+}
+
+.duration input
+{
+    width: 140px;
+    padding: 5px;
+    color: #373737;
+    border-style: solid;
+    border-color: #9e9e9e;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+.signContract
+{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+}
+
+.signContract input
+{
+    height: 20px;
+    width: 20px;
+    margin-right: 20px;
+}
+
+.signContract p
+{
+    font-weight: bold;
 }
 
 .options
@@ -98,7 +168,7 @@ table
     gap: 100px;
 }
 
-button
+.options button
 {
     font-size: 20px;
     padding: 8px;
@@ -109,22 +179,11 @@ button
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 80px;
+    margin-top: 30px;
 }
 
-button a
+.options button a
 {
     text-decoration: none;
     color: #fff;
-}
-
-.number3
-{
-    background-color: #013372;
-    color: #fff;
-    border-radius: 50%;
-    height: 60px;
-    aspect-ratio: 1 / 1;
-    align-content: center;
-    text-align: center;
 }

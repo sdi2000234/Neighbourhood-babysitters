@@ -1,0 +1,21 @@
+select
+{
+    border: none;
+    border-radius: 5px;
+    color: #737373;
+    background-color: #fff;
+    height: 40px;
+    padding: 10px;
+    width: 50%;
+    margin-top: 10px;
+}
+
+option
+{
+    border: none;
+    border-radius: 5px;
+    color: #737373;
+    background-color: #fff;
+    height: 25px;
+    padding: 10px;
+}

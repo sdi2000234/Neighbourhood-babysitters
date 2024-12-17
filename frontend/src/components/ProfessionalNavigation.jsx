@@ -1,12 +1,8 @@
 import React from 'react'
-import './ProfessionalNavigation.css'
+import './NavigationBar.css'
 import govgr from '../assets/govgr_logo_white.png'
 import emptyProfile from '../assets/empty_profile.png'
-/* import ProfessionalHome from '../../pages/ProfessionalHome'
-import ProfessionalMyAds from '../../pages/ProfessionalMyAds'
-import ProfessionalCoOpRequests from '../../pages/ProfessionalCoOpRequests'
-import ProfessionalHistory from '../../pages/ProfessionalHistory'
-import ProfessionalProfile from '../../pages/ProfessionalProfile' */
+import arrow from '../assets/arrow_white.png'
 
 
 function ProfessionalNavigation()
@@ -14,22 +10,45 @@ function ProfessionalNavigation()
     const userPfp = ""; //user's Pfp src
 
     return 	(
-        <div>
+       <div>
             <div className="navBar">
-                <nav>
-                    <img className="logo" alt="logo" src={govgr}/>
-                    <ul>
-                        <li><a href="../pages/ProfessionalHome">ΑΡΧΙΚΗ</a></li>
-                        <li><a href="../pages/ProfessionalMyAds">ΟΙ ΑΓΓΕΛΙΕΣ ΜΟΥ</a></li>
-                        <li><a href="../pages/ProfessionalCoOpRequests">ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ</a></li>
-                        <li><a href="../pages/ProfessionalHistory" >ΙΣΤΟΡΙΚΟ</a></li>
-                    </ul>
+                <img className="logo" alt="logo" src={govgr}/>
+                <div className="navOptions">
+                    <button><a href="../pages/ProfessionalHome/ProfessionalHome">ΑΡΧΙΚΗ</a></button>
+                    <button><a href="../pages/ProfessionalMyAds/ProfessionalMyAds">ΟΙ ΑΓΓΕΛΙΕΣ ΜΟΥ</a></button>
+                    <div class="dropdown">
+                        <button><a href="../pages/ProfessionalCoOpRequests/ProfessionalCoOpRequests" >ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ<img className="arrow" alt="arrow" src={arrow}/></a></button>
+                        <div class="dropdown-content">
+                            <a href="./pages/ProfessionalAppointments/ProfessionalAppointments">ΡΑΝΤΕΒΟΥ</a>
+                            <a href="./pages/ProfessionalCoOpRequests/ProfessionalCoOpRequests">ΑΙΤΗΜΑΤΑ</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button><a href="../pages/ProfessionalHistory/RequestHistory" >ΙΣΤΟΡΙΚΟ<img className="arrow" alt="arrow" src={arrow}/></a></button>
+                        <div class="dropdown-content">
+                            <a href="./pages/ProfessionalHistory/RequestHistory">ΑΙΤΗΣΕΙΣ</a>
+                            <a href="./pages/ProfessionalHistory/ContractHistory">ΣΥΜΦΩΝΗΤΙΚΑ</a>
+                            <a href="./pages/ProfessionalHistory/PaymentHistory">ΠΛΗΡΩΜΕΣ</a>
+                        </div>
+                    </div>
+                </div>
+                <div className="profile">
                     <img className="pfp" alt="profile" src={userPfp==="" ? emptyProfile : userPfp}/>
-                </nav>
+                    <img className="arrow" alt="arrow" src={arrow}/>
+                    <div class="dropdown-content">
+                            <a href="./pages/ProfessionalProfile/ProfessionalProfile">ΠΡΟΦΙΛ</a>
+                            <a href="./pages/ProfessionalProfile/ProfessionalMessages">ΜΗΝΥΜΑΤΑ</a>
+                            <a href="./pages/ProfessionalProfile/ProfessionalNotifications">ΕΙΔΟΠΟΙΗΣΕΙΣ</a>
+                            <a href="./pages/ProfessionalProfile/ProfessionalAppointments">ΡΑΝΤΕΒΟΥ</a>
+                            <a href="./pages/ProfessionalProfile/ProfessionalReviews">ΑΙΤΗΣΕΙΣ</a>
+                            <a href="./pages/ProfessionalProfile/ProfessionalRequests">ΑΞΙΟΛΟΓΗΣΕΙΣ</a>
+                            <a href="./pages/Home/Home">ΑΠΟΣΥΝΔΕΣΗ</a>
+                        </div>
+                </div>
             </div>
             <div className="switchRole">
                 <p>Έχετε συνδεθεί ως Επαγγελματίας</p>
-                <button>Σύνδεση ως Γονέας/Κηδεμόνας</button>
+                <button><a href="../pages/ParentHome/ParentHome" >Σύνδεση ως Γονέας/Κηδεμόνας</a></button>
             </div>
         </div>
     );

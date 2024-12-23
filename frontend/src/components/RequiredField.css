@@ -1,0 +1,18 @@
+/* Το αρχειο RequiredField.css */
+.required-field {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.required-field .required {
+    color: red; /* Κόκκινο αστεράκι */
+    margin-left: 5px;  /* Απόσταση του αστεριού από το label */
+}
+
+
+.required-field:hover::after {
+    content: " Υποχρεωτικό πεδίο";  /* Μήνυμα κατά το hover */
+    color: red;  /* Χρώμα του μηνύματος */
+    font-size: 14px;
+    margin-left: 10px; /* Απόσταση από το label */
+}

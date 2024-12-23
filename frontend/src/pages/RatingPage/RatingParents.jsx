@@ -1,6 +1,8 @@
 import React from 'react'
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import Card from '../../components/ReviewCard.jsx';
+import ParentNavigation from '../../components/ParentNavigation';
+import Footer from '../../components/Footer';
 
 const RatingParents = () => {
 
@@ -15,10 +17,12 @@ const RatingParents = () => {
   
   return (
     <>
+    <ParentNavigation/>
     <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
     <br />
     <br />
     <Card picLink={imageUrl} name={name}/>
+    <Footer/>
     </>
   )
 }

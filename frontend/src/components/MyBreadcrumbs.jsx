@@ -1,23 +1,40 @@
-import React from 'react'
-import {Box , Breadcrumbs , Link , Typography} from "@mui/material"
+import React from 'react';
+import { Box, Breadcrumbs, Link, Typography } from '@mui/material';
+import './MyBreadcrumbs.css'; // Εισαγωγή του CSS
 
 const MyBreadcrumbs = ({ breadcrumbPages }) => {
   return (
-    <Box m={2}>
-        <Breadcrumbs separator='>' sx={{ fontSize: '2.0rem' }}>    
-            {breadcrumbPages.map((item, index) => {
-            if (index === breadcrumbPages.length - 1) {
-                return <Typography key={index} color='text.primary' sx={{ fontSize: '2.0rem' }}> {item.name} </Typography>
-            } else {
-                return <Link key={index} underline='always' href={item.link}> {item.name}</Link>
-            }
-            })}
-        </Breadcrumbs>
+    <Box m={2} className="breadcrumbs">
+      <Breadcrumbs separator=">" >
+        {breadcrumbPages.map((item, index) => {
+          if (index === breadcrumbPages.length - 1) {
+            return (
+              <Typography
+                key={index}
+                className="active"
+                sx={{ fontWeight: 'bold' , color: 'black'}}
+              >
+                {item.name}
+              </Typography>
+            );
+          } else {
+            return (
+              <Link
+                key={index}
+                href={item.link}
+                className="link"
+              >
+                {item.name}
+              </Link>
+            );
+          }
+        })}
+      </Breadcrumbs>
     </Box>
-  )
-}
+  );
+};
 
-export default MyBreadcrumbs
+export default MyBreadcrumbs;
 
 
 /* Για χρηση σε άλλο αρχείο πχ στο App.jsx:

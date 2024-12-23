@@ -16,7 +16,12 @@ function ParentContractEnd()
                 <p className="payment">ΛΗΞΗ</p>
             </div>
             <SortButton/>
-            <ContractEnd/>
+            <div className="endedContracts">
+                <ContractEnd/>
+                <ContractEnd/>
+                <ContractEnd/>
+                <ContractEnd/>
+            </div>
             <div className="pageIndex">
                 <p>&lt;&emsp;1&emsp;&gt;</p>
             </div>

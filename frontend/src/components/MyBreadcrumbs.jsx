@@ -12,7 +12,7 @@ const MyBreadcrumbs = ({ breadcrumbPages }) => {
               <Typography
                 key={index}
                 className="active"
-                sx={{ fontWeight: 'bold' , color: 'black'}}
+                sx={{ fontWeight: 'bold' , color: 'black', fontSize: 28}}
               >
                 {item.name}
               </Typography>

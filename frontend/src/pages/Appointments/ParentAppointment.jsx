@@ -2,16 +2,34 @@ import React, { useState } from 'react';
 import './ParentAppointment.css'
 import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css'; 
-import RequiredField from '../../components/RequiredField';  // Εισάγουμε το RequiredField
+import RequiredField from '../../components/RequiredField';  
+import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+import InfoIcon from '@mui/icons-material/Info';
+import { Tooltip } from '@mui/material';
 
 function ParentAppointment({ babysitterName , userName , userLastName , userPhone, userEmail , date , time}) {
     
-    
+    const [meetingType, setMeetingType] = useState(''); // Διαχειρίζεται την επιλογή του τύπου συνάντησης
+
+    const handleMeetingTypeChange = (event) => {
+        setMeetingType(event.target.value); // Ενημέρωση τύπου συνάντησης για radiobuttons 
+    };
+
+    const handleCancel = (event) => { //Για button Ακύρωσης 
+        event.preventDefault();  // Αποτρέπει την υποβολή της φόρμας
+        alert("Η φόρμα ακυρώθηκε."); //ΠΟΥ ΝΑ ΠΗΓΑΙΝΟΥΜΕ ΣΤΗΝ ΑΚΥΡΩΣΗ ???
+    };
+
+    const breadcrumbPages = [
+        { name: 'ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ'}  //ΙΣΩΣ ΘΕΛΕΙ ΕΞΤΡΑ "ΒΗΜΑΤΑ" ΕΔΩ
+    ];
+
     return (
         <>
             <ParentNavigation />
+
+            <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
+
             <div className='personInfo'>
                 <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ: {babysitterName}</h1>
 
@@ -36,19 +54,73 @@ function ParentAppointment({ babysitterName , userName , userLastName , userPhon
 
                     <div className="dateAndtime">
                         <div>
-                            <label htmlFor="date" className="infoType"> <RequiredField label="Ημερομηνία Ραντεβού" /> </label>
+                            <br /><br />
+                            <label htmlFor="date" className="infoType"> <RequiredField label="Ημερομηνία Ραντεβού:" /> </label>
                             <input type="date" id="date" name="date" className="infoBox" placeholder="Ημερομηνία Ραντεβού" required />
                         </div>
                         <div>
-                            <label htmlFor="time" className="infoType"> <RequiredField label="Ώρα Ραντεβού" /> </label>
+                            <br /><br />
+                            <label htmlFor="time" className="infoType"> <RequiredField label="Ώρα Ραντεβού:" /> </label>
                             <input type="time" id="time" name="time" className="infoBox" placeholder="Ώρα Ραντεβού" required />
                         </div>
                     </div>
 
-                    <div className="meeting">
-                        {/* ............ΝΑ ΣΥΝΕΧΙΣΩ ΑΠΟ ΕΔΩ................. */}
+                    <div className="container">
+
+                        <div>
+                            <br /><br />
+                            <RequiredField label="Τύπος Συνάντησης:" />
+                        </div>
+
+                        <div class="meeting">
+                            
+                            <div>
+                                <label id="radiobutton">
+                                    <input type="radio" value="FaceToFace" name="meeting" onChange={handleMeetingTypeChange} required /> 
+                                    <span className="radio-label">Δια ζώσης Συνάντηση</span>
+                                </label>
+                            </div>
+                            <div>
+                                <label id="radiobutton">
+                                    <input type="radio" value="Online" name="meeting" onChange={handleMeetingTypeChange} required /> 
+                                    <span className="radio-label">Online Συνάντηση</span>
+                                </label>
+                            </div>
+                        </div>
+                        <br/>
+                        <br />
+
+                        {/* Δυναμική απόδοση πεδίων βάσει της επιλογής online ή face to face meeting*/}
+                        {meetingType === "FaceToFace" && (
+                            <div>
+                                <label htmlFor="location" className="infoType">Διεύθυνση Ραντεβού:</label>
+                                <input type="text" id="location" name="location" className="infoBox" placeholder="Διεύθυνση , Περιοχή , Τ.Κ." required />
+                            </div>
+                        )}
+
+
+                        {meetingType === "Online" && (
+                            <div>
+                                <label htmlFor="location" className="infoType">Link online συνάντησης:</label>
+                                <Tooltip title="Δημιουργήστε ένα online meeting σε κάποια πλατφόρμα όπως webex,zoom...και συμπληρώστε εδώ τον σύνδεσμο" arrow>
+                                    <InfoIcon sx={{ marginLeft: '5px', cursor: 'pointer' }} />
+                                </Tooltip>
+                                <input type="text" id="link" name="link" className="infoBox" placeholder="Link online συνάντησης" required />
+                            </div>
+                        )}
+
+
+                        <div className="message">
+                            <textarea className="mymessage" name="subject" placeholder="Μήνυμα προς Επαγγελματία.." style={{ height:200 }}></textarea>
+                        </div>
+
+                        <button type="submit" className="submitbutton">Αποστολή</button>
+                        <br />
+                        <button type="button" className="cancelbutton" onClick={handleCancel}>Ακύρωση</button>
+
+
                     </div>
-                    
+
                 </form>
             </div>
             <Footer />

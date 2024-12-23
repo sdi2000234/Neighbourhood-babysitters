@@ -4,6 +4,7 @@
     text-decoration: none;
     cursor: pointer;
     font-weight: bold !important;
+    font-size: 28px;
 }
 
 .breadcrumbs a:hover {

@@ -5,14 +5,14 @@
 }
 
 .required-field .required {
-    color: red; /* Κόκκινο αστεράκι */
-    margin-left: 5px;  /* Απόσταση του αστεριού από το label */
+    color: red; 
+    margin-left: 5px;  
 }
 
 
 .required-field:hover::after {
-    content: " Υποχρεωτικό πεδίο";  /* Μήνυμα κατά το hover */
-    color: red;  /* Χρώμα του μηνύματος */
+    content: " Υποχρεωτικό πεδίο"; 
+    color: red;  
     font-size: 14px;
-    margin-left: 10px; /* Απόσταση από το label */
+    margin-left: 10px; 
 }

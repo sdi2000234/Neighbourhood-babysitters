@@ -17,7 +17,7 @@ import ProfessionalCreateAd4 from './pages/ProfessionalMyAds/ProfessionalCreateA
 import ParentAppointment from './pages/Appointments/ParentAppointment.jsx';
 
 function App() {
-  const babysitterName = "Μαρία"; 
+  const babysitterName = "Εύη Κωστοπούλου"; 
   const userName = "ΙΩΑΝΝΑ";
   const userLastName = "ΚΥΡΙΑΚΟΥ";
   const userPhone = "6957264837";

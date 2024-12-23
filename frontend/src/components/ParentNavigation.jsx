@@ -14,18 +14,18 @@ function ParentNavigation()
     		<div className="navBar">
                 <img className="logo" alt="logo" src={govgr}/>
                 <div className="navOptions">
-                    <button><a href="../pages/ParentHome/ParentHome">ΑΡΧΙΚΗ</a></button>
-                    <button><a href="../pages/ParentFindProfessional/ParentFindProfessional">ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</a></button>
-                    <button><a href="../pages/ParentHireProfessional/ParentHireProfessional">ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</a></button>
+                    <button className='parHome'><a href="../pages/ParentHome/ParentHome">ΑΡΧΙΚΗ</a></button>
+                    <button className='parFind'><a href="../pages/ParentFindProfessional/ParentFindProfessional">ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</a></button>
+                    <button className='parHire'><a href="../pages/ParentHireProfessional/ParentHireProfessional">ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</a></button>
                     <div class="dropdown">
-                        <button><a href="../pages/ParentContractPayment/ParentContractPayment" >ΣΥΜΦΩΝΗΤΙΚΟ<img className="arrow" alt="arrow" src={arrow}/></a></button>
+                        <button className='parContract'><a href="../pages/ParentContractPayment/ParentContractPayment" >ΣΥΜΦΩΝΗΤΙΚΟ<img className="arrow" alt="arrow" src={arrow}/></a></button>
                         <div class="dropdown-content">
                             <a href="./pages/ParentContractPayment/ParentContractPayment">ΠΛΗΡΩΜΗ</a>
                             <a href="./pages/ParentContractEnd/ParentContractEnd">ΛΗΞΗ</a>
                         </div>
                     </div>
                     <div class="dropdown">
-                        <button><a href="../pages/ParentHistory/RequestHistory" >ΙΣΤΟΡΙΚΟ<img className="arrow" alt="arrow" src={arrow}/></a></button>
+                        <button className='parHistory'><a href="../pages/ParentHistory/RequestHistory" >ΙΣΤΟΡΙΚΟ<img className="arrow" alt="arrow" src={arrow}/></a></button>
                         <div class="dropdown-content">
                             <a href="./pages/ParentHistory/RequestHistory">ΑΙΤΗΣΕΙΣ</a>
                             <a href="./pages/ParentHistory/ContractHistory">ΣΥΜΦΩΝΗΤΙΚΑ</a>

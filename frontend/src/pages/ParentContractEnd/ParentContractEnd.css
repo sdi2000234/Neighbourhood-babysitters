@@ -32,3 +32,8 @@
     display: flex;
     justify-content: center;
 }
+
+.parContract
+{
+    font-weight: bold;
+}

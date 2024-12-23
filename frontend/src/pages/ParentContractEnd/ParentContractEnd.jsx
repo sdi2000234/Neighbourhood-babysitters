@@ -6,7 +6,7 @@ import Footer from '../../components/Footer'
 import SortButton from '../../components/SortButton'
 
 
-function ParentContractPayment()
+function ParentContractEnd()
 {
 	return	(
         <div>
@@ -26,4 +26,4 @@ function ParentContractPayment()
 }
 
 
-export default ParentContractPayment;
+export default ParentContractEnd;

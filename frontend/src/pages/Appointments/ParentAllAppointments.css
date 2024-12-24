@@ -2,9 +2,11 @@
     margin: 0;
     padding: 0;
     font-family: arial;
-    box-sizing: border-box;
 }
 
+body {
+    overflow-x: hidden; /* Απενεργοποιεί το οριζόντιο scroll */
+}
 
 .appointments {
     margin-top: 20px;

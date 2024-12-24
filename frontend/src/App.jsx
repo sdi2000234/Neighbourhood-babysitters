@@ -9,8 +9,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import RatingBabySitters from './pages/RatingPage/RatingBabySitters';
 
 import ParentAppointment from './pages/Appointments/ParentAppointment.jsx';
-// import ParentAppointmentEnd from './pages/Appointments/ParentAppointmentEnd.jsx';
-// import ParentAllAppointments from './pages/Appointments/ParentAllAppointments.jsx';
+import ParentAppointmentEnd from './pages/Appointments/ParentAppointmentEnd.jsx';
+import ParentAllAppointments from './pages/Appointments/ParentAllAppointments.jsx';
 
 
 function App() {
@@ -33,9 +33,9 @@ function App() {
         {/* ΔΙΚΟ ΜΟΥ */}
         <Route path='/ParentAppointment' element={<ParentAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} date={date} time={time}/>} />
         {/* ΔΙΚΟ ΜΟΥ */}
-        {/* <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} /> */}
+        <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} />
         {/* ΔΙΚΟ ΜΟΥ */}
-        {/* <Route path='/ParentAllAppointments' element={<ParentAllAppointments />} /> */}
+        <Route path='/ParentAllAppointments' element={<ParentAllAppointments />} />
 
         
 

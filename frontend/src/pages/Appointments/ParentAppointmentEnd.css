@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     font-family: arial;
-    box-sizing: border-box; /* Αυτό διασφαλίζει ότι το padding και το border δεν επηρεάζουν το συνολικό πλάτος των στοιχείων. */
 }
 
 body {

@@ -63,7 +63,7 @@ function ProfessionalProfile({userName , userLastName, userEmail , userPhone , p
                   
               </div>
               <div style={{ flexGrow: 1 }}>
-                <button>Αγαπημένες Αγγελίες</button>
+                <button>Οι Αγγελίες μου</button>
                 <button className='logoutProfessionalProfile'>Αποσύνδεση</button>
               </div>
           </div>

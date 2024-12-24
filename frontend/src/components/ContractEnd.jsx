@@ -17,7 +17,7 @@ function ContractEnd()
     return (
         <div className="contractPannel">
             <div className="userInfo">
-                <img className="userPfp" src={professionalPfp===null ? emptyProfile : professionalPfp}/>
+                <img className="userPfp" alt='profile' src={professionalPfp===null ? emptyProfile : professionalPfp}/>
                 <p>{professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName}</p>
             </div>
             <div className="contractDetails">
@@ -30,11 +30,11 @@ function ContractEnd()
                         <button>
                             <p className="ratingStatus">{rating>0 ? "ΕΠΕΞΕΡΓΑΣΙΑ ΑΞΙΟΛΟΓΗΣΗΣ" : "ΑΞΙΟΛΟΓΗΣΗ"}</p>
                             <div className="stars">
-                                <img className="star1" src={rating>0 ? fullStar : emptyStar}/>
-                                <img className="star2" src={rating>1 ? fullStar : emptyStar}/>
-                                <img className="star3" src={rating>2 ? fullStar : emptyStar}/>
-                                <img className="star4" src={rating>3 ? fullStar : emptyStar}/>
-                                <img className="star5" src={rating>4 ? fullStar : emptyStar}/>
+                                <img className="star1" alt='star' src={rating>0 ? fullStar : emptyStar}/>
+                                <img className="star2" alt='star' src={rating>1 ? fullStar : emptyStar}/>
+                                <img className="star3" alt='star' src={rating>2 ? fullStar : emptyStar}/>
+                                <img className="star4" alt='star' src={rating>3 ? fullStar : emptyStar}/>
+                                <img className="star5" alt='star' src={rating>4 ? fullStar : emptyStar}/>
                             </div>
                         </button>
                     </div>

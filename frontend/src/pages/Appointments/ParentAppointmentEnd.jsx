@@ -17,15 +17,15 @@ function ParentAppointmentEnd() {
 
         <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
-        <div class="personInfo">
-            <div className='paragraph'>
+        <div class="personInfoApEnd">
+            <div className='paragraphApEnd'>
                 <p>Η πρόσκληση για Ραντεβού στάλθηκε στην/στον Επαγγελματία.</p>
                 <p>Παρακαλώ αναμένετε απάντηση.</p>
-                <button className='myButton'>Μεταφορά στην σελίδα "Ραντεβού"</button>
+                <button className='myButtonApEnd'>Μεταφορά στην σελίδα "Ραντεβού"</button>
             </div>
             
         </div>
-
+        
         <Footer />
 
     </>

@@ -53,6 +53,7 @@ function ParentAllAppointments() { //ΙΣΩΣ ΘΕΛΕΙ ΠΕΡΙΣΣΟΤΕΡΑ 
             loc: "https://www.webex.com/test-meeting.html",
             type: "online"
         }
+        
     ];
 
     // Συνάρτηση για μετατροπή της ημερομηνίας από 'DD/MM/YYYY' σε 'YYYY-MM-DD'
@@ -103,20 +104,20 @@ function ParentAllAppointments() { //ΙΣΩΣ ΘΕΛΕΙ ΠΕΡΙΣΣΟΤΕΡΑ 
             <ParentNavigation currentNavPage={'parAp'}/>
             <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
 
-            <Grid container spacing={4} justifyContent="center" alignItems="flex-start" className="appointments">
-                {sortedAppointments.map((appointment, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={index}>
-                        <AppointmentCardProfessional 
-                            picLink={appointment.picLink} 
-                            professionalName={appointment.professionalName} 
-                            date={formatDate(appointment.date)}  // Εμφάνιση ημερομηνίας με την επιθυμητή μορφή
-                            loc={appointment.loc} 
-                            time={appointment.time} 
-                            type={appointment.type} 
-                        />
-                    </Grid>
-                ))}
-            </Grid>
+                <Grid container spacing={4} justifyContent="center" alignItems="flex-start" className="appointments">
+                    {sortedAppointments.map((appointment, index) => (
+                        <Grid item xs={12} sm={6} md={4} key={index}>
+                            <AppointmentCardProfessional 
+                                picLink={appointment.picLink} 
+                                professionalName={appointment.professionalName} 
+                                date={formatDate(appointment.date)}  // Εμφάνιση ημερομηνίας με την επιθυμητή μορφή
+                                loc={appointment.loc} 
+                                time={appointment.time} 
+                                type={appointment.type} 
+                            />
+                        </Grid>
+                    ))}
+                </Grid>
 
             <Footer />
         </>

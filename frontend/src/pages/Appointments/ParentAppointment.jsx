@@ -30,7 +30,7 @@ function ParentAppointment({ babysitterName , userName , userLastName , userPhon
 
             <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
-            <div className='personInfo'>
+            <div className='ApPersonInfo'>
                 <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ: {babysitterName}</h1>
 
                 <form action="">

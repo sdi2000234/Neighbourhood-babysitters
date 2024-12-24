@@ -5,7 +5,7 @@
     font-family: arial;
 }
 
-.personInfo {
+.personInfoApEnd {
     background-color: #ddd;
     color: #373737;
     margin: 80px auto; 
@@ -16,7 +16,7 @@
 }
 
 
-.paragraph {
+.paragraphApEnd {
     display: flex;
     flex-direction: column; 
     justify-content: center; 
@@ -24,9 +24,17 @@
     text-align: center; 
 }
 
-.myButton {
+.myButtonApEnd
+{
+    font-size: 20px;
+    background-color: #013372;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     width: 400px; 
     padding: 10px 20px; 
-    text-align: center; 
     margin-top: 40px; 
 }
+
+

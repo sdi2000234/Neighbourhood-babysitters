@@ -46,7 +46,7 @@ function AppointmentCardProfessional({type , picLink, professionalName, date, lo
                     </div>
                 </div>
                 <div className="appointmentOptions">
-                    <button className="moreButton">Περισσότερες Λεπτομέρειες</button>
+                    <button className="moreButton">Δείτε Προφίλ Επαγγελματία</button> {/*ΝΑ ΠΕΤΑΓΕΤΑΙ ΤΟ ΠΡΟΦΙΛ ΤΟΥ ΕΠΑΓΓΕΛΜΑΤΙΑ ΣΕ ΑΥΤΗ ΤΗ ΣΕΛΙΔΑ*/}
                     <button className="buttons">Αλλαγή Στοιχείων Ραντεβού</button>
                     <button className="buttons">Κάντε Αίτηση Συνεργασίας</button>
                     <button className="cancelButton">Ακύρωση Ραντεβού</button>

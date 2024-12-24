@@ -8,8 +8,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import RatingParents from './pages/RatingPage/RatingParents';
 // import RatingBabySitters from './pages/RatingPage/RatingBabySitters';
 
-import ParentAppointment from './pages/Appointments/ParentAppointment.jsx';
-import ParentAppointmentEnd from './pages/Appointments/ParentAppointmentEnd.jsx';
+// import ParentAppointment from './pages/Appointments/ParentAppointment.jsx';
+// import ParentAppointmentEnd from './pages/Appointments/ParentAppointmentEnd.jsx';
 import ParentAllAppointments from './pages/Appointments/ParentAllAppointments.jsx';
 
 
@@ -31,9 +31,9 @@ function App() {
         {/* <Route path='/RatingBabySitters' element={<RatingBabySitters />} /> */}
         
         {/* ΔΙΚΟ ΜΟΥ */}
-        <Route path='/ParentAppointment' element={<ParentAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} date={date} time={time}/>} />
+        {/* <Route path='/ParentAppointment' element={<ParentAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} date={date} time={time}/>} /> */}
         {/* ΔΙΚΟ ΜΟΥ */}
-        <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} />
+        {/* <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} /> */}
         {/* ΔΙΚΟ ΜΟΥ */}
         <Route path='/ParentAllAppointments' element={<ParentAllAppointments />} />
 
@@ -41,6 +41,7 @@ function App() {
 
       </Routes>
     </BrowserRouter>
+
   );
 }
 

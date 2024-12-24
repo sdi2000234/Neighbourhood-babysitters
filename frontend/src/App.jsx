@@ -14,7 +14,9 @@ import ProfessionalCreateAd1 from './pages/ProfessionalMyAds/ProfessionalCreateA
 import ProfessionalCreateAd2 from './pages/ProfessionalMyAds/ProfessionalCreateAd2.jsx';
 import ProfessionalCreateAd3 from './pages/ProfessionalMyAds/ProfessionalCreateAd3.jsx';
 import ProfessionalCreateAd4 from './pages/ProfessionalMyAds/ProfessionalCreateAd4.jsx';
+import ProfessionalMyAds from './pages/ProfessionalMyAds/ProfessionalMyAds.jsx';
 import ParentAppointment from './pages/Appointments/ParentAppointment.jsx';
+import ParentAppointmentEnd from './pages/Appointments/ParentAppointmentEnd.jsx';
 
 function App() {
   const babysitterName = "Εύη Κωστοπούλου"; 
@@ -28,7 +30,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/RatingParents' element={<RatingParents />} />
+        {/* ΔΙΚΟ ΜΟΥ */}
+        <Route path='/RatingParents' element={<RatingParents />} /> 
+        {/* ΔΙΚΟ ΜΟΥ */}
         <Route path='/RatingBabySitters' element={<RatingBabySitters />} />
         <Route path='/ParentContractRenew' element={<ParentContractRenew />} />
         <Route path='/ParentContractEnd' element={<ParentContractEnd />} />
@@ -37,7 +41,11 @@ function App() {
         <Route path='/ProfessionalCreateAd2' element={<ProfessionalCreateAd2 />} />
         <Route path='/ProfessionalCreateAd3' element={<ProfessionalCreateAd3 />} />
         <Route path='/ProfessionalCreateAd4' element={<ProfessionalCreateAd4 />} />
+        <Route path='/ProfessionalMyAds' element={<ProfessionalMyAds />} />
+        {/* ΔΙΚΟ ΜΟΥ */}
         <Route path='/ParentAppointment' element={<ParentAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} date={date} time={time}/>} />
+        {/* ΔΙΚΟ ΜΟΥ */}
+        <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} />
       </Routes>
     </BrowserRouter>
   );

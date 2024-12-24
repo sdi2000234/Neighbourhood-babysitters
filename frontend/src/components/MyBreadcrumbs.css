@@ -13,6 +13,12 @@
 }
 
 
+.breadcrumbs .MuiBreadcrumbs-separator {
+    font-size: 32px; /* Μεγαλύτερο μέγεθος */
+    margin: 0 8px;   /* Προσαρμογή κενών */
+    font-weight: bold;
+}
+
 
 
 

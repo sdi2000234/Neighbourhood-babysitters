@@ -22,7 +22,7 @@ function Voucher()
         <div>
     		<div className="payPannel">
                 <div className="userInfo">
-                    <img className="userPfp" src={professionalPfp===null ? emptyProfile : professionalPfp}/>
+                    <img className="userPfp" alt='profile' src={professionalPfp===null ? emptyProfile : professionalPfp}/>
                     <p>{professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName}</p>
                 </div>
                 <div className="payDetails">
@@ -30,7 +30,7 @@ function Voucher()
                     <p><b>VOUCHER:</b></p>
                     <div className="voucher">
                         <div className="code">
-                            <img className="QRCode" src={QR===null ? defaultQR : QR}/>
+                            <img className="QRCode" alt='QR' src={QR===null ? defaultQR : QR}/>
                         </div>
                         <div className="info">
                             <p className="date">{month===null ? "ΜΗΝΑΣ" : month} {year===null ? "ΕΤΟΣ" : year}</p>
@@ -42,7 +42,7 @@ function Voucher()
                     <p>Αφού τσεκάρετε το προηγούμενο κουτί, το παρακάτω στοιχείο θα εμφανιστεί τσεκαρισμένο όταν η/ο επαγγελματίας {professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName} επιβεβαιώσει ότι έλαβε το voucher για τον μήνα {month===null ? "ΜΗΝΑΣ" : month} του {year===null ? "ΕΤΟΣ" : year}.</p>
                     <div className="confirmation">
                         <p><b>ΕΠΙΒΑΙΒΕΩΣΗ ΛΗΨΗΣ VOUCHER ΑΠΟ {professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName}: </b></p>
-                        <img src={voucherRecieved==true ? checkMark : crossMark}/>
+                        <img src={voucherRecieved===true ? checkMark : crossMark} alt='chekc'/>
                     </div>
                 </div>
             </div>

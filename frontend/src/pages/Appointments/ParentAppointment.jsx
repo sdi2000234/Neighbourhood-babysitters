@@ -26,7 +26,7 @@ function ParentAppointment({ babysitterName , userName , userLastName , userPhon
 
     return (
         <>
-            <ParentNavigation />
+            <ParentNavigation currentNavPage={'parHire'}/>
 
             <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 

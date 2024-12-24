@@ -13,7 +13,7 @@ function ParentAppointmentEnd() {
     return (
     <>
 
-        <ParentNavigation />
+    <ParentNavigation currentNavPage={'parHire'}/>
 
         <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 

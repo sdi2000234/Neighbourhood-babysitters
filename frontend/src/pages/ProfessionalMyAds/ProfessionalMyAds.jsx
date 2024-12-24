@@ -10,7 +10,7 @@ function ProfessionalMyAds()
 {
   return (
     <div>
-      <ProfessionalNavigation/>
+      <ProfessionalNavigation currentNavPage={"profAds"}/>
       <div className="breadcrumbs">
         <p>ΟΙ ΑΓΓΕΛΙΕΣ ΜΟΥ</p>
       </div>

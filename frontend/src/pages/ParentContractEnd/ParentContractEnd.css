@@ -36,14 +36,3 @@
     padding-right: 60px;
     gap: 65px;
 }
-
-.pageIndex p
-{
-    display: flex;
-    justify-content: center;
-}
-
-.parContract
-{
-    font-weight: bold;
-}

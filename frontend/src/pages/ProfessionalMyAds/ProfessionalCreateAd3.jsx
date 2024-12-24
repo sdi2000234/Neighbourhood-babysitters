@@ -18,10 +18,10 @@ function ProfessionalCreateAd3()
 
     return (
         <div>
-            <ProfessionalNavigation/>
-            <ProgressTracker/>
+            <ProfessionalNavigation currentNavPage={"profAds"}/>
+            <ProgressTracker currentStep={3}/>
             <form>
-                <div className="personInfo">
+                <div className="personInfo3">
                     <h1>ΑΓΓΕΛΙΑ - ΣΤΟΙΧΕΙΑ ΠΑΡΟΧΗΣ ΥΠΗΡΕΣΙΑΣ</h1>
                     <div>
                         <div  className="aboutMe">
@@ -54,7 +54,7 @@ function ProfessionalCreateAd3()
                             <Schedule/>
                         </div>
                     </div>
-                    <div className="options">
+                    <div className="options3">
                         <button><b><a href='./ProfessionalCreateAd2'>Προηγούμενο Βήμα</a></b></button>
                         <button><b>Προσωρινή Αποθήκευση</b></button>
                         <button><b><a href='./ProfessionalCreateAd4'>Επόμενο Βήμα</a></b></button>

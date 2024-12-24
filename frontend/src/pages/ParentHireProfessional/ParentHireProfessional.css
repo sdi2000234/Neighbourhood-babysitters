@@ -32,15 +32,3 @@
     padding-right: 60px;
     gap: 65px;
 }
-
-.pageIndex p
-{
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-}
-
-.parHire
-{
-    font-weight: bold;
-}

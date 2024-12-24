@@ -16,9 +16,9 @@ function ProfessionalCreateAd2()
 
     return (
         <div>
-            <ProfessionalNavigation/>
-            <ProgressTracker/>
-            <div className="personInfo">
+            <ProfessionalNavigation currentNavPage={"profAds"}/>
+            <ProgressTracker currentStep={2}/>
+            <div className="personInfo2">
                 <h1>ΑΓΓΕΛΙΑ - ΠΙΣΤΟΠΟΙΗΤΙΚΑ</h1>
                 <div>
                     <p className="infoType">Επίπεδο Εκπαίδευσης:</p>
@@ -38,7 +38,7 @@ function ProfessionalCreateAd2()
                         <p className={userMentalHealthVerification ? "valid" : "invalid"}>Πιστοποιητικό Ψυχικής Υγείας</p>
                     </div>
                 </div>
-                <div className="options">
+                <div className="options2">
                     <button><b><a href='./ProfessionalCreateAd1'>Προηγούμενο Βήμα</a></b></button>
                     <button><b>Προσωρινή Αποθήκευση</b></button>
                     <button><b><a href='./ProfessionalCreateAd3'>Επόμενο Βήμα</a></b></button>

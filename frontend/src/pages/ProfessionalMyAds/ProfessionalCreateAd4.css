@@ -5,7 +5,7 @@
     font-family: arial;
 }
 
-.personInfo
+.personInfo4
 {
     background-color: #ddd;
     color: #373737;
@@ -17,13 +17,13 @@
     border-radius: 5px;
 }
 
-.personInfo h1
+.personInfo4 h1
 {
     margin-bottom: 50px;
     text-align: center;
 }
 
-.message
+.personInfo4 .message
 {
     margin-top: 40px;
     margin-bottom: 20px;
@@ -31,14 +31,14 @@
     font-weight: bold;
 }
 
-.options
+.options4
 {
     display: flex;
     justify-content: center;
     gap: 100px;
 }
 
-.options button
+.options4 button
 {
     font-size: 20px;
     padding: 8px;
@@ -52,24 +52,8 @@
     margin-top: 30px;
 }
 
-.options button a
+.options4 button a
 {
     text-decoration: none;
     color: #fff;
-}
-
-.number4
-{
-    background-color: #013372;
-    color: #fff;
-    border-radius: 50%;
-    height: 60px;
-    aspect-ratio: 1 / 1;
-    align-content: center;
-    text-align: center;
-}
-
-.profAds
-{
-    font-weight: bold;
 }

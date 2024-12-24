@@ -160,3 +160,8 @@
     height: 8px;
     margin-left: 5px;
 }
+
+.currentNavPage
+{
+    font-weight: bold;
+}

@@ -18,7 +18,7 @@ function ParentContractRenew()
 
     return (
         <div>
-            <ParentNavigation/>
+            <ParentNavigation currentNavPage={"parEnd"}/>
             <div className="personInfo">
                 <h1>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ ΜΕ: {personName} {personLastName}</h1>
                 <div>

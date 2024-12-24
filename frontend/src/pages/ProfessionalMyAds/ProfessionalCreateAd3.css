@@ -5,7 +5,7 @@
     font-family: arial;
 }
 
-.seperatorBar
+.personInfo3 .seperatorBar
 {
     height: 2px;
     background-color: #999999;
@@ -15,7 +15,7 @@
     margin-bottom: 40px;
 }
 
-.aboutMe textarea
+.personInfo3 .aboutMe textarea
 {
     background-color: #fff;
     color: #373737;
@@ -27,7 +27,7 @@
     text-wrap: wrap;
 }
 
-.personInfo
+.personInfo3
 {
     background-color: #ddd;
     color: #373737;
@@ -39,64 +39,64 @@
     border-radius: 5px;
 }
 
-.personInfo h1
+.personInfo3 h1
 {
     margin-bottom: 50px;
     text-align: center;
 }
 
-.message
+.personInfo3 .message
 {
     margin-top: 30px;
     margin-bottom: 20px;
     color: #737373;
 }
 
-.occupationType
+.personInfo3 .occupationType
 {
     margin-top: 50px;
 }
 
-.occupationType input
+.personInfo3 .occupationType input
 {
     margin-top: 20px;
     height: 20px;
     width: 20px;
 }
 
-.occupationType label
+.personInfo3 .occupationType label
 {
     font-size: 18px;
     font-weight: bold;
     color: #555555;
 }
 
-.schedule
+.personInfo3 .schedule
 {
     display: flex;
     justify-content: center;
 }
 
-h3
+.personInfo3 h3
 {
     margin-top: 50px;
     margin-bottom: 20px;
 }
 
-table
+.personInfo3 table
 {
     margin-top: 10px;
     margin-bottom: 40px;
 }
 
-.options
+.options3
 {
     display: flex;
     justify-content: center;
     gap: 100px;
 }
 
-.options button
+.options3 button
 {
     font-size: 20px;
     padding: 8px;
@@ -110,7 +110,7 @@ table
     margin-top: 80px;
 }
 
-.options input
+.options3 input
 {
     font-size: 20px;
     padding: 8px;
@@ -124,24 +124,8 @@ table
     margin-top: 80px;
 }
 
-.options button a
+.options3 button a
 {
     text-decoration: none;
     color: #fff;
-}
-
-.number3
-{
-    background-color: #013372;
-    color: #fff;
-    border-radius: 50%;
-    height: 60px;
-    aspect-ratio: 1 / 1;
-    align-content: center;
-    text-align: center;
-}
-
-.profAds
-{
-    font-weight: bold;
 }

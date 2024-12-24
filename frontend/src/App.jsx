@@ -1,9 +1,9 @@
 import React from 'react';
-
+import './App.css';
 // import ParentContractPayment from './pages/ParentContractPayment/ParentContractPayment';
-import ParentContractEnd from './pages/ParentContractEnd/ParentContractEnd';
+// import ParentContractEnd from './pages/ParentContractEnd/ParentContractEnd';
 // import ParentContractRenew from './pages/ParentContractEnd/ParentContractRenew';
-// import ParentHireProfessional from './pages/ParentHireProfessional/ParentHireProfessional';
+import ParentHireProfessional from './pages/ParentHireProfessional/ParentHireProfessional';
 // import ProfessionalMyAds from './pages/ProfessionalMyAds/ProfessionalMyAds';
 // import ProfessionalCreateAd1 from './pages/ProfessionalMyAds/ProfessionalCreateAd1';
 // import ProfessionalCreateAd2 from './pages/ProfessionalMyAds/ProfessionalCreateAd2';
@@ -13,17 +13,17 @@ import ParentContractEnd from './pages/ParentContractEnd/ParentContractEnd';
 function App()
 {
   return (
-    <>
-    {/* <ParentContractPayment/> */}
-    <ParentContractEnd/>
-    {/* <ParentContractRenew/> */}
-    {/* <ParentHireProfessional/> */}
-    {/* <ProfessionalMyAds/> */}
-    {/* <ProfessionalCreateAd1/> */}
-    {/* <ProfessionalCreateAd2/> */}
-    {/* <ProfessionalCreateAd3/> */}
-    {/* <ProfessionalCreateAd4/> */}
-    </>
+    <div className='app'>
+      {/* <ParentContractPayment/> */}
+      {/* <ParentContractEnd/> */}
+      {/* <ParentContractRenew/> */}
+      <ParentHireProfessional/>
+      {/* <ProfessionalMyAds/> */}
+      {/* <ProfessionalCreateAd1/> */}
+      {/* <ProfessionalCreateAd2/> */}
+      {/* <ProfessionalCreateAd3/> */}
+      {/* <ProfessionalCreateAd4/> */}
+    </div>
   );
 }
 

@@ -17,9 +17,9 @@ function ProfessionalCreateAd1()
 
     return (
         <div>
-            <ProfessionalNavigation/>
-            <ProgressTracker/>
-            <div className="personInfo">
+            <ProfessionalNavigation currentNavPage={"profAds"}/>
+            <ProgressTracker currentStep={1}/>
+            <div className="personInfo1">
                 <h1>ΑΓΓΕΛΙΑ - ΠΡΟΣΩΠΙΚΑ ΣΤΟΙΧΕΙΑ</h1>
                 <div>
                     <p className="infoType">Όνομα:</p>
@@ -44,7 +44,7 @@ function ProfessionalCreateAd1()
                     <p className="infoBox">{userCity==="" ? "Περιοχή Κατοικίας" : userCity}</p>
                     <p className="message">Τα παραπάνω στοιχεία έχουν συμπληρωθεί αυτόματα με βάση τα στοιχεία που έχετε υποβάλλει μέσω του Προφίλ σας. Αν κάποιο από αυτά λείπει ή χρειάζεται αλλαγή θα πρέπει να γίνει μέσω της επεξεργασίας του Προφίλ σας. Η αλλαγή θα εμφανιστεί αυτόματα σε όλες τις αγγελίες που έχετε δημιουργήσει.</p>
                 </div>
-                <div className="options">
+                <div className="options1">
                     <button><b><a href='./ProfessionalMyAds'>Ακύρωση</a></b></button>
                     <button><b>Προσωρινή Αποθήκευση</b></button>
                     <button><b><a href='./ProfessionalCreateAd2'>Επόμενο Βήμα</a></b></button>

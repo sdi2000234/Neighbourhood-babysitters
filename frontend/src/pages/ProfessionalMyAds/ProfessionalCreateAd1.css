@@ -5,7 +5,7 @@
     font-family: arial;
 }
 
-.personInfo
+.personInfo1
 {
     background-color: #ddd;
     color: #373737;
@@ -17,13 +17,13 @@
     border-radius: 5px;
 }
 
-.personInfo h1
+.personInfo1 h1
 {
     margin-bottom: 50px;
     text-align: center;
 }
 
-.personInfo .infoBox
+.personInfo1 .infoBox
 {
     border: none;
     border-radius: 5px;
@@ -36,27 +36,27 @@
     width: stretch;
 }
 
-.personInfo .infoType
+.personInfo1 .infoType
 {
     font-weight: bold;
     font-size: 20px;
 }
 
-.message
+.personInfo1 .message
 {
     margin-top: 40px;
     margin-bottom: 20px;
     color: #737373;
 }
 
-.options
+.options1
 {
     display: flex;
     justify-content: center;
     gap: 100px;
 }
 
-.options button
+.options1 button
 {
     font-size: 20px;
     padding: 8px;
@@ -70,24 +70,8 @@
     margin-top: 30px;
 }
 
-.options button a
+.options1 button a
 {
     text-decoration: none;
     color: #fff;
-}
-
-.number1
-{
-    background-color: #013372;
-    color: #fff;
-    border-radius: 50%;
-    height: 60px;
-    aspect-ratio: 1 / 1;
-    align-content: center;
-    text-align: center;
-}
-
-.profAds
-{
-    font-weight: bold;
 }

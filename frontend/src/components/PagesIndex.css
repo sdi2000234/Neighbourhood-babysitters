@@ -1,0 +1,17 @@
+* 
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.pageIndex
+{
+    margin-top: 60px;
+}
+
+.pageIndex p
+{
+    display: flex;
+    justify-content: center;
+}

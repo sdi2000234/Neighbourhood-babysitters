@@ -20,12 +20,7 @@
     align-self: center;
 }
 
-/* 
-This part is to signify the current step we're on.
-Add it to the .css of the page you want the progress bar to be on.
-Change .number1 to whatever the page's current step number is.
-
-.number1
+.currentStep
 {
     background-color: #013372;
     color: #fff;
@@ -35,8 +30,6 @@ Change .number1 to whatever the page's current step number is.
     align-content: center;
     text-align: center;
 }
-
-*/
 
 .step
 {

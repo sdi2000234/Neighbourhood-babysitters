@@ -4,13 +4,14 @@ import ParentNavigation from '../../components/ParentNavigation'
 import ContractEnd from '../../components/ContractEnd'
 import Footer from '../../components/Footer'
 import SortButton from '../../components/SortButton'
+import PagesIndex from '../../components/PagesIndex'
 
 
 function ParentContractEnd()
 {
 	return	(
         <div>
-            <ParentNavigation/>
+            <ParentNavigation currentNavPage={"parEnd"}/>
             <div className="breadcrumbs">
                 <p className="contract">ΣΥΜΦΩΝΗΤΙΚΟ &gt;</p>
                 <p className="payment">ΛΗΞΗ</p>
@@ -22,9 +23,7 @@ function ParentContractEnd()
                 <ContractEnd/>
                 <ContractEnd/>
             </div>
-            <div className="pageIndex">
-                <p>&lt;&emsp;1&emsp;&gt;</p>
-            </div>
+            <PagesIndex/>
             <Footer/>
         </div>
 	);

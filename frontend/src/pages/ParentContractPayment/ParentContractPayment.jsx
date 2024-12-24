@@ -4,22 +4,21 @@ import ParentNavigation from '../../components/ParentNavigation'
 import Voucher from '../../components/Voucher'
 import Footer from '../../components/Footer'
 import SortButton from '../../components/SortButton'
+import PagesIndex from '../../components/PagesIndex'
 
 
 function ParentContractPayment()
 {
 	return	(
         <div>
-            <ParentNavigation/>
+            <ParentNavigation currentNavPage={"parPay"}/>
             <div className="breadcrumbs">
                 <p className="contract">ΣΥΜΦΩΝΗΤΙΚΟ &gt;</p>
                 <p className="payment">ΠΛΗΡΩΜΗ</p>
             </div>
             <SortButton/>
             <Voucher/>
-            <div className="pageIndex">
-                <p>&lt;&emsp;1&emsp;&gt;</p>
-            </div>
+            <PagesIndex/>
             <Footer/>
         </div>
 	);

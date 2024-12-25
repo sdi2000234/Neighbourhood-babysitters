@@ -14,14 +14,24 @@ const RatingParents = () => {
     { name: 'ΛΗΞΗ', link: '/λήξη' },
     { name: 'ΑΞΙΟΛΟΓΗΣΗ'}  // Η σελίδα που είμαι ήδη (χωρίς σύνδεσμο) 
   ];
+
+  const pageStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    padding: '2rem',
+  };
   
   return (
     <>
-    <ParentNavigation/>
+    <ParentNavigation currentNavPage={'parEnd'}/>
     <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
     <br />
     <br />
-    <Card picLink={imageUrl} name={name}/>
+    <div style={pageStyle}>
+      <Card picLink={imageUrl} name={name} />
+    </div>
     <Footer/>
     </>
   )

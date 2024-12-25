@@ -5,7 +5,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Pages
-// import RatingParents from './pages/RatingPage/RatingParents';
+import RatingParents from './pages/RatingPage/RatingParents';
 // import RatingBabySitters from './pages/RatingPage/RatingBabySitters';
 
 import ParentAppointment from './pages/Appointments/ParentAppointment.jsx';
@@ -30,16 +30,16 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path='/RatingParents' element={<RatingParents />} />  */}
+        <Route path='/RatingParents' element={<RatingParents />} /> 
         {/* <Route path='/RatingBabySitters' element={<RatingBabySitters />} /> */}
         
-        <Route path='/ParentAppointment' element={<ParentAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} date={date} time={time}/>} />
+        {/* <Route path='/ParentAppointment' element={<ParentAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} date={date} time={time}/>} />
         <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} />
         <Route path='/ParentAllAppointments' element={<ParentAllAppointments />} />
         <Route path='/ProfessionalAllAppointments' element={<ProfessionalAllAppointments />} />
 
         <Route path='/ParentProfile' element={<ParentProfile userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} picLink={picLink}/>} />
-        <Route path='/ProfessionalProfile' element={<ProfessionalProfile userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} picLink={picLink} desc={desc}/>} />
+        <Route path='/ProfessionalProfile' element={<ProfessionalProfile userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} picLink={picLink} desc={desc}/>} /> */}
 
       </Routes>
     </BrowserRouter>

@@ -23,7 +23,10 @@ function ProfessionalAllAppointments() {
             loc2: "Σπίτι Επαγγελματία",
             childAge: "6 μηνών" ,
             type: "online",
-            state: "none" // none, accepted, rejected
+            state: "none", // none, accepted, rejected
+            email: "test@test.com",
+            phone: "6942785630",
+            comments: ""
         },
         {
             picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
@@ -34,7 +37,10 @@ function ProfessionalAllAppointments() {
             loc2: "Σπίτι Επαγγελματία",
             childAge: "6 μηνών" ,
             type: "facetoface",
-            state: "none" // none, accepted, rejected
+            state: "none", // none, accepted, rejected
+            email: "test@test.com",
+            phone: "6942785630",
+            comments: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis provident reiciendis hic dolore sapiente eum ullam facere nostrum blanditiis! Nam id fuga ad accusantium atque recusandae dolor asperiores, distinctio alias!"
         },
         {
             picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
@@ -45,7 +51,10 @@ function ProfessionalAllAppointments() {
             loc2: "Σπίτι Επαγγελματία",
             childAge: "6 μηνών" ,
             type: "online",
-            state: "accepted" // none, accepted, rejected
+            state: "accepted", // none, accepted, rejected
+            email: "test@test.com",
+            phone: "6942785630",
+            comments: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti aliquam reiciendis numquam reprehenderit nihil. Quis est, illum error repellendus, assumenda quo rerum incidunt consectetur id laboriosam, quia distinctio reiciendis exercitationem. Aut modi repellat laborum corporis iusto ratione atque voluptates, quia harum doloremque nobis odit quaerat velit exercitationem voluptatem reiciendis aspernatur cum? Quas officia provident quo soluta voluptatibus rem, expedita dolorem. Corporis animi numquam illo, quos, similique ab incidunt distinctio expedita enim totam commodi eos vero itaque! Illo optio beatae nihil sapiente enim perspiciatis! Animi voluptates voluptate aperiam, molestiae sed assumenda!"
         },
         {
             picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
@@ -56,7 +65,10 @@ function ProfessionalAllAppointments() {
             loc2: "Σπίτι Επαγγελματία",
             childAge: "6 μηνών" ,
             type: "facetoface",
-            state: "none" // none, accepted, rejected
+            state: "none", // none, accepted, rejected
+            email: "test@test.com",
+            phone: "6942785630",
+            comments: ""
         },
         {
             picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
@@ -67,7 +79,10 @@ function ProfessionalAllAppointments() {
             loc2: "Σπίτι Επαγγελματία",
             childAge: "6 μηνών" ,
             type: "online",
-            state: "accepted" // none, accepted, rejected
+            state: "accepted", // none, accepted, rejected
+            email: "test@test.com",
+            phone: "6942785630",
+            comments: "Nothing"
         }
         
     ];
@@ -133,6 +148,9 @@ function ProfessionalAllAppointments() {
                                 childAge={appointment.childAge}
                                 type={appointment.type} 
                                 state={appointment.state}
+                                comments={appointment.comments}
+                                email={appointment.email}
+                                phone={appointment.phone}
                             />
                         </Grid>
                     ))}

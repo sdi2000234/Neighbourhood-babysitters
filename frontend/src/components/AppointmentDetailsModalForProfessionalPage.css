@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: #DDDDDD;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    color: #000;
+    position: relative;  /* Προσθήκη relative positioning για να τοποθετηθεί το close button σωστά */
+}
+
+.modalContent h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #013372;
+}
+
+.appointmentDetail {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.appointmentDetail p {
+    font-size: 16px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.appointmentDetail strong {
+    font-weight: bold;
+    color: #013372;
+}
+
+/* Κουμπί Κλείσιμο */
+.closeButton {
+    position: absolute;
+    top: 10px;  /* Μικρή απόσταση από το πάνω μέρος του modal */
+    right: 10px;  /* Μικρή απόσταση από τη δεξιά πλευρά του modal */
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #013372;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1100;  /* Βεβαιωθείτε ότι το κουμπί είναι πάνω από το modal */
+}
+
+.closeButton:hover {
+    color: #ff0000;  /* Κόκκινο όταν περνάει ο χρήστης από πάνω */
+}

@@ -6,10 +6,12 @@ import timeIcon from '../assets/timeIcon.png';
 import linkIcon from '../assets/linkIcon.png';
 import cake from '../assets/cake_black.png';
 import { Avatar } from "@mui/material";
+import AppointmentDetailsModal from './AppointmentDetailsModalForProfessionalPage'; // Εισάγουμε το νέο modal component
 
-function AppointmentCardParent({ type, picLink, parentName, date, loc, time, childAge, loc2, state }) {
+function AppointmentCardParent({ type, picLink, parentName, date, loc, time, childAge, loc2, state, comments, email, phone }) {
   const [status, setStatus] = useState(state || "none"); // none, accepted, rejected
   const [showModal, setShowModal] = useState(false); // Ελέγχει αν εμφανίζεται το modal
+  const [showDetails, setShowDetails] = useState(false); // Ελέγχει αν θα εμφανίζεται το modal λεπτομερειών
 
   const handleAccept = () => setStatus("accepted");
 
@@ -22,12 +24,31 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
 
   const cancelReject = () => setShowModal(false); // Ακύρωση απόρριψης
 
+  const handleShowDetails = () => {
+    setShowDetails(true); // Εμφάνιση του modal με τις λεπτομέρειες του ραντεβού
+  };
+
+  const handleCloseDetails = () => {
+    setShowDetails(false); // Κλείσιμο modal λεπτομέρειας
+  };
+
   if (status === "rejected") {
     return null; // Εξαφανίζεται το ραντεβού αν είναι rejected
   }
 
-  return (
+  const appointmentDetails = {
+    childAge,
+    loc2,
+    loc,
+    date,
+    time,
+    comments,
+    type,
+    email,
+    phone,
+  };
 
+  return (
     <div className="parentPannel">
 
       <div className="parentInfo">
@@ -81,7 +102,7 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
         <div className="appointmentOptionsParent">
           {status === "none" && (  
             <>
-              <button className="moreButtonParent">Περισσότερες Λεπτομέρειες</button>
+              <button className="moreButtonParent" onClick={handleShowDetails}>Περισσότερες Λεπτομέρειες</button>
               <button className="profileButtonParent">Δείτε Προφίλ Γονέα</button>
               <div className="yesNoButtons">
                 <button className="acceptButtonParent" onClick={handleAccept}>Αποδοχή</button>
@@ -92,7 +113,7 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
           )}
           {status === "accepted" && (
             <>
-              <button className="moreButtonParent">Περισσότερες Λεπτομέρειες</button>
+              <button className="moreButtonParent" onClick={handleShowDetails}>Περισσότερες Λεπτομέρειες</button>
               <button className="profileButtonParent">Δείτε Προφίλ Γονέα</button>
               <button className="buttonsParent">Αλλαγή Στοιχείων Ραντεβού</button>
               <button className="cancelButtonParent" onClick={handleReject}>Ακύρωση Ραντεβού</button>
@@ -101,7 +122,10 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
         </div>
       </div>
 
-      {/* Modal για να εμφανίζει κατάλληλο μήνυμα επιβεβαίωσης αν ο επαγγελματίας πατήσει να ακυρώσει/απορρίψει το ραντεβού*/}
+      {/* Modal για να εμφανίζει τις λεπτομέρειες του ραντεβού */}
+      {showDetails && <AppointmentDetailsModal onClose={handleCloseDetails} appointmentDetails={appointmentDetails} />}
+
+      {/* Modal για να εμφανίζει κατάλληλο μήνυμα επιβεβαίωσης αν ο επαγγελματίας πατήσει να ακυρώσει/απορρίψει το ραντεβού */}
       {showModal && (
         <div className="modalOverlay">
           <div className="modalContent">

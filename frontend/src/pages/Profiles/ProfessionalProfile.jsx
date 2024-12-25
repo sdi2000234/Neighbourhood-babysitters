@@ -46,13 +46,13 @@ function ProfessionalProfile({userName , userLastName, userEmail , userPhone , p
           <div>
             <p className="infoType">Σύντομη Αυτοπαρουσίαση:</p>
 
-            <Card sx={{ maxWidth: 400, margin: '20px auto', padding: '10px' , marginBottom: '40px'}}>
-                <CardContent>
-                    <Typography variant="body2" color="text.secondary">
-                        {desc}
-                    </Typography>
-                </CardContent>
-            </Card>
+            <Card sx={{ maxWidth: 400, margin: '20px auto', padding: '10px', marginBottom: '40px' }}>
+              <CardContent sx={{ maxHeight: 150, overflow: 'auto' }}>
+                  <Typography variant="body2" color="text.primary">
+                      {desc}
+                  </Typography>
+              </CardContent>
+          </Card>
 
           </div>
 

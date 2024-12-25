@@ -19,7 +19,7 @@ function Voucher()
 	const voucherRecieved = null; // boolean
 
 	return	(
-        <div>
+        <div className='voucherDiv'>
     		<div className="payPannel">
                 <div className="userInfo">
                     <img className="userPfp" alt='profile' src={professionalPfp===null ? emptyProfile : professionalPfp}/>

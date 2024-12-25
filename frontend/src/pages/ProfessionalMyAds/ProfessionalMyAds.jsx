@@ -9,7 +9,7 @@ import plusGrey from '../../assets/plus_grey.png'
 function ProfessionalMyAds()
 {
   return (
-    <div>
+    <div className='professionalMyAds'>
       <ProfessionalNavigation currentNavPage={"profAds"}/>
       <div className="breadcrumbs">
         <p>ΟΙ ΑΓΓΕΛΙΕΣ ΜΟΥ</p>

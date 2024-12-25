@@ -31,49 +31,51 @@ const Schedule = () => {
     };
 
     return (
-        <table cellSpacing="0">
-            <thead>
-                <tr className="header">
-                    <th>Ώρες:</th>
-                    {days.map((day, index) => (
-                        <th key={index}>
-                            <input
-                                type="checkbox"
-                                id={day}
-                                checked={checkedState.every((row) => row[index])}
-                                onChange={() => handleColumnCheck(index)}
-                            />
-                            {day}
-                        </th>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-                {hours.map((hour, rowIndex) => (
-                    <tr key={rowIndex} className={`r${rowIndex + 8}`}>
-                        <td>
-                            <input
-                                type="checkbox"
-                                id={`hour${rowIndex + 8}`}
-                                checked={checkedState[rowIndex].every(Boolean)}
-                                onChange={() => handleRowCheck(rowIndex)}
-                            />
-                            {hour}
-                        </td>
-                        {days.map((_, colIndex) => (
-                            <td key={colIndex}>
+        <div className="scheduleTable">
+            <table cellSpacing="0">
+                <thead>
+                    <tr className="header">
+                        <th>Ώρες:</th>
+                        {days.map((day, index) => (
+                            <th key={index}>
                                 <input
                                     type="checkbox"
-                                    id={`${days[colIndex].slice(0, 3)}`}
-                                    checked={checkedState[rowIndex][colIndex]}
-                                    onChange={() => handleCellCheck(rowIndex, colIndex)}
+                                    id={day}
+                                    checked={checkedState.every((row) => row[index])}
+                                    onChange={() => handleColumnCheck(index)}
                                 />
-                            </td>
+                                {day}
+                            </th>
                         ))}
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {hours.map((hour, rowIndex) => (
+                        <tr key={rowIndex} className={`r${rowIndex + 8}`}>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    id={`hour${rowIndex + 8}`}
+                                    checked={checkedState[rowIndex].every(Boolean)}
+                                    onChange={() => handleRowCheck(rowIndex)}
+                                />
+                                {hour}
+                            </td>
+                            {days.map((_, colIndex) => (
+                                <td key={colIndex}>
+                                    <input
+                                        type="checkbox"
+                                        id={`${days[colIndex].slice(0, 3)}`}
+                                        checked={checkedState[rowIndex][colIndex]}
+                                        onChange={() => handleCellCheck(rowIndex, colIndex)}
+                                    />
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 };
 

@@ -1,4 +1,4 @@
-select
+.dropdownMenue select
 {
     border: none;
     border-radius: 5px;
@@ -10,7 +10,7 @@ select
     margin-top: 10px;
 }
 
-option
+.dropdownMenue option
 {
     border: none;
     border-radius: 5px;

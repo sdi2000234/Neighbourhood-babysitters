@@ -17,7 +17,7 @@ function ParentContractRenew()
     const personLastName = "";
 
     return (
-        <div>
+        <div className='parentContractRenew'>
             <ParentNavigation currentNavPage={"parEnd"}/>
             <div className="personInfo">
                 <h1>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ ΜΕ: {personName} {personLastName}</h1>

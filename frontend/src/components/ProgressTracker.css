@@ -5,14 +5,14 @@
     font-family: arial;
 }
 
-.progressTracker
+.progressTracker .progressCircles
 {
     display: flex;
     justify-content: center;
     margin-top: 60px;
 }
 
-.bar
+.progressTracker .bar
 {
     background-color: #00aeef;
     height: 7px;
@@ -20,7 +20,7 @@
     align-self: center;
 }
 
-.currentStep
+.progressTracker .currentStep
 {
     background-color: #013372;
     color: #fff;
@@ -31,7 +31,7 @@
     text-align: center;
 }
 
-.step
+.progressTracker .step
 {
     font-weight: bold;
     font-size: 25px;
@@ -47,7 +47,7 @@
     text-align: center;
 }
 
-.stepName
+.progressTracker .stepName
 {
     display: flex;
     justify-content: center;
@@ -59,7 +59,7 @@
     color: #737373;
 }
 
-.stepName p
+.progressTracker .stepName p
 {
     width: 150px;
     text-align: center;

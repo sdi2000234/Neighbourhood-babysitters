@@ -5,7 +5,7 @@
     font-family: arial;
 }
 
-.seperatorBar
+.parentContractRenew .seperatorBar
 {
     height: 2px;
     background-color: #999999;
@@ -15,7 +15,7 @@
     margin-bottom: 40px;
 }
 
-.messagePannel
+.parentContractRenew .messagePannel
 {
     background-color: #fff;
     color: #373737;
@@ -29,7 +29,7 @@
     text-wrap: wrap;
 }
 
-.personInfo
+.parentContractRenew .personInfo
 {
     background-color: #ddd;
     color: #373737;
@@ -41,14 +41,14 @@
     border-radius: 5px;
 }
 
-.personInfo h1
+.parentContractRenew .personInfo h1
 {
     margin-bottom: 50px;
     text-align: center;
 }
 
 
-.personInfo .infoBox
+.parentContractRenew .personInfo .infoBox
 {
     border: none;
     border-radius: 5px;
@@ -61,62 +61,62 @@
     width: stretch;
 }
 
-.personInfo .infoType
+.parentContractRenew .personInfo .infoType
 {
     font-weight: bold;
     font-size: 20px;
 }
 
-.message
+.parentContractRenew .message
 {
     margin-top: 30px;
     margin-bottom: 20px;
     color: #737373;
 }
 
-.where
+.parentContractRenew .where
 {
     margin-top: 30px;
 }
 
-.where input
+.parentContractRenew .where input
 {
     margin-top: 20px;
     height: 20px;
     width: 20px;
 }
 
-.where label
+.parentContractRenew .where label
 {
     font-size: 18px;
     font-weight: bold;
     color: #555555;
 }
 
-.schedule
+.parentContractRenew .schedule
 {
     display: flex;
     justify-content: center;
 }
 
-h3
+.parentContractRenew h3
 {
     margin-top: 50px;
     margin-bottom: 20px;
 }
 
-table
+.parentContractRenew table
 {
     margin-top: 30px;
     margin-bottom: 20px;
 }
 
-.address
+.parentContractRenew .address
 {
     margin-top: 50px;
 }
 
-.duration
+.parentContractRenew .duration
 {
     margin-top: 50px;
     margin-bottom: 10px;
@@ -124,14 +124,14 @@ table
     justify-content: center;
 }
 
-.duration label
+.parentContractRenew .duration label
 {
     margin-right: 10px;
     font-weight: bold;
     align-self: center;
 }
 
-.duration input
+.parentContractRenew .duration input
 {
     width: 140px;
     padding: 5px;
@@ -142,33 +142,33 @@ table
     border-radius: 5px;
 }
 
-.signContract
+.parentContractRenew .signContract
 {
     display: flex;
     justify-content: center;
     margin-bottom: 80px;
 }
 
-.signContract input
+.parentContractRenew .signContract input
 {
     height: 20px;
     width: 20px;
     margin-right: 20px;
 }
 
-.signContract p
+.parentContractRenew .signContract p
 {
     font-weight: bold;
 }
 
-.options
+.parentContractRenew .options
 {
     display: flex;
     justify-content: center;
     gap: 100px;
 }
 
-.options button
+.parentContractRenew .options button
 {
     font-size: 20px;
     padding: 8px;
@@ -182,7 +182,7 @@ table
     margin-top: 30px;
 }
 
-.options button a
+.parentContractRenew .options button a
 {
     text-decoration: none;
     color: #fff;

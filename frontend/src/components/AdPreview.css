@@ -27,24 +27,24 @@
     margin-right: 15px;
 }
 
-.likes
+.adPreviewPannel .likes
 {
     display: flex;
     justify-content: flex-end;
 }
 
-.likes img
+.adPreviewPannel .likes img
 {
     height: 25px;
 }
 
-.likes p
+.adPreviewPannel .likes p
 {
     font-size: 25px;
     margin-left: 10px;
 }
 
-.actions
+.adPreviewPannel .actions
 {
     display: flex;    
     justify-content: center;
@@ -52,7 +52,7 @@
     margin-right: 15px;
 }
 
-.actions button
+.adPreviewPannel .actions button
 {
     display: flex;
     background-color: #00aeef;
@@ -65,14 +65,14 @@
     align-items: center;
 }
 
-.actions button img
+.adPreviewPannel .actions button img
 {
     align-self: center;
     height: 18px;
     margin-left: 18px;
 }
 
-.actions img
+.adPreviewPannel .actions img
 {
     align-self: center;
     height: 25px;

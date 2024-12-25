@@ -5,14 +5,14 @@
     font-family: arial;
 }
 
-.contractPannel
+.contractEnd
 {
     width: fit-content;
     text-align: left;
     color: #000;
 }
 
-.contractPannel .userInfo
+.contractEnd .userInfo
 {
     display: flex;
     margin-top: 20px;
@@ -22,7 +22,7 @@
     color: #fff;
 }
 
-.contractPannel .userInfo p
+.contractEnd .userInfo p
 {
     align-self: center;
     font-weight: bold;
@@ -31,7 +31,7 @@
     margin-right: 40px;
 }
 
-.contractPannel .userInfo img
+.contractEnd .userInfo img
 {
     height: 50;
     width: 50px;
@@ -41,7 +41,7 @@
     margin-left: 35px;
 }
 
-.contractDetails
+.contractEnd .contractDetails
 {
     background-color: #DDDDDD;
     border-bottom-left-radius: 5px;
@@ -50,24 +50,24 @@
     padding-bottom: 30px;
 }
 
-.contractDetails p
+.contractEnd .contractDetails p
 {
     margin: 20px;
 }
 
-.options
+.contractEnd .options
 {
     display: flex; /* Use flexbox */
     flex-direction: column;
     align-items: stretch;
 }
 
-.options p
+.contractEnd .options p
 {
     margin: 10px;
 }
 
-.options button
+.contractEnd .options button
 {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -83,7 +83,7 @@
     font-weight: bold;
 }
 
-.options button.completed
+.contractEnd .options button.completed
 {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -99,14 +99,14 @@
     font-weight: bold;    
 }
 
-.rating
+.contractEnd .rating
 {
     display: flex; /* Use flexbox */
     flex-direction: column;
     align-items: stretch;
 }
 
-.stars img
+.contractEnd .stars img
 {
     height: 20px;
     margin-bottom: 5px;

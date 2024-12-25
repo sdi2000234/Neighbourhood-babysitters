@@ -15,7 +15,7 @@ function ContractEnd()
     const rating = 0;
 
     return (
-        <div className="contractPannel">
+        <div className="contractEnd">
             <div className="userInfo">
                 <img className="userPfp" alt='profile' src={professionalPfp===null ? emptyProfile : professionalPfp}/>
                 <p>{professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName}</p>

@@ -4,7 +4,7 @@ import './LanguageCertification.css'
 function LanguageCertification({index, name, certificate})
 {
     return (
-        <div className="languages">
+        <div className="languageCertification">
             <div className="langName">
                 <p className="dataKind">Γνώση Γλώσσας {index}:</p>
                 <p className="dataBox">{name.toUpperCase()}</p>

@@ -9,7 +9,7 @@ import PagesIndex from '../../components/PagesIndex';
 function ParentHireProfessional()
 {
 	return	(
-        <div>
+        <div className='parentHireProfessional'>
             <ParentNavigation currentNavPage={"parHire"}/>
             <div className="breadcrumbs">
                 <p className="hire">ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</p>

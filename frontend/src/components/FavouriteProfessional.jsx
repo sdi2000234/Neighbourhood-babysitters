@@ -53,7 +53,7 @@ function FavouriteProfessional()
                         <p>Εμπειρία: {xp} χρόνια</p>
                     </div>
                 </div>
-                <div className="options">
+                <div className="hireOptions">
                     {appointment===false ? <button>ΡΑΝΤΕΒΟΥ</button> : <p>Αναμένεται αποδοχή/απόρριψη του ραντεβού από την/τον επαγγελματία</p>}
                     <button>{request===false ? "ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ" : "ΠΡΟΕΠΙΣΚΟΠΙΣΗ ΑΙΤΗΣΗΣ"}</button>
                 </div>

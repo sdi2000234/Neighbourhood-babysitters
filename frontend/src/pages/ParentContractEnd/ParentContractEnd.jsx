@@ -10,7 +10,7 @@ import PagesIndex from '../../components/PagesIndex'
 function ParentContractEnd()
 {
 	return	(
-        <div>
+        <div className='parentContractEnd'>
             <ParentNavigation currentNavPage={"parEnd"}/>
             <div className="breadcrumbs">
                 <p className="contract">ΣΥΜΦΩΝΗΤΙΚΟ &gt;</p>

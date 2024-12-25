@@ -5,7 +5,7 @@
     font-family: arial;
 }
 
-.breadcrumbs
+.parentContractPayment .breadcrumbs
 {
     display: flex;
     align-items: left;
@@ -16,12 +16,12 @@
     margin-left: 50px;
 }
 
-.breadcrumbs p
+.parentContractPayment .breadcrumbs p
 {
     margin-right: 5px;
 }
 
-.breadcrumbs p.contract
+.parentContractPayment .breadcrumbs p.contract
 {
     color: #737373;
     cursor: pointer;

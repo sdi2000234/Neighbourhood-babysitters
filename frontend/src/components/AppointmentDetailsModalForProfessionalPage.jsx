@@ -1,6 +1,7 @@
 import React from 'react';
-import './AppointmentDetailsModalForProfessionalPage.css'; // Θα δημιουργήσεις αυτό το αρχείο για το styling
+import './AppointmentDetailsModalForProfessionalPage.css'; 
 
+//Θα βγαινει οταν πατάνε περισσότερες Λεπτομερειες οι επαγγελματιες στα ραντεβου τους 
 function AppointmentDetailsModalForProfessionalPage({ onClose, appointmentDetails }) {
   return (
     <div className="modalOverlay">

@@ -3,7 +3,7 @@ import './ReviewCard.css';
 import { Avatar, Rating, TextField, Button } from "@mui/material";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 
-function AppointmentCardParent({ picLink, name}) {
+function ReviewCard({ picLink, name}) {
   
   const [rating, setRating] = React.useState(0);
   const [comment, setComment] = React.useState("");
@@ -61,4 +61,4 @@ function AppointmentCardParent({ picLink, name}) {
   );
 }
 
-export default AppointmentCardParent;
+export default ReviewCard;

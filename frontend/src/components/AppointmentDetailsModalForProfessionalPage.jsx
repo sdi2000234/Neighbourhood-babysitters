@@ -4,11 +4,11 @@ import './AppointmentDetailsModalForProfessionalPage.css';
 //Θα βγαινει οταν πατάνε περισσότερες Λεπτομερειες οι επαγγελματιες στα ραντεβου τους 
 function AppointmentDetailsModalForProfessionalPage({ onClose, appointmentDetails }) {
   return (
-    <div className="modalOverlay">
-      <div className="modalContent">
-        <button className="closeButton" onClick={onClose}>X</button>
+    <div className="modalOverlayMore">
+      <div className="modalContentMore">
+        <button className="closeButtonMore" onClick={onClose}>X</button>
         
-        <div className="appointmentDetail">
+        <div className="appointmentDetailMore">
           <h3>Λεπτομέρειες Ραντεβού</h3>
           
           <p><strong>Ηλικία Παιδιού:</strong> {appointmentDetails.childAge}</p>

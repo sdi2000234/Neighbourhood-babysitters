@@ -24,7 +24,7 @@ function AppointmentCardProfessional({type , picLink, professionalName, date, lo
                     {type === 'facetoface' ? (
                         <>
                         <img src={location} alt="location" />
-                        <p>Περιοχή ραντεβού: {loc}</p>
+                        <p>Διεύθυνση ραντεβού: {loc}</p>
                         </>
                     ) : (
                         <>

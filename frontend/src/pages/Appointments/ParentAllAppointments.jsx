@@ -26,7 +26,7 @@ function ParentAllAppointments() { //ΙΣΩΣ ΘΕΛΕΙ ΠΕΡΙΣΣΟΤΕΡΑ 
             professionalName: 'Γιάννης Ιωάννου',
             date: '12/02/2024',  
             time: '10:00 πμ',
-            loc: "Αθήνα",
+            loc: "Περιοχή, Αρ , Τ.Κ.",
             type: "facetoface"
         },
         {

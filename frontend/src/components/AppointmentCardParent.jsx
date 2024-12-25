@@ -7,8 +7,8 @@ import linkIcon from '../assets/linkIcon.png';
 import cake from '../assets/cake_black.png';
 import { Avatar } from "@mui/material";
 
-function AppointmentCardParent({ type, picLink, parentName, date, loc, time, childAge, loc2 }) {
-  const [status, setStatus] = useState("none"); // none, accepted, rejected
+function AppointmentCardParent({ type, picLink, parentName, date, loc, time, childAge, loc2, state }) {
+  const [status, setStatus] = useState(state || "none"); // none, accepted, rejected
   const [showModal, setShowModal] = useState(false); // Ελέγχει αν εμφανίζεται το modal
 
   const handleAccept = () => setStatus("accepted");

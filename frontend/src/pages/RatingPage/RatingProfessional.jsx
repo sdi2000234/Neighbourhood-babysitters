@@ -4,7 +4,6 @@ import ReviewCardBabySitter from '../../components/ReviewCardProfessional.jsx';
 import Grid from "@mui/material/Grid2";
 import ProfessionalNavigation from '../../components/ProfessionalNavigation.jsx';
 import Footer from '../../components/Footer.jsx';
-import './RatingProfessional.css';
 
 const RatingProfessional = () => {
   const imageUrl1 = "https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*";
@@ -45,11 +44,19 @@ const RatingProfessional = () => {
     { picLink: imageUrl3, name: name3, start: start3, end: end3, ratingscore: ratingscore3, parentcomment: parentcomment3 }
   ];
 
-  // Η λογική για να δημιουργήσουμε υποομάδες των 3 καρτών
+  // Δημιουργεία υποομάδες των 3 καρτών
   const groupedCards = [];
   for (let i = 0; i < cards.length; i += 3) {
     groupedCards.push(cards.slice(i, i + 3));
   }
+
+  //Για css
+  const cardsGridContainer = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: '0 auto',
+  };
 
   return (
     <>
@@ -59,7 +66,7 @@ const RatingProfessional = () => {
         <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
       </Grid>
 
-      <Grid container spacing={2} direction={'column'} justifyContent="center" className="cardsGridContainer">
+      <Grid container spacing={2} direction={'column'} justifyContent="center" style={cardsGridContainer}>
         {/* Χρησιμοποιούμε map για να εμφανίσουμε τις ομάδες των 3 καρτών */}
         {groupedCards.map((group, index) => (
           <Grid container spacing={2} direction={'row'} key={index}>

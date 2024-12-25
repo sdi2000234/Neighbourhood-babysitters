@@ -110,10 +110,10 @@
     background-color: rgb(8, 56, 116) !important;
 }
 
-.cancelButton{
+.cancelButtonProfessional{
     background-color: #B5001E !important;
 }
 
-.cancelButton:hover{
+.cancelButtonProfessional:hover{
     background-color: #b9132efd !important;
 }

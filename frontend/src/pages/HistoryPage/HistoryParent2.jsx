@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HistoryLine from '../../components/HistoryLine';
 import './HistoryParent2.css';
 import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+import { Menu, MenuItem, Button } from '@mui/material';
+import arrow_white from '../../assets/arrow_white.png';
 
 function HistoryParent2() {
   const breadcrumbPages = [
@@ -42,6 +44,20 @@ function HistoryParent2() {
     },
   ];
 
+  // Κατάσταση για το ανοίγμα και το κλείσιμο του dropdown menu
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  // Λειτουργία για το άνοιγμα του dropdown
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  // Λειτουργία για το κλείσιμο του dropdown
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  
+
   return (
     <>
       <ParentNavigation currentNavPage={'parHiCon'} />
@@ -50,6 +66,31 @@ function HistoryParent2() {
       <div className='HistoryParent2Container'>
         <div className='card2 text-center'>
           <div className='card-header2'>
+
+            {/* dropdown menu για ταξινόμηση το Material UI  */}
+            <div>
+              <Button 
+                aria-controls="simple-menu" 
+                aria-haspopup="true" 
+                onClick={handleClick}
+                variant="contained" 
+                className='ButtonHistoryParent2'
+                endIcon={<img src={arrow_white} alt="arrow" style={{ width: '13px', height: '13px', marginLeft: '8px' }} />}
+              >
+                Ταξινόμηση ανά Ημερομηνίας
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Αύξουσα</MenuItem>
+                <MenuItem onClick={handleClose}>Φθίνουσα</MenuItem>
+              </Menu>
+            </div>
+
             <ul className='nav2 nav-tabs2 card-header-tabs'>
               <li className='nav-item2'>
                 <a className='nav-link2' href='http://localhost:3000/HistoryParent1'>ΑΙΤΗΣΕΙΣ</a>

@@ -61,3 +61,10 @@ background-color: #ddd;
 .card-body3 {
 padding: 20px;
 }
+
+.ButtonHistoryParent3 {
+  margin-bottom: 20px !important;
+  text-transform: none !important;
+  background-color: #013372 !important;
+  font-size: 18px !important;
+}

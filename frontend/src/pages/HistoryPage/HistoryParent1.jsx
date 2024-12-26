@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HistoryLine from '../../components/HistoryLine';
 import './HistoryParent1.css';
 import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+import { Menu, MenuItem, Button } from '@mui/material';
+import arrow_white from '../../assets/arrow_white.png';
 
 function HistoryParent1() {
   const breadcrumbPages = [
@@ -42,6 +44,19 @@ function HistoryParent1() {
     }
   ];
 
+  // Κατάσταση για το ανοίγμα και το κλείσιμο του dropdown menu
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  // Λειτουργία για το άνοιγμα του dropdown
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  // Λειτουργία για το κλείσιμο του dropdown
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
       <ParentNavigation currentNavPage={'parHiReq'} />
@@ -50,6 +65,31 @@ function HistoryParent1() {
       <div className='HistoryParent1Container'>
         <div className='card1 text-center'>
           <div className='card-header1'>
+
+            {/* dropdown menu για ταξινόμηση το Material UI  */}
+            <div>
+              <Button 
+                aria-controls="simple-menu" 
+                aria-haspopup="true" 
+                onClick={handleClick}
+                variant="contained" 
+                className='ButtonHistoryParent1'
+                endIcon={<img src={arrow_white} alt="arrow" style={{ width: '13px', height: '13px', marginLeft: '8px' }} />}
+              >
+                Ταξινόμηση ανά Ημερομηνίας
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Αύξουσα</MenuItem>
+                <MenuItem onClick={handleClose}>Φθίνουσα</MenuItem>
+              </Menu>
+            </div>
+
             <ul className='nav1 nav-tabs1 card-header-tabs'>
               <li className='nav-item1'>
                 <a className='nav-link1 active' href='http://localhost:3000/HistoryParent1'>ΑΙΤΗΣΕΙΣ</a>

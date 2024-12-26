@@ -118,6 +118,11 @@
     margin-top: 80px;
 }
 
+.options2 button:hover
+{
+    background-color: #004caa;
+}
+
 .options2 button a
 {
     text-decoration: none;

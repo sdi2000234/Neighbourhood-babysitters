@@ -83,6 +83,21 @@
     margin-top: 30px;
 }
 
+.options1 button:hover
+{
+    background-color: #004caa;
+}
+
+.options1 button.cancel
+{
+    background-color: #B5001E;
+}
+
+.options1 button.cancel:hover
+{
+    background-color: #ea0027;
+}
+
 .options1 button a
 {
     text-decoration: none;

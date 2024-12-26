@@ -75,7 +75,7 @@ function ParentContractRenew()
                     <p className="message"><b>ΠΡΟΣΟΧΗ: Εαν πατήσετε "Υποβολή" η παρούσα αίτηση θα σταλεί στην/στον επαγγελματία και δεν θα μπορεί να υποστεί μελλοντική επεξεργασία. Εάν δεν επιθυμείτε να κάνετε οριστική υποβολή, αλλά θέλετε να διατηρήσετε τα στοιχεία που έχετε συμπληρώσει, καθώς και την δυνατότητα μελλοντικής επεξεργασίας, πατήστε "Προσωρινή Αποθήκευση".</b></p>
                 </div>
                 <div className="options">
-                    <button><b><a href='./ProfessionalMyAds'>Ακύρωση</a></b></button>
+                    <button className="cancel"><b><a href='./ProfessionalMyAds'>Ακύρωση</a></b></button>
                     <button><b>Προσωρινή Αποθήκευση</b></button>
                     <button><b>Οριστική Υποβολή</b></button>
                 </div>

@@ -194,6 +194,21 @@
     margin-top: 30px;
 }
 
+.parentContractRenew button:hover
+{
+    background-color: #004caa;
+}
+
+.parentContractRenew .options button.cancel
+{
+    background-color: #B5001E;
+}
+
+.parentContractRenew button.cancel:hover
+{
+    background-color: #ea0027;
+}
+
 .parentContractRenew .options button a
 {
     text-decoration: none;

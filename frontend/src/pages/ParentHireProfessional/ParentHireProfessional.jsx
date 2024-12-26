@@ -4,6 +4,7 @@ import ParentNavigation from '../../components/ParentNavigation'
 import Footer from '../../components/Footer'
 import FavouriteProfessional from '../../components/FavouriteProfessional';
 import PagesIndex from '../../components/PagesIndex';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 
 function ParentHireProfessional()
@@ -11,9 +12,7 @@ function ParentHireProfessional()
 	return	(
         <div className='parentHireProfessional'>
             <ParentNavigation currentNavPage={"parHire"}/>
-            <div className="breadcrumbs">
-                <p className="hire">ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</p>
-            </div>
+            <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"}/>
             <div className='favourites'>
                 <FavouriteProfessional/>
                 <FavouriteProfessional/>

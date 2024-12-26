@@ -5,6 +5,7 @@ import Voucher from '../../components/Voucher'
 import Footer from '../../components/Footer'
 import SortButton from '../../components/SortButton'
 import PagesIndex from '../../components/PagesIndex'
+import Breadcrumbs from '../../components/Breadcrumbs'
 
 
 function ParentContractPayment()
@@ -12,10 +13,7 @@ function ParentContractPayment()
 	return	(
         <div className='parentContractPayment'>
             <ParentNavigation currentNavPage={"parPay"}/>
-            <div className="breadcrumbs">
-                <p className="contract">ΣΥΜΦΩΝΗΤΙΚΟ &gt;</p>
-                <p className="payment">ΠΛΗΡΩΜΗ</p>
-            </div>
+            <Breadcrumbs page1={"ΣΥΜΦΩΝΗΤΙΚΟ"} link1={"./ParentContractPayment"} page2={"ΠΛΗΡΩΜΗ"}/>
             <SortButton/>
             <Voucher/>
             <PagesIndex/>

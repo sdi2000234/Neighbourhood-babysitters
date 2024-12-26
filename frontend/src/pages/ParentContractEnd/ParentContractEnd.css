@@ -5,28 +5,6 @@
     font-family: arial;
 }
 
-.parentContractEnd .breadcrumbs
-{
-    display: flex;
-    align-items: left;
-    padding: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-left: 50px;
-}
-
-.parentContractEnd .breadcrumbs p
-{
-    margin-right: 5px;
-}
-
-.parentContractEnd .breadcrumbs p.contract
-{
-    color: #737373;
-    cursor: pointer;
-}
-
 .parentContractEnd .endedContracts
 {
     margin-top: 20px;

@@ -67,6 +67,12 @@
     margin: 10px;
 }
 
+.contractEnd .options a
+{
+    text-decoration: none;
+    color: #fff;
+}
+
 .contractEnd .options button
 {
     margin-top: 10px;
@@ -95,7 +101,7 @@
     color: #fff;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: default;
     font-weight: bold;    
 }
 

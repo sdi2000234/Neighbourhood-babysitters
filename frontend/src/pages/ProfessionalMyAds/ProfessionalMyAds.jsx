@@ -5,15 +5,14 @@ import Footer from '../../components/Footer'
 import AdPreview from '../../components/AdPreview'
 import AdEdit from '../../components/AdEdit'
 import plusGrey from '../../assets/plus_grey.png'
+import Breadcrumbs from '../../components/Breadcrumbs'
 
 function ProfessionalMyAds()
 {
   return (
     <div className='professionalMyAds'>
       <ProfessionalNavigation currentNavPage={"profAds"}/>
-      <div className="breadcrumbs">
-        <p>ΟΙ ΑΓΓΕΛΙΕΣ ΜΟΥ</p>
-      </div>
+      <Breadcrumbs page1={"ΟΙ ΑΓΓΕΛΙΕΣ ΜΟΥ"}/>
       <p className="createText"><b>Δημιουργία νέας αγγελίας</b></p>
       <div className="adPannels">
         <div className="createNewAd">

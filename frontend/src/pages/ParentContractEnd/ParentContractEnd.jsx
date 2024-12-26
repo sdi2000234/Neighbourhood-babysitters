@@ -5,6 +5,7 @@ import ContractEnd from '../../components/ContractEnd'
 import Footer from '../../components/Footer'
 import SortButton from '../../components/SortButton'
 import PagesIndex from '../../components/PagesIndex'
+import Breadcrumbs from '../../components/Breadcrumbs'
 
 
 function ParentContractEnd()
@@ -12,10 +13,7 @@ function ParentContractEnd()
 	return	(
         <div className='parentContractEnd'>
             <ParentNavigation currentNavPage={"parEnd"}/>
-            <div className="breadcrumbs">
-                <p className="contract">ΣΥΜΦΩΝΗΤΙΚΟ &gt;</p>
-                <p className="payment">ΛΗΞΗ</p>
-            </div>
+            <Breadcrumbs page1={"ΣΥΜΦΩΝΗΤΙΚΟ"} link1={"./ParentContractPayment"} page2={"ΛΗΞΗ"}/>
             <SortButton/>
             <div className="endedContracts">
                 <ContractEnd/>

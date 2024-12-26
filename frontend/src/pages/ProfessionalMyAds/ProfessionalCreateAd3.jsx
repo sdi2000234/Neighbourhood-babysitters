@@ -43,10 +43,10 @@ function ProfessionalCreateAd3()
                             <p className="infoType">Επιλέξτε Είδος Απασχόλησης:</p>
                             <form>
                                 <input type="radio" id="partTime" value="partTime" name="occupation"></input>
-                                <label for="partTime">Μερική Απασχόληση</label>
+                                <label for="partTime"> Μερική Απασχόληση</label>
                                 <br/>
                                 <input type="radio" id="fullTime" value="fullTime" name="occupation"></input>
-                                <label for="fullTime">Πλήρης Απασχόληση</label>
+                                <label for="fullTime"> Πλήρης Απασχόληση</label>
                             </form>
                         </div>
                         <h3>Επιλέξτε Διαθεσιμότητα:</h3>

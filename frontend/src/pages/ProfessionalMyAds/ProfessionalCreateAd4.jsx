@@ -17,7 +17,7 @@ function ProfessionalCreateAd4()
                 <div className="options4">
                     <button><b><a href='./ProfessionalCreateAd3'>Προηγούμενο Βήμα</a></b></button>
                     <button><b>Προσωρινή Αποθήκευση</b></button>
-                    <button><b>Υποβολή</b></button>
+                    <button><b><a href='./ProfessionalMyAds'>Υποβολή</a></b></button>
                 </div>
             </div>
             <Footer/>

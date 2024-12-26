@@ -23,16 +23,16 @@ function ParentContractRenew()
                 <h1>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ ΜΕ: {personName} {personLastName}</h1>
                 <div>
                     <p className="infoType">Όνομα:</p>
-                    <p className="infoBox">{userName==="" ? "Όνομα" : userName}</p>
+                    {userName==="" ? <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p> : <p className="infoBox">userName</p>}
                     <br/>
                     <p className="infoType">Επώνυμο:</p>
-                    <p className="infoBox">{userLastName==="" ? "Επώνυμο" : userLastName}</p>
+                    {userLastName==="" ?  <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p> : <p className="infoBox">userLastName</p>}
                     <br/>
                     <p className="infoType">Τηλέφωνο:</p>
-                    <p className="infoBox">{userPhone==="" ? "Τηλέφωνο" : userPhone}</p>
+                    {userPhone==="" ?  <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p> : <p className="infoBox">userPhone</p>}
                     <br/>
                     <p className="infoType">Ηλεκτρονικό Ταχυδρομίο:</p>
-                    <p className="infoBox">{userEmail==="" ? "Ηλεκτρονικό Ταχυδρομίο" : userEmail}</p>
+                    {userEmail==="" ?  <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p> : <p className="infoBox">userEmail</p>}
                     <p className="message">Τα παραπάνω στοιχεία έχουν συμπληρωθεί αυτόματα με βάση τα στοιχεία που έχετε υποβάλλει μέσω του Προφίλ σας. Αν κάποιο από αυτά λείπει ή χρειάζεται αλλαγή θα πρέπει να γίνει μέσω της επεξεργασίας του Προφίλ σας. Η αλλαγή θα εμφανιστεί αυτόματα σε όλες τις αγγελίες που έχετε δημιουργήσει.</p>
                     <div className="seperatorBar"></div>
                     <div className="childAge">

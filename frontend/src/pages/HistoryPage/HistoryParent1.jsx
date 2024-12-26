@@ -52,13 +52,13 @@ function HistoryParent1() {
           <div className='card-header1'>
             <ul className='nav1 nav-tabs1 card-header-tabs'>
               <li className='nav-item1'>
-                <a className='nav-link1 active' href='frontend\src\pages\HistoryPage\HistoryParent1.jsx'>ΑΙΤΗΣΕΙΣ</a>
+                <a className='nav-link1 active' href='http://localhost:3000/HistoryParent1'>ΑΙΤΗΣΕΙΣ</a>
               </li>
               <li className='nav-item1'>
-                <a className='nav-link1' href='frontend\src\pages\HistoryPage\HistoryParent2.jsx'>ΣΥΜΦΩΝΗΤΙΚΑ</a>
+                <a className='nav-link1' href='http://localhost:3000/HistoryParent2'>ΣΥΜΦΩΝΗΤΙΚΑ</a>
               </li>
               <li className='nav-item1'>
-                <a className='nav-link1' href='frontend\src\pages\HistoryPage\HistoryParent3.jsx'>ΠΛΗΡΩΜΕΣ</a>
+                <a className='nav-link1' href='http://localhost:3000/HistoryParent3'>ΠΛΗΡΩΜΕΣ</a>
               </li>
             </ul>
           </div>

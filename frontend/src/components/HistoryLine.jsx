@@ -7,7 +7,7 @@ function HistoryLine({text1,text2,text3,text4,text5,text6,pic}) {
   return (
     <div className='HistoryLineContainer'>
         
-        <p> <span className='boldTextHistoryLine'>{text1}</span> <span className='boldTextHistoryLine'>{text2}</span> </p>
+        <p> <span className='boldTextHistoryLine'>{text1}</span> {text2} </p>
 
         <p> <span className='boldTextHistoryLine'>{text3}</span> {text4} </p>
 

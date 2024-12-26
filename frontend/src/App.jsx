@@ -17,6 +17,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import ProfessionalProfile from './pages/Profiles/ProfessionalProfile.jsx'
 
 import HistoryParent1 from './pages/HistoryPage/HistoryParent1';
+import HistoryParent2 from './pages/HistoryPage/HistoryParent2';
+import HistoryParent3 from './pages/HistoryPage/HistoryParent3';
+
+
 
 function App() {
   // const babysitterName = "Εύη Κωστοπούλου"; 
@@ -44,7 +48,11 @@ function App() {
         <Route path='/ProfessionalProfile' element={<ProfessionalProfile userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} picLink={picLink} desc={desc}/>} /> */}
 
 
-          <Route path='/HistoryParent1' element={<HistoryParent1 />} /> 
+        <Route path='/HistoryParent1' element={<HistoryParent1 />} /> 
+        <Route path='/HistoryParent2' element={<HistoryParent2 />} /> 
+        <Route path='/HistoryParent3' element={<HistoryParent3 />} /> 
+
+
 
       </Routes>
     </BrowserRouter>

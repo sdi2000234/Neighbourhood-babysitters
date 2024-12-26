@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import HistoryLine from '../../components/HistoryLine';
 import './HistoryParent1.css';
 import ParentNavigation from '../../components/ParentNavigation';
@@ -19,17 +19,8 @@ function HistoryParent1() {
   const text5 = 'Επαγγελματίας:';
   const text6 = 'Δώρα Τσουφλίδη';
   const text7 = 'Δ';
-  const text8 = 'Δώρα ΤσουφλίδηΔώρα sasdaaaaa';
+  const text8 = 'Δώρα ΤσουφλίδηΔώρα';
 
-  const historyLineRef = useRef(null);
-  const [containerWidth, setContainerWidth] = useState(0);
-
-  useEffect(() => {
-    if (historyLineRef.current) {
-      const historyLineWidth = historyLineRef.current.offsetWidth;
-      setContainerWidth(historyLineWidth + 100); // Για δυναμικό μέγεθος ανάλογο του HistoryLine + 100px στο πλάτος 
-    }
-  }, []);
 
   return (
     <>
@@ -39,9 +30,8 @@ function HistoryParent1() {
 
       <div
         className='HistoryParent1Container'
-        style={{ width: `${containerWidth}px` }} // Ορισμός του πλάτους του container
       >
-        <div ref={historyLineRef}>
+        <div>
           <HistoryLine
             pic={pic}
             text1={text1}
@@ -52,7 +42,7 @@ function HistoryParent1() {
             text6={text6}
           />
         </div>
-        <div ref={historyLineRef}>
+        <div>
           <HistoryLine
             pic={pic}
             text1={text1}
@@ -63,7 +53,7 @@ function HistoryParent1() {
             text6={text8}
           />
         </div>
-        <div ref={historyLineRef}>
+        <div>
           <HistoryLine
             pic={pic}
             text1={text1}

@@ -16,7 +16,7 @@ function ProfessionalMyAds()
       <p className="createText"><b>Δημιουργία νέας αγγελίας</b></p>
       <div className="adPannels">
         <div className="createNewAd">
-          <button className="newAd"><a href='./ProfessionalCreateAd1'><img alt="plus icon" src={plusGrey}/></a></button>
+          <a href='./ProfessionalCreateAd1'><button className="newAd"><img alt="plus icon" src={plusGrey}/></button></a>
         </div>
         <AdPreview/>
         <AdEdit/>

@@ -45,9 +45,9 @@ function ProfessionalCreateAd1()
                     <p className="message">Τα παραπάνω στοιχεία έχουν συμπληρωθεί αυτόματα με βάση τα στοιχεία που έχετε υποβάλλει μέσω του Προφίλ σας. Αν κάποιο από αυτά λείπει ή χρειάζεται αλλαγή θα πρέπει να γίνει μέσω της επεξεργασίας του Προφίλ σας. Η αλλαγή θα εμφανιστεί αυτόματα σε όλες τις αγγελίες που έχετε δημιουργήσει.</p>
                 </div>
                 <div className="options1">
-                    <button className="cancel"><b><a href='./ProfessionalMyAds'>Ακύρωση</a></b></button>
-                    <button><b>Προσωρινή Αποθήκευση</b></button>
-                    <button><b><a href='./ProfessionalCreateAd2'>Επόμενο Βήμα</a></b></button>
+                    <a href='./ProfessionalMyAds'><button className="cancel"><b>Ακύρωση</b></button></a>
+                    <a href='./ProfessionalMyAds'><button><b>Προσωρινή Αποθήκευση</b></button></a>
+                    <a href='./ProfessionalCreateAd2'><button><b>Επόμενο Βήμα</b></button></a>
                 </div>
             </div>
             <Footer/>

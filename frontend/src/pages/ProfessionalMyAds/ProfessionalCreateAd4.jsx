@@ -15,9 +15,9 @@ function ProfessionalCreateAd4()
                 <h1>ΑΓΓΕΛΙΑ - ΥΠΟΒΟΛΗ</h1>
                 <p className="message">ΠΡΟΣΟΧΗ: Εαν πατήσετε "Υποβολή" η παρούσα αγγελία θα δημοσιευθεί και δεν θα μπορεί να υποστεί μελλοντική επεξεργασία. Εάν δεν επιθυμείτε να κάνετε οριστική υποβολή, αλλά θέλετε να διατηρήσετε τα στοιχεία που έχετε συμπληρώσει, καθώς και την δυνατότητα μελλοντικής επεξεργασίας, πατήστε "Προσωρινή Αποθήκευση".</p>
                 <div className="options4">
-                    <button><b><a href='./ProfessionalCreateAd3'>Προηγούμενο Βήμα</a></b></button>
-                    <button><b>Προσωρινή Αποθήκευση</b></button>
-                    <button><b><a href='./ProfessionalMyAds'>Υποβολή</a></b></button>
+                    <a href='./ProfessionalCreateAd3'><button><b>Προηγούμενο Βήμα</b></button></a>
+                    <a href="./ProfessionaMyAds"><button><b>Προσωρινή Αποθήκευση</b></button></a>
+                    <a href='./ProfessionalMyAds'><button><b>Υποβολή</b></button></a>
                 </div>
             </div>
             <Footer/>

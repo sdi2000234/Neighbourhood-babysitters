@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import './FavouriteProfessional.css'
 import emptyProfile from '../assets/empty_profile.png'
 import cake from '../assets/cake_black.png'
@@ -54,8 +54,8 @@ function FavouriteProfessional()
                     </div>
                 </div>
                 <div className="hireOptions">
-                    {appointment===false ? <button>ΡΑΝΤΕΒΟΥ</button> : <p>Αναμένεται αποδοχή/απόρριψη του ραντεβού από την/τον επαγγελματία</p>}
-                    <button>{request===false ? "ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ" : "ΠΡΟΕΠΙΣΚΟΠΙΣΗ ΑΙΤΗΣΗΣ"}</button>
+                    {appointment===false ? <button><a href="./ParentMakeAppointment">ΡΑΝΤΕΒΟΥ</a></button> : <p>Αναμένεται αποδοχή/απόρριψη του ραντεβού από την/τον επαγγελματία</p>}
+                    {request===false ? <button><a href="./ParentCreateRequest">ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ</a></button> : <button><a href="./ParentViewRequest">ΠΡΟΕΠΙΣΚΟΠΙΣΗ ΑΙΤΗΣΗΣ</a></button>}
                 </div>
             </div>
         </div>

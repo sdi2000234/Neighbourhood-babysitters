@@ -20,7 +20,7 @@ function ParentContractRenew()
         <div className='parentContractRenew'>
             <ParentNavigation currentNavPage={"parEnd"}/>
             <div className="personInfo">
-                <h1>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ ΜΕ: {personName} {personLastName}</h1>
+                <h1>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ ΜΕ: {personName==="" ? "'Ονομα" : personName} {personLastName==="" ? "Επώνυμο" : personLastName}</h1>
                 <div>
                     <p className="infoType">Όνομα:</p>
                     {userName==="" ? <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p> : <p className="infoBox">userName</p>}
@@ -47,10 +47,10 @@ function ParentContractRenew()
                         <p className="infoType">Επιλέξτε το μέρος φύλαξης του παιδιού:</p>
                         <form>
                             <input type="radio" id="parentsHouse" value="parentsHouse" name="house"></input>
-                            <label for="parentsHouse">Στο σπίτι του γονέα/κηδεμόνα</label>
+                            <label for="parentsHouse"> Στο σπίτι του γονέα/κηδεμόνα</label>
                             <br/>
                             <input type="radio" id="professionalsHouse" value="professionalsHouse" name="house"></input>
-                            <label for="professionalsHouse">Στο σπίτι του επαγγελματία</label>
+                            <label for="professionalsHouse"> Στο σπίτι του επαγγελματία</label>
                         </form>
                     </div>
                     <div className="seperatorBar"></div>
@@ -75,8 +75,8 @@ function ParentContractRenew()
                     <p className="message"><b>ΠΡΟΣΟΧΗ: Εαν πατήσετε "Υποβολή" η παρούσα αίτηση θα σταλεί στην/στον επαγγελματία και δεν θα μπορεί να υποστεί μελλοντική επεξεργασία. Εάν δεν επιθυμείτε να κάνετε οριστική υποβολή, αλλά θέλετε να διατηρήσετε τα στοιχεία που έχετε συμπληρώσει, καθώς και την δυνατότητα μελλοντικής επεξεργασίας, πατήστε "Προσωρινή Αποθήκευση".</b></p>
                 </div>
                 <div className="options">
-                    <button className="cancel"><b><a href='./ProfessionalMyAds'>Ακύρωση</a></b></button>
-                    <button><b>Προσωρινή Αποθήκευση</b></button>
+                    <button className="cancel"><b><a href='./ParentContractEnd'>Ακύρωση</a></b></button>
+                    <button><b><a href='./ParentContractEnd'>Προσωρινή Αποθήκευση</a></b></button>
                     <button><b>Οριστική Υποβολή</b></button>
                 </div>
             </div>

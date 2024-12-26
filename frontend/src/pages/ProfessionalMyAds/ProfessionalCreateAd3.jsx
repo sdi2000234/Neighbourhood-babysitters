@@ -55,9 +55,9 @@ function ProfessionalCreateAd3()
                         </div>
                     </div>
                     <div className="options3">
-                        <button><b><a href='./ProfessionalCreateAd2'>Προηγούμενο Βήμα</a></b></button>
-                        <button><b>Προσωρινή Αποθήκευση</b></button>
-                        <button><b><a href='./ProfessionalCreateAd4'>Επόμενο Βήμα</a></b></button>
+                        <a href='./ProfessionalCreateAd2'><button><b>Προηγούμενο Βήμα</b></button></a>
+                        <a href="./ProfessionaMyAds"><button><b>Προσωρινή Αποθήκευση</b></button></a>
+                        <a href='./ProfessionalCreateAd4'><button><b>Επόμενο Βήμα</b></button></a>
                     </div>
                 </div>
             </form>

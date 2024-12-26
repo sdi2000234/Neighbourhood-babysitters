@@ -165,3 +165,9 @@
     cursor: pointer;
     font-weight: bold;
 }
+
+.hireOptions button a
+{
+    text-decoration: none;
+    color: #fff;
+}

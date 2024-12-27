@@ -63,11 +63,25 @@ function HistoryProfessional3() {
       <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
       <div className='HistoryProfessional3Container'>
-        <div className='card3 text-center'>
-          <div className='card-header3'>
 
-            {/* dropdown menu για ταξινόμηση το Material UI  */}
-            <div>
+        <div className='card3 text-center'>
+
+          <div className='card-header3'>
+            <ul className='nav3 nav-tabs3 card-header-tabs'>
+              <li className='nav-item3'>
+                <a className='nav-link3' href='http://localhost:3000/HistoryProfessional1'>ΑΙΤΗΣΕΙΣ</a>
+              </li>
+              <li className='nav-item3'>
+                <a className='nav-link3' href='http://localhost:3000/HistoryProfessional2'>ΣΥΜΦΩΝΗΤΙΚΑ</a>
+              </li>
+              <li className='nav-item3'>
+                <a className='nav-link3 active' href='http://localhost:3000/HistoryProfessional3'>ΠΛΗΡΩΜΕΣ</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* dropdown menu για ταξινόμηση το Material UI  */}
+          <div>
               <Button 
                 aria-controls="simple-menu" 
                 aria-haspopup="true" 
@@ -90,18 +104,6 @@ function HistoryProfessional3() {
               </Menu>
             </div>
 
-            <ul className='nav3 nav-tabs3 card-header-tabs'>
-              <li className='nav-item3'>
-                <a className='nav-link3' href='http://localhost:3000/HistoryProfessional1'>ΑΙΤΗΣΕΙΣ</a>
-              </li>
-              <li className='nav-item3'>
-                <a className='nav-link3' href='http://localhost:3000/HistoryProfessional2'>ΣΥΜΦΩΝΗΤΙΚΑ</a>
-              </li>
-              <li className='nav-item3'>
-                <a className='nav-link3 active' href='http://localhost:3000/HistoryProfessional3'>ΠΛΗΡΩΜΕΣ</a>
-              </li>
-            </ul>
-          </div>
           <div className='card-body3'>
             <div className='HistoryProfessional3LineContainer'>
               {historyData.map((data, index) => (

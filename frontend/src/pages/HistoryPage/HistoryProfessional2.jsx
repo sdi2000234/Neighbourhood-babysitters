@@ -64,11 +64,26 @@ function HistoryProfessional2() {
       <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
       <div className='HistoryProfessional2Container'>
+        
         <div className='card2 text-center'>
+          
           <div className='card-header2'>
 
-            {/* dropdown menu για ταξινόμηση το Material UI  */}
-            <div>
+            <ul className='nav2 nav-tabs2 card-header-tabs'>
+              <li className='nav-item2'>
+                <a className='nav-link2' href='http://localhost:3000/HistoryProfessional1'>ΑΙΤΗΣΕΙΣ</a>
+              </li>
+              <li className='nav-item2'>
+                <a className='nav-link2 active' href='http://localhost:3000/HistoryProfessional2'>ΣΥΜΦΩΝΗΤΙΚΑ</a>
+              </li>
+              <li className='nav-item2'>
+                <a className='nav-link2' href='http://localhost:3000/HistoryProfessional3'>ΠΛΗΡΩΜΕΣ</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* dropdown menu για ταξινόμηση το Material UI  */}
+          <div>
               <Button 
                 aria-controls="simple-menu" 
                 aria-haspopup="true" 
@@ -91,18 +106,6 @@ function HistoryProfessional2() {
               </Menu>
             </div>
 
-            <ul className='nav2 nav-tabs2 card-header-tabs'>
-              <li className='nav-item2'>
-                <a className='nav-link2' href='http://localhost:3000/HistoryProfessional1'>ΑΙΤΗΣΕΙΣ</a>
-              </li>
-              <li className='nav-item2'>
-                <a className='nav-link2 active' href='http://localhost:3000/HistoryProfessional2'>ΣΥΜΦΩΝΗΤΙΚΑ</a>
-              </li>
-              <li className='nav-item2'>
-                <a className='nav-link2' href='http://localhost:3000/HistoryProfessional3'>ΠΛΗΡΩΜΕΣ</a>
-              </li>
-            </ul>
-          </div>
           <div className='card-body2'>
             <div className='HistoryProfessional2LineContainer'>
               {historyData.map((data, index) => (

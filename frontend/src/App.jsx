@@ -20,8 +20,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import HistoryParent2 from './pages/HistoryPage/HistoryParent2';
 // import HistoryParent3 from './pages/HistoryPage/HistoryParent3';
 
-// import HistoryProfessional1 from './pages/HistoryPage/HistoryProfessional1';
-// import HistoryProfessional2 from './pages/HistoryPage/HistoryProfessional2';
+import HistoryProfessional1 from './pages/HistoryPage/HistoryProfessional1';
+import HistoryProfessional2 from './pages/HistoryPage/HistoryProfessional2';
 import HistoryProfessional3 from './pages/HistoryPage/HistoryProfessional3';
 
 
@@ -56,8 +56,8 @@ function App() {
         <Route path='/HistoryParent2' element={<HistoryParent2 />} /> 
         <Route path='/HistoryParent3' element={<HistoryParent3 />} />  */}
 
-        {/* <Route path='/HistoryProfessional1' element={<HistoryProfessional1 />} />  */}
-        {/* <Route path='/HistoryProfessional2' element={<HistoryProfessional2 />} />  */}
+        <Route path='/HistoryProfessional1' element={<HistoryProfessional1 />} /> 
+        <Route path='/HistoryProfessional2' element={<HistoryProfessional2 />} /> 
         <Route path='/HistoryProfessional3' element={<HistoryProfessional3 />} /> 
 
 

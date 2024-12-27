@@ -1,11 +1,11 @@
-.HistoryProfessional2Container {
+.HistoryProfessional1Container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   
-.card2 {
+.card1 {
 width: 80%;
 background-color: #ddd;
 border: 1px solid #f8f9fa;
@@ -14,12 +14,12 @@ margin: 20px 0;
 box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.card-header2 {
+.card-header1 {
 background-color: #ddd;
 padding: 10px;
 }
 
-.nav-tabs2 {
+.nav-tabs1 {
 display: flex;
 justify-content: space-around;
 margin: 0;
@@ -28,12 +28,12 @@ list-style: none;
 border-bottom: 2px solid #ccc;
 }
 
-.nav-item2 {
+.nav-item1 {
 flex: 1;
 text-align: center;
 }
 
-.nav-link2 {
+.nav-link1 {
 display: block;
 padding: 10px 15px;
 background-color: #eee;
@@ -43,26 +43,26 @@ border-radius: 4px 4px 0 0;
 transition: background-color 0.3s;
 }
 
-.nav-link2.active {
+.nav-link1.active {
 background-color: #fff;
 color: #000;
 font-weight: bold;
 border-bottom: 2px solid transProfessional;
 }
 
-.nav-link2.active:hover {
+.nav-link1.active:hover {
 background-color: #fff;
 }
 
-.nav-link2:hover {
+.nav-link1:hover {
 background-color: #ddd;
 }
 
-.card-body2 {
+.card-body1 {
 padding: 20px;
 }
 
-.ButtonHistoryProfessional2 {
+.ButtonHistoryProfessional1 {
   margin: 20px !important;
   text-transform: none !important;
   background-color: #013372 !important;

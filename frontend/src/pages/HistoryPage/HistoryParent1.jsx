@@ -63,11 +63,26 @@ function HistoryParent1() {
       <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
       <div className='HistoryParent1Container'>
+
         <div className='card1 text-center'>
+
           <div className='card-header1'>
 
-            {/* dropdown menu για ταξινόμηση το Material UI  */}
-            <div>
+            <ul className='nav1 nav-tabs1 card-header-tabs'>
+              <li className='nav-item1'>
+                <a className='nav-link1 active' href='http://localhost:3000/HistoryParent1'>ΑΙΤΗΣΕΙΣ</a>
+              </li>
+              <li className='nav-item1'>
+                <a className='nav-link1' href='http://localhost:3000/HistoryParent2'>ΣΥΜΦΩΝΗΤΙΚΑ</a>
+              </li>
+              <li className='nav-item1'>
+                <a className='nav-link1' href='http://localhost:3000/HistoryParent3'>ΠΛΗΡΩΜΕΣ</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* dropdown menu για ταξινόμηση το Material UI  */}
+          <div>
               <Button 
                 aria-controls="simple-menu" 
                 aria-haspopup="true" 
@@ -90,18 +105,6 @@ function HistoryParent1() {
               </Menu>
             </div>
 
-            <ul className='nav1 nav-tabs1 card-header-tabs'>
-              <li className='nav-item1'>
-                <a className='nav-link1 active' href='http://localhost:3000/HistoryParent1'>ΑΙΤΗΣΕΙΣ</a>
-              </li>
-              <li className='nav-item1'>
-                <a className='nav-link1' href='http://localhost:3000/HistoryParent2'>ΣΥΜΦΩΝΗΤΙΚΑ</a>
-              </li>
-              <li className='nav-item1'>
-                <a className='nav-link1' href='http://localhost:3000/HistoryParent3'>ΠΛΗΡΩΜΕΣ</a>
-              </li>
-            </ul>
-          </div>
           <div className='card-body1'>
             <div className='HistoryParent1LineContainer'>
               {historyData.map((data, index) => (

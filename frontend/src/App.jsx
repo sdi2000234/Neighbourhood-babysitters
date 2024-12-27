@@ -16,14 +16,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import ParentProfile from './pages/Profiles/ParentProfile.jsx'
 // import ProfessionalProfile from './pages/Profiles/ProfessionalProfile.jsx'
 
-import HistoryParent1 from './pages/HistoryPage/HistoryParent1';
-import HistoryParent2 from './pages/HistoryPage/HistoryParent2';
-import HistoryParent3 from './pages/HistoryPage/HistoryParent3';
+// import HistoryParent1 from './pages/HistoryPage/HistoryParent1';
+// import HistoryParent2 from './pages/HistoryPage/HistoryParent2';
+// import HistoryParent3 from './pages/HistoryPage/HistoryParent3';
 
 // import HistoryProfessional1 from './pages/HistoryPage/HistoryProfessional1';
 // import HistoryProfessional2 from './pages/HistoryPage/HistoryProfessional2';
 // import HistoryProfessional3 from './pages/HistoryPage/HistoryProfessional3';
 
+import MessageParent from './pages/MessagePage/MessageParent';
 
 
 function App() {
@@ -52,14 +53,15 @@ function App() {
         <Route path='/ProfessionalProfile' element={<ProfessionalProfile userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} picLink={picLink} desc={desc}/>} /> */}
 
 
-        <Route path='/HistoryParent1' element={<HistoryParent1 />} /> 
+        {/* <Route path='/HistoryParent1' element={<HistoryParent1 />} /> 
         <Route path='/HistoryParent2' element={<HistoryParent2 />} /> 
-        <Route path='/HistoryParent3' element={<HistoryParent3 />} /> 
+        <Route path='/HistoryParent3' element={<HistoryParent3 />} />  */}
 
-        {/* <Route path='/HistoryProfessional1' element={<HistoryProfessional1 />} />  */}
-        {/* <Route path='/HistoryProfessional2' element={<HistoryProfessional2 />} /> 
+        {/* <Route path='/HistoryProfessional1' element={<HistoryProfessional1 />} /> 
+        <Route path='/HistoryProfessional2' element={<HistoryProfessional2 />} /> 
         <Route path='/HistoryProfessional3' element={<HistoryProfessional3 />} />  */}
 
+        <Route path='/MessageParent' element={<MessageParent />} />
 
 
       </Routes>

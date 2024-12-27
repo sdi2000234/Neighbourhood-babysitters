@@ -24,7 +24,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import HistoryProfessional2 from './pages/HistoryPage/HistoryProfessional2';
 // import HistoryProfessional3 from './pages/HistoryPage/HistoryProfessional3';
 
-import MessageParent from './pages/MessagePage/MessageParent';
+// import MessageParent from './pages/MessagePage/MessageParent';
+import MessageParent from './pages/MessagePage/MessageProfessional';
+
 
 
 function App() {
@@ -61,8 +63,8 @@ function App() {
         <Route path='/HistoryProfessional2' element={<HistoryProfessional2 />} /> 
         <Route path='/HistoryProfessional3' element={<HistoryProfessional3 />} />  */}
 
-        <Route path='/MessageParent' element={<MessageParent />} />
-
+        {/* <Route path='/MessageParent' element={<MessageParent />} /> */}
+        <Route path='/MessageProfessional' element={<MessageParent />} />
 
       </Routes>
     </BrowserRouter>

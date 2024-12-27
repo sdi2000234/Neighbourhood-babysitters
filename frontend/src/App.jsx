@@ -25,9 +25,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import HistoryProfessional3 from './pages/HistoryPage/HistoryProfessional3';
 
 // import MessageParent from './pages/MessagePage/MessageParent';
-import MessageParent from './pages/MessagePage/MessageProfessional';
+// import MessageProfessional from './pages/MessagePage/MessageProfessional';
 
-
+// import NotificationsParent from './pages/NotificationsPage/NotificationsParent';
+import NotificationsProfessional from './pages/NotificationsPage/NotificationsProfessional';
 
 function App() {
   // const babysitterName = "Εύη Κωστοπούλου"; 
@@ -64,7 +65,10 @@ function App() {
         <Route path='/HistoryProfessional3' element={<HistoryProfessional3 />} />  */}
 
         {/* <Route path='/MessageParent' element={<MessageParent />} /> */}
-        <Route path='/MessageProfessional' element={<MessageParent />} />
+        {/* <Route path='/MessageProfessional' element={<MessageProfessional />} /> */}
+
+        {/* <Route path='/NotificationsParent' element={<NotificationsParent />} /> */}
+        <Route path='/NotificationsProfessional' element={<NotificationsProfessional />} />
 
       </Routes>
     </BrowserRouter>

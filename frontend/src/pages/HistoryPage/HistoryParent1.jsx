@@ -13,7 +13,7 @@ function HistoryParent1() {
     { name: 'ΑΙΤΗΣΕΙΣ' },
   ];
 
-  // Ορίστε το array με τα δεδομένα που θέλεις να εμφανίσεις για κάθε HistoryLine
+  // Ορισμός του array με τα δεδομένα 
   const historyData = [
     {
       pic: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',

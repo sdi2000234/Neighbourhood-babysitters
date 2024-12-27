@@ -11,7 +11,42 @@ body {
 .NotificationsParentContainer
 {
     display: flex;
-    flex-direction: column;
     margin-left: 10%;
 }
 
+.NotificationssParent
+{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+}
+
+.filtersNotifParent
+{
+    display: flex;
+    background-color: #e6e6e6;
+    border-radius: 8px;
+    padding: 10px;
+    min-width: 100px;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+}
+
+.NotificationsParentContainer ul
+{
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+.NotificationsParentContainer li
+{
+    margin-bottom: 10px;
+}
+
+.NotificationsParentContainer p
+{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+}

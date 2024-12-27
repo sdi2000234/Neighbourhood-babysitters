@@ -27,7 +27,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import MessageParent from './pages/MessagePage/MessageParent';
 // import MessageProfessional from './pages/MessagePage/MessageProfessional';
 
-// import NotificationsParent from './pages/NotificationsPage/NotificationsParent';
+import NotificationsParent from './pages/NotificationsPage/NotificationsParent';
 import NotificationsProfessional from './pages/NotificationsPage/NotificationsProfessional';
 
 function App() {
@@ -67,7 +67,7 @@ function App() {
         {/* <Route path='/MessageParent' element={<MessageParent />} /> */}
         {/* <Route path='/MessageProfessional' element={<MessageProfessional />} /> */}
 
-        {/* <Route path='/NotificationsParent' element={<NotificationsParent />} /> */}
+        <Route path='/NotificationsParent' element={<NotificationsParent />} />
         <Route path='/NotificationsProfessional' element={<NotificationsProfessional />} />
 
       </Routes>

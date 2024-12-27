@@ -11,7 +11,14 @@ function MessageParent() {
             <Message
                 picLink="Pfp"
                 name="Αγγελική Χριστοπούλου"
-                content="Lorem ipsum dolor sit amet et delectus accommodare his consul copio..."
+                content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                date="30/11/2024"
+            />
+            <br />
+            <Message
+                picLink="Pfp"
+                name="Αγγελική Χριστοπούλου"
+                content="Γεια"
                 date="30/11/2024"
             />
         </>

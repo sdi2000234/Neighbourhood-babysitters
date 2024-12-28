@@ -18,8 +18,8 @@ function AppointmentDetailsModalForProfessionalPage({ onClose, appointmentDetail
           <p><strong>Ημερομηνία Ραντεβού:</strong> {appointmentDetails.date}</p>
           <p><strong>Ώρα Ραντεβού:</strong> {appointmentDetails.time}</p>
           <p><strong>Σχόλια από τον Γονέα/Κηδεμόνα:</strong> {appointmentDetails.comments === "" ? "-" : appointmentDetails.comments}</p>
-          <p><strong>Κινητό Γονέα:</strong> {appointmentDetails.phone}</p>
-          <p><strong>Εmail Γονέα:</strong> {appointmentDetails.email}</p>
+          <p><strong>Κινητό Γονέα/Κηδεμόνα:</strong> {appointmentDetails.phone}</p>
+          <p><strong>Εmail Γονέα/Κηδεμόνα:</strong> {appointmentDetails.email}</p>
         </div>
       </div>
     </div>

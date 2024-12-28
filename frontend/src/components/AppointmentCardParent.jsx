@@ -6,7 +6,7 @@ import timeIcon from '../assets/timeIcon.png';
 import linkIcon from '../assets/linkIcon.png';
 import cake from '../assets/cake_black.png';
 import { Avatar } from "@mui/material";
-import AppointmentDetailsModal from './AppointmentDetailsModalForProfessionalPage'; // Εισάγουμε το νέο modal component
+import AppointmentDetailsModal from './AppointmentDetailsModalForProfessionalPage'; // component για περισσότερες λεπτομέρειες
 
 function AppointmentCardParent({ type, picLink, parentName, date, loc, time, childAge, loc2, state, comments, email, phone }) {
   const [status, setStatus] = useState(state || "none"); // none, accepted, rejected
@@ -103,7 +103,6 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
           {status === "none" && (  
             <>
               <button className="moreButtonParent" onClick={handleShowDetails}>Περισσότερες Λεπτομέρειες</button>
-              <button className="profileButtonParent">Δείτε Προφίλ Γονέα</button>
               <div className="yesNoButtons">
                 <button className="acceptButtonParent" onClick={handleAccept}>Αποδοχή</button>
                 <button className="rejectButtonParent" onClick={handleReject}>Απόρριψη</button>
@@ -114,7 +113,6 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
           {status === "accepted" && (
             <>
               <button className="moreButtonParent" onClick={handleShowDetails}>Περισσότερες Λεπτομέρειες</button>
-              <button className="profileButtonParent">Δείτε Προφίλ Γονέα</button>
               <button className="buttonsParent">Αλλαγή Στοιχείων Ραντεβού</button>
               <button className="cancelButtonParent" onClick={handleReject}>Ακύρωση Ραντεβού</button>
             </>

@@ -27,8 +27,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import MessageParent from './pages/MessagePage/MessageParent';
 // import MessageProfessional from './pages/MessagePage/MessageProfessional';
 
-import NotificationsParent from './pages/NotificationsPage/NotificationsParent';
-import NotificationsProfessional from './pages/NotificationsPage/NotificationsProfessional';
+// import NotificationsParent from './pages/NotificationsPage/NotificationsParent';
+// import NotificationsProfessional from './pages/NotificationsPage/NotificationsProfessional';
+
+import WriteMessageParent from './pages/MessagePage/WriteMessageParent';
+import WriteMessageProfessional from './pages/MessagePage/WriteMessageProfessional';
+
 
 function App() {
   // const babysitterName = "Εύη Κωστοπούλου"; 
@@ -67,8 +71,12 @@ function App() {
         {/* <Route path='/MessageParent' element={<MessageParent />} /> */}
         {/* <Route path='/MessageProfessional' element={<MessageProfessional />} /> */}
 
-        <Route path='/NotificationsParent' element={<NotificationsParent />} />
-        <Route path='/NotificationsProfessional' element={<NotificationsProfessional />} />
+        {/* <Route path='/NotificationsParent' element={<NotificationsParent />} />
+        <Route path='/NotificationsProfessional' element={<NotificationsProfessional />} /> */}
+
+        <Route path='/WriteMessageParent' element={<WriteMessageParent />} />
+        <Route path='/WriteMessageProfessional' element={<WriteMessageProfessional />} />
+
 
       </Routes>
     </BrowserRouter>

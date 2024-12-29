@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import HistoryLine from '../../components/HistoryLine';
 import './HistoryProfessional3.css';
 import ProfessionalNavigation from '../../components/ProfessionalNavigation';
@@ -57,6 +58,20 @@ function HistoryProfessional3() {
     setAnchorEl(null);
   };
 
+  const navigate = useNavigate();
+  
+  const handle1 = () => {
+    navigate('../HistoryProfessional1');
+  };
+
+  const handle2 = () => {
+    navigate('../HistoryProfessional2');
+  };
+
+  const handle3 = () => {
+    navigate('../HistoryProfessional3');
+  };
+
   return (
     <>
       <ProfessionalNavigation currentNavPage={'profHiPay'} />
@@ -66,17 +81,17 @@ function HistoryProfessional3() {
 
         <div className='card3 text-center'>
 
-          <div className='card-header3'>
+        <div className='card-header3'>
             <ul className='nav3 nav-tabs3 card-header-tabs'>
-              <li className='nav-item3'>
-                <a className='nav-link3' href='http://localhost:3000/HistoryProfessional1'>ΑΙΤΗΣΕΙΣ</a>
-              </li>
-              <li className='nav-item3'>
-                <a className='nav-link3' href='http://localhost:3000/HistoryProfessional2'>ΣΥΜΦΩΝΗΤΙΚΑ</a>
-              </li>
-              <li className='nav-item3'>
-                <a className='nav-link3 active' href='http://localhost:3000/HistoryProfessional3'>ΠΛΗΡΩΜΕΣ</a>
-              </li>
+                <li className='nav-item3'>
+                <button className='nav-link3' onClick={handle1}>ΑΙΤΗΣΕΙΣ</button>
+                </li>
+                <li className='nav-item3'>
+                <button className='nav-link3' onClick={handle2}>ΣΥΜΦΩΝΗΤΙΚΑ</button>
+                </li>
+                <li className='nav-item3'>
+                <button className='nav-link3 active' onClick={handle3}>ΠΛΗΡΩΜΕΣ</button>
+                </li>
             </ul>
           </div>
 

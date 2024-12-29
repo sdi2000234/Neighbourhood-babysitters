@@ -1,16 +1,20 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import './ReviewCard.css';
 import { Avatar, Rating, TextField, Button } from "@mui/material";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 function ReviewCard({ picLink, name}) {
   
+  const navigate = useNavigate();
+
   const [rating, setRating] = React.useState(0);
   const [comment, setComment] = React.useState("");
 
   const handleSubmit = () => { //ΝΑ ΑΛΛΑΧΘΕΙ  
-    alert("Rating:", rating);
-    alert("Comment:", comment);
+    // alert("Rating:", rating);
+    // alert("Comment:", comment);
+    navigate('../RatingParentsEnd');
   };
 
   return (

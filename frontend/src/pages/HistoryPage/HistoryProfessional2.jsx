@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import HistoryLine from '../../components/HistoryLine';
 import './HistoryProfessional2.css';
 import ProfessionalNavigation from '../../components/ProfessionalNavigation';
@@ -56,6 +57,20 @@ function HistoryProfessional2() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const navigate = useNavigate();
+  
+  const handle1 = () => {
+    navigate('../HistoryProfessional1');
+  };
+
+  const handle2 = () => {
+    navigate('../HistoryProfessional2');
+  };
+
+  const handle3 = () => {
+    navigate('../HistoryProfessional3');
+  };
   
 
   return (
@@ -67,18 +82,17 @@ function HistoryProfessional2() {
         
         <div className='card2 text-center'>
           
-          <div className='card-header2'>
-
+        <div className='card-header2'>
             <ul className='nav2 nav-tabs2 card-header-tabs'>
-              <li className='nav-item2'>
-                <a className='nav-link2' href='http://localhost:3000/HistoryProfessional1'>ΑΙΤΗΣΕΙΣ</a>
-              </li>
-              <li className='nav-item2'>
-                <a className='nav-link2 active' href='http://localhost:3000/HistoryProfessional2'>ΣΥΜΦΩΝΗΤΙΚΑ</a>
-              </li>
-              <li className='nav-item2'>
-                <a className='nav-link2' href='http://localhost:3000/HistoryProfessional3'>ΠΛΗΡΩΜΕΣ</a>
-              </li>
+                <li className='nav-item2'>
+                <button className='nav-link2' onClick={handle1}>ΑΙΤΗΣΕΙΣ</button>
+                </li>
+                <li className='nav-item2'>
+                <button className='nav-link2 active' onClick={handle2}>ΣΥΜΦΩΝΗΤΙΚΑ</button>
+                </li>
+                <li className='nav-item2'>
+                <button className='nav-link2' onClick={handle3}>ΠΛΗΡΩΜΕΣ</button>
+                </li>
             </ul>
           </div>
 

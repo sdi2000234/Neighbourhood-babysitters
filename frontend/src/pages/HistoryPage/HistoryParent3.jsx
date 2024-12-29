@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import HistoryLine from '../../components/HistoryLine';
 import './HistoryParent3.css';
 import ParentNavigation from '../../components/ParentNavigation';
@@ -57,6 +58,21 @@ function HistoryParent3() {
     setAnchorEl(null);
   };
 
+  //Για περιήγηση σε υπολοιπες σελίδες
+  const navigate = useNavigate();
+
+  const handle1 = () => {
+    navigate('../HistoryParent1');
+  };
+
+  const handle2 = () => {
+    navigate('../HistoryParent2');
+  };
+
+  const handle3 = () => {
+    navigate('../HistoryParent3');
+  };
+
   return (
     <>
       <ParentNavigation currentNavPage={'parHiPay'} />
@@ -70,13 +86,13 @@ function HistoryParent3() {
 
             <ul className='nav3 nav-tabs3 card-header-tabs'>
               <li className='nav-item3'>
-                <a className='nav-link3' href='http://localhost:3000/HistoryParent1'>ΑΙΤΗΣΕΙΣ</a>
+                <button className='nav-link3' onClick={handle1}>ΑΙΤΗΣΕΙΣ</button>
               </li>
               <li className='nav-item3'>
-                <a className='nav-link3' href='http://localhost:3000/HistoryParent2'>ΣΥΜΦΩΝΗΤΙΚΑ</a>
+                <button className='nav-link3' onClick={handle2}>ΣΥΜΦΩΝΗΤΙΚΑ</button>
               </li>
               <li className='nav-item3'>
-                <a className='nav-link3 active' href='http://localhost:3000/HistoryParent3'>ΠΛΗΡΩΜΕΣ</a>
+               <button className='nav-link3 active' onClick={handle3}>ΠΛΗΡΩΜΕΣ</button>
               </li>
             </ul>
           </div>

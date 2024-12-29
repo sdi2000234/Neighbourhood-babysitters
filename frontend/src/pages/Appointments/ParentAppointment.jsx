@@ -1,4 +1,5 @@
 import React, { useState } from 'react'; 
+import { useNavigate } from 'react-router-dom';
 import './ParentAppointment.css'
 import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
@@ -8,6 +9,8 @@ import InfoIcon from '@mui/icons-material/Info';
 import { Tooltip } from '@mui/material';
 
 function ParentAppointment({ babysitterName , userName , userLastName , userPhone, userEmail}) {
+
+    const navigate = useNavigate();
     
     const [meetingType, setMeetingType] = useState(''); // Διαχειρίζεται την επιλογή του τύπου συνάντησης
 
@@ -18,6 +21,10 @@ function ParentAppointment({ babysitterName , userName , userLastName , userPhon
     const handleCancel = (event) => { //Για button Ακύρωσης 
         event.preventDefault();  // Αποτρέπει την υποβολή της φόρμας
         alert("Η φόρμα ακυρώθηκε."); //ΠΟΥ ΝΑ ΠΗΓΑΙΝΟΥΜΕ ΣΤΗΝ ΑΚΥΡΩΣΗ ???
+    };
+
+    const handleSubmit = (event) => { //Για button Αποστολή
+        navigate('/ParentAppointmentEnd'); 
     };
 
     const breadcrumbPages = [
@@ -115,7 +122,7 @@ function ParentAppointment({ babysitterName , userName , userLastName , userPhon
                             <textarea className="mymessage" name="subject" placeholder="Μήνυμα προς Επαγγελματία.." style={{ height:200 }}></textarea>
                         </div>
 
-                        <button type="submit" className="submitbutton">Αποστολή</button>
+                        <button type="submit" className="submitbutton" onClick={handleSubmit}>Αποστολή</button>
                         <br />
                         <button type="button" className="cancelbutton" onClick={handleCancel}>Ακύρωση</button>
 

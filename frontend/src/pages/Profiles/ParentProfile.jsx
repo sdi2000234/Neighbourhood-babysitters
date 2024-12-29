@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import './ParentProfile.css'
 import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
@@ -10,6 +11,24 @@ function ParentProfile({userName , userLastName, userEmail , userPhone , picLink
   const breadcrumbPages = [
     { name: 'ΠΡΟΦΙΛ'}  
   ];
+
+  const navigate = useNavigate();
+
+  const handleMore = () => {
+    navigate('/new-page'); 
+  };
+
+  const handleChange = () => {
+    navigate('/new-page'); 
+  };
+
+  const handleMoreAds = () => {
+    navigate('/new-page'); 
+  };
+
+  const handleLogOut = () => {
+    navigate('/new-page'); 
+  };
 
   return (
     <>
@@ -43,13 +62,13 @@ function ParentProfile({userName , userLastName, userEmail , userPhone , picLink
 
           <div className="buttonsParentProfile">
               <div style={{ flexGrow: 1 }}>
-                  <button>Περισσότερα</button>
-                  <button>Επεξεργασία</button>
+                  <button onClick={handleMore}>Περισσότερα</button>
+                  <button onClick={handleChange}>Επεξεργασία</button>
                   
               </div>
               <div style={{ flexGrow: 1 }}>
-                <button>Αγαπημένες Αγγελίες</button>
-                <button className='logoutParentProfile'>Αποσύνδεση</button>
+                <button onClick={handleMoreAds}>Αγαπημένες Αγγελίες</button>
+                <button className='logoutParentProfile' onClick={handleLogOut}>Αποσύνδεση</button>
               </div>
           </div>
 

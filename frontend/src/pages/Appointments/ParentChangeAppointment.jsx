@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'; 
+import { useNavigate } from 'react-router-dom';
 import './ParentChangeAppointment.css';
 import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
@@ -8,6 +9,9 @@ import InfoIcon from '@mui/icons-material/Info';
 import { Tooltip } from '@mui/material';
 
 function ParentChangeAppointment({babysitterName, userName, userLastName, userPhone, userEmail, prevDate, prevTime, initialMeetingType, initialMessage, initialAddress , initialLink }) {
+    
+    const navigate = useNavigate();
+    
     // Συνάρτηση για μετατροπή ημερομηνίας
     const convertDateToISO = (date) => {
         const [month, day, year] = date.split("/");
@@ -35,8 +39,11 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
     };
 
     const handleCancel = () => {
-        alert("Η φόρμα ακυρώθηκε.");
-        // ΘΕΛΕΙ ΑΛΛΑΓΗ πχ navigation για επιστροφή σε προηγούμενη σελίδα εδώ.
+        navigate('/ParentAllAppointments');
+    };
+
+    const handleSubmit = () => {
+        navigate('/ParentChangeAppointmentEnd');
     };
 
     const breadcrumbPages = [
@@ -176,7 +183,7 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
                             ></textarea>
                         </div>
 
-                        <button type="submit" className="submitbuttonCh">Αλλαγή Στοιχείων</button>
+                        <button type="submit" className="submitbuttonCh" onClick={handleSubmit}>Αλλαγή Στοιχείων</button>
                         <br />
                         <button type="button" className="cancelbuttonCh" onClick={handleCancel}>Πίσω</button>
                     </div>

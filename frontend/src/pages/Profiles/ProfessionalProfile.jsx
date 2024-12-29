@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import './ProfessionalProfile.css'
 import ProfessionalNavigation from '../../components/ProfessionalNavigation';
 import Footer from '../../components/Footer';
@@ -12,6 +13,24 @@ function ProfessionalProfile({userName , userLastName, userEmail , userPhone , p
   const breadcrumbPages = [
     { name: 'ΠΡΟΦΙΛ'}  
   ];
+
+  const navigate = useNavigate();
+
+  const handleMore = () => {
+    navigate('/new-page'); 
+  };
+
+  const handleChange = () => {
+    navigate('/new-page'); 
+  };
+
+  const handleMyAds = () => {
+    navigate('/new-page'); 
+  };
+
+  const handleLogOut = () => {
+    navigate('/new-page'); 
+  };
 
   return (
     <>
@@ -58,13 +77,13 @@ function ProfessionalProfile({userName , userLastName, userEmail , userPhone , p
 
           <div className="buttonsProfessionalProfile">
               <div style={{ flexGrow: 1 }}>
-                  <button>Περισσότερα</button>
-                  <button>Επεξεργασία</button>
+                  <button onClick={handleMore}>Περισσότερα</button>
+                  <button onClick={handleChange}>Επεξεργασία</button>
                   
               </div>
               <div style={{ flexGrow: 1 }}>
-                <button>Οι Αγγελίες μου</button>
-                <button className='logoutProfessionalProfile'>Αποσύνδεση</button>
+                <button onClick={handleMyAds}>Οι Αγγελίες μου</button>
+                <button className='logoutProfessionalProfile' onClick={handleLogOut}>Αποσύνδεση</button>
               </div>
           </div>
 

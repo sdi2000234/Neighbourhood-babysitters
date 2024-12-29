@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import './AppointmentCardParent.css';
 import location from '../assets/location_black.png';
 import dateIcon from '../assets/dateIcon.png';
@@ -31,6 +32,12 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
   const handleCloseDetails = () => {
     setShowDetails(false); // Κλείσιμο modal λεπτομέρειας
   };
+
+  const navigate = useNavigate();
+
+  const handleMessage = () => {
+    navigate('/WriteMessageProfessional');
+  }
 
   if (status === "rejected") {
     return null; // Εξαφανίζεται το ραντεβού αν είναι rejected
@@ -107,7 +114,7 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
                 <button className="acceptButtonParent" onClick={handleAccept}>Αποδοχή</button>
                 <button className="rejectButtonParent" onClick={handleReject}>Απόρριψη</button>
               </div>
-              <button className="buttonsParent">Στείλτε Μήνυμα</button>
+              <button className="buttonsParent" onClick={handleMessage}>Στείλτε Μήνυμα</button>
             </>
           )}
           {status === "accepted" && (

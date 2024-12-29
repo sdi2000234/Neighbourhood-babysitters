@@ -107,13 +107,13 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
                 <button className="acceptButtonParent" onClick={handleAccept}>Αποδοχή</button>
                 <button className="rejectButtonParent" onClick={handleReject}>Απόρριψη</button>
               </div>
-              <button className="buttonsParent">Αλλαγή Στοιχείων Ραντεβού</button>
+              <button className="buttonsParent">Στείλτε Μήνυμα</button>
             </>
           )}
           {status === "accepted" && (
             <>
               <button className="moreButtonParent" onClick={handleShowDetails}>Περισσότερες Λεπτομέρειες</button>
-              <button className="buttonsParent">Αλλαγή Στοιχείων Ραντεβού</button>
+              <button className="buttonsParent">Στείλτε Μήνυμα</button>
               <button className="cancelButtonParent" onClick={handleReject}>Ακύρωση Ραντεβού</button>
             </>
           )}

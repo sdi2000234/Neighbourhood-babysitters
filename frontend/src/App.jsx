@@ -5,35 +5,36 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Pages
-// import RatingParents from './pages/RatingPage/RatingParents';
-// import RatingProfessional from './pages/RatingPage/RatingProfessional';
+import RatingParents from './pages/RatingPage/RatingParents';
+import RatingParentsEnd from './pages/RatingPage/RatingParentsEnd';
+import RatingProfessional from './pages/RatingPage/RatingProfessional';
 
-// import ParentAppointment from './pages/Appointments/ParentAppointment.jsx';
-// import ParentAppointmentEnd from './pages/Appointments/ParentAppointmentEnd.jsx';
-// import ParentAllAppointments from './pages/Appointments/ParentAllAppointments.jsx';
-// import ProfessionalAllAppointments from './pages/Appointments/ProfessionalAllAppointments.jsx';
-// import ParentChangeAppointment from './pages/Appointments/ParentChangeAppointment.jsx';
+import ParentAppointment from './pages/Appointments/ParentAppointment.jsx';
+import ParentAppointmentEnd from './pages/Appointments/ParentAppointmentEnd.jsx';
+import ParentAllAppointments from './pages/Appointments/ParentAllAppointments.jsx';
+import ProfessionalAllAppointments from './pages/Appointments/ProfessionalAllAppointments.jsx';
+import ParentChangeAppointment from './pages/Appointments/ParentChangeAppointment.jsx';
 import ParentChangeAppointmentEnd from './pages/Appointments/ParentChangeAppointmentEnd.jsx'
 
-// import ParentProfile from './pages/Profiles/ParentProfile.jsx'
-// import ProfessionalProfile from './pages/Profiles/ProfessionalProfile.jsx'
+import ParentProfile from './pages/Profiles/ParentProfile.jsx'
+import ProfessionalProfile from './pages/Profiles/ProfessionalProfile.jsx'
 
-// import HistoryParent1 from './pages/HistoryPage/HistoryParent1';
-// import HistoryParent2 from './pages/HistoryPage/HistoryParent2';
-// import HistoryParent3 from './pages/HistoryPage/HistoryParent3';
+import HistoryParent1 from './pages/HistoryPage/HistoryParent1';
+import HistoryParent2 from './pages/HistoryPage/HistoryParent2';
+import HistoryParent3 from './pages/HistoryPage/HistoryParent3';
 
-// import HistoryProfessional1 from './pages/HistoryPage/HistoryProfessional1';
-// import HistoryProfessional2 from './pages/HistoryPage/HistoryProfessional2';
-// import HistoryProfessional3 from './pages/HistoryPage/HistoryProfessional3';
+import HistoryProfessional1 from './pages/HistoryPage/HistoryProfessional1';
+import HistoryProfessional2 from './pages/HistoryPage/HistoryProfessional2';
+import HistoryProfessional3 from './pages/HistoryPage/HistoryProfessional3';
 
-// import MessageParent from './pages/MessagePage/MessageParent';
-// import MessageProfessional from './pages/MessagePage/MessageProfessional';
+import MessageParent from './pages/MessagePage/MessageParent';
+import MessageProfessional from './pages/MessagePage/MessageProfessional';
 
-// import NotificationsParent from './pages/NotificationsPage/NotificationsParent';
-// import NotificationsProfessional from './pages/NotificationsPage/NotificationsProfessional';
+import NotificationsParent from './pages/NotificationsPage/NotificationsParent';
+import NotificationsProfessional from './pages/NotificationsPage/NotificationsProfessional';
 
-// import WriteMessageParent from './pages/MessagePage/WriteMessageParent';
-// import WriteMessageProfessional from './pages/MessagePage/WriteMessageProfessional';
+import WriteMessageParent from './pages/MessagePage/WriteMessageParent';
+import WriteMessageProfessional from './pages/MessagePage/WriteMessageProfessional';
 
 
 function App() {
@@ -54,21 +55,22 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path='/RatingParents' element={<RatingParents />} /> 
-        <Route path='/RatingProfessional' element={<RatingProfessional />} /> */}
+        <Route path='/RatingParents' element={<RatingParents />} /> 
+        <Route path='/RatingParentsEnd' element={<RatingParentsEnd />} /> 
+        <Route path='/RatingProfessional' element={<RatingProfessional />} />
         
-        {/* <Route path='/ParentAppointment' element={<ParentAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} date={date} time={time}/>} /> */}
-        {/* <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} /> */}
-        {/* <Route path='/ParentAllAppointments' element={<ParentAllAppointments />} /> */}
-        {/* <Route path='/ProfessionalAllAppointments' element={<ProfessionalAllAppointments />} /> */}
-        {/* <Route path='/ParentChangeAppointment' element={<ParentChangeAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} prevDate={date} prevTime={time} initialMeetingType={type} initialMessage={message} initialAddress={address} initialLink={link}/>} /> */}
+        <Route path='/ParentAppointment' element={<ParentAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} date={date} time={time}/>} />
+        <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} />
+        <Route path='/ParentAllAppointments' element={<ParentAllAppointments />} />
+        <Route path='/ProfessionalAllAppointments' element={<ProfessionalAllAppointments />} />
+        <Route path='/ParentChangeAppointment' element={<ParentChangeAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} prevDate={date} prevTime={time} initialMeetingType={type} initialMessage={message} initialAddress={address} initialLink={link}/>} />
 
-        {/* <Route path='/ParentProfile' element={<ParentProfile userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} picLink={picLink}/>} />
-        <Route path='/ProfessionalProfile' element={<ProfessionalProfile userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} picLink={picLink} desc={desc}/>} /> */}
+        <Route path='/ParentProfile' element={<ParentProfile userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} picLink={picLink}/>} />
+        <Route path='/ProfessionalProfile' element={<ProfessionalProfile userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} picLink={picLink} desc={desc}/>} />
         <Route path='/ParentChangeAppointmentEnd' element={<ParentChangeAppointmentEnd />} />
 
 
-        {/* <Route path='/HistoryParent1' element={<HistoryParent1 />} /> 
+        <Route path='/HistoryParent1' element={<HistoryParent1 />} /> 
         <Route path='/HistoryParent2' element={<HistoryParent2 />} /> 
         <Route path='/HistoryParent3' element={<HistoryParent3 />} /> 
 
@@ -83,7 +85,7 @@ function App() {
         <Route path='/NotificationsProfessional' element={<NotificationsProfessional />} />
 
         <Route path='/WriteMessageParent' element={<WriteMessageParent />} />
-        <Route path='/WriteMessageProfessional' element={<WriteMessageProfessional />} /> */}
+        <Route path='/WriteMessageProfessional' element={<WriteMessageProfessional />} />
 
 
       </Routes>

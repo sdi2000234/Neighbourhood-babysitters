@@ -7,7 +7,7 @@ import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import InfoIcon from '@mui/icons-material/Info';
 import { Tooltip } from '@mui/material';
 
-function ParentAppointment({ babysitterName , userName , userLastName , userPhone, userEmail , date , time}) {
+function ParentAppointment({ babysitterName , userName , userLastName , userPhone, userEmail}) {
     
     const [meetingType, setMeetingType] = useState(''); // Διαχειρίζεται την επιλογή του τύπου συνάντησης
 
@@ -31,7 +31,8 @@ function ParentAppointment({ babysitterName , userName , userLastName , userPhon
             <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
             <div className='ApPersonInfo'>
-                <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ: {babysitterName}</h1>
+                <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ:</h1>
+                <h1> {babysitterName}</h1>
 
                 <form action="">
 

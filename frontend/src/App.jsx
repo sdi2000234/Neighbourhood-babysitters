@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import RatingParents from './pages/RatingPage/RatingParents';
 // import RatingProfessional from './pages/RatingPage/RatingProfessional';
 
-// import ParentAppointment from './pages/Appointments/ParentAppointment.jsx';
+import ParentAppointment from './pages/Appointments/ParentAppointment.jsx';
 // import ParentAppointmentEnd from './pages/Appointments/ParentAppointmentEnd.jsx';
 // import ParentAllAppointments from './pages/Appointments/ParentAllAppointments.jsx';
 // import ProfessionalAllAppointments from './pages/Appointments/ProfessionalAllAppointments.jsx';
@@ -54,13 +54,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* <Route path='/RatingParents' element={<RatingParents />} /> 
-        <Route path='/RatingProfessional' element={<RatingProfessional />} />
+        <Route path='/RatingProfessional' element={<RatingProfessional />} /> */}
         
         <Route path='/ParentAppointment' element={<ParentAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} date={date} time={time}/>} />
-        <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} />
+        {/* <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} />
         <Route path='/ParentAllAppointments' element={<ParentAllAppointments />} />
-        <Route path='/ProfessionalAllAppointments' element={<ProfessionalAllAppointments />} /> */}
-        <Route path='/ParentChangeAppointment' element={<ParentChangeAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} prevDate={date} prevTime={time} initialMeetingType={type} initialMessage={message} initialAddress={address} initialLink={link}/>} />
+        <Route path='/ProfessionalAllAppointments' element={<ProfessionalAllAppointments />} />
+        <Route path='/ParentChangeAppointment' element={<ParentChangeAppointment babysitterName={babysitterName} userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} prevDate={date} prevTime={time} initialMeetingType={type} initialMessage={message} initialAddress={address} initialLink={link}/>} /> */}
 
         {/* <Route path='/ParentProfile' element={<ParentProfile userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} picLink={picLink}/>} />
         <Route path='/ProfessionalProfile' element={<ProfessionalProfile userName={userName} userLastName={userLastName} userPhone={userPhone} userEmail={userEmail} picLink={picLink} desc={desc}/>} />

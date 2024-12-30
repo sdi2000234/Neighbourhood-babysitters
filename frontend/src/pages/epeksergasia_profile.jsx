@@ -9,10 +9,11 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  Checkbox,
   Avatar,
 } from '@mui/material';
-import Header from '../components/Header_connected';
-import Footer from '../components/Footer';
+import Header from '../components/Header_connected'; // Same Header
+import Footer from '../components/Footer'; // Same Footer
 
 const Page5 = () => {
   return (
@@ -21,77 +22,149 @@ const Page5 = () => {
       <Header />
 
       {/* Main Container */}
-      <Container sx={{ mt: 4 }}>
+      <Container sx={{ mt: 4, mb: 4 }}>
         {/* Breadcrumbs */}
-        <Typography variant="body2" gutterBottom>
-          ΠΡΟΦΙΛ &gt; ΕΠΕΞΕΡΓΑΣΙΑ ΠΡΟΦΙΛ
+        <Typography variant="body2" sx={{ mb: 2 }}>
+          Ρυθμίσεις
         </Typography>
 
-        {/* Profile Section */}
+        {/* Section 1: Change Email */}
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            mb: 4,
+            backgroundColor: '#f6f6f6',
+            p: 2,
+            mb: 2,
+            borderRadius: '4px',
           }}
         >
-          <Avatar
-            alt="Profile Picture"
-            sx={{ width: 120, height: 120, mb: 1, backgroundColor: '#f0f0f0' }} // Circular Avatar
+          <Typography variant="h6" fontWeight="bold" mb={2}>
+            Αλλαγή E-mail πρόσβασης
+          </Typography>
+          <TextField label="Τρέχον Email" fullWidth sx={{ mb: 2 }} />
+          <TextField label="Νέο Email" fullWidth sx={{ mb: 2 }} />
+          <TextField label="Επιβεβαίωση" fullWidth sx={{ mb: 2 }} />
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: '#ff7f00',
+              color: 'white',
+              '&:hover': { backgroundColor: '#e66b00' },
+            }}
           >
-            Pfp
-          </Avatar>
-          <Button variant="contained" size="small" sx={{ backgroundColor: '#004080', color: 'white' }}>
-            Αλλαγή Εικόνας
+            Αποθήκευση
           </Button>
         </Box>
 
-        {/* Form Section */}
+        {/* Section 2: Change Password */}
         <Box
-          component="form"
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-            mt: 2,
-            maxWidth: 400,
-            margin: '0 auto',
+            backgroundColor: '#f6f6f6',
+            p: 2,
+            mb: 2,
+            borderRadius: '4px',
           }}
         >
-          <TextField label="Όνομα" />
-          <TextField label="Επώνυμο" />
-          <TextField label="Πατρώνυμο" />
-          <TextField label="Μητρώνυμο" />
-          <TextField label="Έτος Γέννησης" type="number" />
-          <FormControl>
-            <InputLabel>Φύλο</InputLabel>
-            <Select label="Φύλο">
-              <MenuItem value="Γυναίκα">Γυναίκα</MenuItem>
-              <MenuItem value="Άνδρας">Άνδρας</MenuItem>
-              <MenuItem value="Άλλο">Άλλο</MenuItem>
-
-            </Select>
-          </FormControl>
-          <TextField label="Αριθμός Ταυτότητας" />
-          <TextField label="ΑΦΜ" />
-          <TextField label="ΑΜΚΑ" />
-          <TextField label="ΔΟΥ" />
-          <TextField label="Τηλέφωνο" />
-          <TextField label="E-mail" />
-          <TextField label="Νομός" />
-          <TextField label="Περιοχή" />
-          <TextField label="Οδός" />
-          <TextField label="Αριθμός" />
-          <TextField label="Τ.Κ." />
-
-          {/* Save Button */}
+          <Typography variant="h6" fontWeight="bold" mb={2}>
+            Αλλαγή Συνθηματικού (password)
+          </Typography>
+          <TextField label="Τρέχον Συνθηματικό" fullWidth sx={{ mb: 2 }} />
+          <TextField label="Νέο Συνθηματικό" fullWidth sx={{ mb: 2 }} />
+          <TextField label="Επιβεβαίωση Συνθηματικού" fullWidth sx={{ mb: 2 }} />
           <Button
             variant="contained"
-            sx={{ backgroundColor: '#004080', color: 'white', '&:hover': { backgroundColor: '#003366' } }}
+            sx={{
+              backgroundColor: '#ff7f00',
+              color: 'white',
+              '&:hover': { backgroundColor: '#e66b00' },
+            }}
           >
             Αποθήκευση
+          </Button>
+        </Box>
+
+        {/* Section 3: Deactivate Keeper Role */}
+        <Box
+          sx={{
+            backgroundColor: '#f6f6f6',
+            p: 2,
+            mb: 2,
+            borderRadius: '4px',
+          }}
+        >
+          <Typography variant="h6" fontWeight="bold" mb={2}>
+            Απενεργοποίηση ιδιότητας keeper
+          </Typography>
+          <FormControl>
+            <Checkbox />
+            <Typography variant="body2" sx={{ display: 'inline' }}>
+              Δεν θέλω να είμαι keeper
+            </Typography>
+          </FormControl>
+          <Button
+            variant="contained"
+            sx={{
+              mt: 2,
+              backgroundColor: '#ff7f00',
+              color: 'white',
+              '&:hover': { backgroundColor: '#e66b00' },
+            }}
+          >
+            Αποθήκευση
+          </Button>
+        </Box>
+
+        {/* Section 4: Language Settings */}
+        <Box
+          sx={{
+            backgroundColor: '#f6f6f6',
+            p: 2,
+            mb: 2,
+            borderRadius: '4px',
+          }}
+        >
+          <Typography variant="h6" fontWeight="bold" mb={2}>
+            Γλώσσα εμφάνισης
+          </Typography>
+          <FormControl fullWidth sx={{ mb: 2 }}>
+            <InputLabel id="language-label">Επιλέξτε Γλώσσα</InputLabel>
+            <Select labelId="language-label" defaultValue="Ελληνικά">
+              <MenuItem value="Ελληνικά">Ελληνικά</MenuItem>
+              <MenuItem value="Αγγλικά">Αγγλικά</MenuItem>
+            </Select>
+          </FormControl>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: '#ff7f00',
+              color: 'white',
+              '&:hover': { backgroundColor: '#e66b00' },
+            }}
+          >
+            Αποθήκευση
+          </Button>
+        </Box>
+
+        {/* Section 5: Notifications and Data Preferences */}
+        <Box
+          sx={{
+            backgroundColor: '#f6f6f6',
+            p: 2,
+            mb: 2,
+            borderRadius: '4px',
+          }}
+        >
+          <Typography variant="h6" fontWeight="bold" mb={2}>
+            Προτιμήσεις ενημερώσεων - Προσωπικά Δεδομένα
+          </Typography>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: '#ff7f00',
+              color: 'white',
+              '&:hover': { backgroundColor: '#e66b00' },
+            }}
+          >
+            Προτιμήσεις ενημερώσεων
           </Button>
         </Box>
       </Container>

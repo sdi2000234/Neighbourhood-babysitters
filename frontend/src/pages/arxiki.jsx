@@ -1,184 +1,265 @@
-import React from 'react';
-import { Container, Typography, Button, Grid, Paper, Box, Divider } from '@mui/material';
-import Header from '../components/Header';
+import React, { useState } from 'react';
+import Babysitter_intro from '../assets/babysitter_intro.png';
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  Grid,
+  Paper,
+  TextField,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Avatar,
+} from '@mui/material';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import Header from '../components/Header_unconnected';
 import Footer from '../components/Footer';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import dayjs from 'dayjs';
+import eva from '../assets/keepers/eva.jpg';
+import evaProfile from '../assets/keepers/eva_profile.jpg';
+import monika from '../assets/keepers/monika.jpg';
+import monikaProfile from '../assets/keepers/monika_profile.jpg';
+import antonia from '../assets/keepers/antonia.jpg';
+import antoniaProfile from '../assets/keepers/antonia_profile.jpg';
+import hara from '../assets/keepers/hara.jpg';
+import haraProfile from '../assets/keepers/hara_profile.jpg';
+import amilia from '../assets/keepers/amilia.jpg';
+import amiliaProfile from '../assets/keepers/amilia_profile.jpg';
+import maria from '../assets/keepers/maria.jpg';
+import mariaProfile from '../assets/keepers/maria_profile.jpg';
+import ksenia from '../assets/keepers/ksenia.jpg';
+import kseniaProfile from '../assets/keepers/ksenia_profile.jpg';
+import eftihia from '../assets/keepers/eftihia.jpg';
+import eftihiaProfile from '../assets/keepers/eftihia_profile.jpg';
+import konstantina from '../assets/keepers/konstantina.jpg';
+import konstantinaProfile from '../assets/keepers/konstantina_profile.jpg';
 
 const Page1 = () => {
+  const [startDate, setStartDate] = useState(null);
+const [endDate, setEndDate] = useState(null);
+
+  const [hostingOption, setHostingOption] = useState('');
+
+  const steps = [
+    {
+      title: 'Βήμα 1',
+      description: 'Βρες τον ιδιώτη Babysitter που θα προσέχει το παιδί σου όπως εσύ επιθυμείς. Δες ποιος είναι κοντά σου, τι εμπειρία έχει, τι υπηρεσίες προσφέρει και επίλεξε τον καλύτερο!',
+    },
+    {
+      title: 'Βήμα 2',
+      description: 'Επίλεξε τον ιδανικό Babysitter με βάση το ωρολόγιο πρόγραμμα που εσύ επιλέγεις. Μπορείς να ακυρώσεις και να πάρεις πίσω τα χρήματά σου έως και 2 μέρες πριν ξεκινήσει η κράτηση.',
+    },
+    {
+      title: 'Βήμα 3',
+      description: 'Κλείσε το ραντεβού σου και γνωρισε τον Babysitter! Είναι καθημερινά σε επικοινωνία μαζί σου και σου στέλνει φωτογραφίες.',
+    },
+  ];
+
+  const topKeepers = [
+    { id: 1, name: 'Εύα', rating: 10, img: eva, profileImg: evaProfile },
+    { id: 2, name: 'Monika', rating: 10, img: monika, profileImg: monikaProfile },
+    { id: 3, name: 'ANTONIA', rating: 10, img: antonia, profileImg: antoniaProfile },
+    { id: 4, name: 'Χαρά', rating: 10, img: hara, profileImg: haraProfile },
+    { id: 5, name: 'Αμιλία', rating: 10, img: amilia, profileImg: amiliaProfile },
+    { id: 6, name: 'Μαρία', rating: 9.9, img: maria, profileImg: mariaProfile },
+    { id: 7, name: 'Ksenia', rating: 10, img: ksenia, profileImg: kseniaProfile },
+    { id: 8, name: 'Ευτυχία Φωτεινή', rating: 10, img: eftihia, profileImg: eftihiaProfile },
+    { id: 9, name: 'ΚΩΝΣΤΑΝΤΙΝΑ', rating: 10, img: konstantina, profileImg: konstantinaProfile },
+  ];
+
   return (
     <Box>
       <Header />
-      <Box sx={{ backgroundColor: '#f4f6f8', minHeight: '100vh', py: 4 }}>
-        <Container maxWidth="lg">
-          {/* Main Title */}
-          <Box textAlign="center" mb={4}>
-            <Typography variant="h4" fontWeight="bold" color="primary" gutterBottom>
-              Δράση "Νταντάδες της γειτονιάς"
-            </Typography>
-            <Typography variant="h6">
-              Υπηρεσία κατ' οίκον φροντίδας βρεφών και νηπίων από 2 μηνών έως 2,5 ετών.
-            </Typography>
-          </Box>
 
-          {/* Description */}
-          <Typography variant="body1" textAlign="center" mb={4}>
-            Για να χρησιμοποιήσετε την πλατφόρμα, θα πρέπει να συνδεθείτε και να δημιουργήσετε
-            λογαριασμό είτε ως γονιός/κηδεμόνας, είτε ως επαγγελματίας/"νταντά". Αν σας ενδιαφέρουν
-            και οι δύο ρόλοι, θα χρειαστεί να δημιουργήσετε δύο διαφορετικούς λογαριασμούς.
-          </Typography>
-
+      {/* Hero Section */}
+      <Box
+        sx={{
+          backgroundImage: `url(${Babysitter_intro})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          height: 'calc(100vw * 9 / 16)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'white',
+          textAlign: 'center',
+        }}
+      >
+        {/* Search Bar */}
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+              padding: '10px',
+              backgroundColor: 'white',
+              borderRadius: '8px',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+              flexWrap: 'wrap',
+            }}
+          >
+            <Button variant="contained" sx={{ backgroundColor: '#1976d2', fontWeight: 'bold' }}>
+              Αναζήτηση κοντά στην θέση μου
+            </Button>
+
+            <DatePicker
+              value={startDate}
+              onChange={(newValue) => setStartDate(newValue)}
+              renderInput={(params) => <TextField {...params} size="small" placeholder="από" />}
+            />
+
+            <DatePicker
+              value={endDate}
+              onChange={(newValue) => setEndDate(newValue)}
+              renderInput={(params) => <TextField {...params} size="small" placeholder="έως" />}
+            />
+
+            <FormControl size="small">
+              <InputLabel>Φιλοξενία</InputLabel>
+              <Select value={hostingOption} onChange={(e) => setHostingOption(e.target.value)}>
+                <MenuItem value="home">Σε δικό μου χώρο</MenuItem>
+                <MenuItem value="client">Σε χώρο οφελούμενου</MenuItem>
+              </Select>
+            </FormControl>
+
+            <Button variant="contained" sx={{ backgroundColor: '#ff9800', fontWeight: 'bold' }}>
+              ΑΝΑΖΗΤΗΣΗ
+            </Button>
+          </Box>
+        </LocalizationProvider>
+
+      </Box>
+
+      {/* How It Works Section */}
+      <Container sx={{ mt: 6, mb: 6 }}>
+  <Typography variant="h4" textAlign="center" fontWeight="bold" mb={4}>
+    Πώς Δουλεύει
+  </Typography>
+  <Grid
+    container
+    spacing={4}
+    justifyContent="center" // Centers the grid horizontally
+    alignItems="center" // Centers items vertically
+    textAlign="center" // Ensures text alignment is centered
+  >
+    {steps.map((step, index) => (
+      <Grid item xs={12} sm={4} key={index}>
+        <Box sx={{ textAlign: 'center' }}>
+          <Box
+            sx={{
+              width: 80,
+              height: 80,
+              borderRadius: '50%',
+              backgroundColor: '#1976d2',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+              fontSize: 24,
+              fontWeight: 'bold',
+              margin: '0 auto', // Centers the circle horizontally
+            }}
+          >
+            {index + 1}
+          </Box>
+          <Typography variant="h6" mt={2}>
+            {step.title}
+          </Typography>
+          <Typography variant="body1" mt={1}>
+            {step.description}
+          </Typography>
+        </Box>
+      </Grid>
+    ))}
+  </Grid>
+</Container>
+
+
+      {/* Top Keepers Section */}
+      <Container sx={{ mt: 6, mb: 6 }}>
+        <Typography variant="h4" textAlign="center" fontWeight="bold" mb={4}>
+          🐾 Top 10 νταντάδες τελευταίου μήνα 🐾
+        </Typography>
+        <Grid container spacing={3}>
+          {topKeepers.map((keeper, index) => (
+            <Grid item xs={12} sm={6} md={4} key={keeper.id}>
+              <Paper elevation={3} sx={{ padding: 2, textAlign: 'center', position: 'relative' }}>
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: 8,
+                    left: 8,
+                    backgroundColor: '#FF9800',
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    color: 'white',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  #{index + 1}
+                </Box>
+                <img
+                  src={keeper.img}
+                  alt={keeper.name}
+                  style={{ width: '100%', height: '200px', borderRadius: '8px' }}
+                />
+                <Typography variant="h6" mt={2}>
+                  {keeper.name}
+                </Typography>
+                <Avatar src={keeper.profileImg} sx={{ width: 80, height: 80, margin: '10px auto' }} />
+                <Typography variant="body1">🐾 {keeper.rating}</Typography>
+                <Button variant="contained" color="warning" sx={{ mt: 2 }} fullWidth>
+                  Προφίλ
+                </Button>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
+      {/* Safety Section */}
+      <Box
   sx={{
-    display: 'flex',
-    justifyContent: 'center',
-    gap: 4, // Adds spacing between buttons
-    mb: 4, // Adds spacing below the buttons
+    backgroundColor: '#1976d2',
+    color: 'white',
+    py: 6,
+    display: 'flex', // Added flex display
+    flexDirection: 'column', // Align items vertically
+    alignItems: 'center', // Center horizontally
+    justifyContent: 'center', // Center vertically
+    textAlign: 'center', // Center text
   }}
 >
-  <Button
-    variant="contained"
-    sx={{
-      backgroundColor: '#004080',
-      color: 'white',
-      '&:hover': { backgroundColor: '#003366' },
-      px: 4, // Horizontal padding for larger buttons
-    }}
-    size="large"
-  >
-    Σύνδεση ως Γονέας / Κηδεμόνας
-  </Button>
-  <Button
-    variant="contained"
-    sx={{
-      backgroundColor: '#004080',
-      color: 'white',
-      '&:hover': { backgroundColor: '#003366' },
-      px: 4, // Horizontal padding for larger buttons
-    }}
-    size="large"
-  >
-    Σύνδεση ως Επαγγελματίας
-  </Button>
+  <Container>
+    <Typography variant="h4" fontWeight="bold" mb={4}>
+      Ασφάλεια Για Όλους
+    </Typography>
+    <Grid container spacing={4} justifyContent="center">
+      <Grid item xs={12} sm={6}>
+        <Typography variant="h6" fontWeight="bold">
+          Γνωρίζεις τους επαγγελματίες
+        </Typography>
+        <Typography variant="body1" mt={1}>
+          Αναλυτική περιγραφή για το πώς οι νταντάδες προβάλλουν τα προφίλ τους
+          και εξασφαλίζεται η ασφάλεια.
+        </Typography>
+      </Grid>
+    </Grid>
+  </Container>
 </Box>
 
-
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <Paper sx={{ p: 3, border: '1px solid #e0e0e0', boxShadow: 2 }}>
-                <Typography variant="h6" fontWeight="bold" color="primary" gutterBottom>
-                  Σύνδεση ως Γονέας / Κηδεμόνας
-                </Typography>
-                <Divider sx={{ mb: 2 }} />
-                <Typography variant="subtitle1" gutterBottom>
-                  Τα βήματα της διαδικασίας:
-                </Typography>
-                <ul style={{ paddingLeft: '20px' }}>
-                  <li>Συμπλήρωση Στοιχείων</li>
-                  <li>Αίτηση Επιχορήγησης</li>
-                  <li>Ραντεβού Γνωριμίας</li>
-                  <li>Αίτηση Συνεργασίας</li>
-                  <li>Υπογραφή Συμφωνητικού</li>
-                  <li>Πληρωμή μέσω Voucher</li>
-                </ul>
-                
-                <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-  Ποιοι γονείς/κηδεμόνες έχουν δικαίωμα συμμετοχής:
-</Typography>
-<ul style={{ paddingLeft: '20px', lineHeight: '1.8' }}>
-  <li>
-    Γονείς φυσικοί, θετοί ή ανάδοχοι, με βρέφος ή νήπιο, που εργάζονται είτε στο δημόσιο 
-    είτε στον ιδιωτικό τομέα, με οποιαδήποτε μορφή απασχόλησης, συμπεριλαμβανομένων 
-    και των αυτοαπασχολούμενων και ελεύθερων επαγγελματιών.
-  </li>
-  <li>
-    Γονείς φυσικοί, θετοί ή ανάδοχοι, με βρέφος ή νήπιο, που είναι εγγεγραμμένοι στα 
-    μητρώα της Δ.ΥΠ.Α. (πρώην ΟΑΕΔ) ως άνεργοι.
-  </li>
-  <li>
-    Κάθε πρόσωπο στο οποίο έχει ανατεθεί, με δικαστική απόφαση ή εισαγγελική διάταξη, 
-    η αποκλειστική επιμέλεια βρέφους ή νηπίου, που εργάζεται είτε στο δημόσιο είτε στον 
-    ιδιωτικό τομέα, με οποιαδήποτε μορφή απασχόλησης, συμπεριλαμβανομένων και των 
-    αυτοαπασχολούμενων και ελεύθερων επαγγελματιών.
-  </li>
-  <li>
-    Το ετήσιο ατομικό εισόδημά σας να μην υπερβαίνει το ποσό των 24.000 €.
-  </li>
-  <li>
-    Επισημαίνεται ότι, οι συνταξιούχοι δεν δύναται να είναι δικαιούχοι της δράσης καθώς 
-    δεν εμπίπτουν στις παραπάνω κατηγορίες.
-  </li>
-</ul>
-
-              </Paper>
-            </Grid>
-
-            {/* Professional Section */}
-            <Grid item xs={12} md={6}>
-              <Paper sx={{ p: 3, border: '1px solid #e0e0e0', boxShadow: 2 }}>
-                <Typography variant="h6" fontWeight="bold" color="primary" gutterBottom>
-                  Σύνδεση ως Επαγγελματίας
-                </Typography>
-                <Divider sx={{ mb: 2 }} />
-                <Typography variant="subtitle1" gutterBottom>
-                  Τα βήματα της διαδικασίας:
-                </Typography>
-                <ul style={{ paddingLeft: '20px' }}>
-                  <li>Συμπλήρωση Στοιχείων</li>
-                  <li>Δημιουργία Αγγελίας</li>
-                  <li>Ραντεβού Γνωριμίας</li>
-                  <li>Αποδοχή Αίτησης Συνεργασίας</li>
-                  <li>Υπογραφή Συμφωνητικού</li>
-                  <li>Αποδοχή Πληρωμής</li>
-                </ul>
-                <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                  Ποιοι επαγγελματίες έχουν δικαίωμα συμμετοχής:
-                </Typography>
-                <ul style={{ paddingLeft: '20px', lineHeight: '1.8' }}>
-  <li>
-    Άτομα που έχουν συμπληρώσει το 18ο έτος της ηλικίας τους, διαμένουν νόμιμα στην 
-    Ελλάδα και έχουν πρόσβαση στην αγορά εργασίας και έχουν:
-    <ul style={{ paddingLeft: '20px' }}>
-      <li>
-        <strong>Για Έλληνες πολίτες:</strong>
-        <ul style={{ paddingLeft: '20px' }}>
-          <li>Τίτλο σπουδών</li>
-          <li>Πιστοποιητικό τριών βοηθειών</li>
-          <li>
-            Πιστοποιητικό υγείας τελευταίου τριμήνου από παθολόγο, δερματολόγο και ψυχίατρο 
-            δημόσιας δομής. <a href="#" style={{ color: '#1976d2', textDecoration: 'none' }}>Κλείστε ραντεβού</a>.
-          </li>
-          <li>Αντίγραφο ποινικού μητρώου γενικής χρήσης</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Για αλλοδαπούς πολίτες, ισχύουν όλα τα παραπάνω και επιπλέον:</strong>
-        <ul style={{ paddingLeft: '20px' }}>
-          <li>Δελτίο ταυτότητας Ε.Ε. ή διαβατήριο σε ισχύ</li>
-          <li>
-            Για την πιστοποίηση του επιπέδου γνώσης της ελληνικής γλώσσας, έγγραφο που 
-            εκδίδεται από διαπιστευμένους μεταφραστές/φορείς ή πιστοποιητικό ελληνομάθειας επιπέδου Β1.
-          </li>
-          <li>
-            Βεβαίωση νόμιμης διαμονής στη χώρα:
-            <ul style={{ paddingLeft: '20px' }}>
-              <li>Άδεια διαμονής σε ισχύ ή βεβαίωση κατάθεσης αίτησης (Νόμος 106/2007)</li>
-              <li>Ειδικό δελτίο ομογενούς, άδεια παραμονής για πρόσφυγες ή για πολίτες άλλων χωρών εντός Ε.Ε.</li>
-              <li>Προσωρινή άδεια διαμονής για ανθρωπιστικούς λόγους</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <strong>Προσοχή:</strong> Όλα τα ξενόγλωσσα έγγραφα απαιτείται να είναι μεταφρασμένα και επικυρωμένα σύμφωνα με τα όσα προβλέπει ο νόμος.
-  </li>
-</ul>
-
-              </Paper>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
       <Footer />
     </Box>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Container, Typography, Button, Grid, Paper } from '@mui/material';
-import Header from '../components/Header';
+import Header from '../components/Header_unconnected';
 import Footer from '../components/Footer';
 
 const Page3 = () => {

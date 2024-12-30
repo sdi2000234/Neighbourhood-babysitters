@@ -6,6 +6,7 @@ import FavouriteProfessional from '../../components/FavouriteProfessional';
 import PagesIndex from '../../components/PagesIndex';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import ConfirmationDialogue from '../../components/ConfirmationDialogue';
+import HireProfessionalMore from '../../components/HireProfessionalMore';
 
 
 function ParentHireProfessional()
@@ -19,6 +20,14 @@ function ParentHireProfessional()
 
     const [modalVisible, setModalVisible] = useState(false);
     const [componentToRemove, setComponentToRemove] = useState(null);
+
+    const showMore = () => {
+        setModalVisible(true);
+    }
+
+    const showLess = () => {
+        setModalVisible(false);
+    }
 
     const showModal = (id) => {
         setComponentToRemove(id);
@@ -42,7 +51,7 @@ function ParentHireProfessional()
             <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"}/>
             <div className='favourites'>
                 {components.map((component) => (
-                    <FavouriteProfessional key={component.id} id={component.id} unLike={showModal}/>
+                    <FavouriteProfessional key={component.id} id={component.id} unLike={showModal} showMore={showMore}/>
                 ))}
             </div>
             <ConfirmationDialogue
@@ -51,6 +60,7 @@ function ParentHireProfessional()
                 onConfirm={handleConfirmRemove}
                 onCancel={handleCancelRemove}
             />
+            <HireProfessionalMore visible={modalVisible} onClose={showLess}/>
             <PagesIndex/>
             <Footer/>
         </div>

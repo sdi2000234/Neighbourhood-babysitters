@@ -8,7 +8,7 @@ import star from '../assets/filled_star_black.png'
 import heart from '../assets/filled_heart_white.png'
 
 
-function FavouriteProfessional({id, unLike})
+function FavouriteProfessional({id, unLike, showMore})
 {
     const professionalPfp = null;
     const professionalFirstName = null;
@@ -37,7 +37,7 @@ function FavouriteProfessional({id, unLike})
                 <div className="blurb">
                     <h3>Περιγραφή:</h3>
                     <p>{blurbText.length > 120 ? `${blurbText.substring(0, 120)}...` : blurbText}</p>
-                    <button className="more">Περισσότερα</button>
+                    <button className="more" onClick={() => showMore()}>Περισσότερα</button>
                 </div>
                 <div className="personalInfo">
                     <div className="age">

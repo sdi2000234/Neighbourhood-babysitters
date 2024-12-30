@@ -8,7 +8,7 @@ import star from '../assets/filled_star_black.png'
 import heart from '../assets/filled_heart_white.png'
 
 
-function FavouriteProfessional()
+function FavouriteProfessional({id, unLike})
 {
     const professionalPfp = null;
     const professionalFirstName = null;
@@ -27,7 +27,7 @@ function FavouriteProfessional()
             <div className="candidateInfo">
                 <img className="candidatePfp" src={professionalPfp===null ? emptyProfile : professionalPfp} alt='profile'/>
                 <p>{professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName}</p>
-                <img className="heart" src={heart} alt='heart'/>
+                <button onClick={() => unLike(id)}><img className="heart" src={heart} alt='heart'/></button>
             </div>
             <div className="candidateDetails">
                 <div className="avgRating">

@@ -50,6 +50,13 @@
     align-self: center;
 }
 
+.candidateInfo button
+{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 .candidateDetails
 {
     background-color: #DDDDDD;

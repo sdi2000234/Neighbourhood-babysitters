@@ -4,7 +4,7 @@ import emptyProfile from '../assets/empty_profile.png'
 import emptyStar from '../assets/empty_star.png'
 import fullStar from '../assets/filled_star.png'
 
-function ContractEnd()
+function ContractEnd(id, firstName, lastName, startDate, endDate)
 {
 	const professionalPfp = null;
 	const professionalFirstName = null;

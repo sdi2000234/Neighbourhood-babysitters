@@ -5,13 +5,13 @@ import crossMark from '../assets/crossmark.png'
 import defaultQR from '../assets/QRCode.jpeg'
 import emptyProfile from '../assets/empty_profile.png'
 
-function Voucher()
+function Voucher({firstName, lastName, startDate, endDate})
 {
 	const professionalPfp = null;
-	const professionalFirstName = null;
-	const professionalLastName = null;
-	const startWork = null;
-	const finishWork = null;
+	const professionalFirstName = firstName;
+	const professionalLastName = lastName;
+	const startWork = startDate;
+	const finishWork = endDate;
     const QR = null; // voucher's QR code
 	const month = null;
 	const year = null;
@@ -23,7 +23,7 @@ function Voucher()
     		<div className="payPannel">
                 <div className="userInfo">
                     <img className="userPfp" alt='profile' src={professionalPfp===null ? emptyProfile : professionalPfp}/>
-                    <p>{professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName}</p>
+                    <p>{professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalLastName}</p>
                 </div>
                 <div className="payDetails">
                     <p><b>ΔΙΑΡΚΕΙΑ ΣΥΜΦΩΝΗΤΙΚΟΥ &emsp; ΕΝΑΡΞΗ: {startWork===null ? "ηη/μμ/εεεε" : startWork} &emsp; ΛΗΞΗ: {finishWork===null ? "ηη/μμ/εεεε" : finishWork}</b></p>
@@ -37,11 +37,11 @@ function Voucher()
                             <p className="amount">ΠΟΣΟ: {voucherAmount===null ? "ΕΕΕ,ΛΛ" : voucherAmount} €</p>
                         </div>
                     </div>
-                    <p>Τσεκάροντας το παρακάτω κουτί, συμφωνείτε πως η/ο επαγγελματίας {professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName} έχει ολοκληρώσει την εργασία της/του για τον μήνα {month===null ? "ΜΗΝΑΣ" : month} του {year===null ? "ΕΤΟΣ" : year}, και δρομολογείτε την πληρωμή του για αυτόν τον μήνα μέσω του voucher.</p>
+                    <p>Τσεκάροντας το παρακάτω κουτί, συμφωνείτε πως η/ο επαγγελματίας {professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalLastName} έχει ολοκληρώσει την εργασία της/του για τον μήνα {month===null ? "ΜΗΝΑΣ" : month} του {year===null ? "ΕΤΟΣ" : year}, και δρομολογείτε την πληρωμή του για αυτόν τον μήνα μέσω του voucher.</p>
                     <p><b>ΕΠΙΒΑΙΒΕΩΣΗ ΟΛΟΚΛΗΡΩΣΗΣ ΕΡΓΑΣΙΑΣ ΓΙΑ ΤΟΝ ΜΗΝΑ {month===null ? "ΜΗΝΑΣ" : month} {year===null ? "ΕΤΟΣ" : year}:</b><input type="checkbox" id="completeWrok"/></p>
-                    <p>Αφού τσεκάρετε το προηγούμενο κουτί, το παρακάτω στοιχείο θα εμφανιστεί τσεκαρισμένο όταν η/ο επαγγελματίας {professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName} επιβεβαιώσει ότι έλαβε το voucher για τον μήνα {month===null ? "ΜΗΝΑΣ" : month} του {year===null ? "ΕΤΟΣ" : year}.</p>
+                    <p>Αφού τσεκάρετε το προηγούμενο κουτί, το παρακάτω στοιχείο θα εμφανιστεί τσεκαρισμένο όταν η/ο επαγγελματίας {professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalLastName} επιβεβαιώσει ότι έλαβε το voucher για τον μήνα {month===null ? "ΜΗΝΑΣ" : month} του {year===null ? "ΕΤΟΣ" : year}.</p>
                     <div className="confirmation">
-                        <p><b>ΕΠΙΒΑΙΒΕΩΣΗ ΛΗΨΗΣ VOUCHER ΑΠΟ {professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName}: </b></p>
+                        <p><b>ΕΠΙΒΑΙΒΕΩΣΗ ΛΗΨΗΣ VOUCHER ΑΠΟ {professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalLastName}: </b></p>
                         <img src={voucherRecieved===true ? checkMark : crossMark} alt='chekc'/>
                     </div>
                 </div>

@@ -11,21 +11,53 @@ import Breadcrumbs from '../../components/Breadcrumbs'
 function ParentContractEnd()
 {
     const [components, setComponents] = useState([
-        { id: 1, name: "Αύρα", lastname: "Παπαδοπούλου", start: "10/01/2024", end: "10/02/2024" },
-        { id: 2, name: "Βασιλική", lastname: "Τασιοπούλου", start: "04/09/2024", end:  "09/12/2024"},
-        { id: 3, name: "Γρηγορία", lastname: "Καμπελή", start: "05/05/2024", end: "05/07/2024" },
-        { id: 4, name: "Λεώνη", lastname: "Παπαϊωάννου", start: "12/06/2024", end: "12/08/2024" }
+        {name: "Αύρα", lastname: "Παπαδοπούλου", startDate: "10/01/2024", endDate: "10/02/2024"},
+        {name: "Βασιλική", lastname: "Τασιοπούλου", startDate: "04/09/2024", endDate:  "09/12/2024"},
+        {name: "Γρηγορία", lastname: "Καμπελή", startDate: "05/05/2024", endDate: "05/07/2024"},
+        {name: "Λεώνη", lastname: "Παπαϊωάννου", startDate: "12/06/2024", endDate: "12/08/2024"}
     ]);
 
+    const sortAlphabetically = (order) => {
+        const sortedData = [...components].sort((a, b) => {
+            const fullNameA = `${a.name} ${a.lastname}`;
+            const fullNameB = `${b.name} ${b.lastname}`;
+            return order === 'asc'
+                ? fullNameA.localeCompare(fullNameB)
+                : fullNameB.localeCompare(fullNameA);
+        });
+        setComponents(sortedData);
+    };
+
+    const sortByDate = (order, dateType) => {
+        const sortedData = [...components].sort((a, b) => {
+            const parseDate = (dateStr) => {
+                const [day, month, year] = dateStr.split('/').map(Number); // Split and convert to numbers
+                return new Date(year, month - 1, day); // Create a Date object (months are 0-based)
+            };
+      
+            const dateA = parseDate(a[dateType]);
+            const dateB = parseDate(b[dateType]);
+      
+            return order === 'asc' ? dateA - dateB : dateB - dateA;
+        });
+
+        setComponents(sortedData);
+    };
 
 	return	(
         <div className='parentContractEnd'>
             <ParentNavigation currentNavPage={"parEnd"}/>
             <Breadcrumbs page1={"ΣΥΜΦΩΝΗΤΙΚΟ"} link1={"./ParentContractPayment"} page2={"ΛΗΞΗ"}/>
-            <SortButton/>
+            <SortButton sortName={sortAlphabetically} sortDate={sortByDate}/>
             <div className="endedContracts">
-                {components.map((component) => (
-                    <ContractEnd key={component.id} id={component.id} firstName={component.name} lastName={component.lastname} startDate={component.start} endDate={component.end}/>
+                {components.map((component, index) => (
+                    <ContractEnd
+                        key = {index}
+                        firstName={component.name} 
+                        lastName={component.lastname} 
+                        startDate={component.startDate} 
+                        endDate={component.endDate}
+                    />
                 ))}
             </div>
             <PagesIndex/>

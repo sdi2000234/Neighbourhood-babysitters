@@ -4,14 +4,14 @@ import emptyProfile from '../assets/empty_profile.png'
 import emptyStar from '../assets/empty_star.png'
 import fullStar from '../assets/filled_star.png'
 
-function ContractEnd(id, firstName, lastName, startDate, endDate)
+function ContractEnd({firstName, lastName, startDate, endDate})
 {
 	const professionalPfp = null;
-	const professionalFirstName = null;
-	const professionalLastName = null;
-	const startWork = null;
-	const finishWork = null;
-    const [complete, setComplete] = useState(false); // Initial value is 0 // Έχει γίνει επιβεβαίωση ολοκλήρωσης εργασίας?
+	const professionalFirstName = firstName;
+	const professionalLastName = lastName;
+	const startWork = startDate;
+	const finishWork = endDate;
+    const [complete, setComplete] = useState(false); // Έχει γίνει επιβεβαίωση ολοκλήρωσης εργασίας?
     const rating = 0;
 
     const handleClick = () => { setComplete(true); };
@@ -20,7 +20,7 @@ function ContractEnd(id, firstName, lastName, startDate, endDate)
         <div className="contractEnd">
             <div className="userInfo">
                 <img className="userPfp" alt='profile' src={professionalPfp===null ? emptyProfile : professionalPfp}/>
-                <p>{professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName}</p>
+                <p>{professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalLastName}</p>
             </div>
             <div className="contractDetails">
                 <p><b>ΕΝΑΡΞΗ: {startWork===null ? "ηη/μμ/εεεε" : startWork}</b></p>

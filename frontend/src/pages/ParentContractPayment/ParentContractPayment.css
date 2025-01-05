@@ -4,31 +4,3 @@
     padding: 0;
     font-family: arial;
 }
-
-.breadcrumbs
-{
-    display: flex;
-    align-items: left;
-    padding: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-left: 50px;
-}
-
-.breadcrumbs p
-{
-    margin-right: 5px;
-}
-
-.breadcrumbs p.contract
-{
-    color: #737373;
-    cursor: pointer;
-}
-
-.pageIndex p
-{
-    display: flex;
-    justify-content: center;
-}

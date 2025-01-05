@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import './FavouriteProfessional.css'
 import emptyProfile from '../assets/empty_profile.png'
 import cake from '../assets/cake_black.png'
@@ -8,7 +8,7 @@ import star from '../assets/filled_star_black.png'
 import heart from '../assets/filled_heart_white.png'
 
 
-function FavouriteProfessional()
+function FavouriteProfessional({id, unLike, showMore})
 {
     const professionalPfp = null;
     const professionalFirstName = null;
@@ -27,7 +27,7 @@ function FavouriteProfessional()
             <div className="candidateInfo">
                 <img className="candidatePfp" src={professionalPfp===null ? emptyProfile : professionalPfp} alt='profile'/>
                 <p>{professionalFirstName===null ? "Όνομα" : professionalFirstName} {professionalLastName===null ? "Επώνυμο" : professionalFirstName}</p>
-                <img className="heart" src={heart} alt='heart'/>
+                <button onClick={() => unLike(id)}><img className="heart" src={heart} alt='heart'/></button>
             </div>
             <div className="candidateDetails">
                 <div className="avgRating">
@@ -37,7 +37,7 @@ function FavouriteProfessional()
                 <div className="blurb">
                     <h3>Περιγραφή:</h3>
                     <p>{blurbText.length > 120 ? `${blurbText.substring(0, 120)}...` : blurbText}</p>
-                    <button className="more">Περισσότερα</button>
+                    <button className="more" onClick={() => showMore()}>Περισσότερα</button>
                 </div>
                 <div className="personalInfo">
                     <div className="age">
@@ -53,9 +53,9 @@ function FavouriteProfessional()
                         <p>Εμπειρία: {xp} χρόνια</p>
                     </div>
                 </div>
-                <div className="options">
-                    {appointment===false ? <button>ΡΑΝΤΕΒΟΥ</button> : <p>Αναμένεται αποδοχή/απόρριψη του ραντεβού από την/τον επαγγελματία</p>}
-                    <button>{request===false ? "ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ" : "ΠΡΟΕΠΙΣΚΟΠΙΣΗ ΑΙΤΗΣΗΣ"}</button>
+                <div className="hireOptions">
+                    {appointment===false ? <button><a href="./ParentMakeAppointment">ΡΑΝΤΕΒΟΥ</a></button> : <p>Αναμένεται αποδοχή/απόρριψη του ραντεβού από την/τον επαγγελματία</p>}
+                    {request===false ? <button><a href="./ParentCreateRequest">ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ</a></button> : <button><a href="./ParentViewRequest">ΠΡΟΕΠΙΣΚΟΠΙΣΗ ΑΙΤΗΣΗΣ</a></button>}
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@
     font-family: arial;
 }
 
-.personInfo
+.personInfo2
 {
     background-color: #ddd;
     color: #373737;
@@ -17,17 +17,17 @@
     border-radius: 5px;
 }
 
-.personInfo h1
+.personInfo2 h1
 {
     margin-bottom: 50px;
     text-align: center;
 }
 
-.personInfo .infoBox
+.personInfo2 .missingInfo
 {
     border: none;
     border-radius: 5px;
-    color: #737373;
+    color: #B5001E;
     background-color: #fff;
     height: 25px;
     padding: 10px;
@@ -36,32 +36,45 @@
     width: stretch;
 }
 
-.personInfo .infoType
+.personInfo2 .infoBox
+{
+    border: none;
+    border-radius: 5px;
+    color: #000;
+    background-color: #fff;
+    height: 25px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: stretch;
+}
+
+.personInfo2 .infoType
 {
     font-weight: bold;
     font-size: 20px;
 }
 
-.message
+.personInfo2 .message
 {
     margin-top: 30px;
     margin-bottom: 20px;
     color: #737373;
 }
 
-h3
+.personInfo2 h3
 {
     margin-top: 50px;
 }
 
-.healthVerifications
+.personInfo2 .healthVerifications
 {
     display: flex;
     justify-content: center;
     gap: 60px;
 }
 
-.healthVerifications p
+.personInfo2 .healthVerifications p
 {
     padding: 20px;
     padding-top: 40px;
@@ -72,26 +85,26 @@ h3
     width: 25%;
 }
 
-.healthVerifications .valid
+.personInfo2 .healthVerifications .valid
 {
     background-color: #fff;
     color: #373737;
 }
 
-.healthVerifications .invalid
+.personInfo2 .healthVerifications .invalid
 {
     background-color: #b5001e;
     color: #fff;
 }
 
-.options
+.options2
 {
     display: flex;
     justify-content: center;
     gap: 100px;
 }
 
-button
+.options2 button
 {
     font-size: 20px;
     padding: 8px;
@@ -105,19 +118,13 @@ button
     margin-top: 80px;
 }
 
-button a
+.options2 button:hover
+{
+    background-color: #004caa;
+}
+
+.options2 a
 {
     text-decoration: none;
     color: #fff;
-}
-
-.number2
-{
-    background-color: #013372;
-    color: #fff;
-    border-radius: 50%;
-    height: 60px;
-    aspect-ratio: 1 / 1;
-    align-content: center;
-    text-align: center;
 }

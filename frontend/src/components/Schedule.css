@@ -5,14 +5,14 @@
     font-family: arial;
 }
 
-table
+.scheduleTable table
 {
     border-radius: 6px;
     border-collapse: separate; /* Required for border-radius */
     overflow: hidden; /* Clip content to the rounded edges */
 }
 
-table th, td
+.scheduleTable table th, .scheduleTable table td
 {
     padding-left: 10px;
     padding-right: 25px;
@@ -20,14 +20,14 @@ table th, td
     padding-bottom: 5px;
 }
 
-input
+.scheduleTable input
 {
     margin-right: 5px;
     height: 18px;
     width: 18px;
 }
 
-.header
+.scheduleTable .header
 {
     background-color: #013372;
     color: #fff;

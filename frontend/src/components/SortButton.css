@@ -6,7 +6,7 @@
     margin-inline-end: 87.2%;
 }
 
-.sort button
+.sorting .sort button
 {
     font-size: 14px;
     padding: 5px;
@@ -16,6 +16,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    width: 120px;
 }
 
 .sorting .dropdown-content button
@@ -27,7 +28,7 @@
     display: block;
     text-align: left;
     float: none;
-    min-width: 119px;
+    min-width: 120px;
     cursor: pointer;
 }
 
@@ -37,7 +38,9 @@
     display: none;
     background-color: #013372;
     z-index: 1;
-    width: 119px;
+    width: 120px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .sorting:hover .dropdown-content
@@ -49,10 +52,17 @@
 {
     background-color: #00aeef;
     color: #000;
+    border-radius: 5px;
 }
 
 .sorting .arrow
 {
     height: 8px;
     margin-left: 5px;
+}
+
+.sorting:hover .sort button
+{
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
 }

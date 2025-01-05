@@ -5,18 +5,7 @@
     font-family: arial;
 }
 
-.breadcrumbs
-{
-    display: flex;
-    align-items: left;
-    padding: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-left: 50px;
-}
-
-.createText
+.professionalMyAds .createText
 {
     color: #737373;
     margin-top: 20px;
@@ -24,13 +13,13 @@
     margin-left: 60px;
 }
 
-.adPannels
+.professionalMyAds .adPannels
 {
     display: flex;
     flex-wrap: wrap;
 }
 
-.adPannels .createNewAd button
+.professionalMyAds .adPannels .createNewAd button
 {
     background-color: #dddddd;
     border-radius: 5px;
@@ -40,7 +29,7 @@
     cursor: pointer;
 }
 
-.adPannels .createNewAd button img
+.professionalMyAds .adPannels .createNewAd button img
 {
     height: 80px;
     margin: 100px;

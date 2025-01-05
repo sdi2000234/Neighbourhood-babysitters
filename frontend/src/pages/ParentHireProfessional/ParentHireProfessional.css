@@ -5,25 +5,7 @@
     font-family: arial;
 }
 
-.breadcrumbs
-{
-    display: flex;
-    align-items: left;
-    padding: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-left: 50px;
-}
-
-.breadcrumbs p
-{
-    margin-right: 5px;
-    color: #000;
-    cursor: pointer;
-}
-
-.favourites
+.parentHireProfessional .favourites
 {
     margin-top: 20px;
     flex-wrap: wrap;
@@ -31,15 +13,4 @@
     padding-left: 60px;
     padding-right: 60px;
     gap: 65px;
-}
-
-.pageIndex p
-{
-    display: flex;
-    justify-content: center;
-}
-
-.parHire
-{
-    font-weight: bold;
 }

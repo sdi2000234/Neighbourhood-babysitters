@@ -16,19 +16,19 @@ function ProfessionalCreateAd2()
 
     return (
         <div>
-            <ProfessionalNavigation/>
-            <ProgressTracker/>
-            <div className="personInfo">
+            <ProfessionalNavigation currentNavPage={"profAds"}/>
+            <ProgressTracker currentStep={2}/>
+            <div className="personInfo2">
                 <h1>ΑΓΓΕΛΙΑ - ΠΙΣΤΟΠΟΙΗΤΙΚΑ</h1>
                 <div>
                     <p className="infoType">Επίπεδο Εκπαίδευσης:</p>
-                    <p className="infoBox">{userEducationLvl==="" ? "Αυτό το στοιχείο λείπει" : userEducationLvl}</p>
+                    {userEducationLvl==="" ? <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p> : <p className="infoBox">userEducationLvl</p>}
                     <br/>
                     <p className="infoType">Πιστοποιητικό Εκπαίδευσης:</p>
-                    <p className="infoBox">{userEduVerification===null ? "Αυτό το στοιχείο λείπει" : userEduVerification}</p>
+                    {userEduVerification===null ? <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p> : <p className="infoBox">userEduVerification</p>}
                     <br/>
                     <p className="infoType">Πιστοποιητικό Πρώτων Βοηθειών:</p>
-                    <p className="infoBox">{userFirstaidVerification===null ? "Αυτό το στοιχείο λείπει" : userFirstaidVerification}</p>
+                    {userFirstaidVerification===null ? <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p> : <p className="infoBox">userFirstaidVerification</p>}
                     <p className="message">Τα παραπάνω στοιχεία έχουν συμπληρωθεί αυτόματα με βάση τα στοιχεία που έχετε υποβάλλει μέσω του Προφίλ σας. Αν κάποιο από αυτά λείπει ή χρειάζεται αλλαγή θα πρέπει να γίνει μέσω της επεξεργασίας του Προφίλ σας. Η αλλαγή θα εμφανιστεί αυτόματα σε όλες τις αγγελίες που έχετε δημιουργήσει.</p>
                     <h3>Πιστοποιητικά Υγείας:</h3>
                     <p className="message">Ενημερώνονται αυτόματα από τα συστήματα της ΗΔΙΚΑ. Αν κάποιο πιστοποιητικό εμφανίζεται με κόκκινο χρώμα, παρακαλούμε επικοινωνήστε με τον γιατρό σας .</p>
@@ -38,10 +38,10 @@ function ProfessionalCreateAd2()
                         <p className={userMentalHealthVerification ? "valid" : "invalid"}>Πιστοποιητικό Ψυχικής Υγείας</p>
                     </div>
                 </div>
-                <div className="options">
-                    <button><b><a href='./ProfessionalCreateAd1'>Προηγούμενο Βήμα</a></b></button>
-                    <button><b>Προσωρινή Αποθήκευση</b></button>
-                    <button><b><a href='./ProfessionalCreateAd3'>Επόμενο Βήμα</a></b></button>
+                <div className="options2">
+                    <a href='./ProfessionalCreateAd1'><button><b>Προηγούμενο Βήμα</b></button></a>
+                    <a href="./ProfessionaMyAds"><button><b>Προσωρινή Αποθήκευση</b></button></a>
+                    <a href='./ProfessionalCreateAd3'><button><b>Επόμενο Βήμα</b></button></a>
                 </div>
             </div>
             <Footer/>

@@ -17,22 +17,22 @@ function ParentContractRenew()
     const personLastName = "";
 
     return (
-        <div>
-            <ParentNavigation/>
+        <div className='parentContractRenew'>
+            <ParentNavigation currentNavPage={"parEnd"}/>
             <div className="personInfo">
-                <h1>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ ΜΕ: {personName} {personLastName}</h1>
+                <h1>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ ΜΕ: {personName==="" ? "'Ονομα" : personName} {personLastName==="" ? "Επώνυμο" : personLastName}</h1>
                 <div>
                     <p className="infoType">Όνομα:</p>
-                    <p className="infoBox">{userName==="" ? "Όνομα" : userName}</p>
+                    {userName==="" ? <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p> : <p className="infoBox">userName</p>}
                     <br/>
                     <p className="infoType">Επώνυμο:</p>
-                    <p className="infoBox">{userLastName==="" ? "Επώνυμο" : userLastName}</p>
+                    {userLastName==="" ?  <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p> : <p className="infoBox">userLastName</p>}
                     <br/>
                     <p className="infoType">Τηλέφωνο:</p>
-                    <p className="infoBox">{userPhone==="" ? "Τηλέφωνο" : userPhone}</p>
+                    {userPhone==="" ?  <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p> : <p className="infoBox">userPhone</p>}
                     <br/>
                     <p className="infoType">Ηλεκτρονικό Ταχυδρομίο:</p>
-                    <p className="infoBox">{userEmail==="" ? "Ηλεκτρονικό Ταχυδρομίο" : userEmail}</p>
+                    {userEmail==="" ?  <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p> : <p className="infoBox">userEmail</p>}
                     <p className="message">Τα παραπάνω στοιχεία έχουν συμπληρωθεί αυτόματα με βάση τα στοιχεία που έχετε υποβάλλει μέσω του Προφίλ σας. Αν κάποιο από αυτά λείπει ή χρειάζεται αλλαγή θα πρέπει να γίνει μέσω της επεξεργασίας του Προφίλ σας. Η αλλαγή θα εμφανιστεί αυτόματα σε όλες τις αγγελίες που έχετε δημιουργήσει.</p>
                     <div className="seperatorBar"></div>
                     <div className="childAge">
@@ -47,10 +47,10 @@ function ParentContractRenew()
                         <p className="infoType">Επιλέξτε το μέρος φύλαξης του παιδιού:</p>
                         <form>
                             <input type="radio" id="parentsHouse" value="parentsHouse" name="house"></input>
-                            <label for="parentsHouse">Στο σπίτι του γονέα/κηδεμόνα</label>
+                            <label for="parentsHouse"> Στο σπίτι του γονέα/κηδεμόνα</label>
                             <br/>
                             <input type="radio" id="professionalsHouse" value="professionalsHouse" name="house"></input>
-                            <label for="professionalsHouse">Στο σπίτι του επαγγελματία</label>
+                            <label for="professionalsHouse"> Στο σπίτι του επαγγελματία</label>
                         </form>
                     </div>
                     <div className="seperatorBar"></div>
@@ -75,8 +75,8 @@ function ParentContractRenew()
                     <p className="message"><b>ΠΡΟΣΟΧΗ: Εαν πατήσετε "Υποβολή" η παρούσα αίτηση θα σταλεί στην/στον επαγγελματία και δεν θα μπορεί να υποστεί μελλοντική επεξεργασία. Εάν δεν επιθυμείτε να κάνετε οριστική υποβολή, αλλά θέλετε να διατηρήσετε τα στοιχεία που έχετε συμπληρώσει, καθώς και την δυνατότητα μελλοντικής επεξεργασίας, πατήστε "Προσωρινή Αποθήκευση".</b></p>
                 </div>
                 <div className="options">
-                    <button><b><a href='./ProfessionalMyAds'>Ακύρωση</a></b></button>
-                    <button><b>Προσωρινή Αποθήκευση</b></button>
+                    <button className="cancel"><b><a href='./ParentContractEnd'>Ακύρωση</a></b></button>
+                    <button><b><a href='./ParentContractEnd'>Προσωρινή Αποθήκευση</a></b></button>
                     <button><b>Οριστική Υποβολή</b></button>
                 </div>
             </div>

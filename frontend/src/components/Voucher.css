@@ -5,7 +5,7 @@
     font-family: arial;
 }
 
-.payPannel
+.voucherDiv .payPannel
 {
     margin-left: 60px;
     margin-right: 60px;
@@ -14,7 +14,7 @@
     color: #000;
 }
 
-.payPannel .userInfo
+.voucherDiv .payPannel .userInfo
 {
     display: flex;
     margin-top: 20px;
@@ -24,7 +24,7 @@
     color: #fff;
 }
 
-.payPannel .userInfo p
+.voucherDiv .payPannel .userInfo p
 {
     align-self: center;
     font-weight: bold;
@@ -32,7 +32,7 @@
     margin-left: 10px;
 }
 
-.payPannel .userInfo img
+.voucherDiv .payPannel .userInfo img
 {
     height: 50;
     width: 50px;
@@ -42,7 +42,7 @@
     margin-left: 35px;
 }
 
-.payDetails
+.voucherDiv .payDetails
 {
     background-color: #DDDDDD;
     border-bottom-left-radius: 5px;
@@ -51,7 +51,7 @@
     padding-bottom: 30px;
 }
 
-.payDetails p
+.voucherDiv .payDetails p
 {
     margin-top: 20px;
     margin-right: 20px;
@@ -59,18 +59,18 @@
     margin-bottom: 0px;
 }
 
-.payDetails .confirmation
+.voucherDiv .payDetails .confirmation
 {
     display: flex;
 }
 
-.payDetails .confirmation img
+.voucherDiv .payDetails .confirmation img
 {
     margin-top: 20px;
     height: 20px;
 }
 
-.voucher
+.voucherDiv .voucher
 {
     display: flex;
     background-color: #fff;
@@ -82,24 +82,24 @@
     font-weight: bold;
 }
 
-.voucher .code
+.voucherDiv .voucher .code
 {
     margin: 5px;
 }
 
-.voucher .info
+.voucherDiv .voucher .info
 {
     align-self: center;
     margin-left: 10px;
 }
 
-.voucher .info .amount
+.voucherDiv .voucher .info .amount
 {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.payDetails input
+.voucherDiv .payDetails input
 {
     margin-left: 15px;
     height: 20px;

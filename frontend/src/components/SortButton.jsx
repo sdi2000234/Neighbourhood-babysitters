@@ -3,7 +3,7 @@ import './SortButton.css';
 import arrow from '../assets/arrow_white.png';
 
 
-function SortButton()
+function SortButton({sortName, sortDate})
 {
     return (
         <div class="sorting">
@@ -11,12 +11,12 @@ function SortButton()
             <button>Ταξινόμηση <img className="arrow" alt="arrow" src={arrow}/></button>
             </div>
             <div class="dropdown-content">
-                <button>A → Z</button>
-                <button>Z → A</button>
-                <button>Έναρξη ↑</button>
-                <button>Έναρξη ↓</button>
-                <button>Λήξη ↑</button>
-                <button>Λήξη ↓</button>
+                <button onClick={() => sortName('asc')}>A → Z</button>
+                <button onClick={() => sortName('desc')}>Z → A</button>
+                <button onClick={() => sortDate('asc', 'startDate')}>Έναρξη ↑</button>
+                <button onClick={() => sortDate('desc', 'startDate')}>Έναρξη ↓</button>
+                <button onClick={() => sortDate('asc', 'endDate')}>Λήξη ↑</button>
+                <button onClick={() => sortDate('desc', 'endDate')}>Λήξη ↓</button>
             </div>
         </div>
     );

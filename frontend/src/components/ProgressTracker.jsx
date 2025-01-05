@@ -5,8 +5,8 @@ import './ProgressTracker.css'
 function ProgressTracker({currentStep})
 {
     return (
-        <div>
-            <div className="progressTracker">
+        <div className="progressTracker">
+            <div className="progressCircles">
                 <div className="step">
                     {currentStep===1 ? <p className="currentStep">1</p> : <p className="number1">1</p>}
                 </div>

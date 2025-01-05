@@ -1,0 +1,33 @@
+* 
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.breadCrumbs
+{
+    display: flex;
+    align-items: left;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.breadCrumbs p
+{
+    margin-right: 5px;
+}
+
+.breadCrumbs a
+{
+    text-decoration: none;
+}
+
+.breadCrumbs p.previousCrumb a
+{
+    color: #737373;
+    cursor: pointer;
+}

@@ -63,14 +63,14 @@ const [endDate, setEndDate] = useState(null);
 
   const topKeepers = [
     { id: 1, name: 'Εύα', rating: 10, img: eva, profileImg: evaProfile },
-    { id: 2, name: 'Monika', rating: 10, img: monika, profileImg: monikaProfile },
-    { id: 3, name: 'ANTONIA', rating: 10, img: antonia, profileImg: antoniaProfile },
+    { id: 2, name: 'Μόνικα', rating: 10, img: monika, profileImg: monikaProfile },
+    { id: 3, name: 'Aντωνία', rating: 10, img: antonia, profileImg: antoniaProfile },
     { id: 4, name: 'Χαρά', rating: 10, img: hara, profileImg: haraProfile },
-    { id: 5, name: 'Αμιλία', rating: 10, img: amilia, profileImg: amiliaProfile },
+    { id: 5, name: 'Αμίλια', rating: 10, img: amilia, profileImg: amiliaProfile },
     { id: 6, name: 'Μαρία', rating: 9.9, img: maria, profileImg: mariaProfile },
-    { id: 7, name: 'Ksenia', rating: 10, img: ksenia, profileImg: kseniaProfile },
-    { id: 8, name: 'Ευτυχία Φωτεινή', rating: 10, img: eftihia, profileImg: eftihiaProfile },
-    { id: 9, name: 'ΚΩΝΣΤΑΝΤΙΝΑ', rating: 10, img: konstantina, profileImg: konstantinaProfile },
+    { id: 7, name: 'Ξένια', rating: 10, img: ksenia, profileImg: kseniaProfile },
+    { id: 8, name: 'Ευτυχία', rating: 10, img: eftihia, profileImg: eftihiaProfile },
+    { id: 9, name: 'Κωνταντίνα', rating: 10, img: konstantina, profileImg: konstantinaProfile },
   ];
 
   return (
@@ -106,9 +106,10 @@ const [endDate, setEndDate] = useState(null);
               flexWrap: 'wrap',
             }}
           >
-            <Button variant="contained" sx={{ backgroundColor: '#1976d2', fontWeight: 'bold' }}>
-              Αναζήτηση κοντά στην θέση μου
-            </Button>
+           <Button variant="contained" sx={{ backgroundColor: '#013372', fontWeight: 'bold' }}>
+  Αναζήτηση κοντά στην θέση μου
+</Button>
+
 
             <DatePicker
               value={startDate}
@@ -122,15 +123,16 @@ const [endDate, setEndDate] = useState(null);
               renderInput={(params) => <TextField {...params} size="small" placeholder="έως" />}
             />
 
-            <FormControl size="small">
-              <InputLabel>Φιλοξενία</InputLabel>
-              <Select value={hostingOption} onChange={(e) => setHostingOption(e.target.value)}>
-                <MenuItem value="home">Σε δικό μου χώρο</MenuItem>
-                <MenuItem value="client">Σε χώρο οφελούμενου</MenuItem>
-              </Select>
-            </FormControl>
+<FormControl size="small" sx={{ minWidth: 180 }}>
+  <InputLabel>Φιλοξενία</InputLabel>
+  <Select value={hostingOption} onChange={(e) => setHostingOption(e.target.value)}>
+    <MenuItem value="home">Σε δικό μου χώρο</MenuItem>
+    <MenuItem value="client">Σε χώρο οφελούμενου</MenuItem>
+  </Select>
+</FormControl>
 
-            <Button variant="contained" sx={{ backgroundColor: '#ff9800', fontWeight: 'bold' }}>
+
+            <Button variant="contained" sx={{ backgroundColor: '#13372', fontWeight: 'bold' }}>
               ΑΝΑΖΗΤΗΣΗ
             </Button>
           </Box>
@@ -158,7 +160,7 @@ const [endDate, setEndDate] = useState(null);
               width: 80,
               height: 80,
               borderRadius: '50%',
-              backgroundColor: '#1976d2',
+              backgroundColor: '#013372',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -192,22 +194,23 @@ const [endDate, setEndDate] = useState(null);
           {topKeepers.map((keeper, index) => (
             <Grid item xs={12} sm={6} md={4} key={keeper.id}>
               <Paper elevation={3} sx={{ padding: 2, textAlign: 'center', position: 'relative' }}>
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: 8,
-                    left: 8,
-                    backgroundColor: '#FF9800',
-                    borderRadius: '50%',
-                    width: '40px',
-                    height: '40px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    color: 'white',
-                    fontWeight: 'bold',
-                  }}
-                >
+              <Box
+  sx={{
+    position: 'absolute',
+    top: 8,
+    left: 8,
+    backgroundColor: '#013372',
+    borderRadius: '50%',
+    width: '40px',
+    height: '40px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+  }}
+>
+
                   #{index + 1}
                 </Box>
                 <img
@@ -220,9 +223,14 @@ const [endDate, setEndDate] = useState(null);
                 </Typography>
                 <Avatar src={keeper.profileImg} sx={{ width: 80, height: 80, margin: '10px auto' }} />
                 <Typography variant="body1">🐾 {keeper.rating}</Typography>
-                <Button variant="contained" color="warning" sx={{ mt: 2 }} fullWidth>
-                  Προφίλ
-                </Button>
+                <Button
+  variant="contained"
+  sx={{ mt: 2, backgroundColor: '#013372', color: '#fff', fontWeight: 'bold' }}
+  fullWidth
+>
+  Προφίλ
+</Button>
+
               </Paper>
             </Grid>
           ))}
@@ -232,7 +240,7 @@ const [endDate, setEndDate] = useState(null);
       {/* Safety Section */}
       <Box
   sx={{
-    backgroundColor: '#1976d2',
+    backgroundColor: '#013372',
     color: 'white',
     py: 6,
     display: 'flex', // Added flex display

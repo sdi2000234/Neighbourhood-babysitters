@@ -1,10 +1,7 @@
 import React from 'react';
 import govgr from '../assets/govgr_logo_white.png';
-import emptyProfile from '../assets/empty_profile.png';
-import arrow from '../assets/arrow_white.png';
 
 const Header = ({ currentNavPage }) => {
-
   // Inline CSS Styles
   const styles = {
     global: {
@@ -93,15 +90,48 @@ const Header = ({ currentNavPage }) => {
       {/* Navigation Bar */}
       <div style={styles.navBar}>
         {/* Logo */}
-        <img className="logo" alt="logo" src={govgr} style={{ height: '50px', cursor: 'pointer', padding: '10px' }} />
+        <img
+          className="logo"
+          alt="logo"
+          src={govgr}
+          style={{
+            height: '50px',
+            cursor: 'pointer',
+            padding: '10px',
+          }}
+        />
 
-      
-       
+        {/* Buttons */}
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: '10px' }}>
+          <button
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#FF9800',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '5px',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+            }}
+          >
+            Σύνδεση
+          </button>
 
-          
+          <button
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#00aeef',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '5px',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+            }}
+          >
+            Εγγραφή
+          </button>
+        </div>
       </div>
-
-      
     </div>
   );
 };

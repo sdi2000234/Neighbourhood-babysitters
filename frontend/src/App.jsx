@@ -9,6 +9,8 @@ import Page4 from './pages/evresi_epaggelmatia'; // Find Professional Page
 import Page5 from './pages/epeksergasia_profile'; // Edit Profile Page
 import Page6 from './pages/aitisi_sinergasias'; // Collaboration Request Page
 import Page7 from './pages/epeksergasia_aitisis_success'; // Application Success Page
+import LoginPage from './pages/login'; // Import the Login Page
+import SubmissionConfirmation from './pages/SubmissionConfirmation'; // Adjust the path if needed
 
 const App = () => {
   return (
@@ -22,6 +24,9 @@ const App = () => {
         <Route path="/edit-profile" element={<Page5 />} /> {/* Edit Profile */}
         <Route path="/collaboration-request" element={<Page6 />} /> {/* Collaboration Request */}
         <Route path="/application-success" element={<Page7 />} /> {/* Application Success */}
+        <Route path="/login" element={<LoginPage />} /> {/* Login Page */}
+        <Route path="/submission-confirmation" element={<SubmissionConfirmation />} />
+
       </Routes>
     </Router>
   );

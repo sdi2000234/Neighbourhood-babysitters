@@ -1,83 +1,144 @@
-import React from 'react';
-import { Box, Container, Typography, TextField, Button, FormControlLabel, Checkbox, RadioGroup, Radio, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  Box,
+  Container,
+  Typography,
+  TextField,
+  Button,
+  FormControlLabel,
+  Checkbox,
+  RadioGroup,
+  Radio,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Paper,
+  Divider,
+} from '@mui/material';
 import Header from '../components/Header_unconnected';
 import Footer from '../components/Footer';
 
 const Page6 = () => {
+  const [selectedOption, setSelectedOption] = useState('homeParent'); // State to track selected option
+
+  // Generate time slots and days
+  const hours = Array.from({ length: 14 }, (_, i) => `${8 + i}:00`);
+  const days = ['ΔΕΥ', 'ΤΡΙ', 'ΤΕΤ', 'ΠΕΜ', 'ΠΑΡ', 'ΣΑΒ', 'ΚΥΡ'];
+
   return (
     <Box>
       <Header />
-      <Container sx={{ mt: 4 }}>
-        <Typography variant="body2" gutterBottom>
-          Έχετε συνδεθεί ως Γονέας/Κηδεμόνας. | <a href="#/">Σύνδεση ως Επαγγελματίας</a>
-        </Typography>
-        <Typography variant="h6" gutterBottom>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ ΜΕ: Εύη Κωστοπούλου</Typography>
-
-        <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 600 }}>
-          <TextField label="Όνομα" defaultValue="ΙΩΑΝΝΑ" />
-          <TextField label="Επώνυμο" defaultValue="ΚΥΡΙΑΚΟΥ" />
-          <TextField label="Τηλέφωνο" defaultValue="698753965" />
-          <TextField label="Ηλεκτρονικό Ταχυδρομείο" defaultValue="example@example.com" />
-          <TextField label="Ηλικία Παιδιού (σε μήνες)" type="number" defaultValue="12" />
-          <TextField label="Έναρξη Συνεργασίας" type="date" defaultValue="2025-05-01" InputLabelProps={{ shrink: true }}/>
-          <TextField label="Λήξη Συνεργασίας" type="date" defaultValue="2025-07-05" InputLabelProps={{ shrink: true }}/>
-          
-          <Typography variant="subtitle1">Διαθεσιμότητα</Typography>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Ώρες</TableCell>
-                <TableCell>ΔΕΥ</TableCell>
-                <TableCell>ΤΡΙ</TableCell>
-                <TableCell>ΤΕΤ</TableCell>
-                <TableCell>ΠΕΜ</TableCell>
-                <TableCell>ΠΑΡ</TableCell>
-                <TableCell>ΣΑΒ</TableCell>
-                <TableCell>ΚΥΡ</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
-                <TableCell>8:00</TableCell>
-                <TableCell><Checkbox defaultChecked/></TableCell>
-                <TableCell><Checkbox defaultChecked/></TableCell>
-                <TableCell><Checkbox defaultChecked/></TableCell>
-                <TableCell><Checkbox /></TableCell>
-                <TableCell><Checkbox /></TableCell>
-                <TableCell><Checkbox /></TableCell>
-                <TableCell><Checkbox /></TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-
-          <Typography variant="subtitle1">Περιοχή Φύλαξης</Typography>
-          <RadioGroup row defaultValue="homeParent">
-            <FormControlLabel value="homeParent" control={<Radio />} label="Φύλαξη στο σπίτι του Γονέα" />
-            <FormControlLabel value="homeProfessional" control={<Radio />} label="Φύλαξη στο σπίτι του Επαγγελματία" />
-          </RadioGroup>
-
-          <TextField label="Διεύθυνση, Περιοχή, ΤΚ" defaultValue="Αγίου Στυλιανού 12, Αθήνα 114 74" />
-          <TextField
-            label="Μήνυμα προς επαγγελματία (προαιρετικό)"
-            multiline
-            rows={4}
-          />
-
-          <FormControlLabel
-            control={<Checkbox defaultChecked />}
-            label="Δηλώνω Επιθυμία Συνεργασίας και Υπογραφή Ιδιωτικού Συμφωνητικού"
-          />
-
-          <Typography variant="body2">
-            ΠΡΟΣΟΧΗ: Εάν πατήσετε "Οριστική Υποβολή" ...
+      <Container sx={{ mt: 4, mb: 4 }}>
+        <Paper elevation={3} sx={{ padding: 4, borderRadius: '8px' }}>
+          <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
+            ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ ΜΕ: Εύη Κωστοπούλου
           </Typography>
 
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <Button variant="outlined">Ακύρωση</Button>
-            <Button variant="outlined">Προσωρινή Αποθήκευση</Button>
-            <Button variant="contained" type="submit">Οριστική Υποβολή</Button>
+          {/* Form */}
+          <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <TextField label="Όνομα" />
+            <TextField label="Επώνυμο" />
+            <TextField label="Τηλέφωνο" />
+            <TextField label="Ηλεκτρονικό Ταχυδρομείο" />
+            <TextField label="Ηλικία Παιδιού (σε μήνες)" type="number" />
+            <TextField label="Έναρξη Συνεργασίας" type="date" InputLabelProps={{ shrink: true }} />
+            <TextField label="Λήξη Συνεργασίας" type="date" InputLabelProps={{ shrink: true }} />
+
+            <Divider sx={{ my: 3 }} />
+
+            {/* Availability Section */}
+            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
+              Διαθεσιμότητα
+            </Typography>
+            <Table sx={{ border: '1px solid #ddd', borderRadius: '8px' }}>
+              <TableHead sx={{ backgroundColor: '#f0f0f0' }}>
+                <TableRow>
+                  <TableCell sx={{ fontWeight: 'bold' }}>Ώρες</TableCell>
+                  {days.map((day) => (
+                    <TableCell key={day} sx={{ fontWeight: 'bold' }}>
+                      {day}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {hours.map((hour) => (
+                  <TableRow key={hour} sx={{ '&:nth-of-type(odd)': { backgroundColor: '#f9f9f9' } }}>
+                    <TableCell>{hour}</TableCell>
+                    {days.map((day) => (
+                      <TableCell key={`${hour}-${day}`}>
+                        <Checkbox defaultChecked={day === 'ΤΕΤ'} />
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+
+            <Divider sx={{ my: 3 }} />
+
+            {/* Area Selection */}
+            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
+              Περιοχή Φύλαξης
+            </Typography>
+            <RadioGroup
+              row
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)} // Handle selection change
+            >
+              <FormControlLabel value="homeParent" control={<Radio />} label="Φύλαξη στο σπίτι του Γονέα" />
+              <FormControlLabel value="homeProfessional" control={<Radio />} label="Φύλαξη στο σπίτι του Επαγγελματία" />
+            </RadioGroup>
+
+            {/* Address Field - Show only when "homeProfessional" is selected */}
+            {selectedOption === 'homeProfessional' && (
+              <TextField label="Διεύθυνση, Περιοχή, ΤΚ" />
+            )}
+
+            <Divider sx={{ my: 3 }} />
+
+            {/* Message Section */}
+            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
+              Μήνυμα προς επαγγελματία (προαιρετικό)
+            </Typography>
+            <TextField label="Μήνυμα" multiline rows={4} />
+
+            <Divider sx={{ my: 3 }} />
+
+            {/* Confirmation Checkbox */}
+            <FormControlLabel
+              control={<Checkbox />}
+              label={
+                <Typography variant="body2">
+                  Δηλώνω Επιθυμία Συνεργασίας και Υπογραφή Ιδιωτικού Συμφωνητικού
+                </Typography>
+              }
+            />
+
+            {/* Notice */}
+            <Typography variant="body2" sx={{ mt: 1, mb: 2 }}>
+              ΠΡΟΣΟΧΗ: Εάν πατήσετε "Οριστική Υποβολή" θα προχωρήσετε στη σύναψη συμφωνητικού με τον επαγγελματία.
+            </Typography>
+
+            {/* Buttons */}
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <Button variant="outlined">Ακύρωση</Button>
+              <Button variant="outlined">Προσωρινή Αποθήκευση</Button>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: '#004080',
+                  color: 'white',
+                  '&:hover': { backgroundColor: '#003366' },
+                }}
+              >
+                Οριστική Υποβολή
+              </Button>
+            </Box>
           </Box>
-        </Box>
+        </Paper>
       </Container>
       <Footer />
     </Box>

@@ -5,15 +5,11 @@ import {
   Typography,
   TextField,
   Button,
-  Select,
-  MenuItem,
   FormControl,
-  InputLabel,
   Checkbox,
-  Avatar,
 } from '@mui/material';
-import Header from '../components/Header_connected'; // Same Header
-import Footer from '../components/Footer'; // Same Footer
+import Header from '../components/Header_connected'; // Header Component
+import Footer from '../components/Footer'; // Footer Component
 
 const Page5 = () => {
   return (
@@ -46,9 +42,9 @@ const Page5 = () => {
           <Button
             variant="contained"
             sx={{
-              backgroundColor: '#ff7f00',
+              backgroundColor: '#013372', // Yale Blue
               color: 'white',
-              '&:hover': { backgroundColor: '#e66b00' },
+              '&:hover': { backgroundColor: '#002855' }, // Darker Yale Blue on hover
             }}
           >
             Αποθήκευση
@@ -73,9 +69,9 @@ const Page5 = () => {
           <Button
             variant="contained"
             sx={{
-              backgroundColor: '#ff7f00',
+              backgroundColor: '#013372', // Yale Blue
               color: 'white',
-              '&:hover': { backgroundColor: '#e66b00' },
+              '&:hover': { backgroundColor: '#002855' }, // Darker Yale Blue on hover
             }}
           >
             Αποθήκευση
@@ -94,57 +90,31 @@ const Page5 = () => {
           <Typography variant="h6" fontWeight="bold" mb={2}>
             Απενεργοποίηση ιδιότητας keeper
           </Typography>
-          <FormControl>
+          <FormControl
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 1,
+            }}
+          >
             <Checkbox />
-            <Typography variant="body2" sx={{ display: 'inline' }}>
-              Δεν θέλω να είμαι keeper
-            </Typography>
+            <Typography variant="body2">Δεν θέλω να είμαι keeper</Typography>
           </FormControl>
           <Button
             variant="contained"
             sx={{
               mt: 2,
-              backgroundColor: '#ff7f00',
+              backgroundColor: '#013372', // Yale Blue
               color: 'white',
-              '&:hover': { backgroundColor: '#e66b00' },
+              '&:hover': { backgroundColor: '#002855' }, // Darker Yale Blue on hover
             }}
           >
             Αποθήκευση
           </Button>
         </Box>
 
-        {/* Section 4: Language Settings */}
-        <Box
-          sx={{
-            backgroundColor: '#f6f6f6',
-            p: 2,
-            mb: 2,
-            borderRadius: '4px',
-          }}
-        >
-          <Typography variant="h6" fontWeight="bold" mb={2}>
-            Γλώσσα εμφάνισης
-          </Typography>
-          <FormControl fullWidth sx={{ mb: 2 }}>
-            <InputLabel id="language-label">Επιλέξτε Γλώσσα</InputLabel>
-            <Select labelId="language-label" defaultValue="Ελληνικά">
-              <MenuItem value="Ελληνικά">Ελληνικά</MenuItem>
-              <MenuItem value="Αγγλικά">Αγγλικά</MenuItem>
-            </Select>
-          </FormControl>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: '#ff7f00',
-              color: 'white',
-              '&:hover': { backgroundColor: '#e66b00' },
-            }}
-          >
-            Αποθήκευση
-          </Button>
-        </Box>
-
-        {/* Section 5: Notifications and Data Preferences */}
+        {/* Section 4: Notifications and Data Preferences */}
         <Box
           sx={{
             backgroundColor: '#f6f6f6',
@@ -159,9 +129,9 @@ const Page5 = () => {
           <Button
             variant="contained"
             sx={{
-              backgroundColor: '#ff7f00',
+              backgroundColor: '#013372', // Yale Blue
               color: 'white',
-              '&:hover': { backgroundColor: '#e66b00' },
+              '&:hover': { backgroundColor: '#002855' }, // Darker Yale Blue on hover
             }}
           >
             Προτιμήσεις ενημερώσεων

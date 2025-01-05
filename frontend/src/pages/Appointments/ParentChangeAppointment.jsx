@@ -12,9 +12,9 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
     
     const navigate = useNavigate();
     
-    // Συνάρτηση για μετατροπή ημερομηνίας
+    // Συνάρτηση για μετατροπή ημερομηνίας σε ISO
     const convertDateToISO = (date) => {
-        const [month, day, year] = date.split("/");
+        const [day, month, year] = date.split("/");
         return `20${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     };
 
@@ -79,6 +79,7 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
             setMeetingType(initialMeetingType);
         }
     }, [initialMeetingType]);
+
 
     return (
         <>

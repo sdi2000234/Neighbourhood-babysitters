@@ -43,8 +43,8 @@ function App() {
   const userLastName = "ΚΥΡΙΑΚΟΥ";
   const userPhone = "6957264837";
   const userEmail = "test@test.com";
-  const date = "12/02/25";
-  const time = "12:30";
+  const date = "24/02/25";
+  const time = "02:30";
   const type = "Online";
   const message = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla inventore iusto maiores harum, ipsa, mollitia, nam non maxime pariatur enim in alias quis obcaecati voluptate eligendi dolor omnis voluptatum recusandae."
   const address = "Αθηνα 2, 12478"

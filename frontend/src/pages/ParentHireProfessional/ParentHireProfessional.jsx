@@ -3,13 +3,10 @@ import './ParentHireProfessional.css'
 import ParentNavigation from '../../components/ParentNavigation'
 import Footer from '../../components/Footer'
 import FavouriteProfessional from '../../components/FavouriteProfessional';
-<<<<<<< HEAD
-=======
 import PagesIndex from '../../components/PagesIndex';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import ConfirmationDialogue from '../../components/ConfirmationDialogue';
 import HireProfessionalMore from '../../components/HireProfessionalMore';
->>>>>>> origin/danai
 
 
 function ParentHireProfessional()

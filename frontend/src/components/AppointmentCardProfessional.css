@@ -117,3 +117,33 @@
 .cancelButtonProfessional:hover{
     background-color: #b9132efd !important;
 }
+
+.confirmButton {
+    background-color: #013372 !important; 
+    color: white; 
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.confirmButton:hover {
+    background-color: rgb(8, 56, 116) !important; 
+}
+
+.cancelButton {
+    background-color: #B5001E !important; 
+    color: white; 
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.cancelButton:hover {
+    background-color: #b9132efd !important; 
+}

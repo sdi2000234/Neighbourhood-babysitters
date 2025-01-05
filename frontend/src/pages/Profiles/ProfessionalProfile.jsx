@@ -25,7 +25,7 @@ function ProfessionalProfile({userName , userLastName, userEmail , userPhone , p
   };
 
   const handleMyAds = () => {
-    navigate('/new-page'); 
+    navigate('/ProfessionalMyAds'); 
   };
 
   const handleLogOut = () => {

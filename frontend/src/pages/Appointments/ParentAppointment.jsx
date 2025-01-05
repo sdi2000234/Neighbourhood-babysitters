@@ -19,7 +19,7 @@ function ParentAppointment({ babysitterName , userName , userLastName , userPhon
 
     const handleCancel = (event) => { // Για button Ακύρωσης 
         event.preventDefault();  // Αποτρέπει την υποβολή της φόρμας
-        alert("Η φόρμα ακυρώθηκε."); 
+        navigate('/ParentHireProfessional'); 
     };
 
     const handleSubmit = (event) => { // Για button Αποστολή

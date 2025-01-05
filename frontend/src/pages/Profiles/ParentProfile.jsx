@@ -23,7 +23,7 @@ function ParentProfile({userName , userLastName, userEmail , userPhone , picLink
   };
 
   const handleMoreAds = () => {
-    navigate('/new-page'); 
+    navigate('/../ParentHireProfessional'); 
   };
 
   const handleLogOut = () => {

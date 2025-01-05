@@ -3,6 +3,7 @@ import './RatingParentsEnd.css'
 import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+import { useNavigate } from 'react-router-dom';
 
 function RatingParentsEnd() {
 
@@ -11,6 +12,12 @@ function RatingParentsEnd() {
         { name: 'ΛΗΞΗ'},
         { name: 'ΑΞΙΟΛΟΓΗΣΗ'}
     ];
+
+    const navigate = useNavigate();
+
+    const handleSubmit = () => { //ΝΑ ΑΛΛΑΧΘΕΙ  
+      navigate('../ParentContractEnd');
+    };
 
     return (
     <>
@@ -22,7 +29,7 @@ function RatingParentsEnd() {
         <div class="personInfoApEnd">
             <div className='paragraphApEnd'>
                 <p>Η αξιολόγησης σας καταγράφηκε.</p>
-                <button className='myButtonApEnd'>
+                <button className='myButtonApEnd' onClick={handleSubmit}>
                     <p>Μεταφορά στην σελίδα</p>
                     <p>"Λήξη Συμφωνητικών"</p>
                 </button>

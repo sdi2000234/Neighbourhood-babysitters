@@ -21,6 +21,10 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
     // Μετατροπή ημερομηνίας σε μορφή ISO για το date input
     const isoDate = convertDateToISO(prevDate);
 
+    // State για την ημερομηνία και την ώρα
+    const [date, setDate] = useState(isoDate);
+    const [time, setTime] = useState(prevTime);
+
     // State για τον τύπο συνάντησης
     const [meetingType, setMeetingType] = useState(initialMeetingType); 
 
@@ -38,11 +42,31 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
         setMeetingType(event.target.value);
     };
 
+    // Διαχείριση αλλαγής ημερομηνίας
+    const handleDateChange = (e) => {
+        setDate(e.target.value);
+    };
+
+    // Διαχείριση αλλαγής ώρας
+    const handleTimeChange = (e) => {
+        setTime(e.target.value);
+    };
+
     const handleCancel = () => {
         navigate('/ParentAllAppointments');
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();  // Αποφυγή υποβολής αν δεν πληρούνται τα πεδία
+        // Ελέγχουμε αν όλα τα πεδία είναι σωστά πριν την υποβολή
+        if (meetingType === "FaceToFace" && !address.match(/^[^,]+?\s*,\s*[^,]+?\s*,\s*[0-9]{5}$/)) {
+            alert("Η διεύθυνση δεν είναι έγκυρη.");
+            return;
+        }
+        if (meetingType === "Online" && !link.match(/^https?:\/\/.*$/)) {
+            alert("Ο σύνδεσμος δεν είναι έγκυρος.");
+            return;
+        }
         navigate('/ParentChangeAppointmentEnd');
     };
 
@@ -65,7 +89,7 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
                 <h1>ΑΛΛΑΓΗ ΣΤΟΙΧΕΙΩΝ ΡΑΝΤΕΒΟΥ ΜΕ: </h1>
                 <h1>{babysitterName}</h1>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <p className="infoTypeCh">Όνομα:</p>
                     <p className="infoBoxCh">{userName || "Όνομα"}</p>
                     <br />
@@ -89,14 +113,30 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
                             <label htmlFor="date" className="infoTypeCh">
                                 <RequiredField label="Ημερομηνία Ραντεβού:" />
                             </label>
-                            <input type="date" id="date" name="date" className="infoBoxCh" value={isoDate} required />
+                            <input
+                                type="date"
+                                id="date"
+                                name="date"
+                                className="infoBoxCh"
+                                value={date}  // Χρησιμοποιούμε το state
+                                onChange={handleDateChange}  // Ενημέρωση του state όταν αλλάζει
+                                required
+                            />
                         </div>
                         <div>
                             <br /><br />
                             <label htmlFor="time" className="infoTypeCh">
                                 <RequiredField label="Ώρα Ραντεβού:" />
                             </label>
-                            <input type="time" id="time" name="time" className="infoBoxCh" value={prevTime} required />
+                            <input
+                                type="time"
+                                id="time"
+                                name="time"
+                                className="infoBoxCh"
+                                value={time}  // Χρησιμοποιούμε το state
+                                onChange={handleTimeChange}  // Ενημέρωση του state όταν αλλάζει
+                                required
+                            />
                         </div>
                     </div>
 
@@ -148,6 +188,8 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
                                     placeholder="Διεύθυνση , Περιοχή , Τ.Κ."
                                     value={address}
                                     onChange={(e) => setAddress(e.target.value)}
+                                    pattern="^[^,]+?\s*,\s*[^,]+?\s*,\s*[0-9]{5}$"
+                                    title="Η διεύθυνση πρέπει να έχει τη μορφή 'Διεύθυνση Αριθμός, Περιοχή, Τ.Κ.' π.χ. 'Ερμού 15, Αθήνα, 10563'. Επιτρέπονται επιπλέον κενά."
                                     required
                                 />
                             </div>
@@ -160,13 +202,15 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
                                     <InfoIcon sx={{ marginLeft: '5px', cursor: 'pointer' }} />
                                 </Tooltip>
                                 <input
-                                    type="text"
+                                    type="url"
                                     id="link"
                                     name="link"
                                     className="infoBoxCh"
                                     placeholder="Link online συνάντησης"
                                     value={link}
                                     onChange={(e) => setLink(e.target.value)}
+                                    pattern="https?://.*"
+                                    title="Ο σύνδεσμος πρέπει να είναι έγκυρο URL που ξεκινά με http:// ή https://"
                                     required
                                 />
                             </div>
@@ -183,7 +227,7 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
                             ></textarea>
                         </div>
 
-                        <button type="submit" className="submitbuttonCh" onClick={handleSubmit}>Αλλαγή Στοιχείων</button>
+                        <button type="submit" className="submitbuttonCh">Αλλαγή Στοιχείων</button>
                         <br />
                         <button type="button" className="cancelbuttonCh" onClick={handleCancel}>Πίσω</button>
                     </div>

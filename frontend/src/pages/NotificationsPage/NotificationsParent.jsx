@@ -71,7 +71,15 @@ function NotificationsParent() {
                         </li>
                         <li>
                             <input type="checkbox" id="checkbox5" />
-                            <label for="checkbox5" class="checkbox-label"> Τροποποίηση Ραντεβού</label>
+                            <label for="checkbox5" class="checkbox-label"> Αποδοχή Ραντεβού</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="checkbox6" />
+                            <label for="checkbox6" class="checkbox-label"> Απόρριψη Ραντεβού</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="checkbox7" />
+                            <label for="checkbox7" class="checkbox-label"> Ακύρωση Ραντεβού</label>
                         </li>
                     </ul>
 

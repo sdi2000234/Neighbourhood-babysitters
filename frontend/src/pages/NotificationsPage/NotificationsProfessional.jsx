@@ -73,6 +73,10 @@ function NotificationsProfessional() {
                             <input type="checkbox" id="checkbox5" />
                             <label for="checkbox5" class="checkbox-label"> Τροποποίηση Ραντεβού</label>
                         </li>
+                        <li>
+                            <input type="checkbox" id="checkbox6" />
+                            <label for="checkbox6" class="checkbox-label"> Ακύρωση Ραντεβού</label>
+                        </li>
                     </ul>
 
                     <hr className='lineNotProfessional'/>

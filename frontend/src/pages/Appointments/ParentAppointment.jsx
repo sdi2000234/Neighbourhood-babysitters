@@ -112,9 +112,9 @@ function ParentAppointment({ babysitterName , userName , userLastName , userPhon
                                     id="location" 
                                     name="location" 
                                     className="infoBox" 
-                                    placeholder="Διεύθυνση Αριθμός, Περιοχή , Τ.Κ." 
+                                    placeholder="Οδός Αριθμός, Περιοχή , Τ.Κ." 
                                     pattern="^[^,]+?\s*,\s*[^,]+?\s*,\s*[0-9]{5}$"
-                                    title="Η διεύθυνση πρέπει να έχει τη μορφή 'Διεύθυνση Αριθμός, Περιοχή, Τ.Κ.' π.χ. 'Ερμού 15, Αθήνα, 10563'" 
+                                    title="Η διεύθυνση πρέπει να έχει τη μορφή 'Οδός Αριθμός, Περιοχή, Τ.Κ.' π.χ. 'Ερμού 15, Αθήνα, 10563'" 
                                     required 
                                 />
                             </div>

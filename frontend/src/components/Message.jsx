@@ -4,15 +4,24 @@ import { Avatar, Button, Typography } from "@mui/material";
 
 const Message = ({ picLink, name, content, date }) => {
   const [showFullContent, setShowFullContent] = useState(false); // Κατάσταση για εμφάνιση ολόκληρου κειμένου
+  const [isVisible, setIsVisible] = useState(true); // Κατάσταση για την ορατότητα του μηνύματος
 
   // Συνάρτηση για εναλλαγή εμφάνισης
   const toggleContent = () => {
     setShowFullContent((prev) => !prev);
   };
 
+  // Συνάρτηση για το κλείσιμο του μηνύματος
+  const handleClose = () => {
+    setIsVisible(false);
+  };
+
   // Περικοπή περιεχομένου αν ξεπερνά τους 150 χαρακτήρες
   const truncatedContent =
     content.length > 150 ? content.slice(0, 100) + "..." : content;
+
+  // Αν το μήνυμα δεν είναι ορατό, επιστρέφουμε null (δεν το εμφανίζουμε)
+  if (!isVisible) return null;
 
   return (
     <div className="message-container">
@@ -29,8 +38,7 @@ const Message = ({ picLink, name, content, date }) => {
         </div>
 
         <div className="message-text">
-
-          <Typography variant="subtitle2" sx={{ fontSize: "1rem"}}>
+          <Typography variant="subtitle2" sx={{ fontSize: "1rem" }}>
             {showFullContent ? content : truncatedContent}
           </Typography>
 
@@ -52,11 +60,11 @@ const Message = ({ picLink, name, content, date }) => {
         <div className="message-footer">
           <span className="date">{date}</span>
         </div>
-
       </div>
 
-      <div className="close-icon">&#x2716;</div>
-    
+      <div className="close-icon" onClick={handleClose}>
+        &#x2716;
+      </div>
     </div>
   );
 };

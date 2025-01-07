@@ -1,4 +1,6 @@
 import React from 'react'
+import './WriteMessageProfessional.css';
+import { useNavigate } from 'react-router-dom';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import MessageField from '../../components/MessageField.jsx';
 import ProfessionalNavigation from '../../components/ProfessionalNavigation';
@@ -10,24 +12,25 @@ function WriteMessageProfessional() {
         { name: 'ΜΗΝΥΜΑΤΑ'}  
     ];
 
-    const pageStyle = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        padding: '2rem',
+    const navigate = useNavigate();
+
+    const handleButton = () => {
+        navigate('/MessageProfessional');
     };
 
     return (
 
         <>  
-            <ProfessionalNavigation currentNavPage={'profMes'}/>
+            <ProfessionalNavigation currentNavPage={'parMes'}/>
             <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
             <br />
             <br />
-            <div style={pageStyle}>
-            <MessageField placeholder={"Αναζήτηση Γονέα/Κηδεμόνα..."}/>
+            <div className='containerWriteMesProfessional'>
+
+                <MessageField className='MessageFProfessional' placeholder={"Αναζήτηση Επαγγελματία..."}/>
+                <button className='buttonWriteMProfessional' onClick={handleButton}>Πίσω στα Μηνύματα μου</button>
+
             </div>
 
             <Footer/>

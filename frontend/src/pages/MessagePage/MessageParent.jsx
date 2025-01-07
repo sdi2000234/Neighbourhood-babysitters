@@ -1,5 +1,6 @@
 import React from 'react'
 import './MessageParent.css';
+import { useNavigate } from 'react-router-dom';
 import Message from '../../components/Message';
 import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
@@ -39,6 +40,11 @@ function MessageParent() {
         alert("Αναζήτηση για:", query);
     };
 
+    const navigate = useNavigate();
+
+    const handleButton = () => {
+        navigate('/WriteMessageParent');
+    };
 
     return (
         <>  
@@ -48,10 +54,13 @@ function MessageParent() {
 
         <div className='MessageParentContainer'>
 
-            <div style={{ paddingBottom: 20, maxWidth: 400 }}>
-                <SearchBar placeholder="Αναζήτηση Συνομιλίας..." onSearch={handleSearch} />
+            <div className='firstRowMesParent'>
+                <div style={{ paddingBottom: 20, maxWidth: 400 }}>
+                    <SearchBar placeholder="Αναζήτηση Συνομιλίας..." onSearch={handleSearch} />
+                </div>
+                <button className='customButtonParentMes' onClick={handleButton}>Στείλτε Μήνυμα</button>
             </div>
-
+            
             <div className='MessagesParent'>
             {historyData.map((data, index) => (
                 <div key={index}>
@@ -64,8 +73,8 @@ function MessageParent() {
                 <br />
                 </div>
             ))}
-            </div>
 
+            </div>
 
       </div>
 

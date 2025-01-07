@@ -1,5 +1,6 @@
 import React from 'react'
 import './MessageProfessional.css';
+import { useNavigate } from 'react-router-dom';
 import Message from '../../components/Message';
 import ProfessionalNavigation from '../../components/ProfessionalNavigation';
 import Footer from '../../components/Footer';
@@ -39,6 +40,11 @@ function MessageProfessional() {
         alert("Αναζήτηση για:", query);
     };
 
+    const navigate = useNavigate();
+
+    const handleButton = () => {
+        navigate('/WriteMessageProfessional');
+    };
 
     return (
         <>  
@@ -48,8 +54,11 @@ function MessageProfessional() {
 
         <div className='MessageProfessionalContainer'>
 
-            <div style={{ paddingBottom: 20, maxWidth: 400 }}>
-                <SearchBar placeholder="Αναζήτηση Συνομιλίας..." onSearch={handleSearch} />
+            <div className='firstRowMesProf'>
+                <div style={{ paddingBottom: 20, maxWidth: 400 }}>
+                    <SearchBar placeholder="Αναζήτηση Συνομιλίας..." onSearch={handleSearch} />
+                </div>
+                <button className='customButtonProfMes' onClick={handleButton}>Στείλτε Μήνυμα</button>
             </div>
 
             <div className='MessagesProfessional'>

@@ -1,4 +1,6 @@
 import React from 'react'
+import './WriteMessageParent.css';
+import { useNavigate } from 'react-router-dom';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import MessageField from '../../components/MessageField.jsx';
 import ParentNavigation from '../../components/ParentNavigation';
@@ -10,12 +12,10 @@ function WriteMessageParent() {
         { name: 'ΜΗΝΥΜΑΤΑ'}  
     ];
 
-    const pageStyle = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        padding: '2rem',
+    const navigate = useNavigate();
+
+    const handleButton = () => {
+        navigate('/MessageParent');
     };
 
     return (
@@ -26,8 +26,11 @@ function WriteMessageParent() {
 
             <br />
             <br />
-            <div style={pageStyle}>
-            <MessageField placeholder={"Αναζήτηση Επαγγελματία..."}/>
+            <div className='containerWriteMesParent'>
+
+                <MessageField className='MessageFParent' placeholder={"Αναζήτηση Επαγγελματία..."}/>
+                <button className='buttonWriteMParent' onClick={handleButton}>Πίσω στα Μηνύματα μου</button>
+
             </div>
 
             <Footer/>

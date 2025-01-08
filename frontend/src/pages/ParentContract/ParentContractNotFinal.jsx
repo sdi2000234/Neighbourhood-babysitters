@@ -11,7 +11,7 @@ import arrow_white from '../../assets/arrow_white.png';
 function ParentContractNotFinal() {
   const breadcrumbPages = [
     { name: 'ΑΙΤΗΣΕΙΣ' },
-    { name: 'ΟΡΙΣΤΙΚΑ ΑΠΟΘΗΚΕΥΜΕΝΕΣ' },
+    { name: 'ΠΡΟΣΩΡΙΝΕΣ ΑΠΟΘΗΚΕΥΜΕΝΕΣ' },
   ];
 
   // Ορισμός του array με τα δεδομένα 

@@ -1,0 +1,136 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.personInfo3 .seperatorBar
+{
+    height: 2px;
+    background-color: #999999;
+    width: stretch;
+    border-radius: 1px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.personInfo3 .aboutMe textarea
+{
+    background-color: #fff;
+    color: #373737;
+    border-color: #737373;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    height: 100px;
+    text-wrap: wrap;
+}
+
+.personInfo3
+{
+    background-color: #ddd;
+    color: #373737;
+    margin: 160px;
+    margin-top: 60px;
+    padding: 60px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 5px;
+}
+
+.personInfo3 h1
+{
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.personInfo3 .message
+{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #737373;
+}
+
+.personInfo3 .occupationType
+{
+    margin-top: 50px;
+}
+
+.personInfo3 .occupationType input
+{
+    margin-top: 20px;
+    height: 20px;
+    width: 20px;
+}
+
+.personInfo3 .occupationType label
+{
+    font-size: 18px;
+    font-weight: bold;
+    color: #555555;
+}
+
+.personInfo3 .schedule
+{
+    display: flex;
+    justify-content: center;
+}
+
+.personInfo3 h3
+{
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.personInfo3 table
+{
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.options3
+{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+.options3 button
+{
+    font-size: 20px;
+    padding: 8px;
+    padding-left: 13px;
+    padding-right: 13px;
+    background-color: #013372;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 80px;
+}
+
+.options3 button:hover
+{
+    background-color: #004caa;
+}
+
+.options3 input
+{
+    font-size: 20px;
+    padding: 8px;
+    padding-left: 13px;
+    padding-right: 13px;
+    background-color: #013372;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 80px;
+}
+
+.options3 a
+{
+    text-decoration: none;
+    color: #fff;
+}

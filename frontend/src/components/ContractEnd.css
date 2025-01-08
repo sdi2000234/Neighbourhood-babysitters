@@ -1,0 +1,121 @@
+* 
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.contractEnd
+{
+    width: fit-content;
+    text-align: left;
+    color: #000;
+}
+
+.contractEnd .userInfo
+{
+    display: flex;
+    margin-top: 20px;
+    background-color: #013372;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #fff;
+}
+
+.contractEnd .userInfo p
+{
+    align-self: center;
+    font-weight: bold;
+    font-size: 22px;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+
+.contractEnd .userInfo img
+{
+    height: 50;
+    width: 50px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover;
+    margin: 15px;
+    margin-left: 35px;
+}
+
+.contractEnd .contractDetails
+{
+    background-color: #DDDDDD;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 15px;
+    padding-bottom: 30px;
+}
+
+.contractEnd .contractDetails p
+{
+    margin: 20px;
+}
+
+.contractEnd .options
+{
+    display: flex; /* Use flexbox */
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.contractEnd .options p
+{
+    margin: 10px;
+}
+
+.contractEnd .options a
+{
+    text-decoration: none;
+    color: #fff;
+}
+
+.contractEnd .options button
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 18px;
+    padding: 5px;
+    background-color: #013372;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.contractEnd .options button.completed
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 18px;
+    padding: 5px;
+    background-color: #373737;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: default;
+    font-weight: bold;    
+}
+
+.contractEnd .rating
+{
+    display: flex; /* Use flexbox */
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.contractEnd .stars img
+{
+    height: 20px;
+    margin-bottom: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+}

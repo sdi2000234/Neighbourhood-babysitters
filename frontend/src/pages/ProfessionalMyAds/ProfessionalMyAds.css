@@ -1,0 +1,38 @@
+* 
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.professionalMyAds .createText
+{
+    color: #737373;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 60px;
+}
+
+.professionalMyAds .adPannels
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.professionalMyAds .adPannels .createNewAd button
+{
+    background-color: #dddddd;
+    border-radius: 5px;
+    margin-left: 60px;
+    margin-bottom: 60px;
+    border: none;
+    cursor: pointer;
+}
+
+.professionalMyAds .adPannels .createNewAd button img
+{
+    height: 80px;
+    margin: 100px;
+    margin-left: 125px;
+    margin-right: 125px;
+}

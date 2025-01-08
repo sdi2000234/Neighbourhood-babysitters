@@ -1,0 +1,24 @@
+.breadcrumbs a {
+    margin-right: 5px;
+    color: #007bff; 
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold !important;
+    font-size: 28px;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+    color: #0056b3; 
+}
+
+
+.breadcrumbs .MuiBreadcrumbs-separator {
+    font-size: 32px; /* Μεγαλύτερο μέγεθος */
+    margin: 0 8px;   /* Προσαρμογή κενών */
+    font-weight: bold;
+}
+
+
+
+

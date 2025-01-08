@@ -1,0 +1,130 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.personInfo2
+{
+    background-color: #ddd;
+    color: #373737;
+    margin: 160px;
+    margin-top: 60px;
+    padding: 60px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 5px;
+}
+
+.personInfo2 h1
+{
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.personInfo2 .missingInfo
+{
+    border: none;
+    border-radius: 5px;
+    color: #B5001E;
+    background-color: #fff;
+    height: 25px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: stretch;
+}
+
+.personInfo2 .infoBox
+{
+    border: none;
+    border-radius: 5px;
+    color: #000;
+    background-color: #fff;
+    height: 25px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: stretch;
+}
+
+.personInfo2 .infoType
+{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.personInfo2 .message
+{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #737373;
+}
+
+.personInfo2 h3
+{
+    margin-top: 50px;
+}
+
+.personInfo2 .healthVerifications
+{
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+.personInfo2 .healthVerifications p
+{
+    padding: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    width: 25%;
+}
+
+.personInfo2 .healthVerifications .valid
+{
+    background-color: #fff;
+    color: #373737;
+}
+
+.personInfo2 .healthVerifications .invalid
+{
+    background-color: #b5001e;
+    color: #fff;
+}
+
+.options2
+{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+.options2 button
+{
+    font-size: 20px;
+    padding: 8px;
+    padding-left: 13px;
+    padding-right: 13px;
+    background-color: #013372;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 80px;
+}
+
+.options2 button:hover
+{
+    background-color: #004caa;
+}
+
+.options2 a
+{
+    text-decoration: none;
+    color: #fff;
+}

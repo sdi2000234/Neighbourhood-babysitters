@@ -1,0 +1,64 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.personInfo4
+{
+    background-color: #ddd;
+    color: #373737;
+    margin: 160px;
+    margin-top: 60px;
+    padding: 80px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 5px;
+}
+
+.personInfo4 h1
+{
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.personInfo4 .message
+{
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #373737;
+    font-weight: bold;
+}
+
+.options4
+{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+.options4 button
+{
+    font-size: 20px;
+    padding: 8px;
+    padding-left: 13px;
+    padding-right: 13px;
+    background-color: #013372;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.options4 button:hover
+{
+    background-color: #004caa;
+}
+
+.options4 a
+{
+    text-decoration: none;
+    color: #fff;
+}

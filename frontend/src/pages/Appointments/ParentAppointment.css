@@ -1,0 +1,148 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+
+body {
+    overflow-x: hidden; /* Απενεργοποιεί το οριζόντιο scroll */
+}
+
+.ApPersonInfo
+{
+    display: flex;
+    flex-direction: column;
+    background-color: #ddd;
+    color: #373737;
+    border-radius: 5px; 
+    margin: 80px auto; 
+    padding: 40px; 
+    max-width: 800px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.ApPersonInfo h1
+{
+    align-self: center;
+}
+
+.ApPersonInfo .infoBox
+{
+    border: none;
+    border-radius: 5px;
+    color: black;
+    background-color: #fff;
+    height: 25px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: stretch;
+}
+
+.ApPersonInfo .infoType
+{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+h1{
+    margin-bottom: 20px;
+}
+
+.phoneAndEmail {
+    display: flex;
+    justify-content: center; /* Κεντράρει τα στοιχεία οριζόντια */
+    align-items: center; /* Κεντράρει τα στοιχεία κατακόρυφα */
+    gap: 80px; /* Δίνει ένα μικρό κενό ανάμεσα στα δύο στοιχεία */
+    width: 100%; /* Διασφαλίζει ότι το div καλύπτει όλο το διαθέσιμο πλάτος */  
+    margin-top: 30px;
+}
+
+.meeting,
+.dateAndtime {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 80px; 
+    width: 100%;   
+    margin-top: 20px;
+}
+
+#radiobutton{
+    cursor: pointer;
+}
+
+#time,
+#date{
+    color:#737373;
+    cursor: pointer;
+}
+
+.radio-label {
+    font-size: 18px; 
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    margin-top: 20px;
+}
+
+.mymessage {
+    width: 600px; 
+    height: 150px;
+    padding: 12px; /* Some padding */ 
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize:none;
+    font-size: 18px;
+}
+
+.submitbutton {
+    width: 65%; /* Το κουμπί θα καλύπτει το 100% του γονικού του container */
+    padding: 10px; /* Το padding βοηθά να μεγαλώσει το κουμπί κατά ύψος και πλάτος */
+    font-size: 25px; /* Μέγεθος γραμματοσειράς */
+    border: none; /* Αφαιρεί το default border του κουμπιού */
+    color: white; /* Χρώμα κειμένου */
+    border-radius: 5px; /* Στρογγυλεμένες γωνίες */
+    cursor: pointer; /* Δείκτης του ποντικιού για να δείξει ότι είναι clickable */
+    height: 60px;
+    background-color: #013372;
+}
+
+.submitbutton:hover {
+    background-color: rgb(2, 46, 99)
+}
+
+.cancelbutton {
+    width: 17%; 
+    padding: 10px; 
+    font-size: 25px; 
+    border: none; 
+    color: white; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    height: 60px;
+    background-color: #B5001E
+}
+
+.cancelbutton:hover {
+    background-color: #b40825fd
+}
+
+
+
+
+
+
+
+
+
+

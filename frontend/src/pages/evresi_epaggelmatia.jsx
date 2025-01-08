@@ -13,14 +13,64 @@ import {
   Paper,
   Divider,
   IconButton,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
 } from '@mui/material';
 import HeaderConnected from '../components/Header_connected';
 import Footer from '../components/Footer';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Page4 = () => {
-  // State to manage heart clicks
+  // State to manage favorites and selected language
   const [favorites, setFavorites] = useState({});
+  const [selectedLanguage, setSelectedLanguage] = useState('');
+
+  // Language options
+  const languages = [
+    'Αγγλικά',
+    'Γερμανικά',
+    'Ολλανδικά',
+    'Φλαμανδικά',
+    'Αφρικάανς',
+    'Δανικά',
+    'Σουηδικά',
+    'Νορβηγικά',
+    'Ισλανδικά',
+    'Φεροϊκά',
+    'Ισπανικά',
+    'Πορτογαλικά',
+    'Γαλλικά',
+    'Ιταλικά',
+    'Ρουμανικά',
+    'Καταλανικά',
+    'Γαλικιανά',
+    'Οξιτανικά',
+    'Σαρδηνιακά',
+    'Ρωσικά',
+    'Πολωνικά',
+    'Τσέχικα',
+    'Σλοβάκικα',
+    'Ουκρανικά',
+    'Λευκορωσικά',
+    'Σερβικά',
+    'Κροατικά',
+    'Βοσνιακά',
+    'Σλοβενικά',
+    'Βουλγαρικά',
+    'Μακεδονικά',
+    'Λετονικά',
+    'Λιθουανικά',
+    'Φινλανδικά',
+    'Εσθονικά',
+    'Ουγγρικά',
+    'Ελληνικά',
+    'Ουαλικά',
+    'Αλβανικά',
+    'Αρμενικά',
+    'Γεωργιανά',
+  ];
 
   // Toggle the favorite state for each professional card
   const handleFavoriteToggle = (index) => {
@@ -77,7 +127,25 @@ const Page4 = () => {
             <TextField label="Ηλικία Από" type="number" size="small" sx={{ width: '150px' }} />
             <TextField label="Ηλικία Έως" type="number" size="small" sx={{ width: '150px' }} />
             <TextField label="Έτη Εμπειρίας" size="small" sx={{ width: '150px' }} />
-            <TextField label="Ξένη Γλώσσα" size="small" sx={{ width: '150px' }} />
+
+            {/* Dropdown for Languages */}
+            <FormControl sx={{ width: '200px' }} size="small">
+              <InputLabel id="language-label">Ξένη Γλώσσα</InputLabel>
+              <Select
+                labelId="language-label"
+                value={selectedLanguage}
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+                label="Ξένη Γλώσσα"
+                MenuProps={{ PaperProps: { style: { maxHeight: 200 } } }}
+              >
+                {languages.map((lang, index) => (
+                  <MenuItem key={index} value={lang}>
+                    {lang}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
             <FormControlLabel
               control={<Checkbox size="small" />}
               label="Γνώση Νηπιακής Ψυχολογίας"

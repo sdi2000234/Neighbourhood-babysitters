@@ -1,0 +1,44 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+body {
+    overflow-x: hidden; /* Απενεργοποιεί το οριζόντιο scroll */
+}
+
+.personInfoApEnd {
+    background-color: #ddd;
+    color: #373737;
+    margin: 80px auto; 
+    padding: 40px; 
+    border-radius: 5px;
+    max-width: 800px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+
+.paragraphApEnd {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+}
+
+.myButtonApEnd
+{
+    font-size: 20px;
+    background-color: #013372;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 400px; 
+    padding: 10px 20px; 
+    margin-top: 40px; 
+}
+
+

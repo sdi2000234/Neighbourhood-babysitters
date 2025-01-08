@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+body {
+    overflow-x: hidden; /* Απενεργοποιεί το οριζόντιο scroll */
+}
+
+.MessageProfessionalContainer
+{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+}
+
+.firstRowMesProf{
+    display: flex;
+    gap: 50px;
+}
+
+.customButtonProfMes{
+    background-color: #013372; 
+    color: #ffffff; 
+    border: none; 
+    border-radius: 8px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+      
+.customButtonProfMes:hover {
+background-color: #0056a3 ; 
+}

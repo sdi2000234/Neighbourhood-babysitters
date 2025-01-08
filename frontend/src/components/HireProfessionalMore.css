@@ -1,0 +1,135 @@
+* 
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.hireMoreBG
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.hireMorePannel
+{
+    text-align: left;
+    color: #000;
+}
+
+.hireMorePannel .hireMoreInfo
+{
+    display: flex;
+    background-color: #013372;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #fff;
+}
+
+.hireMorePannel .hireMoreInfo p
+{
+    align-self: center;
+    font-weight: bold;
+    font-size: 22px;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+
+.hireMoreInfo img.hireMorePfp
+{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover;
+    align-self: center;
+    margin: 15px;
+    margin-left: 30px;
+}
+
+.hireMoreDetails
+{
+    background-color: #DDDDDD;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 30px;
+}
+
+.blurbMore h3
+{
+    color: #373737;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.blurbMore p
+{
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+.personalInfoMore img
+{
+    height: 25px;
+    max-width: 25px;
+    margin-right: 10px;
+}
+
+.ageMore
+{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.locationMore
+{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.locationMore img
+{
+    margin-right: 17px;
+}
+
+.experienceMore
+{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.hireMoreOptions
+{
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.hireMoreOptions button
+{
+    border-radius: 5px;
+    padding: 8px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.hireMoreOptions button
+{
+    background-color: #013372;
+}
+
+.hireMoreOptions button:hover
+{
+    background-color: #004caa;
+}

@@ -1,0 +1,45 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.scheduleTable table
+{
+    border-radius: 6px;
+    border-collapse: separate; /* Required for border-radius */
+    overflow: hidden; /* Clip content to the rounded edges */
+}
+
+.scheduleTable table th, .scheduleTable table td
+{
+    padding-left: 10px;
+    padding-right: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.scheduleTable input
+{
+    margin-right: 5px;
+    height: 18px;
+    width: 18px;
+}
+
+.scheduleTable .header
+{
+    background-color: #013372;
+    color: #fff;
+    font-weight: bold;
+}
+
+.r8, .r10, .r12, .r14, .r16, .r18, .r20
+{
+    background-color: #ddd;
+}
+
+.r9, .r11, .r13, .r15, .r17, .r19, .r21
+{
+    background-color: #fff;
+}

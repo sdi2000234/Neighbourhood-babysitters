@@ -1,0 +1,81 @@
+* 
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+body {
+    overflow-x: hidden; 
+}
+
+.professionalRatePannel {
+    width: fit-content;
+    text-align: left;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    background-color: #DDDDDD;
+    border-radius: 4px;
+    min-height: 400px;
+    min-width: 350px; 
+    max-width: 500px; 
+    box-sizing: border-box; 
+}
+
+
+.professionalRatePannel .professionalRateInfo
+{
+    display: flex;
+    background-color: #013372;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #fff;
+}
+
+.professionalRatePannel .professionalRateInfo p
+{
+    align-self: center;
+    font-weight: bold;
+    font-size: 22px;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+
+.dateRate
+{
+    display: flex;
+    margin-left: 8px;
+    font-size: medium;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.dateRate .wordRate
+{
+    font-weight: bold;
+}
+
+.professionalRatingComment,
+.professionalRating
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    padding: 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.professionalRating{
+    background-color: #ffffffc7;
+}
+
+.professionalRatingComment
+{
+    margin-bottom: 40px;
+}

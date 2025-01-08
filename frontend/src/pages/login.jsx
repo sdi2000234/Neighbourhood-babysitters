@@ -17,17 +17,26 @@ import Header from '../components/Header_unconnected'; // Header for Login Page
 import Footer from '../components/Footer'; // Footer Component
 
 const LoginPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook for navigation
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
+  // Dummy Credentials
+  const validEmail = 'test@example.com';
+  const validPassword = 'password123';
+
+  // Handle Form Submission
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Email:', email, 'Password:', password, 'Remember Me:', rememberMe);
-    // Authentication logic here
-    alert('Login Successful!');
-    navigate('/'); // Redirect to homepage after login
+    e.preventDefault(); // Prevent default form behavior
+
+    // Dummy Authentication Logic
+    if (email === validEmail && password === validPassword) {
+      alert('Login Successful!');
+      navigate('/dashboard'); // Redirect to Dashboard if login succeeds
+    } else {
+      alert('Invalid Email or Password'); // Error message for invalid credentials
+    }
   };
 
   return (

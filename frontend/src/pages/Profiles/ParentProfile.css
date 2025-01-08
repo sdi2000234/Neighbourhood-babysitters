@@ -1,0 +1,104 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+
+body {
+    overflow-x: hidden; /* Απενεργοποιεί το οριζόντιο scroll */
+}
+
+.PersonInfoParentProfile
+{
+    background-color: #ddd;
+    color: #373737;
+    border-radius: 5px; 
+    margin: 80px auto; 
+    padding: 40px; 
+    max-width: 800px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.PersonInfoParentProfile .infoBox
+{
+    border: none;
+    border-radius: 5px;
+    color: black;
+    background-color: #fff;
+    height: 25px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: stretch;
+}
+
+.PersonInfoParentProfile .infoType
+{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+h1{
+    margin-bottom: 20px;
+}
+
+
+.phoneAndEmailParentProfile {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 80px; 
+    width: 100%;  
+    margin-top: 30px;
+}
+
+
+.buttonsParentProfile {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px; 
+    margin-top: 15px;
+}
+
+.buttonsParentProfile > div {
+    display: flex; 
+    justify-content: space-between; 
+    gap: 10px; 
+}
+
+.buttonsParentProfile button {
+    flex: 1; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    background-color: #013372; 
+    color: #fff; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+.buttonsParentProfile button:hover {
+    background-color: #0056a3; 
+}
+
+.PfpParentProfile
+{
+    width: 160px !important;
+    height: 140px !important;
+}
+
+.logoutParentProfile
+{
+    background-color:#B5001E !important; 
+}
+
+.logoutParentProfile:hover
+{
+    background-color:#b11f37  !important; 
+}

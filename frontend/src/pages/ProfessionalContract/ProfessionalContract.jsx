@@ -59,11 +59,11 @@ function ProfessionalContract() {
   const navigate = useNavigate();
 
   const handle1 = () => {
-    navigate('../ProfessionalContract');
+    navigate('../ProfessionalAllAppointments');
   };
 
   const handle2 = () => {
-    navigate('../ParentContractNotFinal');
+    navigate('../ProfessionalContract');
   };
 
 

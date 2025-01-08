@@ -57,7 +57,6 @@ import WriteMessageProfessional from './pages/MessagePage/WriteMessageProfession
 //NEA
 import ParentContractFinal from './pages/ParentContract/ParentContractFinal.jsx';
 import ParentContractNotFinal from './pages/ParentContract/ParentContractNotFinal.jsx';
-import ContractProfessionalCard from './components/ContractProfessionalCard.jsx';
 import ProfessionalContract from './pages/ProfessionalContract/ProfessionalContract.jsx';
 
 const App = () => {
@@ -133,7 +132,6 @@ const App = () => {
         {/* ΝΕΑ */}
         <Route path='/ParentContractFinal' element={<ParentContractFinal />} />
         <Route path='/ParentContractNotFinal' element={<ParentContractNotFinal />} />
-        <Route path='/ContractProfessionalCard' element={<ContractProfessionalCard />} />
         <Route path='/ProfessionalContract' element={<ProfessionalContract />} />
         
 

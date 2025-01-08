@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ContractFinalCard.css';
 
 function ContractFinalCard({ type: initialType, number, name, start, finish }) {
@@ -41,6 +42,12 @@ function ContractFinalCard({ type: initialType, number, name, start, finish }) {
 
   const cancelRejection = () => {
     setShowRejectionModal(false); // Κλείνει το modal χωρίς αλλαγή
+  };
+
+  const navigate = useNavigate();
+  
+  const handleMore = () => {
+      navigate('../ParentContractRenew');
   };
 
   const renderStatus = () => {
@@ -90,7 +97,7 @@ function ContractFinalCard({ type: initialType, number, name, start, finish }) {
         <span style={{ marginLeft: '5px' }}>{finish}</span>
         </p>
         <br />
-        <button className='contractFinalCardButton'>Περισσότερα</button>
+        <button className='contractFinalCardButton' onClick={handleMore}>Περισσότερα</button>
         <br />
         <p className='contractFinalCardText'>Κατάσταση:</p>
         {renderStatus()}

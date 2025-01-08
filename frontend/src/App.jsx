@@ -55,8 +55,8 @@ import WriteMessageParent from './pages/MessagePage/WriteMessageParent';
 import WriteMessageProfessional from './pages/MessagePage/WriteMessageProfessional';
 
 //NEA
-import ContractFinalCard from './components/ContractFinalCard.jsx';
 import ParentContractFinal from './pages/ParentContract/ParentContractFinal.jsx';
+import ParentContractNotFinal from './pages/ParentContract/ParentContractNotFinal.jsx';
 
 const App = () => {
   const babysitterName = "Εύη Κωστοπούλου"; 
@@ -129,8 +129,8 @@ const App = () => {
         <Route path='/WriteMessageProfessional' element={<WriteMessageProfessional />} />
 
         {/* ΝΕΑ */}
-        <Route path='/ContractFinalCard' element={<ContractFinalCard type={1} number={"004"} name={userName} start={date} finish={date}/>} />
         <Route path='/ParentContractFinal' element={<ParentContractFinal />} />
+        <Route path='/ParentContractNotFinal' element={<ParentContractNotFinal />} />
 
       </Routes>
     </Router>

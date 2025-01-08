@@ -46,6 +46,11 @@ color: #B5001E;
     margin-bottom: 20px;
 }
 
+.contractFinalCardButton:hover 
+{
+background-color: #0056a3 ; 
+}
+
 .contractFinalCardText3{
     margin: 20px !important;
     font-size: 24px;
@@ -64,11 +69,6 @@ color: #B5001E;
 
 .ContractFinalCardstate1 .contractFinalCardButton:hover{
     background-color: #b11f37  ;
-}
-      
-.contractFinalCardButton:hover 
-{
-background-color: #0056a3 ; 
 }
 
 .contractFinalCardText2

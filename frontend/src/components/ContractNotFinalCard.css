@@ -1,0 +1,67 @@
+.ContractNotFinalCardContainer {
+    display: flex;
+    justify-content: space-between; /* Κάνει τα στοιχεία να βρίσκονται στις άκρες */
+    align-items: center;
+    background-color: #fff;
+    min-width: 700px;
+    min-height: 60px;
+    border-radius: 6px;
+    font-family: Arial;
+    position: relative; /* Για να τοποθετήσουμε το κουμπί X */
+    padding: 0 20px;
+}
+
+.boldTextContractNotFinalCard {
+    font-weight: bold;
+    margin-left: 6px;
+}
+
+.contractNotFinalCardPfp {
+    margin-left: 30px;
+    margin-right: 10px;
+    position: absolute; /* Τοποθέτηση της εικόνας πιο δεξιά */
+    right: 20px;
+}
+
+.contractNotFinalCardButton {
+    background-color: #013372; 
+    color: #ffffff; 
+    border: none; 
+    border-radius: 8px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+    margin-right: 26px;
+
+}
+
+.contractNotFinalCardButton:hover {
+    background-color: #0056a3 ; 
+}
+
+.closeButton {
+    background-color: transparent;
+    border: none;
+    color: #013372;
+    /* color: yellow; */
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.closeButton:hover {
+    color: #f00;
+}
+
+.editIcon
+{
+    width: 20px; 
+    height: 20px;
+    margin-left: 12px;
+}

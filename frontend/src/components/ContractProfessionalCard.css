@@ -1,0 +1,87 @@
+.ContractProfessionalCardContainer
+{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.ContractProfessionalCardCloseButton
+{
+    align-self: flex-end;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #013372;
+}
+
+  
+.ContractProfessionalCardCloseButton:hover {
+color: #B5001E;
+}
+
+.ContractProfessionalCardText
+{
+    font-weight: bold;
+}
+
+.ContractProfessionalCardButton
+{
+    background-color: #013372; 
+    color: #ffffff; 
+    border: none; 
+    border-radius: 8px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.ContractProfessionalCardButton:hover 
+{
+background-color: #0056a3 ; 
+}
+
+.ContractProfessionalCardText3{
+    margin: 20px !important;
+    font-size: 24px;
+}
+
+.ContractProfessionalCardText3 input[type="checkbox"] {
+    transform: scale(1.5); /* Αυξάνει το μέγεθος του checkbox κατά 1.5 φορές */
+    margin-right: 10px; /* Αν θέλεις να προσθέσεις λίγο κενό μετά το checkbox */
+  }
+  
+
+.ContractProfessionalCardstate1 .ContractProfessionalCardButton{
+    background-color: #B5001E ;
+    margin-top: 14px;
+}
+
+.ContractProfessionalCardstate1 .ContractProfessionalCardButton:hover{
+    background-color: #b11f37  ;
+}
+
+.ContractProfessionalCardText2
+{
+    color: rgb(63, 62, 62);
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.ContractProfessionalCardstate1
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

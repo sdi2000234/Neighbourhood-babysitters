@@ -55,6 +55,11 @@ import NotificationsProfessional from './pages/NotificationsPage/NotificationsPr
 import WriteMessageParent from './pages/MessagePage/WriteMessageParent';
 import WriteMessageProfessional from './pages/MessagePage/WriteMessageProfessional';
 
+//NEA
+import ParentContractFinal from './pages/ParentContract/ParentContractFinal.jsx';
+import ParentContractNotFinal from './pages/ParentContract/ParentContractNotFinal.jsx';
+import ProfessionalContract from './pages/ProfessionalContract/ProfessionalContract.jsx';
+
 const App = () => {
   const babysitterName = "Εύη Κωστοπούλου"; 
   const userName = "ΙΩΑΝΝΑ";
@@ -125,6 +130,13 @@ const App = () => {
 
         <Route path='/WriteMessageParent' element={<WriteMessageParent />} />
         <Route path='/WriteMessageProfessional' element={<WriteMessageProfessional />} />
+
+        {/* ΝΕΑ */}
+        <Route path='/ParentContractFinal' element={<ParentContractFinal />} />
+        <Route path='/ParentContractNotFinal' element={<ParentContractNotFinal />} />
+        <Route path='/ProfessionalContract' element={<ProfessionalContract />} />
+        
+
       </Routes>
     </Router>
   );

@@ -18,16 +18,19 @@ import {
   InputLabel,
   FormControl,
 } from '@mui/material';
-import HeaderConnected from '../components/Header_connected';
+import HeaderConnected from '../components/Header_connected_parent';
 import Footer from '../components/Footer';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Pagination from '@mui/material/Pagination'; // (NEW) Pagination import
 
 const Page4 = () => {
-  // State to manage favorites and selected language
+  // --------- STATE ---------
   const [favorites, setFavorites] = useState({});
   const [selectedLanguage, setSelectedLanguage] = useState('');
+  const [currentPage, setCurrentPage] = useState(1); // (NEW) For pagination
+  const professionalsPerPage = 9; // (NEW) Ads per page
 
-  // Language options
+  // --------- LANGUAGE OPTIONS (same as first snippet) ---------
   const languages = [
     'Αγγλικά',
     'Γερμανικά',
@@ -72,7 +75,31 @@ const Page4 = () => {
     'Γεωργιανά',
   ];
 
-  // Toggle the favorite state for each professional card
+  // --------- PROFESSIONALS (from second snippet / "ads") ---------
+  const professionals = [
+    { name: 'Ελένη Μπούρου', rating: 4.5, reviews: 16, age: 36, area: 'Αμπελόκηποι', exp: 1 },
+    { name: 'Βίκυ Ρούσση', rating: 4.0, reviews: 27, age: 41, area: 'Νέα Ιωνία', exp: 5 },
+    { name: 'Αθηνά Καλομοίρα', rating: 3.5, reviews: 6, age: 22, area: 'Ζωγράφου', exp: 1 },
+    { name: 'Ιωάννα Μακρή', rating: 5.0, reviews: 116, age: 39, area: 'Χαλάνδρι', exp: 6 },
+    { name: 'Δώρα Τσουμαλίδου', rating: 4.0, reviews: 12, age: 64, area: 'Κορωπί', exp: 20 },
+    { name: 'Άλεξ Στάθης', rating: 4.0, reviews: 9, age: 29, area: 'Γλυκά Νερά', exp: 2 },
+    { name: 'Νίκος Θεοδώρου', rating: 3.5, reviews: 2, age: 55, area: 'Καλλιθέα', exp: 7 },
+    { name: 'Μαρία Καλού', rating: 4.5, reviews: 20, age: 45, area: 'Περιστέρι', exp: 8 },
+    { name: 'Γιώργος Παπαδόπουλος', rating: 4.0, reviews: 15, age: 35, area: 'Μαρούσι', exp: 4 },
+    { name: 'Άννα Τσακίρη', rating: 5.0, reviews: 45, age: 40, area: 'Βριλήσσια', exp: 10 },
+  ];
+
+  // --------- PAGINATION LOGIC (from second snippet) ---------
+  const totalPages = Math.ceil(professionals.length / professionalsPerPage);
+  const currentProfessionals = professionals.slice(
+    (currentPage - 1) * professionalsPerPage,
+    currentPage * professionalsPerPage
+  );
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  // --------- FAVORITE TOGGLE (same approach as first snippet) ---------
   const handleFavoriteToggle = (index) => {
     setFavorites((prev) => ({
       ...prev,
@@ -87,29 +114,12 @@ const Page4 = () => {
 
       {/* Main Content */}
       <Container sx={{ flexGrow: 1, mt: 4, mb: 4 }}>
-        {/* Connection Info */}
-        <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between' }}>
-          <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-            Έχετε συνδεθεί ως Γονέας/Κηδεμόνας.
-          </Typography>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: '#004080',
-              color: 'white',
-              '&:hover': { backgroundColor: '#003366' },
-            }}
-          >
-            Σύνδεση ως Επαγγελματίας
-          </Button>
-        </Box>
-
         {/* Title */}
         <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
           ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ
         </Typography>
 
-        {/* Filters Section */}
+        {/* --------- FILTERS SECTION (from first snippet) --------- */}
         <Box
           sx={{
             backgroundColor: '#f8f9fa',
@@ -155,11 +165,7 @@ const Page4 = () => {
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
             <RadioGroup row sx={{ flexGrow: 1 }}>
               <FormControlLabel value="full" control={<Radio size="small" />} label="Όλική Απασχόληση" />
-              <FormControlLabel
-                value="partial"
-                control={<Radio size="small" />}
-                label="Μερική Απασχόληση"
-              />
+              <FormControlLabel value="partial" control={<Radio size="small" />} label="Μερική Απασχόληση" />
             </RadioGroup>
             <Button
               variant="contained"
@@ -174,24 +180,16 @@ const Page4 = () => {
           </Box>
         </Box>
 
-        {/* Information Section */}
+        {/* --------- INFORMATION SECTION (from first snippet) --------- */}
         <Typography variant="body2" sx={{ mb: 2 }}>
           1. Χρησιμοποιήστε τα φίλτρα για πιο εξατομικευμένα αποτελέσματα. 2. Πατήστε την καρδιά για
           να αποθηκεύσετε επαγγελματίες που σας ενδιαφέρουν. (Εμφανίζονται στη σελίδα "Πρόσληψη
           Επαγγελματία")
         </Typography>
 
-        {/* Professionals Grid */}
+        {/* --------- PROFESSIONALS GRID (merged: using pagination & 'currentProfessionals') --------- */}
         <Grid container spacing={2}>
-          {[
-            { name: 'Ελένη Μπούρου', rating: 4.5, reviews: 16, age: 36, area: 'Αμπελόκηποι', exp: 1 },
-            { name: 'Βίκυ Ρούσση', rating: 4.0, reviews: 27, age: 41, area: 'Νέα Ιωνία', exp: 5 },
-            { name: 'Αθηνά Καλομοίρα', rating: 3.5, reviews: 6, age: 22, area: 'Ζωγράφου', exp: 1 },
-            { name: 'Ιωάννα Μακρή', rating: 5.0, reviews: 116, age: 39, area: 'Χαλάνδρι', exp: 6 },
-            { name: 'Δώρα Τσουμαλίδου', rating: 4.0, reviews: 12, age: 64, area: 'Κορωπί', exp: 20 },
-            { name: 'Άλεξ Στάθης', rating: 4.0, reviews: 9, age: 29, area: 'Γλυκά Νερά', exp: 2 },
-            { name: 'Νίκος Θεοδώρου', rating: 3.5, reviews: 2, age: 55, area: 'Καλλιθέα', exp: 7 },
-          ].map((pro, index) => (
+          {currentProfessionals.map((pro, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Paper
                 sx={{
@@ -230,10 +228,13 @@ const Page4 = () => {
           ))}
         </Grid>
 
-        {/* Pagination */}
-        <Typography variant="body2" align="center" sx={{ mt: 4 }}>
-          &lt; 1 2 ... 8 9 &gt;
-        </Typography>
+        {/* --------- PAGINATION (from second snippet) --------- */}
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}
+        />
       </Container>
 
       {/* Footer */}

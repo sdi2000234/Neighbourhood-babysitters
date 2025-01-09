@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { 
-  Box, 
-  Container, 
-  Typography, 
-  Button, 
-  Paper, 
-  Grid, 
-  Accordion, 
-  AccordionSummary, 
-  AccordionDetails 
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  Paper,
+  Grid,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -19,12 +24,24 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-import Header from '../components/Header_connected';
+import Header from '../components/Header_connected_parent';
 import Footer from '../components/Footer';
-
-
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import elLocale from '@fullcalendar/core/locales/el'; // Import Greek locale
+import './DashboardPage.css';
 
 const DashboardPage = () => {
+  const [events, setEvents] = useState([
+    { title: 'Ραντεβού', date: '2025-01-06' },
+    { title: 'Προθεσμία', date: '2025-01-08' },
+  ]);
+
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [newEventTitle, setNewEventTitle] = useState('');
+  const [selectedDate, setSelectedDate] = useState('');
+
   const steps = [
     { icon: <PersonIcon fontSize="large" />, text: 'Συμπλήρωσε τα Στοιχεία σου' },
     { icon: <SearchIcon fontSize="large" />, text: 'Αναζήτησε Επαγγελματίες' },
@@ -43,11 +60,21 @@ const DashboardPage = () => {
     { question: 'Εάν η αίτηση μου απορριφθεί, μπορώ να υποβάλλω νέα αίτηση;', answer: 'Ναι, εφόσον πληρούνται τα κριτήρια, μπορείτε να υποβάλλετε νέα αίτηση κατά τον επόμενο κύκλο υποβολών.' },
   ];
 
+  const handleDateClick = (info) => {
+    setSelectedDate(info.dateStr);
+    setDialogOpen(true);
+  };
+
+  const handleAddEvent = () => {
+    setEvents([...events, { title: newEventTitle, date: selectedDate }]);
+    setDialogOpen(false);
+    setNewEventTitle('');
+  };
+
   return (
     <Box>
       <Header />
 
-      {/* New Section (Steps) */}
       <Box sx={{ backgroundColor: '#f0f0f0', py: 2, borderBottom: '1px solid #ddd' }}>
         <Container>
           <Grid container spacing={1} alignItems="center" justifyContent="center" wrap="nowrap">
@@ -55,7 +82,9 @@ const DashboardPage = () => {
               <React.Fragment key={index}>
                 <Grid item sx={{ textAlign: 'center' }}>
                   {step.icon}
-                  <Typography variant="body2" sx={{ mt: 1 }}>{step.text}</Typography>
+                  <Typography variant="body2" sx={{ mt: 1 }}>
+                    {step.text}
+                  </Typography>
                 </Grid>
                 {index < steps.length - 1 && (
                   <Grid item>
@@ -68,54 +97,22 @@ const DashboardPage = () => {
         </Container>
       </Box>
 
-      {/* Main Container */}
       <Container sx={{ mt: 4, mb: 6 }}>
-        {/* Agreement Section */}
         <Typography variant="h6" fontWeight="bold" mb={2}>
-          Τρέχον Συμφωνητικό:
+          Ημερολόγιο:
         </Typography>
-        <Paper elevation={3} sx={{ p: 3, mb: 4 }}>
-          <Typography variant="subtitle1">👤 Αγγελική Χριστοπούλου</Typography>
-          <Typography>Έναρξη: 01/01/2024</Typography>
-          <Typography>Λήξη: 01/02/2024</Typography>
-          <Typography>Ποσό Πληρωμής: 500.00€</Typography>
-          <Typography>Επόμενη Πληρωμή: 01/02/2024</Typography>
-          <Box mt={2}>
-            <Button variant="contained" sx={{ mr: 2, backgroundColor: '#013372' }}>
-              Διαχείριση
-            </Button>
-            <Button variant="contained" color="success">
-              Πληρωμή
-            </Button>
-          </Box>
+        <Paper elevation={3} sx={{ p: 3, mb: 4, height: '500px' }} className="calendar-container">
+          <FullCalendar
+            plugins={[dayGridPlugin, interactionPlugin]}
+            initialView="dayGridMonth"
+            locale={elLocale} // Set Greek locale
+            selectable={true}
+            editable={true}
+            events={events}
+            dateClick={handleDateClick}
+          />
         </Paper>
 
-        {/* Calendar Section */}
-      <Typography variant="h6" fontWeight="bold" mb={2}>
-        Ημερολόγιο:
-      </Typography>
-      <Paper elevation={3} sx={{ p: 3, mb: 4 }}>
-        <Box sx={{ textAlign: 'center', backgroundColor: '#013372', color: 'white', p: 1, mb: 1, borderRadius: '5px' }}>
-          <Typography variant="subtitle1">&lt; Νοέμβριος &gt;</Typography>
-        </Box>
-        <Grid container spacing={1} columns={7}>
-          {["Δε", "Τρ", "Τε", "Πε", "Πα", "Σα", "Κυ"].map((day) => (
-            <Grid item xs={1} key={day}>
-              <Typography textAlign="center" fontWeight="bold" color="#013372">{day}</Typography>
-            </Grid>
-          ))}
-          {[...Array(30)].map((_, i) => (
-            <Grid item xs={1} key={i}>
-              <Typography textAlign="center" sx={{ color: i === 8 || i === 25 ? 'red' : '#013372' }}>
-                {i + 1}
-              </Typography>
-            </Grid>
-          ))}
-        </Grid>
-      </Paper>
-
-       {/* FAQ Section */}
-      <Container sx={{ mt: 4, mb: 6 }}>
         <Typography variant="h6" fontWeight="bold" mb={2}>
           Συχνές Ερωτήσεις:
         </Typography>
@@ -131,9 +128,25 @@ const DashboardPage = () => {
             </Accordion>
           ))}
         </Paper>
-        </Container>
-
       </Container>
+
+      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+        <DialogTitle>Προσθήκη Εκδήλωσης</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Τίτλος Εκδήλωσης"
+            fullWidth
+            value={newEventTitle}
+            onChange={(e) => setNewEventTitle(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDialogOpen(false)}>Άκυρο</Button>
+          <Button onClick={handleAddEvent} color="primary">Προσθήκη</Button>
+        </DialogActions>
+      </Dialog>
 
       <Footer />
     </Box>

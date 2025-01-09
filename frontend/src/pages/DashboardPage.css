@@ -1,0 +1,47 @@
+.calendar-container {
+    height: 500px; /* Ensure enough height for the calendar */
+    overflow: hidden; /* Prevent any unwanted overflow */
+  }
+  
+  .fc {
+    font-family: 'Roboto', sans-serif; /* Apply consistent font */
+    margin-top: 10px;
+    height: 100%; /* Make sure the calendar expands fully */
+  }
+  
+  .fc-scrollgrid {
+    min-height: 400px; /* Prevent grid shrinking */
+  }
+  
+  .fc-daygrid-event {
+    background-color: #2196f3;
+    color: white;
+    border-radius: 4px;
+    padding: 2px;
+    text-align: center;
+  }
+  
+  .fc-day-today {
+    background: #e3f2fd !important; /* Highlight today's date */
+  }
+  
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .legend-item.red {
+    width: 12px;
+    height: 12px;
+    background-color: red;
+    margin-right: 5px;
+  }
+  
+  .legend-item.blue {
+    width: 12px;
+    height: 12px;
+    background-color: blue;
+    margin-right: 5px;
+  }
+  

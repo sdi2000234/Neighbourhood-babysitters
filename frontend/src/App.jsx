@@ -19,6 +19,7 @@ import ProfessionalCreateAd4 from './pages/ProfessionalMyAds/ProfessionalCreateA
 import Page1 from './pages/arxiki';
 import LoginPage from './pages/login';
 import DashboardPage from './pages/dashboard';
+import DashboardPageParent from './pages/dashboard_professional.jsx'; // Adjust the path if necessary
 import RegisterPage from './pages/Register';
 import Page4 from './pages/evresi_epaggelmatia';
 
@@ -76,6 +77,7 @@ const App = () => {
         <Route path='/' element={<Page1 />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/dashboard' element={<DashboardPage />} />
+        <Route path='/dashboard-parent' element={<DashboardPageParent />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/evresi-epaggelmatia' element={<Page4 />} />
 

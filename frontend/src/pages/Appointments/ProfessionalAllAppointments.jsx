@@ -1,9 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import AppointmentCardParent from '../../components/AppointmentCardParent'
 import ProfessionalNavigation from '../../components/ProfessionalNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import Grid from '@mui/material/Grid2';  
+import './ProfessionalAllAppointments.css';
 
 function ProfessionalAllAppointments() {
 
@@ -130,32 +132,60 @@ function ProfessionalAllAppointments() {
         return `${day}/${month}/${year}`;
     };
 
+    //Για περιήγηση σε υπολοιπες σελίδες
+    const navigate = useNavigate();
+
+    const handle1 = () => {
+        navigate('../ProfessionalAllAppointments');
+    };
+
+    const handle2 = () => {
+        navigate('../ProfessionalContract');
+    };
+
     return (
         <>
             <ProfessionalNavigation currentNavPage={'profAppointments'}/>
             <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
 
-                <Grid container spacing={4} justifyContent="center" alignItems="flex-start" className="appointmentsProfessionals">
-                    {sortedAppointments.map((appointment, index) => (
-                        <Grid item xs={12} sm={6} md={4} key={index}>
-                            <AppointmentCardParent 
-                                picLink={appointment.picLink} 
-                                parentName={appointment.parentName} 
-                                date={formatDate(appointment.date)}  // Εμφάνιση ημερομηνίας με την επιθυμητή μορφή
-                                time={appointment.time} 
-                                loc={appointment.loc} 
-                                loc2={appointment.loc2}
-                                childAge={appointment.childAge}
-                                type={appointment.type} 
-                                state={appointment.state}
-                                comments={appointment.comments}
-                                email={appointment.email}
-                                phone={appointment.phone}
-                            />
-                        </Grid>
-                    ))}
-                </Grid>
+                <div className='ProfessionalAllAppointments'>
 
+                    <div className='card1 text-center'>
+                        <div className='card-header1'>
+                            <ul className='nav1 nav-tabs1 card-header-tabs'>
+                            <li className='nav-item1'>
+                                <button className='nav-link1 active' onClick={handle1}>ΡΑΝΤΕΒΟΥ</button>
+                            </li>
+                            <li className='nav-item1'>
+                                <button className='nav-link1 ' onClick={handle2}>ΑΙΤΗΣΕΙΣ ΣΥΝΕΡΓΑΣΙΑΣ</button>
+                            </li>
+                            </ul>
+                        </div>
+
+
+                        <Grid container spacing={4} justifyContent="center" alignItems="flex-start" className="appointmentsProfessionals">
+                            {sortedAppointments.map((appointment, index) => (
+                                <Grid item xs={12} sm={6} md={4} key={index}>
+                                    <AppointmentCardParent 
+                                        picLink={appointment.picLink} 
+                                        parentName={appointment.parentName} 
+                                        date={formatDate(appointment.date)}  // Εμφάνιση ημερομηνίας με την επιθυμητή μορφή
+                                        time={appointment.time} 
+                                        loc={appointment.loc} 
+                                        loc2={appointment.loc2}
+                                        childAge={appointment.childAge}
+                                        type={appointment.type} 
+                                        state={appointment.state}
+                                        comments={appointment.comments}
+                                        email={appointment.email}
+                                        phone={appointment.phone}
+                                    />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </div>
+                </div>
+                
             <Footer />
         </>
     );

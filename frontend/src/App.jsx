@@ -18,8 +18,8 @@ import ProfessionalCreateAd4 from './pages/ProfessionalMyAds/ProfessionalCreateA
 // Import General Pages
 import Page1 from './pages/arxiki';
 import LoginPage from './pages/login';
-import DashboardPage from './pages/dashboard';
-import DashboardPageParent from './pages/dashboard_professional.jsx'; // Adjust the path if necessary
+import DashboardPageParent from './pages/dashboard';
+import DashboardPageProfessional from './pages/dashboard_professional.jsx'; // Adjust the path if necessary
 import RegisterPage from './pages/Register';
 import Page4 from './pages/evresi_epaggelmatia';
 
@@ -81,10 +81,10 @@ const App = () => {
         {/* General Routes */}
         <Route path='/' element={<Page1 />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/dashboard' element={<DashboardPage />} />
-        <Route path='/dashboard-parent' element={<DashboardPageParent />} />
+        <Route path='/dashboard' element={<DashboardPageParent />} />
+        <Route path='/dashboard_professional' element={<DashboardPageProfessional />} />
         <Route path='/register' element={<RegisterPage />} />
-        <Route path='/evresi-epaggelmatia' element={<Page4 />} />
+        <Route path='/evresi_epaggelmatia' element={<Page4 />} />
 
         {/* Parent Routes */}
         <Route path='/ParentContractPayment' element={<ParentContractPayment/>}/>

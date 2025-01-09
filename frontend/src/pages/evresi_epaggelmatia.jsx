@@ -18,7 +18,7 @@ import {
   InputLabel,
   FormControl,
 } from '@mui/material';
-import HeaderConnected from '../components/Header_connected_parent';
+import ParentNavigation from '../components/ParentNavigation';
 import Footer from '../components/Footer';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Pagination from '@mui/material/Pagination'; // (NEW) Pagination import
@@ -110,7 +110,7 @@ const Page4 = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       {/* Header */}
-      <HeaderConnected />
+      <ParentNavigation currentNavPage={'parFind'}/>
 
       {/* Main Content */}
       <Container sx={{ flexGrow: 1, mt: 4, mb: 4 }}>

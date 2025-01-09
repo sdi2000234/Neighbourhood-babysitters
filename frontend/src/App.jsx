@@ -22,6 +22,11 @@ import DashboardPage from './pages/dashboard';
 import DashboardPageParent from './pages/dashboard_professional.jsx'; // Adjust the path if necessary
 import RegisterPage from './pages/Register';
 import Page4 from './pages/evresi_epaggelmatia';
+import Page5 from './pages/epeksergasia_profile.jsx'; // Adjust the path if necessary
+import ProfilePersonal from './pages/dimiourgia_profile_parent.jsx'; // Adjust path as needed
+import DimiourgiaProfileProfessional1 from './pages/dimiourgia_profile_professional_1';
+import DimiourgiaProfileProfessional2 from './pages/dimiourgia_profile_professional_2';
+import DimiourgiaProfileProfessional3 from './pages/dimiourgia_profile_professional_3';
 
 // Import Additional Pages
 import RatingParents from './pages/RatingPage/RatingParents';
@@ -85,6 +90,11 @@ const App = () => {
         <Route path='/dashboard-parent' element={<DashboardPageParent />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/evresi-epaggelmatia' element={<Page4 />} />
+        <Route path="/settings" element={<Page5 />} />
+        <Route path="/profile-epeksergasia-parent" element={<ProfilePersonal />} />
+        <Route path="/profesionaleditstep1" element={<DimiourgiaProfileProfessional1 />} />
+        <Route path="/profesionaleditstep2" element={<DimiourgiaProfileProfessional2 />} />
+        <Route path="/profesionaleditstep3" element={<DimiourgiaProfileProfessional3 />} />  
 
         {/* Parent Routes */}
         <Route path='/ParentContractPayment' element={<ParentContractPayment/>}/>

@@ -56,10 +56,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <div style={styles.footer}>
-        <p>&copy; 2024 - Υποστήριξη από το ΕΔΥΤΕ</p>
-      </div>
+      
     </div>
   );
 };

@@ -127,7 +127,7 @@ const [endDate, setEndDate] = useState(null);
   <InputLabel>Φιλοξενία</InputLabel>
   <Select value={hostingOption} onChange={(e) => setHostingOption(e.target.value)}>
     <MenuItem value="home">Σε δικό μου χώρο</MenuItem>
-    <MenuItem value="client">Σε χώρο οφελούμενου</MenuItem>
+    <MenuItem value="client">Σε χώρο του Επαγγελματία</MenuItem>
   </Select>
 </FormControl>
 

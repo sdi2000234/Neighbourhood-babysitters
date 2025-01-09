@@ -3,7 +3,7 @@ import { Box, Container, Typography, TextField, Checkbox, FormControlLabel, Butt
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebaseConfig'; // Import Firebase auth
-import Header from '../components/Header_unconnected';
+import Header from '../components/Header_starter';
 import Footer from '../components/Footer';
 
 const RegisterPage = () => {

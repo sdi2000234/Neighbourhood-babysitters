@@ -15,7 +15,7 @@ import {
   Avatar,
 } from '@mui/material';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import Header from '../components/Header_unconnected';
+import Header from '../components/Header_starter';
 import Footer from '../components/Footer';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -92,51 +92,8 @@ const [endDate, setEndDate] = useState(null);
           textAlign: 'center',
         }}
       >
-        {/* Search Bar */}
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 1,
-              padding: '10px',
-              backgroundColor: 'white',
-              borderRadius: '8px',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-              flexWrap: 'wrap',
-            }}
-          >
-           <Button variant="contained" sx={{ backgroundColor: '#013372', fontWeight: 'bold' }}>
-  Αναζήτηση κοντά στην θέση μου
-</Button>
-
-
-            <DatePicker
-              value={startDate}
-              onChange={(newValue) => setStartDate(newValue)}
-              renderInput={(params) => <TextField {...params} size="small" placeholder="από" />}
-            />
-
-            <DatePicker
-              value={endDate}
-              onChange={(newValue) => setEndDate(newValue)}
-              renderInput={(params) => <TextField {...params} size="small" placeholder="έως" />}
-            />
-
-<FormControl size="small" sx={{ minWidth: 180 }}>
-  <InputLabel>Φιλοξενία</InputLabel>
-  <Select value={hostingOption} onChange={(e) => setHostingOption(e.target.value)}>
-    <MenuItem value="home">Σε δικό μου χώρο</MenuItem>
-    <MenuItem value="client">Σε χώρο του Επαγγελματία</MenuItem>
-  </Select>
-</FormControl>
-
-
-            <Button variant="contained" sx={{ backgroundColor: '#13372', fontWeight: 'bold' }}>
-              ΑΝΑΖΗΤΗΣΗ
-            </Button>
-          </Box>
-        </LocalizationProvider>
+      
+        
 
       </Box>
 
@@ -188,7 +145,7 @@ const [endDate, setEndDate] = useState(null);
       {/* Top Keepers Section */}
       <Container sx={{ mt: 6, mb: 6 }}>
         <Typography variant="h4" textAlign="center" fontWeight="bold" mb={4}>
-          🐾 Top 10 νταντάδες τελευταίου μήνα 🐾
+           Top νταντάδες τελευταίου μήνα 
         </Typography>
         <Grid container spacing={3}>
           {topKeepers.map((keeper, index) => (
@@ -222,7 +179,7 @@ const [endDate, setEndDate] = useState(null);
                   {keeper.name}
                 </Typography>
                 <Avatar src={keeper.profileImg} sx={{ width: 80, height: 80, margin: '10px auto' }} />
-                <Typography variant="body1">🐾 {keeper.rating}</Typography>
+                <Typography variant="body1"> {keeper.rating}</Typography>
                 <Button
   variant="contained"
   sx={{ mt: 2, backgroundColor: '#013372', color: '#fff', fontWeight: 'bold' }}

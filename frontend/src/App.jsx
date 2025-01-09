@@ -16,17 +16,20 @@ import ProfessionalCreateAd3 from './pages/ProfessionalMyAds/ProfessionalCreateA
 import ProfessionalCreateAd4 from './pages/ProfessionalMyAds/ProfessionalCreateAd4';
 
 // Import General Pages
-import Page1 from './pages/arxiki';
-import LoginPage from './pages/login';
+import Page1 from './pages/WelcomePage.jsx';
+import LoginPage from './pages/Login.jsx';
 import DashboardPageParent from './pages/dashboard';
 import DashboardPageProfessional from './pages/dashboard_professional.jsx'; // Adjust the path if necessary
 import RegisterPage from './pages/Register';
-import Page4 from './pages/evresi_epaggelmatia';
-import Page5 from './pages/epeksergasia_profile.jsx'; // Adjust the path if necessary
-import ProfilePersonal from './pages/dimiourgia_profile_parent.jsx'; // Adjust path as needed
-import DimiourgiaProfileProfessional1 from './pages/dimiourgia_profile_professional_1';
-import DimiourgiaProfileProfessional2 from './pages/dimiourgia_profile_professional_2';
-import DimiourgiaProfileProfessional3 from './pages/dimiourgia_profile_professional_3';
+import Page4 from './pages/FindProfessional.jsx';
+import Page5 from './pages/EditProfileParent.jsx'; // Adjust the path if necessary
+import ProfilePersonal from './pages/make_profile_parent.jsx'; // Adjust path as needed
+import DimiourgiaProfileProfessional1 from './pages/make_profile_professional_1.jsx';
+import DimiourgiaProfileProfessional2 from './pages/make_profile_professional_2.jsx';
+import DimiourgiaProfileProfessional3 from './pages/make_profile_professional_3.jsx';
+import FindProfessionalUnconnected from './pages/FindProfessional_unconnected.jsx'; // Adjust the path as necessary
+import ProfessionalDetails from './pages/ProfessionalDetails'; // Adjust path as necessary
+
 
 // Import Additional Pages
 import RatingParents from './pages/RatingPage/RatingParents';
@@ -95,6 +98,8 @@ const App = () => {
         <Route path="/profesionaleditstep1" element={<DimiourgiaProfileProfessional1 />} />
         <Route path="/profesionaleditstep2" element={<DimiourgiaProfileProfessional2 />} />
         <Route path="/profesionaleditstep3" element={<DimiourgiaProfileProfessional3 />} />  
+        <Route path="/FindProfessional_unconnected" element={<FindProfessionalUnconnected />} /> {/* Page4 route */}
+        <Route path="/professional-details" element={<ProfessionalDetails />} />
 
         {/* Parent Routes */}
         <Route path='/ParentContractPayment' element={<ParentContractPayment/>}/>

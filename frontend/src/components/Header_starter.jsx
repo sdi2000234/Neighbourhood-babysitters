@@ -13,34 +13,54 @@ const Header = () => {
       padding: '10px',
     },
     navButton: {
-      padding: '15px',
-      backgroundColor: '#013372', // Updated button color to match header
+      padding: '10px 15px',
+      backgroundColor: 'transparent', // Transparent to blend with header
       border: 'none',
       color: '#fff',
       cursor: 'pointer',
       fontWeight: 'bold',
+      fontSize: '16px',
     },
-    footer: {
-      backgroundColor: '#013372',
-      color: '#fff',
-      textAlign: 'center',
+    linkContainer: {
+      display: 'flex',
+      gap: '20px',
+      alignItems: 'center',
+    },
+    logo: {
+      height: '50px',
+      cursor: 'pointer',
       padding: '10px',
-      position: 'fixed', // Fix footer to the bottom
-      width: '100%',
-      bottom: 0,
-    }
+    },
   };
 
   return (
     <div>
       <div style={styles.navBar}>
+        {/* Logo */}
         <img
           alt="logo"
           src={govgr}
-          style={{ height: '50px', cursor: 'pointer', padding: '10px' }}
+          style={styles.logo}
           onClick={() => navigate('/')} // Navigate to home on logo click
         />
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: '10px' }}>
+
+        {/* Right-Side Links and Buttons */}
+        <div style={{ marginLeft: 'auto', ...styles.linkContainer }}>
+          {/* New Links */}
+          <button
+            style={styles.navButton}
+            onClick={() => navigate('/find-job')}
+          >
+            Βρείτε Εργασία
+          </button>
+          <button
+            style={styles.navButton}
+            onClick={() => navigate('/find-professional')}
+          >
+            Βρείτε Επαγγελματία
+          </button>
+
+          {/* Existing Buttons */}
           <button
             style={styles.navButton}
             onClick={() => navigate('/login')}
@@ -55,8 +75,6 @@ const Header = () => {
           </button>
         </div>
       </div>
-
-      
     </div>
   );
 };

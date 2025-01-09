@@ -13,7 +13,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 // Import Header and Footer
-import Header from '../components/Header_unconnected'; // Header for Login Page
+import Header from '../components/Header_starter'; // Header for Login Page
 import Footer from '../components/Footer'; // Footer Component
 
 const LoginPage = () => {

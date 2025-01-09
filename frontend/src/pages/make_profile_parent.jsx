@@ -16,7 +16,7 @@ import {
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 // Import your existing header and footer
-import Header from '../components/Header_unconnected';
+import Header from '../components/Header_starter';
 import Footer from '../components/Footer';
 
 export default function ProfilePersonal() {

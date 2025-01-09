@@ -10,6 +10,12 @@
     width: fit-content;
     text-align: left;
     color: #000;
+    border: 8px solid #013372;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+
 }
 
 .parentPannel .parentInfo

@@ -1,19 +1,7 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-family: arial;
-}
-
-body {
-    overflow-x: hidden; /* Απενεργοποιεί το οριζόντιο scroll */
-}
-
-.appointmentsProfessionals {
-    margin-top: 20px;
+.ProfessionalAllAppointments
+{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
-    gap: 30px;
-    width: 100%;
-    padding: 0 20px;
+    align-items: center;
 }

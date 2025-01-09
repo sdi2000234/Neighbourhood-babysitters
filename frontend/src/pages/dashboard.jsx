@@ -24,7 +24,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-import Header from '../components/Header_connected_parent';
+import ParentNavigation from '../components/ParentNavigation';
 import Footer from '../components/Footer';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -73,7 +73,7 @@ const DashboardPage = () => {
 
   return (
     <Box>
-      <Header />
+      <ParentNavigation currentNavPage={'parHome'}/>
 
       <Box sx={{ backgroundColor: '#f0f0f0', py: 2, borderBottom: '1px solid #ddd' }}>
         <Container>

@@ -20,7 +20,8 @@ import {
 } from '@mui/material';
 import ParentNavigation from '../components/ParentNavigation';
 import Footer from '../components/Footer';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Pagination from '@mui/material/Pagination'; // (NEW) Pagination import
 import Header from '../components/Header_starter';
 import { useNavigate } from 'react-router-dom';
@@ -108,6 +109,13 @@ const FindProfessionalUnconnected = () => {
       ...prev,
       [index]: !prev[index],
     }));
+    setLiked(!liked);
+  };
+
+  const [liked, setLiked] = useState(false);
+
+  const handleClickLike = () => {
+    setLiked(!liked);
   };
 
   return (
@@ -219,9 +227,8 @@ const FindProfessionalUnconnected = () => {
     },
   }}
 >
-  <FavoriteIcon />
+  {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
 </IconButton>
-
 
         {/* Card Content */}
         <Typography variant="h6" sx={{ fontWeight: 'bold' }}>

@@ -42,7 +42,7 @@ function ProfessionalNavigation({currentNavPage})
                             <a className={currentNavPage==='profAp' ? 'currentNavPage' : 'profAp'} href="./ProfessionalAppointments">ΡΑΝΤΕΒΟΥ</a>
                             <a className={currentNavPage==='profReq' ? 'currentNavPage' : 'profReq'} href="./ProfessionalRequests">ΑΙΤΗΣΕΙΣ</a>
                             <a className={currentNavPage==='profRate' ? 'currentNavPage' : 'profRate'} href="./ProfessionalReviews">ΑΞΙΟΛΟΓΗΣΕΙΣ</a>
-                            <a href="./Home">ΑΠΟΣΥΝΔΕΣΗ</a>
+                            <a href="./WelcomePage">ΑΠΟΣΥΝΔΕΣΗ</a>
                         </div>
                 </div>
             </div>

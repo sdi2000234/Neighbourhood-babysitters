@@ -15,7 +15,6 @@ import {
   Avatar,
 } from '@mui/material';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import Header from '../components/Header_starter';
 import Footer from '../components/Footer';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -79,7 +78,6 @@ const Page1 = () => {
 
   return (
     <Box>
-      <Header />
 
       {/* Hero Section (Shorter height) */}
       <Box

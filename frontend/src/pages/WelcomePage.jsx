@@ -15,12 +15,13 @@ import {
   Avatar,
 } from '@mui/material';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import Header from '../components/Header_starter';
 import Footer from '../components/Footer';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
+
+// Keeper images
 import eva from '../assets/keepers/eva.jpg';
 import evaProfile from '../assets/keepers/eva_profile.jpg';
 import monika from '../assets/keepers/monika.jpg';
@@ -42,22 +43,24 @@ import konstantinaProfile from '../assets/keepers/konstantina_profile.jpg';
 
 const Page1 = () => {
   const [startDate, setStartDate] = useState(null);
-const [endDate, setEndDate] = useState(null);
-
+  const [endDate, setEndDate] = useState(null);
   const [hostingOption, setHostingOption] = useState('');
 
   const steps = [
     {
       title: 'Βήμα 1',
-      description: 'Βρες τον ιδιώτη Babysitter που θα προσέχει το παιδί σου όπως εσύ επιθυμείς. Δες ποιος είναι κοντά σου, τι εμπειρία έχει, τι υπηρεσίες προσφέρει και επίλεξε τον καλύτερο!',
+      description:
+        'Βρες τον ιδιώτη Babysitter που θα προσέχει το παιδί σου όπως εσύ επιθυμείς. Δες ποιος είναι κοντά σου, τι εμπειρία έχει, τι υπηρεσίες προσφέρει και επίλεξε τον καλύτερο!',
     },
     {
       title: 'Βήμα 2',
-      description: 'Επίλεξε τον ιδανικό Babysitter με βάση το ωρολόγιο πρόγραμμα που εσύ επιλέγεις. Μπορείς να ακυρώσεις και να πάρεις πίσω τα χρήματά σου έως και 2 μέρες πριν ξεκινήσει η κράτηση.',
+      description:
+        'Επίλεξε τον ιδανικό Babysitter με βάση το ωρολόγιο πρόγραμμα που εσύ επιλέγεις. Μπορείς να ακυρώσεις και να πάρεις πίσω τα χρήματά σου έως και 2 μέρες πριν ξεκινήσει η κράτηση.',
     },
     {
       title: 'Βήμα 3',
-      description: 'Κλείσε το ραντεβού σου και γνωρισε τον Babysitter! Είναι καθημερινά σε επικοινωνία μαζί σου και σου στέλνει φωτογραφίες.',
+      description:
+        'Κλείσε το ραντεβού σου και γνωρισε τον Babysitter! Είναι καθημερινά σε επικοινωνία μαζί σου και σου στέλνει φωτογραφίες.',
     },
   ];
 
@@ -75,99 +78,120 @@ const [endDate, setEndDate] = useState(null);
 
   return (
     <Box>
-      <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section (Shorter height) */}
       <Box
-        sx={{
-          backgroundImage: `url(${Babysitter_intro})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          height: 'calc(100vw * 9 / 16)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'white',
-          textAlign: 'center',
-        }}
-      >
-      
-        
+  sx={{
+    backgroundImage: `url(${Babysitter_intro})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 20%', // Adjusted to focus on both the baby and the woman
+    height: { xs: 250, md: 'calc(100vw * 6 / 16)' }, // Slightly increased height for better visibility
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    color: 'white',
+    textAlign: 'center',
+    position: 'relative',
+  }}
+>
 
+        {/* Overlay Box to hold the text */}
+        <Box
+          sx={{
+            width: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.6)',
+            py: 4,
+            px: 2,
+          }}
+        >
+          <Container maxWidth="md">
+            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
+              Η ιστοσελίδα μας προσφέρει αξιόπιστες υπηρεσίες φύλαξης παιδιών, 
+              σχεδιασμένες να καλύψουν τις ανάγκες τόσο των γονέων 
+              όσο και των επαγγελματιών φροντιστών.
+            </Typography>
+            <Typography variant="body1">
+              Οι γονείς μπορούν εύκολα να βρουν εξειδικευμένες νταντάδες 
+              μέσω της πλατφόρμας μας, ενώ οι φροντιστές αποκτούν πρόσβαση 
+              σε ένα δίκτυο που τους επιτρέπει να βρουν ευκαιρίες εργασίας. 
+              Η ασφάλεια, η εμπιστοσύνη και η ευκολία είναι ο πυρήνας 
+              της υπηρεσίας μας, δημιουργώντας μια μοναδική εμπειρία 
+              για όλες τις εμπλεκόμενες πλευρές.
+            </Typography>
+          </Container>
+        </Box>
       </Box>
 
       {/* How It Works Section */}
       <Container sx={{ mt: 6, mb: 6 }}>
-  <Typography variant="h4" textAlign="center" fontWeight="bold" mb={4}>
-    Πώς Δουλεύει
-  </Typography>
-  <Grid
-    container
-    spacing={4}
-    justifyContent="center" // Centers the grid horizontally
-    alignItems="center" // Centers items vertically
-    textAlign="center" // Ensures text alignment is centered
-  >
-    {steps.map((step, index) => (
-      <Grid item xs={12} sm={4} key={index}>
-        <Box sx={{ textAlign: 'center' }}>
-          <Box
-            sx={{
-              width: 80,
-              height: 80,
-              borderRadius: '50%',
-              backgroundColor: '#013372',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontSize: 24,
-              fontWeight: 'bold',
-              margin: '0 auto', // Centers the circle horizontally
-            }}
-          >
-            {index + 1}
-          </Box>
-          <Typography variant="h6" mt={2}>
-            {step.title}
-          </Typography>
-          <Typography variant="body1" mt={1}>
-            {step.description}
-          </Typography>
-        </Box>
-      </Grid>
-    ))}
-  </Grid>
-</Container>
-
+        <Typography variant="h4" textAlign="center" fontWeight="bold" mb={4}>
+          Πώς Δουλεύει
+        </Typography>
+        <Grid
+          container
+          spacing={4}
+          justifyContent="center"
+          alignItems="center"
+          textAlign="center"
+        >
+          {steps.map((step, index) => (
+            <Grid item xs={12} sm={4} key={index}>
+              <Box sx={{ textAlign: 'center' }}>
+                <Box
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    borderRadius: '50%',
+                    backgroundColor: '#013372',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: 24,
+                    fontWeight: 'bold',
+                    margin: '0 auto',
+                  }}
+                >
+                  {index + 1}
+                </Box>
+                <Typography variant="h6" mt={2}>
+                  {step.title}
+                </Typography>
+                <Typography variant="body1" mt={1}>
+                  {step.description}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
 
       {/* Top Keepers Section */}
       <Container sx={{ mt: 6, mb: 6 }}>
         <Typography variant="h4" textAlign="center" fontWeight="bold" mb={4}>
-           Top νταντάδες τελευταίου μήνα 
+          Top νταντάδες τελευταίου μήνα
         </Typography>
         <Grid container spacing={3}>
           {topKeepers.map((keeper, index) => (
             <Grid item xs={12} sm={6} md={4} key={keeper.id}>
               <Paper elevation={3} sx={{ padding: 2, textAlign: 'center', position: 'relative' }}>
-              <Box
-  sx={{
-    position: 'absolute',
-    top: 8,
-    left: 8,
-    backgroundColor: '#013372',
-    borderRadius: '50%',
-    width: '40px',
-    height: '40px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: 'white',
-    fontWeight: 'bold',
-  }}
->
-
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: 8,
+                    left: 8,
+                    backgroundColor: '#013372',
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    color: 'white',
+                    fontWeight: 'bold',
+                  }}
+                >
                   #{index + 1}
                 </Box>
                 <img
@@ -178,16 +202,18 @@ const [endDate, setEndDate] = useState(null);
                 <Typography variant="h6" mt={2}>
                   {keeper.name}
                 </Typography>
-                <Avatar src={keeper.profileImg} sx={{ width: 80, height: 80, margin: '10px auto' }} />
+                <Avatar
+                  src={keeper.profileImg}
+                  sx={{ width: 80, height: 80, margin: '10px auto' }}
+                />
                 <Typography variant="body1"> {keeper.rating}</Typography>
                 <Button
-  variant="contained"
-  sx={{ mt: 2, backgroundColor: '#013372', color: '#fff', fontWeight: 'bold' }}
-  fullWidth
->
-  Προφίλ
-</Button>
-
+                  variant="contained"
+                  sx={{ mt: 2, backgroundColor: '#013372', color: '#fff', fontWeight: 'bold' }}
+                  fullWidth
+                >
+                  Προφίλ
+                </Button>
               </Paper>
             </Grid>
           ))}
@@ -196,34 +222,34 @@ const [endDate, setEndDate] = useState(null);
 
       {/* Safety Section */}
       <Box
-  sx={{
-    backgroundColor: '#013372',
-    color: 'white',
-    py: 6,
-    display: 'flex', // Added flex display
-    flexDirection: 'column', // Align items vertically
-    alignItems: 'center', // Center horizontally
-    justifyContent: 'center', // Center vertically
-    textAlign: 'center', // Center text
-  }}
->
-  <Container>
-    <Typography variant="h4" fontWeight="bold" mb={4}>
-      Ασφάλεια Για Όλους
-    </Typography>
-    <Grid container spacing={4} justifyContent="center">
-      <Grid item xs={12} sm={6}>
-        <Typography variant="h6" fontWeight="bold">
-          Γνωρίζεις τους επαγγελματίες
-        </Typography>
-        <Typography variant="body1" mt={1}>
-          Αναλυτική περιγραφή για το πώς οι νταντάδες προβάλλουν τα προφίλ τους
-          και εξασφαλίζεται η ασφάλεια.
-        </Typography>
-      </Grid>
-    </Grid>
-  </Container>
-</Box>
+        sx={{
+          backgroundColor: '#013372',
+          color: 'white',
+          py: 6,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <Container>
+          <Typography variant="h4" fontWeight="bold" mb={4}>
+            Ασφάλεια Για Όλους
+          </Typography>
+          <Grid container spacing={4} justifyContent="center">
+            <Grid item xs={12} sm={6}>
+              <Typography variant="h6" fontWeight="bold">
+                Γνωρίζεις τους επαγγελματίες
+              </Typography>
+              <Typography variant="body1" mt={1}>
+                Αναλυτική περιγραφή για το πώς οι νταντάδες προβάλλουν τα προφίλ τους
+                και εξασφαλίζεται η ασφάλεια.
+              </Typography>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
 
       <Footer />
     </Box>

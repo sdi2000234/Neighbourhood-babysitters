@@ -54,7 +54,6 @@ const ProfessionalDetails = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       {/* Header */}
-      <Header />
 
       {/* Main Content */}
       <Box sx={{ flexGrow: 1, p: 2 }}>

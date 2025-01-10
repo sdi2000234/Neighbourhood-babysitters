@@ -73,7 +73,7 @@ const DashboardPage = () => {
 
   return (
     <Box>
-      <ParentNavigation currentNavPage={'parHome'}/>
+     
 
       <Box sx={{ backgroundColor: '#f0f0f0', py: 2, borderBottom: '1px solid #ddd' }}>
         <Container>

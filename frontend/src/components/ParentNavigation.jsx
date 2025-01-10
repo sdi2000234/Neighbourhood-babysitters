@@ -27,7 +27,7 @@ function ParentNavigation({currentNavPage})
                             <a className={currentNavPage==='parNot' ? 'currentNavPage' : 'parNot'} href="./ParentNotifications">ΕΙΔΟΠΟΙΗΣΕΙΣ</a>
                             <a className={currentNavPage==='parAp' ? 'currentNavPage' : 'parAp'} href="./ParentAppointments">ΡΑΝΤΕΒΟΥ</a>
                             <a className={currentNavPage==='parReq' ? 'currentNavPage' : 'parReq'} href="./ParentRequests">ΑΙΤΗΣΕΙΣ</a>
-                            <a href="./Home">ΑΠΟΣΥΝΔΕΣΗ</a>
+                            <a href="./">ΑΠΟΣΥΝΔΕΣΗ</a>
                         </div>
                 </div>
             </div>

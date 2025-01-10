@@ -121,7 +121,6 @@ const FindProfessionalUnconnected = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       {/* Header */}
-      <Header/>
 
       {/* Main Content */}
       <Container sx={{ flexGrow: 1, mt: 4, mb: 4 }}>
@@ -175,7 +174,7 @@ const FindProfessionalUnconnected = () => {
           </Box>
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
             <RadioGroup row sx={{ flexGrow: 1 }}>
-              <FormControlLabel value="full" control={<Radio size="small" />} label="Όλική Απασχόληση" />
+              <FormControlLabel value="full" control={<Radio size="small" />} label="Πλήρης Απασχόληση" />
               <FormControlLabel value="partial" control={<Radio size="small" />} label="Μερική Απασχόληση" />
             </RadioGroup>
             <Button
@@ -208,7 +207,7 @@ const FindProfessionalUnconnected = () => {
           border: '1px solid #ddd',
           borderRadius: 2,
           position: 'relative',
-          backgroundColor: '#737373', // Set the gray background color
+          backgroundColor: '#013372', // Set the gray background color
           color: 'white', // Ensure text is readable
         }}
       >
@@ -219,15 +218,14 @@ const FindProfessionalUnconnected = () => {
     position: 'absolute',
     top: 8,
     right: 8,
-    color: favorites[index] ? 'red' : 'rgba(255, 255, 255, 0.5)', // Default color
+    color: favorites[index] ? 'red' : 'rgba(0, 0, 0, 0.5)', // Transparent or slightly visible
     transition: 'transform 0.2s, color 0.2s', // Smooth transition for hover effect
     '&:hover': {
-      color: favorites[index] ? '#ff4d4d' : 'white', // Brighter red or white on hover
       transform: 'scale(1.2)', // Slightly enlarge the icon on hover
     },
   }}
 >
-  {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+  {favorites[index] ? <FavoriteIcon /> : <FavoriteBorderIcon />}
 </IconButton>
 
         {/* Card Content */}
@@ -238,10 +236,10 @@ const FindProfessionalUnconnected = () => {
           variant="contained"
           sx={{
             mt: 2,
-            backgroundColor: '#013372', // Match your existing button color
+            backgroundColor: '#737373', // Match your existing button color
             color: '#fff',
             '&:hover': {
-              backgroundColor: '#002a5c',
+              backgroundColor: '#d3d3d3',
             },
           }}
           onClick={() => navigate('/professional-details', { state: pro })}

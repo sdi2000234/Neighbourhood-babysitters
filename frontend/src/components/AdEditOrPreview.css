@@ -1,12 +1,14 @@
-* 
-{
+/*
+  GENERAL RESET
+*/
+* {
     margin: 0;
     padding: 0;
     font-family: arial;
-}
-
-.adPreviewPannel
-{
+  }
+  
+  /* ======================== PREVIEW PANEL ======================== */
+  .adPreviewPannel {
     background-color: #013372;
     color: #fff;
     border-radius: 5px;
@@ -18,42 +20,44 @@
     width: 300px;
     height: 253px;
     text-align: left;
-}
-
-.adPreviewPannel p
-{
+  }
+  
+  .adPreviewPannel p {
     margin-bottom: 20px;
     margin-left: 15px;
     margin-right: 15px;
-}
-
-.adPreviewPannel .likes
-{
+  }
+  
+  /* “Likes” (heart + number) in top-right corner */
+  .adPreviewPannel .likes {
     display: flex;
     justify-content: flex-end;
-}
-
-.adPreviewPannel .likes img
-{
+  }
+  
+  .adPreviewPannel .likes img {
     height: 25px;
-}
-
-.adPreviewPannel .likes p
-{
+  }
+  
+  .adPreviewPannel .likes p {
     font-size: 25px;
     margin-left: 10px;
-}
-
-.adPreviewPannel .actions
-{
-    display: flex;    
-    justify-content: center;
+  }
+  
+  /* Action buttons for the preview panel */
+  .adPreviewPannel .actions {
+    display: flex; 
+    justify-content: center; 
     margin-left: 15px;
     margin-right: 15px;
-}
-
-.adPreviewPannel .actions button
-{
+  
+    /*
+      'gap' controls spacing between the button and the trash icon.
+      Increase to move them farther apart (e.g. 32px).
+    */
+    gap: 24px;
+  }
+  
+  .adPreviewPannel .actions button {
     display: flex;
     background-color: #00aeef;
     color: #000;
@@ -63,25 +67,23 @@
     cursor: pointer;
     font-weight: bold;
     align-items: center;
-}
-
-.adPreviewPannel .actions button img
-{
+  }
+  
+  .adPreviewPannel .actions button img {
     align-self: center;
     height: 18px;
     margin-left: 18px;
-}
-
-.adPreviewPannel .actions img
-{
+  }
+  
+  /* Trash icon in the preview panel */
+  .adPreviewPannel .actions img {
     align-self: center;
     height: 25px;
-    margin-left: 15px;
     cursor: pointer;
-}
-
-.adEditPannel
-{
+  }
+  
+  /* ======================== EDIT PANEL ======================== */
+  .adEditPannel {
     background-color: #dddddd;
     color: #373737;
     border-radius: 5px;
@@ -94,25 +96,26 @@
     width: 300px;
     height: 205px;
     text-align: left;
-}
-
-.adEditPannel p
-{
+  }
+  
+  .adEditPannel p {
     margin-bottom: 20px;
     margin-left: 15px;
     margin-right: 15px;
-}
-
-.adEditPannel .action
-{
+  }
+  
+  /* Action buttons for the edit panel */
+  .adEditPannel .action {
     display: flex;
     justify-content: center;
     margin-left: 15px;
     margin-right: 15px;
-}
-
-.adEditPannel .action button
-{
+  
+    /* Same logic: bigger gap => bigger spacing. */
+    gap: 24px;
+  }
+  
+  .adEditPannel .action button {
     display: flex;
     background-color: #013372;
     color: #fff;
@@ -122,20 +125,19 @@
     cursor: pointer;
     font-weight: bold;
     align-items: center;
-}
-
-.adEditPannel .action button img
-{
+  }
+  
+  .adEditPannel .action button img {
     align-self: center;
     height: 18px;
     margin-left: 18px;
     margin-right: 3px;
-}
-
-.adEditPannel .action img
-{
+  }
+  
+  /* Trash icon in the edit panel */
+  .adEditPannel .action img {
     align-self: center;
     height: 25px;
-    margin-left: 15px;
     cursor: pointer;
-}
+  }
+  

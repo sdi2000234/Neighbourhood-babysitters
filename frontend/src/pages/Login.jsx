@@ -48,7 +48,6 @@ const LoginPage = () => {
       }}
     >
       {/* Header */}
-      <Header />
 
       {/* Main Content */}
       <Box

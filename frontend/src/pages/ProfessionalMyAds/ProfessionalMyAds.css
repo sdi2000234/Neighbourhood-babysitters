@@ -1,38 +1,37 @@
-* 
-{
+/* Reset and font family */
+* {
     margin: 0;
     padding: 0;
-    font-family: arial;
-}
-
-.professionalMyAds .createText
-{
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Container for the entire page */
+  .professionalMyAds .createText {
     color: #737373;
     margin-top: 20px;
     margin-bottom: 10px;
     margin-left: 60px;
-}
-
-.professionalMyAds .adPannels
-{
+  }
+  
+  .professionalMyAds .adPannels {
     display: flex;
     flex-wrap: wrap;
-}
-
-.professionalMyAds .adPannels .createNewAd button
-{
+  }
+  
+  /* "Create new ad" button */
+  .professionalMyAds .adPannels .createNewAd button {
     background-color: #dddddd;
     border-radius: 5px;
     margin-left: 60px;
     margin-bottom: 60px;
     border: none;
     cursor: pointer;
-}
-
-.professionalMyAds .adPannels .createNewAd button img
-{
+  }
+  
+  .professionalMyAds .adPannels .createNewAd button img {
     height: 80px;
     margin: 100px;
     margin-left: 125px;
     margin-right: 125px;
-}
+  }
+  

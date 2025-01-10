@@ -49,7 +49,7 @@ const Header = () => {
           {/* New Links */}
           <button
             style={styles.navButton}
-            onClick={() => navigate('/find-job')}
+            onClick={() => navigate('/FindProfessional_unconnected')}
           >
             Βρείτε Εργασία
           </button>

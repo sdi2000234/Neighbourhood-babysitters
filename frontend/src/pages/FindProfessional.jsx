@@ -164,7 +164,7 @@ const Page4 = () => {
           </Box>
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
             <RadioGroup row sx={{ flexGrow: 1 }}>
-              <FormControlLabel value="full" control={<Radio size="small" />} label="Όλική Απασχόληση" />
+              <FormControlLabel value="full" control={<Radio size="small" />} label="Πλήρης Απασχόληση" />
               <FormControlLabel value="partial" control={<Radio size="small" />} label="Μερική Απασχόληση" />
             </RadioGroup>
             <Button

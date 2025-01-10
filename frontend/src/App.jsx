@@ -19,16 +19,18 @@ import ProfessionalCreateAd4 from './pages/ProfessionalMyAds/ProfessionalCreateA
 import Page1 from './pages/WelcomePage.jsx';
 import LoginPage from './pages/Login.jsx';
 import DashboardPageParent from './pages/dashboard';
-import DashboardPageProfessional from './pages/dashboard_professional.jsx'; // Adjust the path if necessary
+import DashboardPageProfessional from './pages/dashboard_professional.jsx';
 import RegisterPage from './pages/Register';
 import Page4 from './pages/FindProfessional.jsx';
-import Page5 from './pages/EditProfileParent.jsx'; // Adjust the path if necessary
-import ProfilePersonal from './pages/make_profile_parent.jsx'; // Adjust path as needed
+import Page5 from './pages/EditProfileParent.jsx';
+import ProfilePersonal from './pages/make_profile_parent.jsx'; 
 import DimiourgiaProfileProfessional1 from './pages/make_profile_professional_1.jsx';
 import DimiourgiaProfileProfessional2 from './pages/make_profile_professional_2.jsx';
 import DimiourgiaProfileProfessional3 from './pages/make_profile_professional_3.jsx';
-import FindProfessionalUnconnected from './pages/FindProfessional_unconnected.jsx'; // Adjust the path as necessary
-import ProfessionalDetails from './pages/ProfessionalDetails'; // Adjust path as necessary
+import FindProfessionalUnconnected from './pages/FindProfessional_unconnected.jsx'; 
+import ProfessionalDetails from './pages/ProfessionalDetails';
+import WhoWeAre from './pages/WhoWeAre.jsx'; 
+
 
 
 // Import Additional Pages
@@ -100,6 +102,7 @@ const App = () => {
         <Route path="/profesionaleditstep3" element={<DimiourgiaProfileProfessional3 />} />  
         <Route path="/FindProfessional_unconnected" element={<FindProfessionalUnconnected />} /> {/* Page4 route */}
         <Route path="/professional-details" element={<ProfessionalDetails />} />
+        <Route path="/WhoWeAre" element={<WhoWeAre />} />
 
         {/* Parent Routes */}
         <Route path='/ParentContractPayment' element={<ParentContractPayment/>}/>

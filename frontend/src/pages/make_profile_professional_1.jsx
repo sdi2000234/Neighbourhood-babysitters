@@ -31,7 +31,6 @@ export default function DimiourgiaProfileProfessional1() {
 
   return (
     <Box>
-      <Header />
 
       <Container sx={{ my: 4 }}>
         {/* Top Title */}

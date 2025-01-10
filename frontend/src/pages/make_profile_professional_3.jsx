@@ -29,7 +29,6 @@ export default function DimiourgiaProfileProfessional3() {
 
   return (
     <Box>
-      <Header />
 
       <Container sx={{ my: 4 }}>
         <Typography

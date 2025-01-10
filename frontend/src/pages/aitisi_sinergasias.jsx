@@ -29,7 +29,6 @@ const Page6 = () => {
 
   return (
     <Box>
-      <Header />
       <Container sx={{ mt: 4, mb: 4 }}>
         <Paper elevation={3} sx={{ padding: 4, borderRadius: '8px' }}>
           <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>

@@ -49,6 +49,12 @@ const Header = () => {
           {/* New Links */}
           <button
             style={styles.navButton}
+            onClick={() => navigate('/whoweare')}
+          >
+            Σχετικά με την υπηρεσία
+          </button>
+          <button
+            style={styles.navButton}
             onClick={() => navigate('/FindProfessional_unconnected')}
           >
             Βρείτε Εργασία

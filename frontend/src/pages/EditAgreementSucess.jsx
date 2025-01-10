@@ -14,7 +14,6 @@ const Page7 = () => {
       }}
     >
       {/* Header */}
-      <HeaderConnected />
 
       {/* Main Content */}
       <Container sx={{ flexGrow: 1, mt: 4 }}>

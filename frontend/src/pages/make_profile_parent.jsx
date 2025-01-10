@@ -69,7 +69,6 @@ export default function ProfilePersonal() {
   return (
     <Box>
       {/* Top navigation (blue bar) */}
-      <Header />
 
       {/* Main Content */}
       <Container sx={{ my: 4 }}>

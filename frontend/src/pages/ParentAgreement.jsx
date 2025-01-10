@@ -6,7 +6,6 @@ import Footer from '../components/Footer';
 const Page3 = () => {
   return (
     <Box>
-      <Header />
       <Container sx={{ mt: 4 }}>
         <Typography variant="body2" gutterBottom>
           Έχετε συνδεθεί ως Γονέας/Κηδεμόνας. | <a href="#/">Σύνδεση ως Επαγγελματίας</a>

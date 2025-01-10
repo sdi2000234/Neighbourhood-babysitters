@@ -4,7 +4,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
 import HeaderKeeper from './HeaderKeeper';
 import HeaderRegular from './HeaderRegular';
-import HeaderUnconnected from './HeaderUnconnected';
+import HeaderUnconnected from './Header_starter';
 
 const DynamicHeader = () => {
   const [headerType, setHeaderType] = useState('unconnected');

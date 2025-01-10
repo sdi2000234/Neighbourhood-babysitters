@@ -114,7 +114,6 @@ const FindProfessionalUnconnected = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       {/* Header */}
-      <Header/>
 
       {/* Main Content */}
       <Container sx={{ flexGrow: 1, mt: 4, mb: 4 }}>

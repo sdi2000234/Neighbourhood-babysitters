@@ -18,7 +18,6 @@ import HandshakeIcon from '@mui/icons-material/Handshake';
 import babyPlaying from '../assets/baby_playing.png';
 
 // Import your Header and Footer components
-import Header from '../components/Header_starter';
 import Footer from '../components/Footer';
 
 const infoItems = [
@@ -76,7 +75,6 @@ const BabyNannyPage = () => {
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       {/* Include the Header */}
-      <Header />
 
       {/* Hero Section */}
       <Box

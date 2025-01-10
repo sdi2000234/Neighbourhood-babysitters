@@ -15,7 +15,6 @@ const Page5 = () => {
   return (
     <Box>
       {/* Header */}
-      <Header />
 
       {/* Main Container */}
       <Container sx={{ mt: 4, mb: 4 }}>

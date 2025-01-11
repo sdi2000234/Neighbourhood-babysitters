@@ -3,7 +3,6 @@ import './WriteMessageParent.css';
 import { useNavigate } from 'react-router-dom';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import MessageField from '../../components/MessageField.jsx';
-import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 
 function WriteMessageParent() {
@@ -21,7 +20,6 @@ function WriteMessageParent() {
     return (
 
         <>  
-            <ParentNavigation currentNavPage={'parMes'}/>
             <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
             <br />

@@ -1,6 +1,6 @@
 import React from 'react'
 import './ParentContractRenew.css'
-import ParentNavigation from '../../components/ParentNavigation'
+// import ParentNavigation from '../../components/ParentNavigation'
 import Footer from '../../components/Footer'
 import Dropdown from '../../components/Dropdown';
 import Schedule from '../../components/Schedule';
@@ -18,7 +18,7 @@ function ParentContractRenew()
 
     return (
         <div className='parentContractRenew'>
-            <ParentNavigation currentNavPage={"parEnd"}/>
+            {/* <ParentNavigation currentNavPage={"parEnd"}/> */}
             <div className="personInfo">
                 <h1>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ ΜΕ: {personName==="" ? "'Ονομα" : personName} {personLastName==="" ? "Επώνυμο" : personLastName}</h1>
                 <div>

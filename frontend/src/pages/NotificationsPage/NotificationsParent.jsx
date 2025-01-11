@@ -1,7 +1,6 @@
 import React from 'react'
 import './NotificationsParent.css';
 import Message from '../../components/Message';
-import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 
@@ -38,7 +37,6 @@ function NotificationsParent() {
     return (
         <>  
 
-        <ParentNavigation currentNavPage={'parNot'}/>
         <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
 
         <div className='NotificationsParentContainer'>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './ParentHireProfessional.css'
-import ParentNavigation from '../../components/ParentNavigation'
+// import ParentNavigation from '../../components/ParentNavigation'
 import Footer from '../../components/Footer'
 import FavouriteProfessional from '../../components/FavouriteProfessional';
 import PagesIndex from '../../components/PagesIndex';
@@ -47,7 +47,7 @@ function ParentHireProfessional()
 
 	return	(
         <div className='parentHireProfessional'>
-            <ParentNavigation currentNavPage={"parHire"}/>
+            {/* <ParentNavigation currentNavPage={"parHire"}/> */}
             <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"}/>
             <div className='favourites'>
                 {components.map((component) => (

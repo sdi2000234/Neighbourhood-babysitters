@@ -17,7 +17,6 @@ import {
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-import Header from '../components/Header_starter'; // Adjust path as needed
 import Footer from '../components/Footer';          // Adjust path as needed
 
 const ProfessionalDetails = () => {
@@ -30,7 +29,6 @@ const ProfessionalDetails = () => {
   if (!professional) {
     return (
       <Box>
-        <Header />
         <Box sx={{ p: 2, minHeight: '60vh' }}>
           <Typography>Δεν βρέθηκαν πληροφορίες για τον επαγγελματία.</Typography>
         </Box>
@@ -53,7 +51,6 @@ const ProfessionalDetails = () => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      {/* Header */}
 
       {/* Main Content */}
       <Box sx={{ flexGrow: 1, p: 2 }}>

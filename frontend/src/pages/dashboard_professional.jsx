@@ -24,7 +24,6 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-import ProfessionalNavigation from '../components/ProfessionalNavigation';
 import Footer from '../components/Footer';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -97,7 +96,6 @@ const DashboardPageParent = () => {
 
   return (
     <Box>
-      <ProfessionalNavigation currentNavPage={'profHome'}/>
 
       {/* Steps Bar */}
       <Box sx={{ backgroundColor: '#f0f0f0', py: 2, borderBottom: '1px solid #ddd' }}>

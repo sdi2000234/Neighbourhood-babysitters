@@ -1,7 +1,6 @@
 import React from 'react'
 import './NotificationsProfessional.css';
 import Message from '../../components/Message';
-import ProfessionalNavigation from '../../components/ProfessionalNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 
@@ -38,7 +37,6 @@ function NotificationsProfessional() {
     return (
         <>  
 
-        <ProfessionalNavigation currentNavPage={'profNot'}/>
         <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
 
         <div className='NotificationsProfessionalContainer'>

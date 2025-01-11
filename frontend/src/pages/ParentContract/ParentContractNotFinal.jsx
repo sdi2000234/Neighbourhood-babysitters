@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ContractNotFinalCard from '../../components/ContractNotFinalCard';
 import './ParentContractNotFinal.css';
-import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import { Menu, MenuItem, Button } from '@mui/material';
@@ -60,7 +59,6 @@ function ParentContractNotFinal() {
 
   return (
     <>
-      <ParentNavigation currentNavPage={'parHiReq'} />
       <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
       <div className='ParentContractNotFinalContainer'>

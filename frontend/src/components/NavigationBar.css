@@ -1,12 +1,10 @@
-* 
-{
+* {
     margin: 0;
     padding: 0;
     font-family: arial;
 }
 
-.parentBar
-{
+.parentBar {
     display: flex;
     color: #00aeef;
     font-size: 18px;
@@ -14,46 +12,40 @@
     align-items: center;
 }
 
-/* Μπλοκ απο αρχικη μεχρι ιστορικο */
-.parentBar button
-{
+/* Μπλοκ από αρχική μέχρι ιστορικό */
+.parentBar button {
     background-color: transparent;
     border: none;
     align-self: flex-end;
     margin-right: 14px;
 }
 
-/* μεμονομενα απο αρχικη μεχρι ιστορικο */
-.parentBar a
-{
+/* Μεμονωμένα από αρχική μέχρι ιστορικό */
+.parentBar a {
     text-decoration: none; /* Για να μην εμφανίζονται υπογραμμισμένα. */
     align-items: center;
     color: black;
 }
 
-/* ολη η πανω μπαρα */
-.navBar
-{   
+/* Ολόκληρη η πάνω μπάρα */
+.navBar {
     background-color: #013372;
     position: relative;
     display: flex;
     padding: 10px;
     justify-content: space-between;
     align-items: center;
-
 }
 
-/* logo του gov */
-.navBar .logo
-{
+/* Logo του gov */
+.navBar .logo {
     height: 50px;
     cursor: pointer;
     padding: 10px;
 }
 
-/* οτι μπει ενδιαμεσα απο το προφιλ και το σημα gov */
-.navOptions
-{
+/* Ό,τι μπει ενδιάμεσα από το προφίλ και το σήμα gov */
+.navOptions {
     flex: 1;
     justify-content: right;
     font-size: 17px;
@@ -62,42 +54,35 @@
     margin: 0 20px;
 }
 
-.navOptions button
-{
+.navOptions button {
     padding: 15px;
 }
 
-.navOptions .dropdown
-{
+.navOptions .dropdown {
     float: left;
     overflow: hidden;
 }
 
-.dropdown-content
-{
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: #013372;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     min-width: 165px;
-    
 }
 
-.parentBar .dropdown:hover .dropdown-content
-{
+.parentBar .dropdown:hover .dropdown-content {
     background-color: #00aeef;
     color: #000;
 }
 
-.parentBar .dropdown-content a:hover
-{
+.parentBar .dropdown-content a:hover {
     background-color: #013372;
     color: #fff;
 }
 
-.dropdown-content a
-{
+.dropdown-content a {
     float: none;
     color: black;
     text-decoration: none;
@@ -106,67 +91,57 @@
     text-align: left;
 }
 
-.dropdown-content a:hover
-{
+.dropdown-content a:hover {
     background-color: #00aeef;
     color: #000;
 }
 
-.dropdown:hover .dropdown-content
-{
+.dropdown:hover .dropdown-content {
     display: block;
 }
 
-.profile:hover .dropdown-content
-{
+.profile:hover .dropdown-content {
     display: block;
 }
 
-.profile .dropdown-content
-{
+.profile .dropdown-content {
     position: absolute;
     right: 0px;
 }
 
-.profile img.pfp
-{
+.profile img.pfp {
     height: 60px;
     width: 60px;
     margin-left: 20px;
     margin-right: 5px;
-    border-radius: 50%; /* Makes the image circular */
+    border-radius: 50%; /* Κάνει την εικόνα κυκλική */
     object-fit: cover;
 }
 
-.profile
-{
+.profile {
     cursor: pointer;
     float: left;
     overflow: hidden;
 }
 
-.profile a
-{
+.profile a {
     text-decoration: none; /* Για να μην εμφανίζονται υπογραμμισμένα. */
     color: #fff;
 }
 
-.switchRole
-{
+.switchRole {
     display: flex;
     color: #00aeef;
     font-weight: bold;
     font-size: 18px;
 }
 
-.switchRole p
-{
+.switchRole p {
     padding: 8px;
     margin-right: 15px;
 }
 
-.switchRole button
-{
+.switchRole button {
     margin: 5px;
     font-size: 18px;
     padding: 5px;
@@ -175,28 +150,25 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;;
+    font-weight: bold;
 }
 
-.switchRole button a
-{
+.switchRole button a {
     color: #fff;
-    text-decoration: none
+    text-decoration: none;
 }
 
-.navBar .arrow
-{
+.navBar .arrow {
     height: 8px;
     margin-left: 5px;
 }
 
-.parentBar .arrow
-{
+.parentBar .arrow {
     height: 8px;
     margin-left: 5px;
 }
 
-.currentNavPage
-{
+/* Εφαρμογή bold στην τρέχουσα σελίδα */
+.currentNavPage {
     font-weight: bold;
 }

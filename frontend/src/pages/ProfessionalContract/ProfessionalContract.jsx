@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ContractProfessionalCard from '../../components/ContractProfessionalCard';
 import './ProfessionalContract.css';
-import ProfessionalNavigation from '../../components/ProfessionalNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import { Menu, MenuItem, Button } from '@mui/material';
@@ -69,7 +68,6 @@ function ProfessionalContract() {
 
   return (
     <>
-      <ProfessionalNavigation currentNavPage={'profRequests'} />
       <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
       <div className='ProfessionalContractContainer'>

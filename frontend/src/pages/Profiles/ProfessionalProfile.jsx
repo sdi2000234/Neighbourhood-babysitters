@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import './ProfessionalProfile.css'
-import ProfessionalNavigation from '../../components/ProfessionalNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import { Avatar} from "@mui/material";
@@ -34,7 +33,6 @@ function ProfessionalProfile({userName , userLastName, userEmail , userPhone , p
 
   return (
     <>
-    <ProfessionalNavigation currentNavPage={'profProfile'}/>
     <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
     <div className='PersonInfoProfessionalProfile'>

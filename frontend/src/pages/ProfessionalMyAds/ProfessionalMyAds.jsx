@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './ProfessionalMyAds.css'
-import ProfessionalNavigation from '../../components/ProfessionalNavigation'
+// import ProfessionalNavigation from '../../components/ProfessionalNavigation'
 import Footer from '../../components/Footer'
 import AdEditOrPreview from '../../components/AdEditOrPreview'
 import plusGrey from '../../assets/plus_grey.png'
@@ -38,7 +38,7 @@ function ProfessionalMyAds() {
 
   return (
     <div className="professionalMyAds">
-      <ProfessionalNavigation currentNavPage="profAds" />
+      {/* <ProfessionalNavigation currentNavPage="profAds" /> */}
       <Breadcrumbs page1="ΟΙ ΑΓΓΕΛΙΕΣ ΜΟΥ" />
 
       <p className="createText">

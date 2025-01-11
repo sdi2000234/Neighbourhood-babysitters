@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 // == Firebase imports (Add these if they are not already in your code) ==
 import { onAuthStateChanged } from 'firebase/auth';
@@ -81,7 +81,6 @@ import ParentContractFinal from './pages/ParentContract/ParentContractFinal.jsx'
 import ParentContractNotFinal from './pages/ParentContract/ParentContractNotFinal.jsx';
 import ProfessionalContract from './pages/ProfessionalContract/ProfessionalContract.jsx';
 
-// You have these sample props for some pages
 const babysitterName = "Εύη Κωστοπούλου"; 
 const userName = "ΙΩΑΝΝΑ";
 const userLastName = "ΚΥΡΙΑΚΟΥ";
@@ -97,52 +96,62 @@ const picLink = "";
 const desc = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, doloremque, dicta explicabo cupiditate, officiis repellat dignissimos ea tempora magni cumque facere eaque. Id non est quibusdam eius praesentium qui provident? Ea doloremque vero quis iste necessitatibus possimus temporibus nemo deserunt dolore, excepturi quaerat facere nulla et sapiente mollitia. Quas nihil asperiores necessitatibus mollitia, eos facere quidem excepturi magni sit ut. Aliquam debitis fugiat aspernatur excepturi in ea quis voluptates deserunt mollitia. Similique nam omnis assumenda nobis eligendi architecto accusantium ipsa, veniam aspernatur facere odit obcaecati consectetur commodi mollitia quos minus.';
 
 // 1) Create a Layout that decides which Header & includes Footer
-function Layout({ user, isKeeper, children }) {
+function Layout({ user, isKeeper, currentNavPage, children }) {
   let HeaderToShow;
   if (!user) {
     // Not logged in => show the starter header
     HeaderToShow = <Header_starter />;
   } else if (isKeeper) {
     // Logged in & isKeeper == true => show professional header
-    HeaderToShow = <ProfessionalNavigation />;
+    HeaderToShow = <ProfessionalNavigation currentNavPage={currentNavPage} />;
   } else {
     // Logged in & isKeeper == false => show parent header
-    HeaderToShow = <ParentNavigation />;
+    HeaderToShow = <ParentNavigation currentNavPage={currentNavPage} />;
   }
 
   return (
     <>
       {HeaderToShow}
       {children}
-     
+      <Footer />
     </>
   );
 }
 
-const App = () => {
-  // 2) We'll store user & isKeeper so we know which header to show
+function App() {
+  // Χρησιμοποιούμε το useLocation για να πάρουμε την τρέχουσα τοποθεσία μέσα στο Router
+  return (
+    <Router>
+      <Main />
+    </Router>
+  );
+}
+
+function Main() {
+  const location = useLocation(); // Χρησιμοποιούμε το useLocation μέσα σε αυτό το component
+
   const [user, setUser] = useState(null);
   const [isKeeper, setIsKeeper] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // 3) We check Firebase auth state & read Firestore doc to see if user is keeper
+  // Παίρνουμε την τρέχουσα διαδρομή και το τελευταίο κομμάτι του URL
+  const currentNavPage = location.pathname.split('/').pop();
+
+  // Έλεγχος της κατάστασης σύνδεσης του χρήστη και απόκτηση των στοιχείων του από το Firebase
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (!firebaseUser) {
-        // No user is logged in
         setUser(null);
         setIsKeeper(false);
         setLoading(false);
       } else {
-        // User is logged in
         setUser(firebaseUser);
 
-        // Retrieve user doc to see if isKeeper is true or false
         try {
           const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
           if (userDoc.exists()) {
             const data = userDoc.data();
-            setIsKeeper(!!data.isKeeper); // force boolean
+            setIsKeeper(!!data.isKeeper);
           } else {
             setIsKeeper(false);
           }
@@ -154,142 +163,67 @@ const App = () => {
       }
     });
 
-    // Cleanup subscription
     return () => unsubscribe();
   }, []);
 
-  // 4) If still checking auth status, optionally show a loading indicator
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // 5) Wrap your <Routes> in <Layout> so the right header shows up everywhere
   return (
-    <Router>
-      <Layout user={user} isKeeper={isKeeper}>
-        <Routes>
-          {/* General Routes */}
-          <Route path='/' element={<Page1 />} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/dashboard' element={<DashboardPageParent />} />
-          <Route path='/dashboard_professional' element={<DashboardPageProfessional />} />
-          <Route path='/register' element={<RegisterPage />} />
-          <Route path='/evresi_epaggelmatia' element={<Page4 />} />
-          <Route path="/settings" element={<Page5 />} />
-          <Route path="/profile-epeksergasia-parent" element={<ProfilePersonal />} />
-          <Route path="/profesionaleditstep1" element={<DimiourgiaProfileProfessional1 />} />
-          <Route path="/profesionaleditstep2" element={<DimiourgiaProfileProfessional2 />} />
-          <Route path="/profesionaleditstep3" element={<DimiourgiaProfileProfessional3 />} />  
-          <Route path="/FindProfessional_unconnected" element={<FindProfessionalUnconnected />} />
-          <Route path="/professional-details" element={<ProfessionalDetails />} />
-          <Route path="/WhoWeAre" element={<WhoWeAre />} />
+    <Layout user={user} isKeeper={isKeeper} currentNavPage={currentNavPage}>
+      <Routes>
+        {/* General Routes */}
+        <Route path='/' element={<Page1 />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/dashboard' element={<DashboardPageParent />} />
+        <Route path='/dashboard_professional' element={<DashboardPageProfessional />} />
+        <Route path='/register' element={<RegisterPage />} />
+        <Route path='/evresi_epaggelmatia' element={<Page4 />} />
+        <Route path="/settings" element={<Page5 />} />
+        <Route path="/profile-epeksergasia-parent" element={<ProfilePersonal />} />
+        <Route path="/profesionaleditstep1" element={<DimiourgiaProfileProfessional1 />} />
+        <Route path="/profesionaleditstep2" element={<DimiourgiaProfileProfessional2 />} />
+        <Route path="/profesionaleditstep3" element={<DimiourgiaProfileProfessional3 />} />  
+        <Route path="/FindProfessional_unconnected" element={<FindProfessionalUnconnected />} />
+        <Route path="/professional-details" element={<ProfessionalDetails />} />
+        <Route path="/WhoWeAre" element={<WhoWeAre />} />
 
-          {/* Parent Routes */}
-          <Route path='/ParentContractPayment' element={<ParentContractPayment />} />
-          <Route path='/ParentContractEnd' element={<ParentContractEnd />} />
-          <Route path='/ParentContractRenew' element={<ParentContractRenew />} />
-          <Route path='/ParentHireProfessional' element={<ParentHireProfessional />} />
+        {/* Parent Routes */}
+        <Route path='/ParentContractPayment' element={<ParentContractPayment />} />
+        <Route path='/ParentContractEnd' element={<ParentContractEnd />} />
+        <Route path='/ParentContractRenew' element={<ParentContractRenew />} />
+        <Route path='/ParentHireProfessional' element={<ParentHireProfessional />} />
+        <Route path='/ParentAppointment' element={<ParentAppointment />} />
+        <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} />
+        <Route path='/ParentAllAppointments' element={<ParentAllAppointments />} />
+        <Route path='/ParentProfile' element={<ParentProfile />} />
+        <Route path='/RatingParents' element={<RatingParents />} />
+        <Route path='/RatingParentsEnd' element={<RatingParentsEnd />} />
+        <Route path='/HistoryParent1' element={<HistoryParent1 />} />
+        <Route path='/HistoryParent2' element={<HistoryParent2 />} />
+        <Route path='/HistoryParent3' element={<HistoryParent3 />} />
+        <Route path='/MessageParent' element={<MessageParent />} />
+        <Route path='/NotificationsParent' element={<NotificationsParent />} />
+        <Route path='/WriteMessageParent' element={<WriteMessageParent />} />
 
-          {/* Professional Routes */}
-          <Route path='/ProfessionalMyAds' element={<ProfessionalMyAds />} />
-          <Route path='/ProfessionalCreateAd1' element={<ProfessionalCreateAd1 />} />
-          <Route path='/ProfessionalCreateAd2' element={<ProfessionalCreateAd2 />} />
-          <Route path='/ProfessionalCreateAd3' element={<ProfessionalCreateAd3 />} />
-          <Route path='/ProfessionalCreateAd4' element={<ProfessionalCreateAd4 />} />
-
-          {/* Additional Routes */}
-          <Route path='/RatingParents' element={<RatingParents />} /> 
-          <Route path='/RatingParentsEnd' element={<RatingParentsEnd />} /> 
-          <Route path='/RatingProfessional' element={<RatingProfessional />} />
-
-          <Route
-            path='/ParentAppointment'
-            element={
-              <ParentAppointment
-                babysitterName={babysitterName}
-                userName={userName}
-                userLastName={userLastName}
-                userPhone={userPhone}
-                userEmail={userEmail}
-                date={date}
-                time={time}
-              />
-            }
-          />
-          <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} />
-          <Route path='/ParentAllAppointments' element={<ParentAllAppointments />} />
-          <Route path='/ProfessionalAllAppointments' element={<ProfessionalAllAppointments />} />
-          <Route
-            path='/ParentChangeAppointment'
-            element={
-              <ParentChangeAppointment
-                babysitterName={babysitterName}
-                userName={userName}
-                userLastName={userLastName}
-                userPhone={userPhone}
-                userEmail={userEmail}
-                prevDate={date}
-                prevTime={time}
-                initialMeetingType={type}
-                initialMessage={message}
-                initialAddress={address}
-                initialLink={link}
-              />
-            }
-          />
-
-          <Route
-            path='/ParentProfile'
-            element={
-              <ParentProfile
-                userName={userName}
-                userLastName={userLastName}
-                userPhone={userPhone}
-                userEmail={userEmail}
-                picLink={picLink}
-              />
-            }
-          />
-          <Route
-            path='/ProfessionalProfile'
-            element={
-              <ProfessionalProfile
-                userName={userName}
-                userLastName={userLastName}
-                userPhone={userPhone}
-                userEmail={userEmail}
-                picLink={picLink}
-                desc={desc}
-              />
-            }
-          />
-          <Route path='/ParentChangeAppointmentEnd' element={<ParentChangeAppointmentEnd />} />
-
-          <Route path='/HistoryParent1' element={<HistoryParent1 />} /> 
-          <Route path='/HistoryParent2' element={<HistoryParent2 />} /> 
-          <Route path='/HistoryParent3' element={<HistoryParent3 />} /> 
-
-          <Route path='/HistoryProfessional1' element={<HistoryProfessional1 />} /> 
-          <Route path='/HistoryProfessional2' element={<HistoryProfessional2 />} /> 
-          <Route path='/HistoryProfessional3' element={<HistoryProfessional3 />} /> 
-
-          <Route path='/MessageParent' element={<MessageParent />} />
-          <Route path='/MessageProfessional' element={<MessageProfessional />} />
-
-          <Route path='/NotificationsParent' element={<NotificationsParent />} />
-          <Route path='/NotificationsProfessional' element={<NotificationsProfessional />} />
-
-          <Route path='/WriteMessageParent' element={<WriteMessageParent />} />
-          <Route path='/WriteMessageProfessional' element={<WriteMessageProfessional />} />
-
-          {/* ΝΕΑ */}
-          <Route path='/ParentContractFinal' element={<ParentContractFinal />} />
-          <Route path='/ParentContractNotFinal' element={<ParentContractNotFinal />} />
-          <Route path='/ProfessionalContract' element={<ProfessionalContract />} />
-        </Routes>
-      </Layout>
-    </Router>
+        {/* Professional Routes */}
+        <Route path='/ProfessionalMyAds' element={<ProfessionalMyAds />} />
+        <Route path='/ProfessionalCreateAd1' element={<ProfessionalCreateAd1 />} />
+        <Route path='/ProfessionalCreateAd2' element={<ProfessionalCreateAd2 />} />
+        <Route path='/ProfessionalCreateAd3' element={<ProfessionalCreateAd3 />} />
+        <Route path='/ProfessionalCreateAd4' element={<ProfessionalCreateAd4 />} />
+        <Route path='/ProfessionalContract' element={<ProfessionalContract />} />
+        <Route path='/ProfessionalProfile' element={<ProfessionalProfile />} />
+        <Route path='/HistoryProfessional1' element={<HistoryProfessional1 />} />
+        <Route path='/HistoryProfessional2' element={<HistoryProfessional2 />} />
+        <Route path='/HistoryProfessional3' element={<HistoryProfessional3 />} />
+        <Route path='/MessageProfessional' element={<MessageProfessional />} />
+        <Route path='/NotificationsProfessional' element={<NotificationsProfessional />} />
+        <Route path='/WriteMessageProfessional' element={<WriteMessageProfessional />} />
+      </Routes>
+    </Layout>
   );
-};
+}
 
 export default App;

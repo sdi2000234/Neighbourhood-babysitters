@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HistoryLine from '../../components/HistoryLine';
 import './HistoryProfessional3.css';
-import ProfessionalNavigation from '../../components/ProfessionalNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import { Menu, MenuItem, Button } from '@mui/material';
@@ -74,7 +73,6 @@ function HistoryProfessional3() {
 
   return (
     <>
-      <ProfessionalNavigation currentNavPage={'profHiPay'} />
       <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
       <div className='HistoryProfessional3Container'>

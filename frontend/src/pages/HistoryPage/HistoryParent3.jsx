@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HistoryLine from '../../components/HistoryLine';
 import './HistoryParent3.css';
-import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import { Menu, MenuItem, Button } from '@mui/material';
@@ -75,7 +74,6 @@ function HistoryParent3() {
 
   return (
     <>
-      <ParentNavigation currentNavPage={'parHiPay'} />
       <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
       <div className='HistoryParent3Container'>

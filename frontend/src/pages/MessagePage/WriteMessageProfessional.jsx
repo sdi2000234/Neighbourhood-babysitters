@@ -3,7 +3,6 @@ import './WriteMessageProfessional.css';
 import { useNavigate } from 'react-router-dom';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import MessageField from '../../components/MessageField.jsx';
-import ProfessionalNavigation from '../../components/ProfessionalNavigation';
 import Footer from '../../components/Footer';
 
 function WriteMessageProfessional() {
@@ -21,7 +20,6 @@ function WriteMessageProfessional() {
     return (
 
         <>  
-            <ProfessionalNavigation currentNavPage={'parMes'}/>
             <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
             <br />

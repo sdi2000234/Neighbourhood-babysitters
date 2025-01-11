@@ -2,7 +2,6 @@ import React from 'react';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs.jsx';
 import ReviewCardBabySitter from '../../components/ReviewCardProfessional.jsx';
 import Grid from "@mui/material/Grid2";
-import ProfessionalNavigation from '../../components/ProfessionalNavigation.jsx';
 import Footer from '../../components/Footer.jsx';
 
 const RatingProfessional = () => {
@@ -60,7 +59,6 @@ const RatingProfessional = () => {
 
   return (
     <>
-      <ProfessionalNavigation currentNavPage={'profRate'}/>
 
       <Grid item>
         <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>

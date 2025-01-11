@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import './ParentProfile.css'
-import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import { Avatar} from "@mui/material";
@@ -32,7 +31,6 @@ function ParentProfile({userName , userLastName, userEmail , userPhone , picLink
 
   return (
     <>
-    <ParentNavigation currentNavPage={'parProfile'}/>
     <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 
     <div className='PersonInfoParentProfile'>

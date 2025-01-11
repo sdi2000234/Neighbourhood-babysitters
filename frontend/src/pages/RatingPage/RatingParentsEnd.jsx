@@ -1,6 +1,5 @@
 import React from 'react'
 import './RatingParentsEnd.css'
-import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import { useNavigate } from 'react-router-dom';
@@ -22,7 +21,6 @@ function RatingParentsEnd() {
     return (
     <>
 
-    <ParentNavigation currentNavPage={'parEnd'}/>
 
         <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 

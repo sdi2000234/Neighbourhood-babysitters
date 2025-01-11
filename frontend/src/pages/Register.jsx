@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
-import Header from '../components/Header_starter';
+// import Header from '../components/Header_starter';
 import Footer from '../components/Footer';
 
 const RegisterPage = () => {
@@ -67,7 +67,7 @@ const RegisterPage = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Header />
+      {/* <Header /> */}
 
       <Container sx={{ mt: 6, mb: 6, maxWidth: '400px', textAlign: 'center', flex: 1 }}>
         <Typography variant="h4" fontWeight="bold" gutterBottom>

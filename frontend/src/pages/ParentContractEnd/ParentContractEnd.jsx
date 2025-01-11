@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './ParentContractEnd.css'
-import ParentNavigation from '../../components/ParentNavigation'
+// import ParentNavigation from '../../components/ParentNavigation'
 import ContractEnd from '../../components/ContractEnd'
 import Footer from '../../components/Footer'
 import SortButton from '../../components/SortButton'
@@ -46,7 +46,7 @@ function ParentContractEnd()
 
 	return	(
         <div className='parentContractEnd'>
-            <ParentNavigation currentNavPage={"parEnd"}/>
+            {/* <ParentNavigation currentNavPage={"parEnd"}/> */}
             <Breadcrumbs page1={"ΣΥΜΦΩΝΗΤΙΚΟ"} link1={"./ParentContractPayment"} page2={"ΛΗΞΗ"}/>
             <SortButton sortName={sortAlphabetically} sortDate={sortByDate}/>
             <div className="endedContracts">

@@ -11,31 +11,40 @@ import {
   Link,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
-// Import Header and Footer
-import Header from '../components/Header_starter'; // Header for Login Page
+import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth';
+import { auth } from '../firebaseConfig'; // Εισάγουμε το Firebase Auth
 import Footer from '../components/Footer'; // Footer Component
 
 const LoginPage = () => {
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
-
-  // Dummy Credentials
-  const validEmail = 'test@example.com';
-  const validPassword = 'password123';
+  const [rememberMe, setRememberMe] = useState(false); // "Μείνε συνδεδεμένος"
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Handle Form Submission
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form behavior
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Ακυρώνουμε την προεπιλεγμένη συμπεριφορά φόρμας
 
-    // Dummy Authentication Logic
-    if (email === validEmail && password === validPassword) {
+    try {
+      // Set persistence mode (local or session)
+      await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
+
+      // Attempt to log in the user
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
       alert('Login Successful!');
-      navigate('/dashboard'); // Redirect to Dashboard if login succeeds
-    } else {
-      alert('Invalid Email or Password'); // Error message for invalid credentials
+      navigate('/dashboard'); // Ανακατεύθυνση στη σελίδα Dashboard
+    } catch (error) {
+      // Διαχείριση σφαλμάτων
+      if (error.code === 'auth/user-not-found') {
+        setErrorMessage('Ο χρήστης δεν βρέθηκε. Παρακαλώ εγγραφείτε.');
+      } else if (error.code === 'auth/wrong-password') {
+        setErrorMessage('Λάθος συνθηματικό.');
+      } else if (error.code === 'auth/invalid-email') {
+        setErrorMessage('Μη έγκυρο email.');
+      } else {
+        setErrorMessage('Παρουσιάστηκε σφάλμα. Παρακαλώ δοκιμάστε ξανά.');
+      }
     }
   };
 
@@ -44,15 +53,13 @@ const LoginPage = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '100vh', // Ensures full height
+        minHeight: '100vh',
       }}
     >
-      {/* Header */}
-
       {/* Main Content */}
       <Box
         sx={{
-          flex: '1', // Pushes footer to the bottom
+          flex: '1',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -116,15 +123,22 @@ const LoginPage = () => {
                 </Link>
               </Box>
 
+              {/* Error Message */}
+              {errorMessage && (
+                <Typography color="error" variant="body2" sx={{ mb: 2 }}>
+                  {errorMessage}
+                </Typography>
+              )}
+
               {/* Submit Button */}
               <Button
                 type="submit"
                 variant="contained"
                 fullWidth
                 sx={{
-                  backgroundColor: '#013372', // Yale Blue
+                  backgroundColor: '#013372',
                   color: 'white',
-                  '&:hover': { backgroundColor: '#002855' }, // Darker Yale Blue
+                  '&:hover': { backgroundColor: '#002855' },
                 }}
               >
                 Σύνδεση
@@ -134,7 +148,14 @@ const LoginPage = () => {
             {/* Sign-up Link */}
             <Typography variant="body2" sx={{ mt: 2 }}>
               Δεν είσαι μέλος?{' '}
-              <Link href="#" sx={{ color: '#013372', fontWeight: 'bold' }}>
+              <Link
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/register'); // Ανακατεύθυνση στη σελίδα εγγραφής
+                }}
+                sx={{ color: '#013372', fontWeight: 'bold' }}
+              >
                 Κάνε εγγραφή!
               </Link>
             </Typography>

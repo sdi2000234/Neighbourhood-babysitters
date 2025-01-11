@@ -2,7 +2,6 @@ import React from 'react'
 import './MessageParent.css';
 import { useNavigate } from 'react-router-dom';
 import Message from '../../components/Message';
-import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import SearchBar from "../../components/SearchBar";
@@ -49,7 +48,6 @@ function MessageParent() {
     return (
         <>  
 
-        <ParentNavigation currentNavPage={'parMes'}/>
         <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
 
         <div className='MessageParentContainer'>

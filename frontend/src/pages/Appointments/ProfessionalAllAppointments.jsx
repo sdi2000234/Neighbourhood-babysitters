@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import AppointmentCardParent from '../../components/AppointmentCardParent'
-import ProfessionalNavigation from '../../components/ProfessionalNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import Grid from '@mui/material/Grid2';  
@@ -145,7 +144,6 @@ function ProfessionalAllAppointments() {
 
     return (
         <>
-            <ProfessionalNavigation currentNavPage={'profAppointments'}/>
             <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
 
                 <div className='ProfessionalAllAppointments'>

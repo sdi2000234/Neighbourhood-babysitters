@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'; 
 import { useNavigate } from 'react-router-dom';
 import './ParentChangeAppointment.css';
-import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 import RequiredField from '../../components/RequiredField';  
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
@@ -83,7 +82,6 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
 
     return (
         <>
-            <ParentNavigation currentNavPage={'parHire'} />
             <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
 
             <div className='ApPersonInfoCh'>

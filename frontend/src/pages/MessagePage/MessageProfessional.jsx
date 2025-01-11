@@ -2,7 +2,6 @@ import React from 'react'
 import './MessageProfessional.css';
 import { useNavigate } from 'react-router-dom';
 import Message from '../../components/Message';
-import ProfessionalNavigation from '../../components/ProfessionalNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import SearchBar from "../../components/SearchBar";
@@ -49,7 +48,6 @@ function MessageProfessional() {
     return (
         <>  
 
-        <ProfessionalNavigation currentNavPage={'profMes'}/>
         <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
 
         <div className='MessageProfessionalContainer'>

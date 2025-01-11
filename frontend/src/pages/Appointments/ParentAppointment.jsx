@@ -1,7 +1,6 @@
 import React, { useState } from 'react'; 
 import { useNavigate } from 'react-router-dom';
 import './ParentAppointment.css'
-import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 import RequiredField from '../../components/RequiredField';  
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
@@ -37,7 +36,6 @@ function ParentAppointment({ babysitterName , userName , userLastName , userPhon
 
     return (
         <>
-            <ParentNavigation currentNavPage={'parHire'}/>
 
             <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
 

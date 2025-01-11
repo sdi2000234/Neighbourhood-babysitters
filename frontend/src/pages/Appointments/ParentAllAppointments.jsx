@@ -1,6 +1,5 @@
 import React from 'react';
 import './ParentAllAppointments.css';
-import ParentNavigation from '../../components/ParentNavigation';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import AppointmentCardProfessional from '../../components/AppointmentCardProfessional';
@@ -101,7 +100,6 @@ function ParentAllAppointments() { //ΙΣΩΣ ΘΕΛΕΙ ΠΕΡΙΣΣΟΤΕΡΑ 
 
     return (
         <>
-            <ParentNavigation currentNavPage={'parAp'}/>
             <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
 
                 <Grid container spacing={4} justifyContent="center" alignItems="flex-start" className="appointments">

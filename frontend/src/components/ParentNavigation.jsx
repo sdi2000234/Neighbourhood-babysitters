@@ -1,5 +1,6 @@
 import React from 'react';
 import './NavigationBar.css';
+import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth'; // Import της signOut
 import { auth } from '../firebaseConfig'; // Το αρχείο διαμόρφωσης Firebase
 import govgr from '../assets/govgr_logo_white.png';
@@ -21,81 +22,67 @@ function ParentNavigation({ currentNavPage }) {
     }
   };
 
+  //Για περιήγηση σε υπολοιπες σελίδες
+  const navigate = useNavigate();
+
+  const handleSwitchRole = () => { navigate('../dashboard'); };
+  const handleProfile = () => { navigate('../ParentProfile'); };
+  const handleMessages = () => { navigate('../MessageParent'); };
+  const handleNotifications = () => { navigate('../NotificationsParent'); };
+  const handleAppointments = () => { navigate('../ParentAllAppointments'); };
+  const handleRequests = () => { navigate('../ParentContractFinal'); };
+  const handleParentHome = () => { navigate('../dashboard'); };
+  const handleFindProfessional = () => { navigate('../FindProfessional'); };
+  const handleHireProfessional = () => { navigate('../ParentHireProfessional'); };
+  const handleContractPay = () => { navigate('../ParentContractPayment'); };
+  const handleContractEnd = () => { navigate('../ParentContractEnd'); };
+  const handleParentHistory1 = () => { navigate('../HistoryParent1'); };
+  const handleParentHistory2 = () => { navigate('../HistoryParent2'); };
+  const handleParentHistory3 = () => { navigate('../HistoryParent3'); };
+
   return (
     <div>
       <div className="navBar">
         <img className="logo" alt="logo" src={govgr} />
         <div className="switchRole">
           <p>Έχετε συνδεθεί ως Γονέας/Κηδεμόνας</p>
-          <button><a href="./profHome">Σύνδεση ως Επαγγελματίας</a></button>
+          <button onClick={handleSwitchRole}>Σύνδεση ως Επαγγελματίας</button>
         </div>
         <div className="profile">
           <img className="pfp" alt="profile" src={userPfp === "" ? emptyProfile : userPfp} />
           <img className="arrow" alt="arrow" src={arrow} />
           <div className="dropdown-content">
-            <a className={currentNavPage === 'ParentProfile' ? 'currentNavPage' : ''} href="./ParentProfile">ΠΡΟΦΙΛ</a>
-            <a 
-              className={currentNavPage === 'WriteMessageParent' || currentNavPage === 'MessageParent' ? 'bold' : ''} 
-              href="./MessageParent"
-            >
-              ΜΗΝΥΜΑΤΑ
-            </a>
-            <a className={currentNavPage === 'NotificationsParent' ? 'currentNavPage' : ''} href="./NotificationsParent">ΕΙΔΟΠΟΙΗΣΕΙΣ</a>
-            <a className={currentNavPage === 'ParentAllAppointments' || currentNavPage === 'ParentAppointment' || currentNavPage === 'ParentAppointmentEnd' || currentNavPage === 'ParentContractRenew' ? 'bold' : ''} href="./ParentHireProfessional">ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</a>
-            <a 
-              className={currentNavPage === 'ParentContractFinal' || currentNavPage === 'ParentContractNotFinal' ? 'bold' : ''} 
-              href="./ParentContractFinal"
-            >
-              ΑΙΤΗΣΕΙΣ
-            </a>
-            <a href="#" onClick={handleLogout}>ΑΠΟΣΥΝΔΕΣΗ</a>
+            <button onClick={handleProfile} className={currentNavPage === 'ParentProfile' ? 'currentNavPage' : ''}>ΠΡΟΦΙΛ</button>
+            <button onClick={handleMessages} className={currentNavPage === 'WriteMessageParent' || currentNavPage === 'MessageParent' ? 'bold' : ''}>ΜΗΝΥΜΑΤΑ</button>
+            <button onClick={handleNotifications} className={currentNavPage === 'NotificationsParent' ? 'currentNavPage' : ''} >ΕΙΔΟΠΟΙΗΣΕΙΣ</button>
+            <button onClick={handleAppointments} className={currentNavPage === 'ParentAllAppointments' || currentNavPage === 'ParentAppointment' || currentNavPage === 'ParentAppointmentEnd' || currentNavPage === 'ParentContractRenew' ? 'currentNavPage' : ''}>ΡΑΝΤΕΒΟΥ</button>
+            <button onClick={handleRequests} className={currentNavPage === 'ParentContractFinal' || currentNavPage === 'ParentContractNotFinal' ? 'currentNavPage' : ''}>ΑΙΤΗΣΕΙΣ</button>
+            <button onClick={handleLogout}>ΑΠΟΣΥΝΔΕΣΗ</button>
           </div>
         </div>
       </div>
       <div className="parentBar">
         <div className="navOptions">
-          <button className={currentNavPage === 'ParentHome' ? 'currentNavPage' : ''}>
-            <a href="./ParentHome">ΑΡΧΙΚΗ</a>
-          </button>
-          <button className={currentNavPage === 'FindProfessional' ? 'currentNavPage' : ''}>
-            <a href="./FindProfessional">ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</a>
-          </button>
-          <button className={currentNavPage === 'ParentHireProfessional' ? 'currentNavPage' : ''}>
-            <a 
-              href="./ParentHireProfessional"
-              className={`${(currentNavPage === 'ParentContractRenew' || currentNavPage === 'ParentAppointment' || currentNavPage === 'ParentAppointmentEnd' || currentNavPage === 'ParentAllAppointments') ? 'bold' : ''}`}
-            >
-              ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ
-            </a>
-          </button>
+          <button onClick={handleParentHome} className={currentNavPage === 'ParentHome' ? 'currentNavPage' : ''}>ΑΡΧΙΚΗ</button>
+          <button onClick={handleFindProfessional} className={currentNavPage === 'FindProfessional' ? 'currentNavPage' : ''}>ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</button>
+          <button onClick={handleHireProfessional} className={currentNavPage === 'ParentHireProfessional' ? 'currentNavPage' : ''}>ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</button>
           <div className="dropdown">
-            <button className={(currentNavPage === 'ParentContractPayment' || currentNavPage === 'ParentContractEnd') ? 'currentNavPage' : ''}>
-              <a 
-                href="./ParentContractPayment" 
-                className={`${(currentNavPage === 'RatingParents' || currentNavPage === 'RatingParentsEnd') ? 'bold' : ''}`}
-              >
-                ΣΥΜΦΩΝΗΤΙΚΟ
-                <img className="arrow" alt="arrow" src={arrowBlack} />
-              </a>
+            <button className={(currentNavPage === 'ParentContractPayment' || currentNavPage === 'ParentContractEnd') ? 'currentNavPage' : ''}>ΣΥΜΦΩΝΗΤΙΚΟ
+              <img className="arrow" alt="arrow" src={arrowBlack} />
             </button>
             <div className="dropdown-content">
-              <a className={currentNavPage === 'ParentContractPayment' ? 'currentNavPage' : ''} href="./ParentContractPayment">ΠΛΗΡΩΜΗ</a>
-              <a 
-                href="./ParentContractEnd"
-                className={`${(currentNavPage === 'RatingParentsEnd' || currentNavPage === 'RatingParents') ? 'bold' : ''} ${currentNavPage === 'ParentContractEnd' ? 'currentNavPage' : ''}`}
-              >
-                ΛΗΞΗ
-              </a>
+              <button onClick={handleContractPay} className={currentNavPage === 'ParentContractPayment' ? 'currentNavPage' : ''}>ΠΛΗΡΩΜΗ</button>
+              <button onClick={handleContractEnd} className={currentNavPage === 'ParentContractEnd' ? 'currentNavPage' : ''}>ΛΗΞΗ</button>
             </div>
           </div>
           <div className="dropdown">
-            <button className={(currentNavPage === 'HistoryParent1' || currentNavPage === 'HistoryParent2' || currentNavPage === 'HistoryParent3') ? 'currentNavPage' : ''}>
-              <a href="./RequestHistory">ΙΣΤΟΡΙΚΟ<img className="arrow" alt="arrow" src={arrowBlack} /></a>
+            <button className={(currentNavPage === 'HistoryParent1' || currentNavPage === 'HistoryParent2' || currentNavPage === 'HistoryParent3') ? 'currentNavPage' : ''}>ΙΣΤΟΡΙΚΟ
+              <img className="arrow" alt="arrow" src={arrowBlack} />
             </button>
             <div className="dropdown-content">
-              <a className={currentNavPage === 'HistoryParent1' ? 'currentNavPage' : ''} href="./HistoryParent1">ΑΙΤΗΣΕΙΣ</a>
-              <a className={currentNavPage === 'HistoryParent2' ? 'currentNavPage' : ''} href="./HistoryParent2">ΣΥΜΦΩΝΗΤΙΚΑ</a>
-              <a className={currentNavPage === 'HistoryParent3' ? 'currentNavPage' : ''} href="./HistoryParent3">ΠΛΗΡΩΜΕΣ</a>
+              <button onClick={handleParentHistory1} className={currentNavPage === 'HistoryParent1' ? 'currentNavPage' : ''}>ΑΙΤΗΣΕΙΣ</button>
+              <button onClick={handleParentHistory2} className={currentNavPage === 'HistoryParent2' ? 'currentNavPage' : ''}>ΣΥΜΦΩΝΗΤΙΚΑ</button>
+              <button onClick={handleParentHistory3} className={currentNavPage === 'HistoryParent3' ? 'currentNavPage' : ''}>ΠΛΗΡΩΜΕΣ</button>
             </div>
           </div>
         </div>

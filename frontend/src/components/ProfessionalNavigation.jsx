@@ -62,7 +62,7 @@ function ProfessionalNavigation({ currentNavPage }) {
       </div>
       <div className="roleBar">
         <div className="navOptions">
-          <button onClick={handleProfHome} className={currentNavPage === 'ProfessionalHome' ? 'currentNavPage' : 'ProfessionalHome'}>ΑΡΧΙΚΗ</button>
+          <button onClick={handleProfHome} className={currentNavPage === 'dashboard' ? 'currentNavPage' : 'dashboard'}>ΑΡΧΙΚΗ</button>
           <button onClick={handleMyAds} className={['ProfessionalCreateAd1', 'ProfessionalCreateAd2', 'ProfessionalCreateAd3', 'ProfessionalCreateAd4','ProfessionalMyAds'].includes(currentNavPage) ? 'currentNavPage' : 'ProfessionalMyAds'}>ΟΙ ΑΓΓΕΛΙΕΣ ΜΟΥ</button>
           <div className="dropdown">
             <button onClick={handleRequests} className={['ProfessionalAllAppointments', 'ProfessionalContract', 'ProfessionalCoOpRequests'].includes(currentNavPage) ? 'currentNavPage' : 'ProfessionalContract'}>ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ

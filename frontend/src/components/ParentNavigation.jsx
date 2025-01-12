@@ -32,7 +32,7 @@ function ParentNavigation({ currentNavPage }) {
   const handleAppointments = () => { navigate('../ParentAllAppointments'); };
   const handleRequests = () => { navigate('../ParentContractFinal'); };
   const handleParentHome = () => { navigate('../dashboard'); };
-  const handleFindProfessional = () => { navigate('../FindProfessional'); };
+  const handleFindProfessional = () => { navigate('../evresi_epaggelmatia'); };
   const handleHireProfessional = () => { navigate('../ParentHireProfessional'); };
   const handleContractPay = () => { navigate('../ParentContractPayment'); };
   const handleContractEnd = () => { navigate('../ParentContractEnd'); };
@@ -63,8 +63,8 @@ function ParentNavigation({ currentNavPage }) {
       </div>
       <div className="roleBar">
         <div className="navOptions">
-          <button onClick={handleParentHome} className={currentNavPage === 'ParentHome' ? 'currentNavPage' : ''}>ΑΡΧΙΚΗ</button>
-          <button onClick={handleFindProfessional} className={currentNavPage === 'FindProfessional' ? 'currentNavPage' : ''}>ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</button>
+          <button onClick={handleParentHome} className={currentNavPage === 'dashboard' ? 'currentNavPage' : ''}>ΑΡΧΙΚΗ</button>
+          <button onClick={handleFindProfessional} className={currentNavPage === 'evresi_epaggelmatia' ? 'currentNavPage' : ''}>ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</button>
           <button onClick={handleHireProfessional} className={currentNavPage === 'ParentHireProfessional' ? 'currentNavPage' : ''}>ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</button>
           <div className="dropdown">
             <button onClick={handleContractPay} className={(currentNavPage === 'ParentContractPayment' || currentNavPage === 'ParentContractEnd') ? 'currentNavPage' : ''}>ΣΥΜΦΩΝΗΤΙΚΟ

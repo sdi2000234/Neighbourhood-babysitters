@@ -1,170 +1,140 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  Button,
   TextField,
-  Stepper,
-  Step,
-  StepLabel,
+  Button,
   Select,
   MenuItem,
   FormControl,
   InputLabel,
-  Checkbox,
-  FormControlLabel,
+  Typography,
 } from '@mui/material';
 
-import Header from '../components/ProfessionalNavigation';
+import ProgressTracker from '../components/ProgressTracker_CreateProfile';
 import Footer from '../components/Footer';
 
 export default function DimiourgiaProfileProfessional2() {
-  const steps = ['Προσωπικά Στοιχεία', 'Πιστοποιητικά', 'Βιογραφικό Σημείωμα'];
+  const navigate = useNavigate();
 
   const handlePrev = () => {
-    // e.g., navigate back to step 1
-    alert('Going back to Step 1...');
+    navigate('/profesionaleditstep1'); // Adjust route accordingly
   };
 
   const handleNext = () => {
-    // e.g., navigate to step 3
-    alert('Going to Step 3...');
+    navigate('/profesionaleditstep3'); // Adjust route accordingly
+  };
+
+  // Define a common style for labels (for file upload and certificate texts)
+  const labelStyle = { fontSize: '1.1rem' };
+
+  // For the Browse buttons, use MUI styling via the sx prop
+  const browseButtonStyle = {
+    minWidth: '120px',
+    alignSelf: 'flex-start',
+    backgroundColor: '#013372',
+    color: 'white',
+    borderColor: '#013372',
+    '&:hover': {
+      backgroundColor: '#013372',
+      color: 'white',
+    },
+  };
+
+  // Style for the navigation buttons (plain HTML buttons)
+  const navButtonStyle = {
+    backgroundColor: '#013372',
+    color: 'white',
+    border: 'none',
+    padding: '8px 13px',
+    borderRadius: '5px',
+    fontSize: '20px',
+    fontWeight: 'bold',
+    cursor: 'pointer',
   };
 
   return (
-    <Box>
+    <div>
+      {/* Progress Tracker with current step set to 2 */}
+      <ProgressTracker currentStep={2} />
 
-      <Container sx={{ my: 4 }}>
-        <Typography
-          variant="h4"
-          sx={{ textAlign: 'center', fontWeight: 'bold', mb: 4 }}
-        >
-          ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ
-        </Typography>
+      <div className="personInfo1">
+        <h1>ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ</h1>
+        <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>ΠΙΣΤΟΠΟΙΗΤΑ</h2>
 
-        {/* Stepper (step 1 is active) */}
-        <Stepper activeStep={1} alternativeLabel sx={{ mb: 4 }}>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {/* Education Level Field */}
+          <TextField
+            label="Επίπεδο Εκπαίδευσης"
+            placeholder="π.χ. Πτυχίο ΕΠΑΛ πώς: 'Βοηθός Βρεφοκομικών'"
+            size="small"
+            fullWidth
+          />
 
-        <Paper
-          elevation={3}
-          sx={{
-            maxWidth: 600,
-            mx: 'auto',
-            p: { xs: 2, md: 4 },
-          }}
-        >
-          <Typography
-            variant="h6"
-            sx={{ textAlign: 'center', fontWeight: 'bold', mb: 3 }}
-          >
-            ΠΙΣΤΟΠΟΙΗΤΙΚΑ
+          {/* PDF Upload fields for Education */}
+          <Typography variant="body2" sx={labelStyle}>
+            Πιστοποίηση Εκπαίδευσης (.pdf):
+          </Typography>
+          <Button variant="outlined" component="label" size="small" sx={browseButtonStyle}>
+            Browse
+            <input hidden type="file" accept=".pdf" />
+          </Button>
+
+          <Typography variant="body2" sx={labelStyle}>
+            Πιστοποίηση Πρώτων Βοηθειών (.pdf):
+          </Typography>
+          <Button variant="outlined" component="label" size="small" sx={browseButtonStyle}>
+            Browse
+            <input hidden type="file" accept=".pdf" />
+          </Button>
+
+          {/* Health Certificates Information */}
+          <Typography variant="body1" sx={{ ...labelStyle, mt: 2 }}>
+            Πιστοποιητικά Υγείας:
+          </Typography>
+          <Typography variant="body2" sx={labelStyle}>
+            (Ενημερώνονται αυτόματα από το σύστημα της ΗΔΙΚΑ. Εάν κάποιο πιστοποιητικό εμφανίζεται
+            σε κόκκινο χρώμα, παρακαλούμε επικοινωνήστε με τον γιατρό σας.)
           </Typography>
 
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            {/* Education */}
-            <TextField
-              label="Επίπεδο Εκπαίδευσης"
-              placeholder="π.χ. Πτυχίο ΕΠΑΛ πώς: 'Βοηθός Βρεφοκομικών'"
-              size="small"
-            />
-
-            {/* PDF Upload fields */}
-            <Typography variant="body2">Πιστοποίηση Εκπαίδευσης (.pdf):</Typography>
-            <Button variant="outlined" component="label">
-              Browse
-              <input hidden type="file" accept=".pdf" />
+          <div
+            style={{
+              display: 'flex',
+              gap: '20px',
+              flexWrap: 'wrap',
+              marginTop: '10px',
+            }}
+          >
+            <Button variant="outlined" size="small" sx={browseButtonStyle}>
+              Πιστοποιητικό Παθολόγου / Γενικού Γιατρού
             </Button>
-
-            <Typography variant="body2">Πιστοποίηση Πρώτων Βοηθειών (.pdf):</Typography>
-            <Button variant="outlined" component="label">
-              Browse
-              <input hidden type="file" accept=".pdf" />
+            <Button variant="contained" size="small" sx={browseButtonStyle}>
+              Πιστοποιητικό Δερματολόγου
             </Button>
-
-            {/* Health certificates info */}
-            <Typography variant="body1" sx={{ mt: 2 }}>
-              Πιστοποιητικά Υγείας:
-            </Typography>
-            <Typography variant="body2">
-              (Ενημερώνονται αυτόματα από το σύστημα της ΗΔΙΚΑ. Εάν κάποιο πιστοποιητικό
-              εμφανίζεται σε κόκκινο χρώμα, παρακαλούμε επικοινωνήστε με τον γιατρό σας.)
-            </Typography>
-
-            <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mt: 1 }}>
-              <Button variant="outlined">Πιστοποιητικό Παθολόγου / Γενικού Γιατρού</Button>
-              <Button variant="contained" color="error">
-                Πιστοποιητικό Δερματολόγου
-              </Button>
-              <Button variant="outlined">Πιστοποιητικό Ψυχικής Υγείας</Button>
-            </Box>
-
-            {/* Foreign language knowledge */}
-            <Box sx={{ mt: 2 }}>
-              <FormControl size="small" fullWidth>
-                <InputLabel>Γνώση Ξένης Γλώσσας 1</InputLabel>
-                <Select defaultValue="" label="Γνώση Ξένης Γλώσσας 1">
-                  <MenuItem value="english">ΑΓΓΛΙΚΑ</MenuItem>
-                  <MenuItem value="french">ΓΑΛΛΙΚΑ</MenuItem>
-                  <MenuItem value="german">ΓΕΡΜΑΝΙΚΑ</MenuItem>
-                  {/* ... */}
-                </Select>
-              </FormControl>
-
-              <Typography variant="body2" sx={{ mt: 1 }}>
-                Πιστοποίηση Γλωσσομάθειας 1 (.pdf):
-              </Typography>
-              <Button variant="outlined" component="label">
-                Browse
-                <input hidden type="file" accept=".pdf" />
-              </Button>
-
-              <Button variant="outlined" sx={{ mt: 2 }}>
-                Προσθήκη Ξένης Γλώσσας +
-              </Button>
-            </Box>
-
-            {/* Sign language */}
-            <FormControlLabel
-              control={<Checkbox />}
-              label="Γνώση Νοηματικής Γλώσσας"
-            />
-            <Typography variant="body2">Πιστοποίηση Γνώσης Νοηματικής (.pdf):</Typography>
-            <Button variant="outlined" component="label">
-              Browse
-              <input hidden type="file" accept=".pdf" />
+            <Button variant="outlined" size="small" sx={browseButtonStyle}>
+              Πιστοποιητικό Ψυχικής Υγείας
             </Button>
+          </div>
+        </div>
 
-            {/* Add more certs */}
-            <Button variant="outlined" sx={{ mt: 2 }}>
-              Προσθήκη Επιπλέον Πιστοποιητικού +
-            </Button>
-          </Box>
-
-          {/* Prev / Next buttons */}
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
-            <Button variant="outlined" onClick={handlePrev}>
-              Προηγούμενο Βήμα
-            </Button>
-            <Button
-              variant="contained"
-              sx={{ backgroundColor: '#013372', color: 'white', fontWeight: 'bold' }}
-              onClick={handleNext}
-            >
-              Επόμενο Βήμα
-            </Button>
-          </Box>
-        </Paper>
-      </Container>
+        {/* Navigation Buttons using plain HTML buttons with inline styling */}
+        <div
+          className="options1"
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginTop: '30px',
+          }}
+        >
+          <button style={navButtonStyle} onClick={handlePrev}>
+            <b>Προηγούμενο Βήμα</b>
+          </button>
+          <button style={navButtonStyle} onClick={handleNext}>
+            <b>Επόμενο Βήμα</b>
+          </button>
+        </div>
+      </div>
 
       <Footer />
-    </Box>
+    </div>
   );
 }

@@ -1,115 +1,98 @@
 import React from 'react';
-import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  Button,
-  TextField,
-  Stepper,
-  Step,
-  StepLabel,
-} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { TextField, Button, Typography } from '@mui/material';
 
-import Header from '../components/ProfessionalNavigation';
+import ProgressTracker from '../components/ProgressTracker_CreateProfile';
 import Footer from '../components/Footer';
 
 export default function DimiourgiaProfileProfessional3() {
-  const steps = ['Προσωπικά Στοιχεία', 'Πιστοποιητικά', 'Βιογραφικό Σημείωμα'];
+  const navigate = useNavigate();
 
   const handlePrev = () => {
-    // e.g., navigate back to step 2
-    alert('Going back to Step 2...');
+    navigate('/profesionaleditstep2'); // Adjust route accordingly
   };
 
   const handleCompleteProfile = () => {
-    // e.g., finalize or submit
     alert('Ολοκλήρωση Δημιουργίας Προφίλ!');
   };
 
+  // Define a common style for labels (for file upload and bio texts)
+  const labelStyle = { fontSize: '1.1rem' };
+
+  // For the Browse buttons, use MUI styling via the sx prop
+  const browseButtonStyle = {
+    minWidth: '120px',
+    alignSelf: 'flex-start',
+    backgroundColor: '#013372',
+    color: 'white',
+    borderColor: '#013372',
+    '&:hover': {
+      backgroundColor: '#013372',
+      color: 'white',
+    },
+  };
+
+  // Style for the navigation buttons (plain HTML buttons)
+  const navButtonStyle = {
+    backgroundColor: '#013372',
+    color: 'white',
+    border: 'none',
+    padding: '8px 13px',
+    borderRadius: '5px',
+    fontSize: '20px',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+  };
+
   return (
-    <Box>
+    <div>
+      {/* Progress Tracker with current step set to 3 */}
+      <ProgressTracker currentStep={3} />
 
-      <Container sx={{ my: 4 }}>
-        <Typography
-          variant="h4"
-          sx={{ textAlign: 'center', fontWeight: 'bold', mb: 4 }}
-        >
-          ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ
-        </Typography>
+      <div className="personInfo1">
+        <h1>ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ</h1>
+        <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>ΒΙΟΓΡΑΦΙΚΟ</h2>
 
-        {/* Stepper (step 2 is active) */}
-        <Stepper activeStep={2} alternativeLabel sx={{ mb: 4 }}>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {/* Short Intro */}
+          <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+            Σύντομη Αυτοπαρουσίαση: (εμφανίζεται στην σελίδα αναζήτησης - εύρεσης επαγγελματιών)
+          </Typography>
+          <TextField multiline rows={4} placeholder="Λίγα λόγια για εσάς..." />
 
-        <Paper
-          elevation={3}
-          sx={{
-            maxWidth: 600,
-            mx: 'auto',
-            p: { xs: 2, md: 4 },
+         
+
+          {/* PDF Upload for Bio */}
+          <Typography variant="body2" sx={{ mt: 2, ...labelStyle }}>
+            Επισύναψη Βιογραφικού Σημειώματος (.pdf):
+          </Typography>
+          <Button variant="outlined" component="label" size="small" sx={browseButtonStyle}>
+            Browse
+            <input hidden type="file" accept=".pdf" />
+          </Button>
+
+          
+        </div>
+
+        {/* Navigation Buttons */}
+        <div
+          className="options1"
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginTop: '30px',
           }}
         >
-          <Typography
-            variant="h6"
-            sx={{ textAlign: 'center', fontWeight: 'bold', mb: 3 }}
-          >
-            ΒΙΟΓΡΑΦΙΚΟ
-          </Typography>
-
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            {/* Short Intro */}
-            <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-              Σύντομη Αυτοπαρουσίαση: (εμφανίζεται στην σελίδα αναζήτησης - εύρεσης επαγγελματιών)
-            </Typography>
-            <TextField
-              multiline
-              rows={4}
-              placeholder="Λίγα λόγια για εσάς..."
-            />
-
-            {/* Longer bio text (placeholder) */}
-            <Typography variant="body2" sx={{ mt: 2 }}>
-              Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos...
-            </Typography>
-
-            {/* PDF Upload */}
-            <Typography variant="body2" sx={{ mt: 2 }}>
-              Επισύναψη Βιογραφικού Σημειώματος (.pdf):
-            </Typography>
-            <Button variant="outlined" component="label">
-              Browse
-              <input hidden type="file" accept=".pdf" />
-            </Button>
-
-            {/* Additional docs */}
-            <Button variant="outlined" sx={{ mt: 2 }}>
-              Προσθήκη Επιπλέον Εγγράφων +
-            </Button>
-          </Box>
-
-          {/* Prev / Complete buttons */}
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
-            <Button variant="outlined" onClick={handlePrev}>
-              Προηγούμενο Βήμα
-            </Button>
-            <Button
-              variant="contained"
-              sx={{ backgroundColor: '#013372', color: 'white', fontWeight: 'bold' }}
-              onClick={handleCompleteProfile}
-            >
-              Ολοκλήρωση Δημιουργίας Προφίλ
-            </Button>
-          </Box>
-        </Paper>
-      </Container>
+          <button style={navButtonStyle} onClick={handlePrev}>
+            <b>Προηγούμενο Βήμα</b>
+          </button>
+          <button style={navButtonStyle} onClick={handleCompleteProfile}>
+            <b>Ολοκλήρωση Δημιουργίας Προφίλ</b>
+          </button>
+        </div>
+      </div>
 
       <Footer />
-    </Box>
+    </div>
   );
 }

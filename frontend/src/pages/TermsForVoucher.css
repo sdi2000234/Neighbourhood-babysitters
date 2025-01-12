@@ -1,0 +1,80 @@
+.terms4Voucher
+{
+    display: block;
+}
+
+.terms4Voucher h3
+{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.terms4Voucher .termsCategory
+{
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.terms4Voucher li
+{
+    display: list-item;
+    margin-bottom: 10px;
+}
+
+.terms4Voucher ol
+{
+    padding-left: 20px;
+}
+
+.terms4Voucher ul
+{
+    padding-left: 20px;
+}
+
+.terms4Voucher .importantNotice
+{
+    display: flex;
+    background-color: #013372;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.terms4Voucher .importantNotice img
+{
+    height: 20px;
+    margin-right: 20px;
+    align-self: center;
+}
+
+.termsIncome
+{
+    margin-bottom: 20px;
+}
+
+.terms4Parents
+{
+    border-radius: 5px;
+    background-color: #ddd;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    margin-right: 100px;
+    margin-left: 100px;
+    padding: 30px;
+    padding-right: 60px;
+    padding-left: 60px;
+}
+
+.terms4Professionals
+{
+    border-radius: 5px;
+    background-color: #ddd;
+    margin: 40px;
+    margin-right: 100px;
+    margin-left: 100px;
+    padding: 30px;
+    padding-right: 60px;
+    padding-left: 60px;
+}

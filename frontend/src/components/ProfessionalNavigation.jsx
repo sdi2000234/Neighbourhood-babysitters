@@ -22,53 +22,65 @@ function ProfessionalNavigation({ currentNavPage }) {
     }
   };
 
+  //Για περιήγηση σε υπολοιπες σελίδες
+  const navigate = useNavigate();
+
+  const handleSwitchRole = () => { navigate('../'); };
+  const handleProfile = () => { navigate('../ProfessionalProfile'); };
+  const handleMessages = () => { navigate('../MessageProfessional'); };
+  const handleNotifications = () => { navigate('../NotificationsProfessional'); };
+  const handleAppointments = () => { navigate('../ProfessionalAllAppointments'); };
+  const handleRequests = () => { navigate('../ProfessionalContract'); };
+  const handleReviews = () => { navigate('../RatingProfessional'); };
+  const handleProfHome = () => { navigate('../dashboard'); };
+  const handleMyAds = () => { navigate('../ProfessionalMyAds'); };
+  const handleProfHistory1 = () => { navigate('../HistoryProfessional1'); };
+  const handleProfHistory2 = () => { navigate('../HistoryProfessional2'); };
+  const handleProfHistory3 = () => { navigate('../HistoryProfessional3'); };
+
   return (
     <div>
       <div className="navBar">
         <img className="logo" alt="logo" src={govgr} />
         <div className="switchRole">
           <p>Έχετε συνδεθεί ως Επαγγελματίας</p>
-          <button><a href="./profHome">Σύνδεση ως Γονέας/Κηδεμόνας</a></button>
+          <button onClick={handleSwitchRole}>Σύνδεση ως Γονέας/Κηδεμόνας</button>
         </div>
         <div className="profile">
           <img className="pfp" alt="profile" src={userPfp === "" ? emptyProfile : userPfp} />
           <img className="arrow" alt="arrow" src={arrow} />
           <div className="dropdown-content">
-            <a className={currentNavPage === 'ProfessionalProfile' ? 'currentNavPage' : 'ProfessionalProfile'} href="./ProfessionalProfile">ΠΡΟΦΙΛ</a>
-            <a className={['MessageProfessional', 'WriteMessageProfessional'].includes(currentNavPage) ? 'currentNavPage boldText' : 'MessageProfessional'} href="./MessageProfessional">ΜΗΝΥΜΑΤΑ</a>
-            <a className={currentNavPage === 'NotificationsProfessional' ? 'currentNavPage' : 'NotificationsProfessional'} href="./NotificationsProfessional">ΕΙΔΟΠΟΙΗΣΕΙΣ</a>
-            <a className={currentNavPage === 'ProfessionalAllAppointments' ? 'currentNavPage boldText' : 'ProfessionalAllAppointments'} href="./ProfessionalAllAppointments">ΡΑΝΤΕΒΟΥ</a>
-            <a className={currentNavPage === 'ProfessionalContract' ? 'currentNavPage boldText' : 'ProfessionalContract'} href="./ProfessionalContract">ΑΙΤΗΣΕΙΣ</a>
-            <a className={currentNavPage === 'RatingProfessional' ? 'currentNavPage' : 'RatingProfessional'} href="./RatingProfessional">ΑΞΙΟΛΟΓΗΣΕΙΣ</a>
-            <a href="#" onClick={handleLogout}>ΑΠΟΣΥΝΔΕΣΗ</a>
+            <button onClick={handleProfile} className={currentNavPage === 'ProfessionalProfile' ? 'currentNavPage' : 'ProfessionalProfile'}>ΠΡΟΦΙΛ</button>
+            <button onClick={handleMessages} className={currentNavPage==='MessageProfessional' ? 'currentNavPage' : 'MessageProfessional'}>ΜΗΝΥΜΑΤΑ</button>
+            <button onClick={handleNotifications} className={currentNavPage === 'NotificationsProfessional' ? 'currentNavPage' : 'NotificationsProfessional'}>ΕΙΔΟΠΟΙΗΣΕΙΣ</button>
+            <button onClick={handleAppointments} className={currentNavPage === 'ProfessionalAllAppointments' ? 'currentNavPage' : 'ProfessionalAllAppointments'}>ΡΑΝΤΕΒΟΥ</button>
+            <button onClick={handleRequests} className={currentNavPage === 'ProfessionalContract' ? 'currentNavPage' : 'ProfessionalContract'}>ΑΙΤΗΣΕΙΣ</button>
+            <button onClick={handleReviews} className={currentNavPage === 'RatingProfessional' ? 'currentNavPage' : 'RatingProfessional'}>ΑΞΙΟΛΟΓΗΣΕΙΣ</button>
+            <button onClick={handleLogout}>ΑΠΟΣΥΝΔΕΣΗ</button>
           </div>
         </div>
       </div>
-      <div className="parentBar">
+      <div className="roleBar">
         <div className="navOptions">
-          <button className={currentNavPage === 'ProfessionalHome' ? 'currentNavPage' : 'ProfessionalHome'}>
-            <a href="./ProfessionalHome">ΑΡΧΙΚΗ</a>
-          </button>
-          <button className={['ProfessionalCreateAd1', 'ProfessionalCreateAd2', 'ProfessionalCreateAd3', 'ProfessionalCreateAd4','ProfessionalMyAds'].includes(currentNavPage) ? 'currentNavPage boldText' : 'ProfessionalMyAds'}>
-            <a href="./ProfessionalMyAds">ΟΙ ΑΓΓΕΛΙΕΣ ΜΟΥ</a>
-          </button>
+          <button onClick={handleProfHome} className={currentNavPage === 'ProfessionalHome' ? 'currentNavPage' : 'ProfessionalHome'}>ΑΡΧΙΚΗ</button>
+          <button onClick={handleMyAds} className={['ProfessionalCreateAd1', 'ProfessionalCreateAd2', 'ProfessionalCreateAd3', 'ProfessionalCreateAd4','ProfessionalMyAds'].includes(currentNavPage) ? 'currentNavPage' : 'ProfessionalMyAds'}>ΟΙ ΑΓΓΕΛΙΕΣ ΜΟΥ</button>
           <div className="dropdown">
-            <button className={['ProfessionalAllAppointments', 'ProfessionalContract', 'ProfessionalCoOpRequests'].includes(currentNavPage) ? 'currentNavPage boldText' : 'ProfessionalContract'}>
-              <a href="./ProfessionalContract">ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ <img className="arrow" alt="arrow" src={arrowBlack} /></a>
+            <button onClick={handleRequests} className={['ProfessionalAllAppointments', 'ProfessionalContract', 'ProfessionalCoOpRequests'].includes(currentNavPage) ? 'currentNavPage' : 'ProfessionalContract'}>ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ
+              <img className="arrow" alt="arrow" src={arrowBlack} />
             </button>
             <div className="dropdown-content">
-              <a className={currentNavPage === 'ProfessionalAllAppointments' ? 'currentNavPage boldText' : 'ProfessionalAllAppointments'} href="./ProfessionalAllAppointments">ΡΑΝΤΕΒΟΥ</a>
-              <a className={currentNavPage === 'ProfessionalContract' ? 'currentNavPage boldText' : 'ProfessionalContract'} href="./ProfessionalContract">ΑΙΤΗΣΕΙΣ</a>
+              <button onClick={handleAppointments} className={currentNavPage === 'ProfessionalAllAppointments' ? 'currentNavPage' : 'ProfessionalAllAppointments'}>ΡΑΝΤΕΒΟΥ</button>
+              <button onClick={handleRequests} className={currentNavPage === 'ProfessionalContract' ? 'currentNavPage' : 'ProfessionalContract'}>ΑΙΤΗΣΕΙΣ</button>
             </div>
           </div>
           <div className="dropdown">
-            <button className={['HistoryProfessional1', 'HistoryProfessional2', 'HistoryProfessional3'].includes(currentNavPage) ? 'currentNavPage boldText' : 'ProfessionalHistory'}>
-              <a href="./HistoryProfessional1">ΙΣΤΟΡΙΚΟ <img className="arrow" alt="arrow" src={arrowBlack} /></a>
+            <button onClick={handleProfHistory1} className={['HistoryProfessional1', 'HistoryProfessional2', 'HistoryProfessional3'].includes(currentNavPage) ? 'currentNavPage' : 'ProfessionalHistory'}>ΙΣΤΟΡΙΚΟ
+              <img className="arrow" alt="arrow" src={arrowBlack} />
             </button>
             <div className="dropdown-content">
-              <a className={currentNavPage === 'HistoryProfessional1' ? 'currentNavPage boldText' : 'HistoryProfessional1'} href="./HistoryProfessional1">ΑΙΤΗΣΕΙΣ</a>
-              <a className={currentNavPage === 'HistoryProfessional2' ? 'currentNavPage boldText' : 'HistoryProfessional2'} href="./HistoryProfessional2">ΣΥΜΦΩΝΗΤΙΚΑ</a>
-              <a className={currentNavPage === 'HistoryProfessional3' ? 'currentNavPage boldText' : 'HistoryProfessional3'} href="./HistoryProfessional3">ΠΛΗΡΩΜΕΣ</a>
+              <button onClick={handleProfHistory1} className={currentNavPage === 'HistoryProfessional1' ? 'currentNavPage' : 'HistoryProfessional1'} href="./HistoryProfessional1">ΑΙΤΗΣΕΙΣ</button>
+              <button onClick={handleProfHistory2} className={currentNavPage === 'HistoryProfessional2' ? 'currentNavPage' : 'HistoryProfessional2'} href="./HistoryProfessional2">ΣΥΜΦΩΝΗΤΙΚΑ</button>
+              <button onClick={handleProfHistory3} className={currentNavPage === 'HistoryProfessional3' ? 'currentNavPage' : 'HistoryProfessional3'} href="./HistoryProfessional3">ΠΛΗΡΩΜΕΣ</button>
             </div>
           </div>
         </div>

@@ -67,7 +67,7 @@ function ParentNavigation({ currentNavPage }) {
           <button onClick={handleFindProfessional} className={currentNavPage === 'FindProfessional' ? 'currentNavPage' : ''}>ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</button>
           <button onClick={handleHireProfessional} className={currentNavPage === 'ParentHireProfessional' ? 'currentNavPage' : ''}>ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</button>
           <div className="dropdown">
-            <button className={(currentNavPage === 'ParentContractPayment' || currentNavPage === 'ParentContractEnd') ? 'currentNavPage' : ''}>ΣΥΜΦΩΝΗΤΙΚΟ
+            <button onClick={handleContractPay} className={(currentNavPage === 'ParentContractPayment' || currentNavPage === 'ParentContractEnd') ? 'currentNavPage' : ''}>ΣΥΜΦΩΝΗΤΙΚΟ
               <img className="arrow" alt="arrow" src={arrowBlack} />
             </button>
             <div className="dropdown-content">
@@ -76,7 +76,7 @@ function ParentNavigation({ currentNavPage }) {
             </div>
           </div>
           <div className="dropdown">
-            <button className={(currentNavPage === 'HistoryParent1' || currentNavPage === 'HistoryParent2' || currentNavPage === 'HistoryParent3') ? 'currentNavPage' : ''}>ΙΣΤΟΡΙΚΟ
+            <button onClick={handleParentHistory1} className={(currentNavPage === 'HistoryParent1' || currentNavPage === 'HistoryParent2' || currentNavPage === 'HistoryParent3') ? 'currentNavPage' : ''}>ΙΣΤΟΡΙΚΟ
               <img className="arrow" alt="arrow" src={arrowBlack} />
             </button>
             <div className="dropdown-content">

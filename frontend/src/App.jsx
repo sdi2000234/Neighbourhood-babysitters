@@ -113,7 +113,6 @@ function Layout({ user, isKeeper, currentNavPage, children }) {
     <>
       {HeaderToShow}
       {children}
-      <Footer />
     </>
   );
 }

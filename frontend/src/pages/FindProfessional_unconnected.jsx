@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Container,
@@ -18,21 +18,32 @@ import {
   InputLabel,
   FormControl,
 } from '@mui/material';
-import ParentNavigation from '../components/ParentNavigation';
 import Footer from '../components/Footer';
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Pagination from '@mui/material/Pagination'; // (NEW) Pagination import
-import Header from '../components/Header_starter';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { auth, db } from '../firebaseConfig'; // Make sure this file exports 'auth' and 'db'
+
 
 const FindProfessionalUnconnected = () => {
+
   // --------- STATE ---------
   const [favorites, setFavorites] = useState({});
   const [selectedLanguage, setSelectedLanguage] = useState('');
-  const [currentPage, setCurrentPage] = useState(1); // (NEW) For pagination
-  const professionalsPerPage = 9; // (NEW) Ads per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const professionalsPerPage = 9;
   const navigate = useNavigate();
+
+  const location = useLocation(); // Χρησιμοποιούμε το useLocation μέσα σε αυτό το component
+
+  const [user, setUser] = useState(null);
+  const [isKeeper, setIsKeeper] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // --------- LANGUAGE OPTIONS (same as first snippet) ---------
   const languages = [
@@ -116,6 +127,86 @@ const FindProfessionalUnconnected = () => {
 
   const handleClickLike = () => {
     setLiked(!liked);
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (!firebaseUser) {
+        setUser(null);
+        setIsKeeper(false);
+        setLoading(false);
+      } else {
+        setUser(firebaseUser);
+
+        try {
+          const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
+          if (userDoc.exists()) {
+            const data = userDoc.data();
+            setIsKeeper(!!data.isKeeper);
+          } else {
+            setIsKeeper(false);
+          }
+        } catch (error) {
+          console.error("Error checking if user is keeper:", error);
+          setIsKeeper(false);
+        }
+        setLoading(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // --------- BUTTON USE COMPONENT ---------
+  const ButtonUse = ({ action, children }) => {
+    if (!user) {
+      return (
+        <Button
+          variant="outlined"
+          onClick={() => navigate('/login')}
+          sx={{
+            backgroundColor: '#fff',
+            color: '#013372',
+            '&:hover': {
+              backgroundColor: '#f0f0f0',
+            },
+          }}
+        >
+          {children}
+        </Button>
+      );
+    }
+
+    if (isKeeper) {
+      return (
+        <Button
+          variant="outlined"
+          disabled
+          sx={{
+            backgroundColor: '#fff',
+            color: '#d3d3d3',
+          }}
+        >
+          {children}
+        </Button>
+      );
+    }
+
+    return (
+      <Button
+        variant="outlined"
+        onClick={action}
+        sx={{
+          backgroundColor: '#fff',
+          color: '#013372',
+          '&:hover': {
+            backgroundColor: '#f0f0f0',
+          },
+        }}
+      >
+        {children}
+      </Button>
+    );
   };
 
   return (
@@ -209,6 +300,8 @@ const FindProfessionalUnconnected = () => {
           position: 'relative',
           backgroundColor: '#013372', // Set the gray background color
           color: 'white', // Ensure text is readable
+          display: 'flex',
+          flexDirection: 'column'
         }}
       >
         {/* Heart Icon */}
@@ -232,6 +325,41 @@ const FindProfessionalUnconnected = () => {
         <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
           {pro.name}
         </Typography>
+        
+        <Typography variant="body2">
+          ⭐ {pro.rating} ({pro.reviews} αξιολογήσεις)
+        </Typography>
+        <Divider sx={{ my: 1 }} />
+        <Typography variant="body2"
+          sx={
+           {
+            alignSelf: 'center',
+            fontSize: 18,
+            marginBottom: 1,
+            marginTop: 5,
+           } 
+          }
+        >
+          Ηλικία: {pro.age}
+        </Typography>
+        <Typography variant="body2"
+          sx={
+            {
+            alignSelf: 'center',
+            fontSize: 18,
+            marginBottom: 1
+            } 
+          }
+        >Περιοχή: {pro.area}</Typography>
+        <Typography variant="body2"
+        sx={
+          {
+           alignSelf: 'center',
+           fontSize: 18,
+           marginBottom: 1
+          } 
+         }
+        >Εμπειρία: {pro.exp} χρόνια</Typography>
         <Button
           variant="contained"
           sx={{
@@ -241,18 +369,17 @@ const FindProfessionalUnconnected = () => {
             '&:hover': {
               backgroundColor: '#d3d3d3',
             },
+            margin: 6,
+            marginBottom: 4,
           }}
           onClick={() => navigate('/professional-details', { state: pro })}
         >
-          Πληροφορίες
+          ΠΛΗΡΟΦΟΡΙΕΣ
         </Button>
-        <Typography variant="body2">
-          ⭐ {pro.rating} ({pro.reviews} αξιολογήσεις)
-        </Typography>
-        <Divider sx={{ my: 1 }} />
-        <Typography variant="body2">Ηλικία: {pro.age}</Typography>
-        <Typography variant="body2">Περιοχή: {pro.area}</Typography>
-        <Typography variant="body2">Εμπειρία: {pro.exp} χρόνια</Typography>
+        <Box sx={{ display: 'flex', gap: 2, mt: 2 }}>
+          <ButtonUse action={() => navigate('/ParentAppointment')}>ΡΑΝΤΕΒΟΥ</ButtonUse>
+          <ButtonUse action={() => navigate('/ParentContractRenew')}>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ</ButtonUse>
+        </Box>
       </Paper>
     </Grid>
   ))}

@@ -206,6 +206,8 @@ function Main() {
         <Route path='/MessageParent' element={<MessageParent />} />
         <Route path='/NotificationsParent' element={<NotificationsParent />} />
         <Route path='/WriteMessageParent' element={<WriteMessageParent />} />
+        <Route path='/ParentContractFinal' element={<ParentContractFinal />} />
+        <Route path='/ParentContractNotFinal' element={<ParentContractNotFinal />} />
 
         {/* Professional Routes */}
         <Route path='/ProfessionalMyAds' element={<ProfessionalMyAds />} />
@@ -221,6 +223,27 @@ function Main() {
         <Route path='/MessageProfessional' element={<MessageProfessional />} />
         <Route path='/NotificationsProfessional' element={<NotificationsProfessional />} />
         <Route path='/WriteMessageProfessional' element={<WriteMessageProfessional />} />
+        <Route path='/RatingProfessional' element={<RatingProfessional />} />
+        <Route path='/ProfessionalAllAppointments' element={<ProfessionalAllAppointments />} />
+        <Route path='/ParentChangeAppointmentEnd' element={<ParentChangeAppointmentEnd />} />
+        <Route
+            path='/ParentChangeAppointment'
+            element={
+              <ParentChangeAppointment
+                babysitterName={babysitterName}
+                userName={userName}
+                userLastName={userLastName}
+                userPhone={userPhone}
+                userEmail={userEmail}
+                prevDate={date}
+                prevTime={time}
+                initialMeetingType={type}
+                initialMessage={message}
+                initialAddress={address}
+                initialLink={link}
+              />
+            }
+          />
       </Routes>
     </Layout>
   );

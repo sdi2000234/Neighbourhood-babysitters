@@ -43,6 +43,7 @@ import DimiourgiaProfileProfessional3 from './pages/make_profile_professional_3.
 import FindProfessionalUnconnected from './pages/FindProfessional_unconnected.jsx'; 
 import ProfessionalDetails from './pages/ProfessionalDetails';
 import WhoWeAre from './pages/WhoWeAre.jsx'; 
+import TermsForVoucher from './pages/TermsForVoucher';
 
 // == Import Additional Pages ==
 import RatingParents from './pages/RatingPage/RatingParents';
@@ -187,6 +188,7 @@ function Main() {
         <Route path="/FindProfessional_unconnected" element={<FindProfessionalUnconnected />} />
         <Route path="/professional-details" element={<ProfessionalDetails />} />
         <Route path="/WhoWeAre" element={<WhoWeAre />} />
+        <Route path="/TermsForVoucher" element={<TermsForVoucher />} />
 
         {/* Parent Routes */}
         <Route path='/ParentContractPayment' element={<ParentContractPayment />} />

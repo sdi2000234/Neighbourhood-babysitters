@@ -11,7 +11,6 @@ import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import SearchIcon from '@mui/icons-material/Search';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import PeopleIcon from '@mui/icons-material/People';
-import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import PaymentIcon from '@mui/icons-material/Payment';
 import HandshakeIcon from '@mui/icons-material/Handshake';
@@ -46,12 +45,6 @@ const infoItems = [
       'Είναι ιδιώτες φροντιστές που θέλουν να προσφέρουν αγάπη και φροντίδα στο μωρό σου όσες ώρες εσύ λείπεις. Η υπηρεσία μας έρχεται σε επαφή μαζί τους έχοντας διασταυρώσει τα στοιχεία τους με συνεχείς ελέγχους.',
   },
   {
-    icon: <VolunteerActivismIcon fontSize="large" />,
-    title: 'Νταντάδες με καρδιά',
-    description:
-      'Πολλοί φροντιστές μας δίνουν ένα μέρος της αμοιβής τους σε οργανισμούς που βοηθούν παιδιά και οικογένειες σε ανάγκη. Έτσι ξέρεις πως, κάθε φορά που κάνεις ηλεκτρονική πληρωμή, υποστηρίζεις κάτι καλό!',
-  },
-  {
     icon: <MedicalServicesIcon fontSize="large" />,
     title: 'Επείγουσα βοήθεια 24/7',
     description:
@@ -61,7 +54,7 @@ const infoItems = [
     icon: <PaymentIcon fontSize="large" />,
     title: 'Πληρωμές με ασφάλεια',
     description:
-      'Οι συναλλαγές σου γίνονται εύκολα και με ασφάλεια online, με χρεωστική ή πιστωτική κάρτα. Η ηλεκτρονική πληρωμή διασφαλίζει και τη δυνατότητα επιστροφής χρημάτων*. (* με βάση την πολιτική ακύρωσης του κάθε φροντιστή)',
+      'Οι πληρωμές των επαγγελματιών γίνονται εύκολα και με ασφάλεια μέσω των voucher που παρέχονται από το κράτος στα άτομα που πληρούν τις απαραίτητες προϋποθέσεις. (μπορείτε να διαβάσετε τις προϋποθέσεις στη σελίδα "Προϋποθέσεις για Voucher")',
   },
   {
     icon: <HandshakeIcon fontSize="large" />,

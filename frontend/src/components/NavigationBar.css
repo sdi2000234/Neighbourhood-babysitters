@@ -4,7 +4,7 @@
     font-family: arial;
 }
 
-.parentBar {
+.roleBar {
     display: flex;
     color: #00aeef;
     font-size: 18px;
@@ -13,7 +13,7 @@
 }
 
 /* Μπλοκ από αρχική μέχρι ιστορικό */
-.parentBar button {
+.roleBar button {
     background-color: transparent;
     border: none;
     align-self: flex-end;
@@ -21,7 +21,7 @@
 }
 
 /* Μεμονωμένα από αρχική μέχρι ιστορικό */
-.parentBar a {
+.roleBar a {
     text-decoration: none; /* Για να μην εμφανίζονται υπογραμμισμένα. */
     align-items: center;
     color: black;
@@ -85,12 +85,12 @@
     min-width: 165px;
 }
 
-.parentBar .dropdown:hover .dropdown-content {
+.roleBar .dropdown:hover .dropdown-content {
     background-color: #00aeef;
     color: #000;
 }
 
-.parentBar .dropdown-content button:hover {
+.roleBar .dropdown-content button:hover {
     background-color: #013372;
     color: #fff;
 }
@@ -172,7 +172,7 @@
     margin-left: 5px;
 }
 
-.parentBar .arrow {
+.roleBar .arrow {
     height: 8px;
     margin-left: 5px;
 }

@@ -61,7 +61,7 @@ function ParentNavigation({ currentNavPage }) {
           </div>
         </div>
       </div>
-      <div className="parentBar">
+      <div className="roleBar">
         <div className="navOptions">
           <button onClick={handleParentHome} className={currentNavPage === 'ParentHome' ? 'currentNavPage' : ''}>ΑΡΧΙΚΗ</button>
           <button onClick={handleFindProfessional} className={currentNavPage === 'FindProfessional' ? 'currentNavPage' : ''}>ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</button>

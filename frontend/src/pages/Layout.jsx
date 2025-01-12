@@ -3,7 +3,6 @@ import React from 'react';
 import HeaderStarter from './components/Header_starter';
 import ProfessionalNavigation from './components/ProfessionalNavigation';
 import ParentNavigation from './components/ParentNavigation';
-import Footer from './components/Footer';
 
 function Layout({ user, isKeeper, children }) {
   let HeaderComponent = null;
@@ -25,7 +24,6 @@ function Layout({ user, isKeeper, children }) {
       {HeaderComponent}
       {/* Page content here */}
       {children}
-      <Footer />
     </>
   );
 }

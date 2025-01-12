@@ -25,7 +25,7 @@ function ProfessionalNavigation({ currentNavPage }) {
   //Για περιήγηση σε υπολοιπες σελίδες
   const navigate = useNavigate();
 
-  const handleSwitchRole = () => { navigate('../'); };
+  const handleSwitchRole = () => { navigate('../Login'); };
   const handleProfile = () => { navigate('../ProfessionalProfile'); };
   const handleMessages = () => { navigate('../MessageProfessional'); };
   const handleNotifications = () => { navigate('../NotificationsProfessional'); };

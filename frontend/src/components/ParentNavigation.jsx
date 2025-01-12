@@ -25,7 +25,7 @@ function ParentNavigation({ currentNavPage }) {
   //Για περιήγηση σε υπολοιπες σελίδες
   const navigate = useNavigate();
 
-  const handleSwitchRole = () => { navigate('../dashboard'); };
+  const handleSwitchRole = () => { navigate('../Login'); };
   const handleProfile = () => { navigate('../ParentProfile'); };
   const handleMessages = () => { navigate('../MessageParent'); };
   const handleNotifications = () => { navigate('../NotificationsParent'); };

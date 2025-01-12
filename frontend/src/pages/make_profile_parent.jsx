@@ -1,26 +1,15 @@
 // src/pages/ProfilePersonal.js
 
 import React, { useState } from 'react';
-import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  Button,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from '@mui/material';
+import { Box, TextField, Button, FormControl, InputLabel, Select, MenuItem, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-// Import your existing header and footer
 import Header from '../components/Header_starter';
 import Footer from '../components/Footer';
+import ProgressTracker_CreateProfile from '../components/ProgressTracker_CreateProfile';
 
 export default function ProfilePersonal() {
-  // State for all the form fields
+  // State for form fields
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -39,8 +28,12 @@ export default function ProfilePersonal() {
     street: '',
     streetNumber: '',
     zipCode: '',
-    profileImage: null, // If you want to keep image upload logic
   });
+
+  // State for handling image upload and its preview
+  const [profileImage, setProfileImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [uploadMsg, setUploadMsg] = useState('');
 
   // Handle text changes
   const handleChange = (event) => {
@@ -51,226 +44,128 @@ export default function ProfilePersonal() {
     }));
   };
 
-  // Handle image upload (currently not displayed, but stored in state)
+  // Handle image upload: accept only PNG or JPG files.
   const handleImageUpload = (event) => {
     const file = event.target.files[0] || null;
-    setFormData((prev) => ({
-      ...prev,
-      profileImage: file,
-    }));
+    if (file) {
+      // Check file type (allow only PNG and JPEG)
+      if (!['image/png', 'image/jpeg'].includes(file.type)) {
+        setProfileImage(null);
+        setImagePreview(null);
+        setUploadMsg('Παρακαλώ επιλέξτε εικόνα τύπου PNG ή JPG.');
+        return;
+      }
+      // If file is allowed, save it and show preview.
+      setProfileImage(file);
+      setImagePreview(URL.createObjectURL(file));
+      setUploadMsg('Η εικόνα ελήφθη επιτυχώς!');
+    } else {
+      setProfileImage(null);
+      setImagePreview(null);
+      setUploadMsg('');
+    }
   };
 
-  // Simulate "Αποθήκευση" action
+  // Simulate save action
   const handleSave = () => {
-    // In a real app, you'd POST this data to your backend
     alert('Τα προσωπικά στοιχεία αποθηκεύτηκαν!');
+  };
+
+  // Inline style for the Save button (matching your primary colour)
+  const saveButtonStyle = {
+    backgroundColor: '#013372',
+    color: 'white',
+    fontWeight: 'bold',
+    textTransform: 'none',
+    padding: '8px 16px',
   };
 
   return (
     <Box>
-      {/* Top navigation (blue bar) */}
+     
 
-      {/* Main Content */}
-      <Container sx={{ my: 4 }}>
-        <Typography
-          variant="h4"
-          sx={{ textAlign: 'center', fontWeight: 'bold', mb: 4 }}
-        >
-          ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ
-        </Typography>
+      {/* Progress Tracker with current step set to 1 */}
+      <ProgressTracker_CreateProfile currentStep={1} />
 
-        {/* The form in a centered Paper */}
-        <Paper
-          elevation={3}
-          sx={{
-            maxWidth: 600,
-            mx: 'auto',
-            p: { xs: 2, md: 4 },
-          }}
-        >
-          <Typography
-            variant="h6"
-            sx={{ textAlign: 'center', fontWeight: 'bold', mb: 3 }}
-          >
-            ΤΟ ΠΡΟΦΙΛ ΜΟΥ
-          </Typography>
+      <div className="personInfo1">
+        <h1>ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ</h1>
+        <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>ΤΟ ΠΡΟΦΙΛ ΜΟΥ</h2>
 
-          {/* Placeholder icon / Upload */}
-          <Box
+        {/* Profile Image Upload Section */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
+          {/* Display preview if available; otherwise, a placeholder icon */}
+          {imagePreview ? (
+            <img
+              src={imagePreview}
+              alt="Profile Preview"
+              style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover' }}
+            />
+          ) : (
+            <AccountCircleIcon sx={{ fontSize: 80, color: '#888' }} />
+          )}
+
+          <Button
+            variant="outlined"
+            component="label"
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              mb: 2,
+              mt: 1,
+              textTransform: 'none',
+              backgroundColor: '#013372',
+              color: 'white',
+              borderColor: '#013372',
+              '&:hover': {
+                backgroundColor: '#013372',
+                color: 'white',
+              },
             }}
           >
-            {/* Large user icon as placeholder */}
-            <AccountCircleIcon sx={{ fontSize: 80, color: '#888' }} />
+            Προσθήκη Εικόνας
+            <input hidden accept="image/*" type="file" onChange={handleImageUpload} />
+          </Button>
+          {/* Notification message */}
+          {uploadMsg && (
+            <Typography variant="body2" sx={{ mt: 1, color: uploadMsg.includes('ελήφθη') ? 'green' : 'red' }}>
+              {uploadMsg}
+            </Typography>
+          )}
+        </div>
 
-            <Button
-              variant="outlined"
-              component="label"
-              sx={{ mt: 1, textTransform: 'none' }}
-            >
-              Προσθήκη Εικόνας
-              <input
-                hidden
-                accept="image/*"
-                type="file"
-                onChange={handleImageUpload}
-              />
-            </Button>
-          </Box>
+        {/* Form Fields */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <TextField label="Όνομα" name="firstName" value={formData.firstName} onChange={handleChange} size="small" />
+          <TextField label="Επώνυμο" name="lastName" value={formData.lastName} onChange={handleChange} size="small" />
+          <TextField label="Πατρώνυμο" name="fatherName" value={formData.fatherName} onChange={handleChange} size="small" />
+          <TextField label="Μητρώνυμο" name="motherName" value={formData.motherName} onChange={handleChange} size="small" />
+          <TextField label="Έτος Γέννησης" name="yearOfBirth" value={formData.yearOfBirth} onChange={handleChange} size="small" />
+          <FormControl size="small">
+            <InputLabel>Φύλο</InputLabel>
+            <Select name="gender" value={formData.gender} onChange={handleChange} label="Φύλο">
+              <MenuItem value="male">Άνδρας</MenuItem>
+              <MenuItem value="female">Γυναίκα</MenuItem>
+              <MenuItem value="other">Άλλο</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField label="Αριθμός Ταυτοπ. Εγγράφου" name="idNumber" value={formData.idNumber} onChange={handleChange} size="small" />
+          <TextField label="Αριθμός Φορολογικού Μητρώου (ΑΦΜ)" name="afm" value={formData.afm} onChange={handleChange} size="small" />
+          <TextField label="AMKA" name="amka" value={formData.amka} onChange={handleChange} size="small" />
+          <TextField label="Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)" name="doy" value={formData.doy} onChange={handleChange} size="small" />
+          <TextField label="Τηλέφωνο" name="phone" value={formData.phone} onChange={handleChange} size="small" />
+          <TextField label="Ηλεκτρονικό Ταχυδρομείο" name="email" value={formData.email} onChange={handleChange} size="small" />
+          <TextField label="Νομός" name="region" value={formData.region} onChange={handleChange} size="small" />
+          <TextField label="Περιοχή" name="area" value={formData.area} onChange={handleChange} size="small" />
+          <TextField label="Οδός" name="street" value={formData.street} onChange={handleChange} size="small" />
+          <TextField label="Αριθμός" name="streetNumber" value={formData.streetNumber} onChange={handleChange} size="small" />
+          <TextField label="Τ.Κ." name="zipCode" value={formData.zipCode} onChange={handleChange} size="small" />
+        </div>
 
-          {/* Form fields */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <TextField
-              label="Όνομα"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="Επώνυμο"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="Πατρώνυμο"
-              name="fatherName"
-              value={formData.fatherName}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="Μητρώνυμο"
-              name="motherName"
-              value={formData.motherName}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="Έτος Γέννησης"
-              name="yearOfBirth"
-              value={formData.yearOfBirth}
-              onChange={handleChange}
-              size="small"
-            />
-            <FormControl size="small">
-              <InputLabel>Φύλο</InputLabel>
-              <Select
-                name="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                label="Φύλο"
-              >
-                <MenuItem value="male">Άνδρας</MenuItem>
-                <MenuItem value="female">Γυναίκα</MenuItem>
-                <MenuItem value="other">Άλλο</MenuItem>
-              </Select>
-            </FormControl>
+        {/* Save Button */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
+          <Button variant="contained" sx={saveButtonStyle} onClick={handleSave}>
+            Αποθήκευση
+          </Button>
+        </div>
+      </div>
 
-            <TextField
-              label="Αριθμός Ταυτοπ. Εγγράφου"
-              name="idNumber"
-              value={formData.idNumber}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="Αριθμός Φορολογικού Μητρώου (ΑΦΜ)"
-              name="afm"
-              value={formData.afm}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="AMKA"
-              name="amka"
-              value={formData.amka}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)"
-              name="doy"
-              value={formData.doy}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="Τηλέφωνο"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="Ηλεκτρονικό Ταχυδρομείο"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              size="small"
-            />
-
-            <TextField
-              label="Νομός"
-              name="region"
-              value={formData.region}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="Περιοχή"
-              name="area"
-              value={formData.area}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="Οδός"
-              name="street"
-              value={formData.street}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="Αριθμός"
-              name="streetNumber"
-              value={formData.streetNumber}
-              onChange={handleChange}
-              size="small"
-            />
-            <TextField
-              label="Τ.Κ."
-              name="zipCode"
-              value={formData.zipCode}
-              onChange={handleChange}
-              size="small"
-            />
-          </Box>
-
-          {/* Action Button */}
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: '#013372',
-                fontWeight: 'bold',
-                color: 'white',
-              }}
-              onClick={handleSave}
-            >
-              Αποθήκευση
-            </Button>
-          </Box>
-        </Paper>
-      </Container>
-
-      {/* Bottom area (footer) */}
       <Footer />
     </Box>
   );

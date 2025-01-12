@@ -1,142 +1,104 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  Button,
   TextField,
+  Button,
   FormControl,
   InputLabel,
   Select,
   MenuItem,
-  Stepper,
-  Step,
-  StepLabel,
 } from '@mui/material';
 
-import Header from '../components/ProfessionalNavigation';
+import ProgressTracker from '../components/ProgressTracker_CreateProfile';
 import Footer from '../components/Footer';
+// import Header from '../components/ProfessionalNavigation'; // if you want to include this
 
 export default function DimiourgiaProfileProfessional1() {
-  // Steps for the top Stepper
-  const steps = ['Προσωπικά Στοιχεία', 'Πιστοποιητικά', 'Βιογραφικό Σημείωμα'];
+  const navigate = useNavigate();
 
-  // Placeholder "handleNext" to go to step 2
   const handleNext = () => {
-    // e.g., navigate to /dimiourgia_profile_professional_2
-    // or do however you handle routing
-    alert('Going to Step 2...');
+    navigate('/profesionaleditstep2'); // Replace with your actual route
   };
 
   return (
-    <Box>
+    <div>
+      {/* Progress Tracker at the top */}
+      <ProgressTracker currentStep={1} />
 
-      <Container sx={{ my: 4 }}>
-        {/* Top Title */}
-        <Typography
-          variant="h4"
-          sx={{ textAlign: 'center', fontWeight: 'bold', mb: 4 }}
-        >
-          ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ
-        </Typography>
+      {/* Main content styled similar to file2 */}
+      <div className="personInfo1">
+        <h1>ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ</h1>
+        <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>ΤΟ ΠΡΟΦΙΛ ΜΟΥ</h2>
 
-        {/* Stepper (step 0 is active) */}
-        <Stepper activeStep={0} alternativeLabel sx={{ mb: 4 }}>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
+        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <Button variant="outlined">Προσθήκη Εικόνας</Button>
+        </div>
 
-        {/* Paper with form fields */}
-        <Paper
-          elevation={3}
-          sx={{
-            maxWidth: 600,
-            mx: 'auto',
-            p: { xs: 2, md: 4 },
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
           }}
         >
-          <Typography
-            variant="h6"
-            sx={{ textAlign: 'center', fontWeight: 'bold', mb: 3 }}
-          >
-            ΤΟ ΠΡΟΦΙΛ ΜΟΥ
-          </Typography>
+          <TextField label="Όνομα" size="small" fullWidth />
+          <TextField label="Επώνυμο" size="small" fullWidth />
+          <TextField label="Πατρώνυμο" size="small" fullWidth />
+          <TextField label="Μητρώνυμο" size="small" fullWidth />
+          <TextField label="Έτος Γέννησης" size="small" fullWidth />
 
-          {/* Example "Προσθήκη Εικόνας" (dummy) */}
-          <Box
+          <FormControl size="small" fullWidth>
+            <InputLabel>Φύλο</InputLabel>
+            <Select label="Φύλο" defaultValue="">
+              <MenuItem value="male">Άνδρας</MenuItem>
+              <MenuItem value="female">Γυναίκα</MenuItem>
+              <MenuItem value="other">Άλλο</MenuItem>
+            </Select>
+          </FormControl>
+
+          <TextField label="Αριθμός Ταυτοπ. Εγγράφου" size="small" fullWidth />
+          <TextField
+            label="Αριθμός Φορολογικού Μητρώου (ΑΦΜ)"
+            size="small"
+            fullWidth
+          />
+          <TextField label="AMKA" size="small" fullWidth />
+          <TextField
+            label="Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)"
+            size="small"
+            fullWidth
+          />
+          <TextField label="Τηλέφωνο" size="small" fullWidth />
+          <TextField label="Ηλεκτρονικό Ταχυδρομείο" size="small" fullWidth />
+
+          <TextField label="Νομός" size="small" fullWidth />
+          <TextField label="Περιοχή" size="small" fullWidth />
+          <TextField label="Οδός" size="small" fullWidth />
+          <TextField label="Αριθμός" size="small" fullWidth />
+          <TextField label="Τ.Κ." size="small" fullWidth />
+
+          <div style={{ display: 'flex', gap: '20px' }}>
+            <TextField label="Ενήλικες" size="small" fullWidth />
+            <TextField label="Ανήλικοι" size="small" fullWidth />
+          </div>
+        </div>
+
+        <div className="options1">
+          <Button
+            variant="contained"
+            onClick={handleNext}
             sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              mb: 2,
+              backgroundColor: '#013372',
+              fontWeight: 'bold',
+              color: 'white',
             }}
           >
-            <Button variant="outlined">Προσθήκη Εικόνας</Button>
-          </Box>
-
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            {/* Personal Info Fields */}
-            <TextField label="Όνομα" size="small" />
-            <TextField label="Επώνυμο" size="small" />
-            <TextField label="Πατρώνυμο" size="small" />
-            <TextField label="Μητρώνυμο" size="small" />
-            <TextField label="Έτος Γέννησης" size="small" />
-            <FormControl size="small">
-              <InputLabel>Φύλο</InputLabel>
-              <Select label="Φύλο" defaultValue="">
-                <MenuItem value="male">Άνδρας</MenuItem>
-                <MenuItem value="female">Γυναίκα</MenuItem>
-                <MenuItem value="other">Άλλο</MenuItem>
-              </Select>
-            </FormControl>
-            <TextField label="Αριθμός Ταυτοπ. Εγγράφου" size="small" />
-            <TextField
-              label="Αριθμός Φορολογικού Μητρώου (ΑΦΜ)"
-              size="small"
-            />
-            <TextField label="AMKA" size="small" />
-            <TextField
-              label="Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)"
-              size="small"
-            />
-            <TextField label="Τηλέφωνο" size="small" />
-            <TextField label="Ηλεκτρονικό Ταχυδρομείο" size="small" />
-
-            {/* Address */}
-            <TextField label="Νομός" size="small" />
-            <TextField label="Περιοχή" size="small" />
-            <TextField label="Οδός" size="small" />
-            <TextField label="Αριθμός" size="small" />
-            <TextField label="Τ.Κ." size="small" />
-
-            {/* Example: Πλήθος Συγκατοίκων / Ενήλικες / Ανήλικοι (if needed) */}
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <TextField label="Ενήλικες" size="small" />
-              <TextField label="Ανήλικοι" size="small" />
-            </Box>
-          </Box>
-
-          {/* Next Step Button */}
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: '#013372',
-                fontWeight: 'bold',
-                color: 'white',
-              }}
-              onClick={handleNext}
-            >
-              Επόμενο Βήμα
-            </Button>
-          </Box>
-        </Paper>
-      </Container>
+            Επόμενο Βήμα
+          </Button>
+        </div>
+      </div>
 
       <Footer />
-    </Box>
+    </div>
   );
 }

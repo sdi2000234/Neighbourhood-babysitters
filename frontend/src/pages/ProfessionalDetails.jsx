@@ -13,95 +13,98 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Divider,
+  CardMedia,
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-import Footer from '../components/Footer';          // Adjust path as needed
+import Footer from '../components/Footer'; // Adjust path as needed
 
 const ProfessionalDetails = () => {
-  // Get the 'professional' object from state:
-  //   { name, rating, reviews, age, area, exp } 
-  //   as passed from FindProfessionalUnconnected.jsx
   const { state: professional } = useLocation();
 
-  // If no professional was passed, show a fallback message
   if (!professional) {
     return (
-      <Box>
-        <Box sx={{ p: 2, minHeight: '60vh' }}>
-          <Typography>Δεν βρέθηκαν πληροφορίες για τον επαγγελματία.</Typography>
-        </Box>
+      <Box sx={{ p: 2, minHeight: '60vh' }}>
+        <Typography variant="h5">Δεν βρέθηκαν πληροφορίες για τον επαγγελματία.</Typography>
         <Footer />
       </Box>
     );
   }
 
-  // Example schedule data 
-  // (You can adapt this to come from `professional`, 
-  //  or keep it static as a demonstration.)
   const schedule = [
-    { time: '06:00 - 09:00', mon: false, tue: false, wed: false, thu: false, fri: false, sat: false, sun: false },
+    { time: '08:00 - 09:00', mon: false, tue: false, wed: false, thu: false, fri: false, sat: false, sun: false },
     { time: '09:00 - 12:00', mon: false, tue: false, wed: false, thu: false, fri: false, sat: false, sun: false },
     { time: '12:00 - 15:00', mon: false, tue: false, wed: false, thu: false, fri: false, sat: false, sun: false },
-    { time: '15:00 - 18:00', mon: true,  tue: true,  wed: true,  thu: false, fri: true,  sat: false, sun: false },
-    { time: '18:00 - 21:00', mon: false, tue: false, wed: false, thu: false, fri: false, sat: true,  sun: false },
+    { time: '15:00 - 18:00', mon: true, tue: true, wed: true, thu: false, fri: true, sat: false, sun: false },
+    { time: '18:00 - 21:00', mon: false, tue: false, wed: false, thu: false, fri: false, sat: true, sun: false },
     { time: '21:00 - 06:00', mon: false, tue: false, wed: false, thu: false, fri: false, sat: false, sun: false },
   ];
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-
-      {/* Main Content */}
-      <Box sx={{ flexGrow: 1, p: 2 }}>
-        <Paper sx={{ p: 3, border: '1px solid #ddd', borderRadius: 2, mb: 4 }}>
-          {/* Title / Name / Area */}
-          <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
-            {/* Name & Area from the object */}
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: '#f4f6f8' }}>
+      <Box sx={{ flexGrow: 1, p: { xs: 2, md: 4 } }}>
+        {/* Professional Details Section */}
+        <Paper
+          sx={{
+            p: 3,
+            borderRadius: 3,
+            boxShadow: 3,
+            mb: 4,
+            bgcolor: '#DCEEFB',
+            color: '#003366',
+          }}
+        >
+          <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2 }}>
             {professional.name}, {professional.area}
           </Typography>
 
-          {/* Placeholder Photo */}
-          <Box sx={{ textAlign: 'center', mb: 2 }}>
-            <img
-              src="https://via.placeholder.com/600x300?text=Professional+Photo"
-              alt="Professional placeholder"
-              style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px' }}
+          <Box sx={{ textAlign: 'center', mb: 3 }}>
+            <CardMedia
+              component="img"
+              alt="Professional photo"
+              height="200"
+              image="https://via.placeholder.com/600x300?text=Professional+Photo"
+              sx={{ borderRadius: 2, boxShadow: 2 }}
             />
           </Box>
 
-          {/* A short description or rating info */}
-          <Typography variant="body1" sx={{ color: 'text.secondary', mb: 2 }}>
+          <Typography variant="body1" sx={{ mb: 2 }}>
             Αξιολογήσεις: {professional.rating} ⭐ ({professional.reviews} αξιολογήσεις)
           </Typography>
 
-          {/* Grid with some details */}
-          <Grid container spacing={2} sx={{ mb: 3 }}>
-            <Grid item xs={12} sm={4} md={3}>
+          <Grid container spacing={3} sx={{ mb: 4 }}>
+            <Grid item xs={12} sm={6} md={3}>
               <Typography sx={{ fontWeight: 'bold' }}>Ηλικία</Typography>
               <Typography>{professional.age}</Typography>
             </Grid>
-            <Grid item xs={12} sm={4} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <Typography sx={{ fontWeight: 'bold' }}>Εμπειρία</Typography>
               <Typography>{professional.exp} χρόνια</Typography>
             </Grid>
-            <Grid item xs={12} sm={4} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <Typography sx={{ fontWeight: 'bold' }}>Περιοχή</Typography>
               <Typography>{professional.area}</Typography>
             </Grid>
-            <Grid item xs={12} sm={4} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <Typography sx={{ fontWeight: 'bold' }}>Τελευταία ενημέρωση</Typography>
               <Typography>Σήμερα</Typography>
             </Grid>
           </Grid>
 
-          <Button variant="contained" color="primary">
-            Εγγραφή
-          </Button>
+         
         </Paper>
 
-        {/* Services (static example) */}
-        <Paper sx={{ p: 3, border: '1px solid #ddd', borderRadius: 2, mb: 4 }}>
+        {/* Services Section */}
+        <Paper
+          sx={{
+            p: 3,
+            borderRadius: 3,
+            boxShadow: 3,
+            mb: 4,
+            bgcolor: '#DCEEFB',
+            color: '#003366',
+          }}
+        >
           <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
             Υπηρεσίες
           </Typography>
@@ -111,44 +114,61 @@ const ProfessionalDetails = () => {
               color="success"
               icon={<CheckCircleIcon />}
               variant="outlined"
+              sx={{ fontWeight: 'bold', borderColor: '#003366', color: '#003366' }}
             />
             <Chip
               label="Καθαρισμός σπιτιού"
               color="success"
               icon={<CheckCircleIcon />}
               variant="outlined"
+              sx={{ fontWeight: 'bold', borderColor: '#003366', color: '#003366' }}
             />
             <Chip
               label="Δουλειές γύρω από το παιδί"
               color="success"
               icon={<CheckCircleIcon />}
               variant="outlined"
+              sx={{ fontWeight: 'bold', borderColor: '#003366', color: '#003366' }}
             />
           </Box>
         </Paper>
 
-        {/* Schedule (static example) */}
-        <Paper sx={{ p: 3, border: '1px solid #ddd', borderRadius: 2 }}>
+        {/* Schedule Section */}
+        <Paper
+          sx={{
+            p: 3,
+            borderRadius: 3,
+            boxShadow: 3,
+            bgcolor: '#F8F3EB',
+            color: '#003366',
+          }}
+        >
           <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
             Πρόγραμμα
           </Typography>
-          <TableContainer>
+          <TableContainer component={Paper} sx={{ boxShadow: 2, bgcolor: '#DCEEFB' }}>
             <Table size="small">
               <TableHead>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: 'bold' }}>Ώρα</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold' }}>Δευ.</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold' }}>Τρι.</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold' }}>Τετ.</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold' }}>Πέμ.</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold' }}>Παρα.</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold' }}>Σάβ.</TableCell>
-                  <TableCell sx={{ fontWeight: 'bold' }}>Κυρ.</TableCell>
+                <TableRow sx={{ backgroundColor: '#003366' }}>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#ffffff' }}>Ώρα</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#ffffff' }}>Δευ.</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#ffffff' }}>Τρι.</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#ffffff' }}>Τετ.</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#ffffff' }}>Πέμ.</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#ffffff' }}>Παρα.</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#ffffff' }}>Σάβ.</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold', color: '#ffffff' }}>Κυρ.</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {schedule.map((row, i) => (
-                  <TableRow key={i}>
+                {schedule.map((row, index) => (
+                  <TableRow
+                    key={index}
+                    sx={{
+                      backgroundColor: index % 2 === 0 ? '#EAF6FF' : '#DCEEFB',
+                      '&:hover': { backgroundColor: '#CCE7FF' },
+                    }}
+                  >
                     <TableCell>{row.time}</TableCell>
                     <TableCell>{row.mon ? '✓' : ''}</TableCell>
                     <TableCell>{row.tue ? '✓' : ''}</TableCell>
@@ -165,7 +185,6 @@ const ProfessionalDetails = () => {
         </Paper>
       </Box>
 
-      {/* Footer */}
       <Footer />
     </Box>
   );

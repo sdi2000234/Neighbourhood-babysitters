@@ -68,7 +68,7 @@ function ProfessionalNavigation({ currentNavPage }) {
             <button onClick={handleRequests} className={['ProfessionalAllAppointments', 'ProfessionalContract', 'ProfessionalCoOpRequests'].includes(currentNavPage) ? 'currentNavPage' : 'ProfessionalContract'}>ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ
               <img className="arrow" alt="arrow" src={arrowBlack} />
             </button>
-            <div className="dropdown-content">
+            <div className="dropdown-content, coOpReq">
               <button onClick={handleAppointments} className={currentNavPage === 'ProfessionalAllAppointments' ? 'currentNavPage' : 'ProfessionalAllAppointments'}>ΡΑΝΤΕΒΟΥ</button>
               <button onClick={handleRequests} className={currentNavPage === 'ProfessionalContract' ? 'currentNavPage' : 'ProfessionalContract'}>ΑΙΤΗΣΕΙΣ</button>
             </div>

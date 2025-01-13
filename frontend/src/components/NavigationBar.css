@@ -77,7 +77,7 @@
     overflow: hidden;
 }
 
-.dropdown-content {
+.dropdown-content, .coOpReq {
     display: none;
     position: absolute;
     background-color: #013372;
@@ -86,17 +86,17 @@
     min-width: 165px;
 }
 
-.roleBar .dropdown:hover .dropdown-content {
+.roleBar .dropdown:hover .dropdown-content, .roleBar .dropdown:hover .coOpReq {
     background-color: #00aeef;
     color: #000;
 }
 
-.roleBar .dropdown-content button:hover {
+.roleBar .dropdown-content button:hover, .roleBar .coOpReq button:hover {
     background-color: #013372;
     color: #fff;
 }
 
-.dropdown-content button {
+.dropdown-content button, .coOpReq button {
     float: none;
     color: black;
     text-decoration: none;
@@ -106,12 +106,12 @@
     width: 100%;
 }
 
-.dropdown-content button:hover {
+.dropdown-content button:hover, .coOpReq button:hover {
     background-color: #00aeef;
     color: #000;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content, .dropdown:hover  .coOpReq {
     display: block;
 }
 
@@ -187,3 +187,7 @@
     font-weight: bold;
 }
   
+.coOpReq
+{
+    width: 235px;
+}

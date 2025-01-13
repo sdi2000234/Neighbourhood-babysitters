@@ -9,7 +9,7 @@ import {
   MenuItem,
 } from '@mui/material';
 
-import ProgressTracker from '../components/ProgressTracker_CreateProfile';
+import ProgressTracker from '../components/ProgressTrackerCreateProfile';
 import Footer from '../components/Footer';
 // import Header from '../components/ProfessionalNavigation'; // if you want to include this
 

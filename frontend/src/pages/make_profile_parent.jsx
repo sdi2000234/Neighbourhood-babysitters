@@ -14,9 +14,9 @@ import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig'; // Adjust to your Firebase configuration file
 import { getAuth } from 'firebase/auth';
 
-import Header from '../components/Header_starter';
+// import Header from '../components/Header_starter';
 import Footer from '../components/Footer';
-import ProgressTracker_CreateProfile from '../components/ProgressTracker_CreateProfile';
+import ProgressTrackerCreateProfile from '../components/ProgressTrackerCreateProfile';
 
 export default function ProfilePersonal() {
   const auth = getAuth();
@@ -125,7 +125,7 @@ export default function ProfilePersonal() {
 
   return (
     <Box>
-      <ProgressTracker_CreateProfile currentStep={1} />
+      <ProgressTrackerCreateProfile currentStep={1} />
 
       <div className="personInfo1">
         <h1>ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ</h1>

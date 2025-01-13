@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Typography } from '@mui/material';
 
-import ProgressTracker from '../components/ProgressTracker_CreateProfile';
+import ProgressTracker from '../components/ProgressTrackerCreateProfile';
 import Footer from '../components/Footer';
 
 export default function DimiourgiaProfileProfessional3() {

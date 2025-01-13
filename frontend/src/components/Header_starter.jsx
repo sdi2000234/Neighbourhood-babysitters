@@ -57,7 +57,7 @@ const Header = () => {
             style={styles.navButton}
             onClick={() => navigate('/FindProfessional_unconnected')}
           >
-            Βρείτε Εργασία
+            Βρείτε Επαγγελματία
           </button>
           <button
             style={styles.navButton}

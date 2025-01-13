@@ -2,8 +2,9 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import './ProfessionalProfile.css'
 import Footer from '../../components/Footer';
-import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+// import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import { Avatar} from "@mui/material";
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 import { Card, CardContent, Typography } from '@mui/material';
 
@@ -33,7 +34,8 @@ function ProfessionalProfile({userName , userLastName, userEmail , userPhone , p
 
   return (
     <>
-    <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
+    {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
+    <Breadcrumbs page1={"ΠΡΟΦΙΛ"}/>
 
     <div className='PersonInfoProfessionalProfile'>
       

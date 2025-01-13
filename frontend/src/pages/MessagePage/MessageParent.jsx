@@ -3,8 +3,9 @@ import './MessageParent.css';
 import { useNavigate } from 'react-router-dom';
 import Message from '../../components/Message';
 import Footer from '../../components/Footer';
-import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+// import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import SearchBar from "../../components/SearchBar";
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 function MessageParent() {
 
@@ -48,7 +49,8 @@ function MessageParent() {
     return (
         <>  
 
-        <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
+        {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages} /> */}
+        <Breadcrumbs page1={"ΜΗΝΥΜΑΤΑ"}/>
 
         <div className='MessageParentContainer'>
 

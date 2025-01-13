@@ -2,8 +2,9 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import './ParentProfile.css'
 import Footer from '../../components/Footer';
-import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+// import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import { Avatar} from "@mui/material";
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 function ParentProfile({userName , userLastName, userEmail , userPhone , picLink}) {
 
@@ -31,7 +32,8 @@ function ParentProfile({userName , userLastName, userEmail , userPhone , picLink
 
   return (
     <>
-    <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
+    {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
+    <Breadcrumbs page1={"ΠΡΟΦΙΛ"}/>
 
     <div className='PersonInfoParentProfile'>
       

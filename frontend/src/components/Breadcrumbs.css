@@ -10,7 +10,7 @@
     display: flex;
     align-items: left;
     padding: 10px;
-    font-size: 20px;
+    font-size: 27px;
     font-weight: bold;
     margin-top: 20px;
     margin-left: 50px;
@@ -23,6 +23,6 @@
 
 .breadCrumbs p.previousCrumb
 {
-    color: #737373;
+    color: #00AEFF;
     cursor: pointer;
 }

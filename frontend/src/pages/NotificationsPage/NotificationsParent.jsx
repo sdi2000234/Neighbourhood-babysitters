@@ -2,7 +2,8 @@ import React from 'react'
 import './NotificationsParent.css';
 import Message from '../../components/Message';
 import Footer from '../../components/Footer';
-import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+// import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 function NotificationsParent() {
 
@@ -37,7 +38,8 @@ function NotificationsParent() {
     return (
         <>  
 
-        <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
+        {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages} /> */}
+        <Breadcrumbs page1={"ΕΙΔΟΠΟΙΗΣΕΙΣ"}/>
 
         <div className='NotificationsParentContainer'>
 

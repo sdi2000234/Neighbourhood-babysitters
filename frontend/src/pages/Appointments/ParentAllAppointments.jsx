@@ -3,7 +3,8 @@ import './ParentAllAppointments.css';
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import AppointmentCardProfessional from '../../components/AppointmentCardProfessional';
-import Grid from '@mui/material/Grid2';  
+import Grid from '@mui/material/Grid2';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 function ParentAllAppointments() { //ΙΣΩΣ ΘΕΛΕΙ ΠΕΡΙΣΣΟΤΕΡΑ ΠΧ ΠΡΟΦΙΛ/ΡΑΝΤΕΒΟΥ
     const breadcrumbPages = [
@@ -100,7 +101,8 @@ function ParentAllAppointments() { //ΙΣΩΣ ΘΕΛΕΙ ΠΕΡΙΣΣΟΤΕΡΑ 
 
     return (
         <>
-            <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
+            {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages} /> */}
+            <Breadcrumbs page1={"ΡΑΝΤΕΒΟΥ"}/>
 
                 <Grid container spacing={4} justifyContent="center" alignItems="flex-start" className="appointments">
                     {sortedAppointments.map((appointment, index) => (

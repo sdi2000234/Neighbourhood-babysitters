@@ -6,6 +6,7 @@ import RequiredField from '../../components/RequiredField';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import InfoIcon from '@mui/icons-material/Info';
 import { Tooltip } from '@mui/material';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 function ParentAppointment({ babysitterName , userName , userLastName , userPhone, userEmail}) {
 
@@ -37,7 +38,8 @@ function ParentAppointment({ babysitterName , userName , userLastName , userPhon
     return (
         <>
 
-            <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
+            {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
+            <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../ParentHireProfessional"} page2={"ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ"}/>
 
             <div className='ApPersonInfo'>
                 <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ:</h1>

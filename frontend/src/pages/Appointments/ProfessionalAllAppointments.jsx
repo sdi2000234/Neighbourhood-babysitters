@@ -5,6 +5,7 @@ import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import Grid from '@mui/material/Grid2';  
 import './ProfessionalAllAppointments.css';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 function ProfessionalAllAppointments() {
 
@@ -144,7 +145,8 @@ function ProfessionalAllAppointments() {
 
     return (
         <>
-            <MyBreadcrumbs breadcrumbPages={breadcrumbPages} />
+            {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages} /> */}
+            <Breadcrumbs page1={"ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ"} link1={"../ProfessionalContract"} page2={"ΡΑΝΤΕΒΟΥ"}/>
 
                 <div className='ProfessionalAllAppointments'>
 

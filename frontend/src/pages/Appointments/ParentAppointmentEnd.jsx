@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './ParentAppointmentEnd.css'
 import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 function ParentAppointmentEnd() {
 
@@ -21,7 +22,8 @@ function ParentAppointmentEnd() {
     <>
 
 
-        <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
+        {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
+        <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../ParentHireProfessional"} page2={"ΕΠΕΞΕΡΓΑΣΙΑ ΡΑΝΤΕΒΟΥ"}/>
 
         <div class="personInfoApEnd">
             <div className='paragraphApEnd'>

@@ -6,6 +6,7 @@ import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import { Menu, MenuItem, Button } from '@mui/material';
 import arrow_white from '../../assets/arrow_white.png';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 function ParentContractFinal() {
   const breadcrumbPages = [
@@ -65,7 +66,8 @@ function ParentContractFinal() {
 
   return (
     <>
-      <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
+      {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
+      <Breadcrumbs page1={"ΑΙΤΗΣΕΙΣ"} link1={"../ParentContractFinal"} page2={"ΟΡΙΣΤΙΚΑ ΑΠΟΘΗΚΕΥΜΕΝΕΣ"}/>
 
       <div className='ParentContractFinalContainer'>
 

@@ -6,6 +6,7 @@ import Footer from '../../components/Footer';
 import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import { Menu, MenuItem, Button } from '@mui/material';
 import arrow_white from '../../assets/arrow_white.png';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 function HistoryParent2() {
   const breadcrumbPages = [
@@ -74,7 +75,8 @@ function HistoryParent2() {
 
   return (
     <>
-      <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
+      {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
+      <Breadcrumbs page1={"ΙΣΤΟΡΙΚΟ"} link1={"../HistoryParent1"} page2={"ΣΥΜΦΩΝΗΤΙΚΑ"}/>
 
       <div className='HistoryParent2Container'>
 

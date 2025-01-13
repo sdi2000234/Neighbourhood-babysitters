@@ -1,9 +1,10 @@
 import React from 'react'
 import './WriteMessageProfessional.css';
 import { useNavigate } from 'react-router-dom';
-import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+// import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import MessageField from '../../components/MessageField.jsx';
 import Footer from '../../components/Footer';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 function WriteMessageProfessional() {
 
@@ -20,7 +21,8 @@ function WriteMessageProfessional() {
     return (
 
         <>  
-            <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
+            {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
+            <Breadcrumbs page1={"ΜΗΝΥΜΑΤΑ"}/>
 
             <br />
             <br />

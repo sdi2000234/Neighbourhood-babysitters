@@ -3,6 +3,7 @@ import MyBreadcrumbs from '../../components/MyBreadcrumbs.jsx';
 import ReviewCardBabySitter from '../../components/ReviewCardProfessional.jsx';
 import Grid from "@mui/material/Grid2";
 import Footer from '../../components/Footer.jsx';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const RatingProfessional = () => {
   const imageUrl1 = "https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*";
@@ -61,7 +62,8 @@ const RatingProfessional = () => {
     <>
 
       <Grid item>
-        <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs>
+        {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
+        <Breadcrumbs page1={"ΑΞΙΟΛΟΓΗΣΕΙΣ"}/>
       </Grid>
 
       <Grid container spacing={2} direction={'column'} justifyContent="center" style={cardsGridContainer}>

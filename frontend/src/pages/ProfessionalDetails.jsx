@@ -1,10 +1,8 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import {
   Box,
   Typography,
   Paper,
-  Button,
   Grid,
   Chip,
   Table,
@@ -16,12 +14,10 @@ import {
   CardMedia,
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-
 import Footer from '../components/Footer'; // Adjust path as needed
 
-const ProfessionalDetails = () => {
-  const { state: professional } = useLocation();
-
+const ProfessionalDetails = ({ professional }) => {
+  // Ensure the professional data is available
   if (!professional) {
     return (
       <Box sx={{ p: 2, minHeight: '60vh' }}>
@@ -90,8 +86,6 @@ const ProfessionalDetails = () => {
               <Typography>Σήμερα</Typography>
             </Grid>
           </Grid>
-
-         
         </Paper>
 
         {/* Services Section */}
@@ -185,7 +179,6 @@ const ProfessionalDetails = () => {
         </Paper>
       </Box>
 
-      <Footer />
     </Box>
   );
 };

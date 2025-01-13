@@ -12,14 +12,11 @@ import Header_starter from './components/Header_starter';
 import ProfessionalNavigation from './components/ProfessionalNavigation';
 import ParentNavigation from './components/ParentNavigation';
 
-// == Import Footer if you want it everywhere ==
-import Footer from './components/Footer';
-
 // == Import Parent Pages ==
 import ParentContractPayment from './pages/ParentContractPayment/ParentContractPayment';
 import ParentContractEnd from './pages/ParentContractEnd/ParentContractEnd';
 import ParentContractRenew from './pages/ParentContractEnd/ParentContractRenew';
-import ParentHireProfessional from './pages/ParentHireProfessional/ParentHireProfessional';
+// import ParentHireProfessional from './pages/ParentHireProfessional/ParentHireProfessional';
 
 // == Import Professional Pages ==
 import ProfessionalMyAds from './pages/ProfessionalMyAds/ProfessionalMyAds';
@@ -44,8 +41,6 @@ import FindProfessionalUnconnected from './pages/FindProfessional_unconnected.js
 import ProfessionalDetails from './pages/ProfessionalDetails';
 import WhoWeAre from './pages/WhoWeAre.jsx'; 
 import TermsForVoucher from './pages/TermsForVoucher';
-
-// import 
 
 // == Import Additional Pages ==
 import RatingParents from './pages/RatingPage/RatingParents';
@@ -196,7 +191,7 @@ function Main() {
         <Route path='/ParentContractPayment' element={<ParentContractPayment />} />
         <Route path='/ParentContractEnd' element={<ParentContractEnd />} />
         <Route path='/ParentContractRenew' element={<ParentContractRenew />} />
-        <Route path='/ParentHireProfessional' element={<ParentHireProfessional />} />
+        {/* <Route path='/ParentHireProfessional' element={<ParentHireProfessional />} /> */}
         <Route path='/ParentAppointment' element={<ParentAppointment />} />
         <Route path='/ParentAppointmentEnd' element={<ParentAppointmentEnd />} />
         <Route path='/ParentAllAppointments' element={<ParentAllAppointments />} />

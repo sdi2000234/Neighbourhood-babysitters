@@ -33,7 +33,6 @@ function ParentNavigation({ currentNavPage }) {
   const handleRequests = () => { navigate('../ParentContractFinal'); };
   const handleParentHome = () => { navigate('../dashboard'); };
   const handleFindProfessional = () => { navigate('../FindProfessional_unconnected'); };
-  const handleHireProfessional = () => { navigate('../ParentHireProfessional'); };
   const handleContractPay = () => { navigate('../ParentContractPayment'); };
   const handleContractEnd = () => { navigate('../ParentContractEnd'); };
   const handleParentHistory1 = () => { navigate('../HistoryParent1'); };
@@ -65,7 +64,6 @@ function ParentNavigation({ currentNavPage }) {
         <div className="navOptions">
           <button onClick={handleParentHome} className={currentNavPage === 'dashboard' ? 'currentNavPage' : ''}>ΑΡΧΙΚΗ</button>
           <button onClick={handleFindProfessional} className={currentNavPage === 'FindProfessional_unconnected' ? 'currentNavPage' : ''}>ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</button>
-          <button onClick={handleHireProfessional} className={currentNavPage === 'ParentHireProfessional' ? 'currentNavPage' : ''}>ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ</button>
           <div className="dropdown">
             <button onClick={handleContractPay} className={(currentNavPage === 'ParentContractPayment' || currentNavPage === 'ParentContractEnd') ? 'currentNavPage' : ''}>ΣΥΜΦΩΝΗΤΙΚΟ
               <img className="arrow" alt="arrow" src={arrowBlack} />

@@ -8,7 +8,8 @@ import {
   FormControlLabel,
   Button,
   Link,
-  Alert
+  Paper,
+  Alert,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -26,8 +27,8 @@ const RegisterPage = () => {
   const navigate = useNavigate();
 
   const handleRegister = async (event) => {
-    event.preventDefault(); // Prevent any default form submission
-    setError(''); // Clear previous errors
+    event.preventDefault();
+    setError('');
     setSuccess('');
 
     // Validate fields
@@ -36,7 +37,7 @@ const RegisterPage = () => {
       return;
     }
     if (password !== confirmPassword) {
-      setError('Τα συνθηματικά δεν ταιριάζουν.');
+      setError('Οι κωδικοί δεν ταιριάζουν.');
       return;
     }
 
@@ -54,93 +55,143 @@ const RegisterPage = () => {
       setSuccess('Επιτυχής εγγραφή! Μεταφέρεστε...');
 
       // Redirect based on whether the user is a keeper or not
-      if (isKeeper) {
-        navigate('/profesionaleditstep1');
-      } else {
-        navigate('/profile-epeksergasia-parent');
-      }
+      setTimeout(() => {
+        if (isKeeper) {
+          navigate('/profesionaleditstep1');
+        } else {
+          navigate('/profile-epeksergasia-parent');
+        }
+      }, 1500);
     } catch (err) {
       setError('Σφάλμα κατά την εγγραφή: ' + err.message);
     }
   };
 
   return (
-    <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Container sx={{ mt: 6, mb: 6, maxWidth: '400px', textAlign: 'center', flex: 1 }}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
-          Κάνε εγγραφή
-        </Typography>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+        mt: 5,
+      }}
+    >
+      {/* Main Content */}
+      <Box
+        sx={{
+          flex: '1',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Container maxWidth="xs">
+          <Paper elevation={3} sx={{ p: 4, textAlign: 'center' }}>
+            {/* Title */}
+            <Typography variant="h5" fontWeight="bold" gutterBottom>
+              Κάνε εγγραφή
+            </Typography>
 
-        {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
-        {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}
+            {/* Error and Success Alerts */}
+            {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+            {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}
 
-        <Box
-          component="form"
-          noValidate
-          autoComplete="off"
-          onSubmit={handleRegister}
-        >
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Email"
-            type="email"
-            placeholder="π.χ myemail@myemail.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Συνθηματικό"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Επιβεβαίωση Συνθηματικού"
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+            {/* Registration Form */}
+            <form onSubmit={handleRegister}>
+              {/* Email Field */}
+              <Box sx={{ mb: 2 }}>
+                <TextField
+                  label="Email"
+                  type="email"
+                  variant="outlined"
+                  fullWidth
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </Box>
 
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={isKeeper}
-                onChange={(e) => setIsKeeper(e.target.checked)}
-              />
-            }
-            label="Θέλω να εγγραφώ ως επαγγελματίας"
-          />
+              {/* Password Field */}
+              <Box sx={{ mb: 2 }}>
+                <TextField
+                  label="Κωδικός"
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </Box>
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 2, backgroundColor: '#013372' }}
-          >
-            Εγγραφή
-          </Button>
-        </Box>
+              {/* Confirm Password Field */}
+              <Box sx={{ mb: 2 }}>
+                <TextField
+                  label="Επιβεβαίωση Κωδικού"
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
+              </Box>
 
-        <Typography variant="body2" sx={{ mt: 2 }}>
-          Κάνοντας εγγραφή αποδέχομαι τους{' '}
-          <Link href="#" underline="hover" color="#007bff">
-            Όρους Χρήσης.
-          </Link>
-        </Typography>
+              {/* Is Keeper Checkbox */}
+              <Box sx={{ mb: 2 }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={isKeeper}
+                      onChange={(e) => setIsKeeper(e.target.checked)}
+                    />
+                  }
+                  label="Θέλω να εγγραφώ ως επαγγελματίας"
+                />
+              </Box>
 
-        <Typography variant="body2" sx={{ mt: 2 }}>
-          Είσαι ήδη μέλος?{' '}
-          <Link href="/login" underline="hover" color="#007bff">
-            Συνδέσου!
-          </Link>
-        </Typography>
-      </Container>
+              {/* Submit Button */}
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                sx={{
+                  backgroundColor: '#013372',
+                  color: 'white',
+                  '&:hover': { backgroundColor: '#002855' },
+                }}
+              >
+                Εγγραφή
+              </Button>
+            </form>
 
+            {/* Terms of Use */}
+            <Typography variant="body2" sx={{ mt: 2 }}>
+              Κάνοντας εγγραφή αποδέχομαι τους{' '}
+              <Link href="#" underline="hover" color="#013372" fontWeight="bold">
+                Όρους Χρήσης
+              </Link>.
+            </Typography>
+
+            {/* Login Link */}
+            <Typography variant="body2" sx={{ mt: 2 }}>
+              Είσαι ήδη μέλος?{' '}
+              <Link
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/login'); // Navigate to login page
+                }}
+                sx={{ color: '#013372', fontWeight: 'bold' }}
+              >
+                Συνδέσου!
+              </Link>
+            </Typography>
+          </Paper>
+        </Container>
+      </Box>
+
+      {/* Footer */}
       <Footer />
     </Box>
   );

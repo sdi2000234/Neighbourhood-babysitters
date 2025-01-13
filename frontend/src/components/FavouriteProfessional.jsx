@@ -1,5 +1,6 @@
 import React from 'react';
 import './FavouriteProfessional.css'
+import { useNavigate } from 'react-router-dom';
 import emptyProfile from '../assets/empty_profile.png'
 import cake from '../assets/cake_black.png'
 import location from '../assets/location_black.png'
@@ -8,7 +9,7 @@ import star from '../assets/filled_star_black.png'
 import heart from '../assets/filled_heart_white.png'
 
 
-function FavouriteProfessional({id, unLike, showMore})
+function FavouriteProfessional({id, unLike, showMore, appointment, request})
 {
     const professionalPfp = null;
     const professionalFirstName = null;
@@ -19,8 +20,15 @@ function FavouriteProfessional({id, unLike, showMore})
     const age = 0;
     const loc = "περιοχή";
     const xp = 0;
-    const appointment = false;
-    const request = false;
+
+
+    //Για περιήγηση σε υπολοιπες σελίδες
+    const navigate = useNavigate();
+
+    const handleAppointment = () => { navigate('../ParentAppointment'); };
+    const handleMakeRequest = () => { navigate('../ParentMakeRequest'); };
+    const handleViewRequest = () => { navigate('../ParentViewRequest'); };
+
 
     return (
         <div className="candidatePannel">
@@ -54,8 +62,8 @@ function FavouriteProfessional({id, unLike, showMore})
                     </div>
                 </div>
                 <div className="hireOptions">
-                    {appointment===false ? <button><a href="./ParentMakeAppointment">ΡΑΝΤΕΒΟΥ</a></button> : <p>Αναμένεται αποδοχή/απόρριψη του ραντεβού από την/τον επαγγελματία</p>}
-                    {request===false ? <button><a href="./ParentCreateRequest">ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ</a></button> : <button><a href="./ParentViewRequest">ΠΡΟΕΠΙΣΚΟΠΙΣΗ ΑΙΤΗΣΗΣ</a></button>}
+                    {appointment===false ? <button onClick={handleAppointment}>ΡΑΝΤΕΒΟΥ</button> : <p className='appointmentPend'>Αναμένεται αποδοχή/απόρριψη του ραντεβού από την/τον επαγγελματία</p>}
+                    {request===false ? <button onClick={handleMakeRequest}>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ</button> : <button onClick={handleViewRequest}>ΠΡΟΕΠΙΣΚΟΠΙΣΗ ΑΙΤΗΣΗΣ</button>}
                 </div>
             </div>
         </div>

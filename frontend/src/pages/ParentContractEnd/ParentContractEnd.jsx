@@ -47,7 +47,7 @@ function ParentContractEnd()
 	return	(
         <div className='parentContractEnd'>
             {/* <ParentNavigation currentNavPage={"parEnd"}/> */}
-            <Breadcrumbs page1={"ΣΥΜΦΩΝΗΤΙΚΟ"} link1={"./ParentContractPayment"} page2={"ΛΗΞΗ"}/>
+            <Breadcrumbs page1={"ΣΥΜΦΩΝΗΤΙΚΟ"} link1={"../ParentContractPayment"} page2={"ΛΗΞΗ"}/>
             <SortButton sortName={sortAlphabetically} sortDate={sortByDate}/>
             <div className="endedContracts">
                 {components.map((component, index) => (

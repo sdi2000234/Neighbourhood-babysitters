@@ -21,12 +21,7 @@
     margin-right: 5px;
 }
 
-.breadCrumbs a
-{
-    text-decoration: none;
-}
-
-.breadCrumbs p.previousCrumb a
+.breadCrumbs p.previousCrumb
 {
     color: #737373;
     cursor: pointer;

@@ -1,5 +1,6 @@
 import React from 'react'
 import './ParentContractRenew.css'
+import { useNavigate } from 'react-router-dom';
 // import ParentNavigation from '../../components/ParentNavigation'
 import Footer from '../../components/Footer'
 import Dropdown from '../../components/Dropdown';
@@ -15,6 +16,10 @@ function ParentContractRenew()
     const userEmail = "";
     const personName = "";
     const personLastName = "";
+
+  //Για περιήγηση σε υπολοιπες σελίδες
+  const navigate = useNavigate();
+  const handleEnd = () => { navigate('../ParentContractEnd'); };
 
     return (
         <div className='parentContractRenew'>
@@ -75,9 +80,9 @@ function ParentContractRenew()
                     <p className="message"><b>ΠΡΟΣΟΧΗ: Εαν πατήσετε "Υποβολή" η παρούσα αίτηση θα σταλεί στην/στον επαγγελματία και δεν θα μπορεί να υποστεί μελλοντική επεξεργασία. Εάν δεν επιθυμείτε να κάνετε οριστική υποβολή, αλλά θέλετε να διατηρήσετε τα στοιχεία που έχετε συμπληρώσει, καθώς και την δυνατότητα μελλοντικής επεξεργασίας, πατήστε "Προσωρινή Αποθήκευση".</b></p>
                 </div>
                 <div className="options">
-                    <button className="cancel"><b><a href='./ParentContractEnd'>Ακύρωση</a></b></button>
-                    <button><b><a href='./ParentContractEnd'>Προσωρινή Αποθήκευση</a></b></button>
-                    <button><b>Οριστική Υποβολή</b></button>
+                    <button onClick={handleEnd} className="cancel"><b>Ακύρωση</b></button>
+                    <button onClick={handleEnd}><b>Προσωρινή Αποθήκευση</b></button>
+                    <button onClick={handleEnd}><b>Οριστική Υποβολή</b></button>
                 </div>
             </div>
             <Footer/>

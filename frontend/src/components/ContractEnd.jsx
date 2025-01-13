@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './ContractEnd.css'
+import { useNavigate } from 'react-router-dom';
 import emptyProfile from '../assets/empty_profile.png'
 import emptyStar from '../assets/empty_star.png'
 import fullStar from '../assets/filled_star.png'
@@ -16,6 +17,11 @@ function ContractEnd({firstName, lastName, startDate, endDate})
 
     const handleClick = () => { setComplete(true); };
 
+    //Για περιήγηση σε υπολοιπες σελίδες
+    const navigate = useNavigate();
+    const handleRenew = () => { navigate('../ParentContractRenew'); };
+    const handleRate = () => { navigate('../RatingParents'); };
+
     return (
         <div className="contractEnd">
             <div className="userInfo">
@@ -28,19 +34,17 @@ function ContractEnd({firstName, lastName, startDate, endDate})
                 <div className="options">
                     {/* TODO: change "complete" variable in database */}
                     {complete===false ?  <button onClick={handleClick}>ΟΛΟΚΛΗΡΩΣΗ</button> : <button className="completed">ΟΛΟΚΛΗΡΩΜΕΝΟ</button>}
-                    <button><a href='./ParentContractRenew'>ΑΝΑΝΕΩΣΗ</a></button>
+                    <button onClick={handleRenew}>ΑΝΑΝΕΩΣΗ</button>
                     <div className="rating">
-                        <button>
-                            <a href='./RatingParents'>
-                                <p className="ratingStatus">{rating>0 ? "ΕΠΕΞΕΡΓΑΣΙΑ ΑΞΙΟΛΟΓΗΣΗΣ" : "ΑΞΙΟΛΟΓΗΣΗ"}</p>
-                                <div className="stars">
-                                    <img className="star1" alt='star' src={rating>0 ? fullStar : emptyStar}/>
-                                    <img className="star2" alt='star' src={rating>1 ? fullStar : emptyStar}/>
-                                    <img className="star3" alt='star' src={rating>2 ? fullStar : emptyStar}/>
-                                    <img className="star4" alt='star' src={rating>3 ? fullStar : emptyStar}/>
-                                    <img className="star5" alt='star' src={rating>4 ? fullStar : emptyStar}/>
-                                </div>
-                            </a>
+                        <button onClick={handleRate}>
+                            <p className="ratingStatus">{rating>0 ? "ΕΠΕΞΕΡΓΑΣΙΑ ΑΞΙΟΛΟΓΗΣΗΣ" : "ΑΞΙΟΛΟΓΗΣΗ"}</p>
+                            <div className="stars">
+                                <img className="star1" alt='star' src={rating>0 ? fullStar : emptyStar}/>
+                                <img className="star2" alt='star' src={rating>1 ? fullStar : emptyStar}/>
+                                <img className="star3" alt='star' src={rating>2 ? fullStar : emptyStar}/>
+                                <img className="star4" alt='star' src={rating>3 ? fullStar : emptyStar}/>
+                                <img className="star5" alt='star' src={rating>4 ? fullStar : emptyStar}/>
+                            </div>
                         </button>
                     </div>
                 </div>

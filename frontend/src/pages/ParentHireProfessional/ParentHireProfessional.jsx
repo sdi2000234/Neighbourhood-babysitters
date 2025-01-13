@@ -12,13 +12,14 @@ import HireProfessionalMore from '../../components/HireProfessionalMore';
 function ParentHireProfessional()
 {
     const [components, setComponents] = useState([
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-        { id: 4 }
+        { id: 1, appointment:false , request:false },
+        { id: 2, appointment:true , request:false },
+        { id: 3, appointment:false , request:true },
+        { id: 4, appointment:true , request:true }
     ]); //TODO: make it so that each component gets its own unique id
 
     const [modalVisible, setModalVisible] = useState(false);
+    const [warningVisible, setWarningVisible] = useState(false);
     const [componentToRemove, setComponentToRemove] = useState(null);
 
     const showMore = () => {
@@ -29,19 +30,19 @@ function ParentHireProfessional()
         setModalVisible(false);
     }
 
-    const showModal = (id) => {
+    const showWarning = (id) => {
         setComponentToRemove(id);
-        setModalVisible(true);
+        setWarningVisible(true);
     };
 
     const handleConfirmRemove = () => {
         setComponents((prevComponents) => prevComponents.filter((component) => component.id !== componentToRemove));
-        setModalVisible(false);
+        setWarningVisible(false);
         setComponentToRemove(null);
     };
 
     const handleCancelRemove = () => {
-        setModalVisible(false);
+        setWarningVisible(false);
         setComponentToRemove(null);
     };
 
@@ -51,11 +52,11 @@ function ParentHireProfessional()
             <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"}/>
             <div className='favourites'>
                 {components.map((component) => (
-                    <FavouriteProfessional key={component.id} id={component.id} unLike={showModal} showMore={showMore}/>
+                    <FavouriteProfessional key={component.id} id={component.id} unLike={showWarning} showMore={showMore} appointment={component.appointment} request={component.request}/>
                 ))}
             </div>
             <ConfirmationDialogue
-                visible={modalVisible}
+                visible={warningVisible}
                 message="Θέλετε σίγουρα να αφαιρέσετε αυτήν την αγγελία από τις αγαπημένες σας;"
                 onConfirm={handleConfirmRemove}
                 onCancel={handleCancelRemove}

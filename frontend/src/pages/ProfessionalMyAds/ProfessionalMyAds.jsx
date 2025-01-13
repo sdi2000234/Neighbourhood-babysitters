@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './ProfessionalMyAds.css'
+import { useNavigate } from 'react-router-dom';
 // import ProfessionalNavigation from '../../components/ProfessionalNavigation'
 import Footer from '../../components/Footer'
 import AdEditOrPreview from '../../components/AdEditOrPreview'
@@ -36,6 +37,10 @@ function ProfessionalMyAds() {
     setComponentToRemove(null)
   }
 
+    //Για περιήγηση σε υπολοιπες σελίδες
+    const navigate = useNavigate();
+    const handleNew = () => { navigate('../ProfessionalCreateAd1'); };
+
   return (
     <div className="professionalMyAds">
       {/* <ProfessionalNavigation currentNavPage="profAds" /> */}
@@ -47,11 +52,9 @@ function ProfessionalMyAds() {
 
       <div className="adPannels">
         <div className="createNewAd">
-          <a href="./ProfessionalCreateAd1">
-            <button className="newAd">
-              <img alt="plus icon" src={plusGrey} />
-            </button>
-          </a>
+          <button onClick={handleNew} className="newAd">
+            <img alt="plus icon" src={plusGrey} />
+          </button>
         </div>
 
         {components.map((component) => (

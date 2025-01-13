@@ -47,7 +47,7 @@ function ParentContractPayment()
 	return	(
         <div className='parentContractPayment'>
             {/* <ParentNavigation currentNavPage={"parPay"}/> */}
-            <Breadcrumbs page1={"ΣΥΜΦΩΝΗΤΙΚΟ"} link1={"./ParentContractPayment"} page2={"ΠΛΗΡΩΜΗ"}/>
+            <Breadcrumbs page1={"ΣΥΜΦΩΝΗΤΙΚΟ"} link1={"../ParentContractPayment"} page2={"ΠΛΗΡΩΜΗ"}/>
             <SortButton sortName={sortAlphabetically} sortDate={sortByDate}/>
             {components.map((component, index) => (
                     <Voucher

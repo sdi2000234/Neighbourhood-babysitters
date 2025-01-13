@@ -2,16 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import './ParentAppointmentEnd.css'
 import Footer from '../../components/Footer';
-import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 function ParentAppointmentEnd() {
 
     const navigate = useNavigate();
-
-    const breadcrumbPages = [
-        { name: 'ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ'}  //ΙΣΩΣ ΘΕΛΕΙ ΕΞΤΡΑ "ΒΗΜΑΤΑ" ΕΔΩ
-    ];
 
     const handleContinue = (event) => { // Για button Αποστολή
         event.preventDefault(); // Αποτρέπει την προεπιλεγμένη υποβολή
@@ -23,7 +18,7 @@ function ParentAppointmentEnd() {
 
 
         {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
-        <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../ParentHireProfessional"} page2={"ΕΠΕΞΕΡΓΑΣΙΑ ΡΑΝΤΕΒΟΥ"}/>
+        <Breadcrumbs page1={"ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../FindProfessional_unconnected"} page2={"ΕΠΕΞΕΡΓΑΣΙΑ ΡΑΝΤΕΒΟΥ"}/>
 
         <div class="personInfoApEnd">
             <div className='paragraphApEnd'>

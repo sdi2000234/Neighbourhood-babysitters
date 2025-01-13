@@ -71,7 +71,7 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
     };
 
     const breadcrumbPages = [
-        { name: 'ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ' }
+        { name: 'ΠΙΘΑΝΕΣ ΣΥΝΕΡΓΑΣΙΕΣ' }
     ];
 
     useEffect(() => {
@@ -84,7 +84,7 @@ function ParentChangeAppointment({babysitterName, userName, userLastName, userPh
     return (
         <>
             {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages} /> */}
-            <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../ParentHireProfessional"} page2={"ΕΠΕΞΕΡΓΑΣΙΑ ΡΑΝΤΕΒΟΥ"}/>
+            <Breadcrumbs page1={"ΡΑΝΤΕΒΟΥ"} link1={"../ParentAllAppointments"} page2={"ΕΠΕΞΕΡΓΑΣΙΑ ΡΑΝΤΕΒΟΥ"}/>
 
             <div className='ApPersonInfoCh'>
                 <h1>ΑΛΛΑΓΗ ΣΤΟΙΧΕΙΩΝ ΡΑΝΤΕΒΟΥ ΜΕ: </h1>

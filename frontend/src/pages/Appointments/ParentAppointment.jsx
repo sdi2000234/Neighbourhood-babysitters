@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './ParentAppointment.css'
 import Footer from '../../components/Footer';
 import RequiredField from '../../components/RequiredField';  
-import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import InfoIcon from '@mui/icons-material/Info';
 import { Tooltip } from '@mui/material';
 import Breadcrumbs from '../../components/Breadcrumbs';
@@ -19,7 +18,7 @@ function ParentAppointment({ babysitterName , userName , userLastName , userPhon
 
     const handleCancel = (event) => { // Για button Ακύρωσης 
         event.preventDefault();  // Αποτρέπει την υποβολή της φόρμας
-        navigate('/ParentHireProfessional'); 
+        navigate('/FindProfessional_unconnected'); 
     };
 
     const handleSubmit = (event) => { // Για button Αποστολή
@@ -31,15 +30,11 @@ function ParentAppointment({ babysitterName , userName , userLastName , userPhon
         navigate('/ParentAppointmentEnd'); 
     };
 
-    const breadcrumbPages = [
-        { name: 'ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ'}  // ΙΣΩΣ ΘΕΛΕΙ ΕΞΤΡΑ "ΒΗΜΑΤΑ" ΕΔΩ
-    ];
-
     return (
         <>
 
             {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
-            <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../ParentHireProfessional"} page2={"ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ"}/>
+            <Breadcrumbs page1={"ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../FindProfessional_unconnected"} page2={"ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ"}/>
 
             <div className='ApPersonInfo'>
                 <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ:</h1>

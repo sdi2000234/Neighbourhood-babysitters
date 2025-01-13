@@ -1,15 +1,27 @@
-// src/pages/ProfilePersonal.js
-
-import React, { useState } from 'react';
-import { Box, TextField, Button, FormControl, InputLabel, Select, MenuItem, Typography } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import {
+  Box,
+  TextField,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Typography,
+} from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { db } from '../firebaseConfig'; // Adjust to your Firebase configuration file
+import { getAuth } from 'firebase/auth';
 
 import Header from '../components/Header_starter';
 import Footer from '../components/Footer';
 import ProgressTracker_CreateProfile from '../components/ProgressTracker_CreateProfile';
 
 export default function ProfilePersonal() {
-  // State for form fields
+  const auth = getAuth();
+  const userId = auth.currentUser?.uid; // Dynamically fetch user ID from Firebase Authentication
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -30,12 +42,33 @@ export default function ProfilePersonal() {
     zipCode: '',
   });
 
-  // State for handling image upload and its preview
   const [profileImage, setProfileImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [uploadMsg, setUploadMsg] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  // Handle text changes
+  useEffect(() => {
+    if (!userId) return;
+
+    const fetchUserData = async () => {
+      setLoading(true);
+      try {
+        const docRef = doc(db, 'users', userId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setFormData(docSnap.data());
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, [userId]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prev) => ({
@@ -44,18 +77,15 @@ export default function ProfilePersonal() {
     }));
   };
 
-  // Handle image upload: accept only PNG or JPG files.
   const handleImageUpload = (event) => {
     const file = event.target.files[0] || null;
     if (file) {
-      // Check file type (allow only PNG and JPEG)
       if (!['image/png', 'image/jpeg'].includes(file.type)) {
         setProfileImage(null);
         setImagePreview(null);
         setUploadMsg('Παρακαλώ επιλέξτε εικόνα τύπου PNG ή JPG.');
         return;
       }
-      // If file is allowed, save it and show preview.
       setProfileImage(file);
       setImagePreview(URL.createObjectURL(file));
       setUploadMsg('Η εικόνα ελήφθη επιτυχώς!');
@@ -66,12 +96,25 @@ export default function ProfilePersonal() {
     }
   };
 
-  // Simulate save action
-  const handleSave = () => {
-    alert('Τα προσωπικά στοιχεία αποθηκεύτηκαν!');
+  const handleSave = async () => {
+    if (!userId) {
+      alert('You must be logged in to save your profile.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const docRef = doc(db, 'users', userId);
+      await setDoc(docRef, { ...formData, email: auth.currentUser.email }, { merge: true });
+      alert('Τα προσωπικά στοιχεία αποθηκεύτηκαν!');
+    } catch (error) {
+      console.error('Error saving user data:', error);
+      alert('Υπήρξε σφάλμα κατά την αποθήκευση.');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // Inline style for the Save button (matching your primary colour)
   const saveButtonStyle = {
     backgroundColor: '#013372',
     color: 'white',
@@ -82,18 +125,13 @@ export default function ProfilePersonal() {
 
   return (
     <Box>
-     
-
-      {/* Progress Tracker with current step set to 1 */}
       <ProgressTracker_CreateProfile currentStep={1} />
 
       <div className="personInfo1">
         <h1>ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ</h1>
         <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>ΤΟ ΠΡΟΦΙΛ ΜΟΥ</h2>
 
-        {/* Profile Image Upload Section */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
-          {/* Display preview if available; otherwise, a placeholder icon */}
           {imagePreview ? (
             <img
               src={imagePreview}
@@ -122,7 +160,6 @@ export default function ProfilePersonal() {
             Προσθήκη Εικόνας
             <input hidden accept="image/*" type="file" onChange={handleImageUpload} />
           </Button>
-          {/* Notification message */}
           {uploadMsg && (
             <Typography variant="body2" sx={{ mt: 1, color: uploadMsg.includes('ελήφθη') ? 'green' : 'red' }}>
               {uploadMsg}
@@ -130,7 +167,6 @@ export default function ProfilePersonal() {
           )}
         </div>
 
-        {/* Form Fields */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <TextField label="Όνομα" name="firstName" value={formData.firstName} onChange={handleChange} size="small" />
           <TextField label="Επώνυμο" name="lastName" value={formData.lastName} onChange={handleChange} size="small" />
@@ -158,10 +194,9 @@ export default function ProfilePersonal() {
           <TextField label="Τ.Κ." name="zipCode" value={formData.zipCode} onChange={handleChange} size="small" />
         </div>
 
-        {/* Save Button */}
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
-          <Button variant="contained" sx={saveButtonStyle} onClick={handleSave}>
-            Αποθήκευση
+          <Button variant="contained" sx={saveButtonStyle} onClick={handleSave} disabled={loading}>
+            {loading ? 'Αποθήκευση...' : 'Αποθήκευση'}
           </Button>
         </div>
       </div>

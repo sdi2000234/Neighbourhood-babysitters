@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
-// import Header from '../components/Header_starter';
 import Footer from '../components/Footer';
 
 const RegisterPage = () => {
@@ -56,9 +55,9 @@ const RegisterPage = () => {
 
       // Redirect based on whether the user is a keeper or not
       if (isKeeper) {
-        navigate('/dashboard_professional');
+        navigate('/profesionaleditstep1');
       } else {
-        navigate('/dashboard');
+        navigate('/profile-epeksergasia-parent');
       }
     } catch (err) {
       setError('Σφάλμα κατά την εγγραφή: ' + err.message);
@@ -67,8 +66,6 @@ const RegisterPage = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* <Header /> */}
-
       <Container sx={{ mt: 6, mb: 6, maxWidth: '400px', textAlign: 'center', flex: 1 }}>
         <Typography variant="h4" fontWeight="bold" gutterBottom>
           Κάνε εγγραφή
@@ -77,12 +74,11 @@ const RegisterPage = () => {
         {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
         {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}
 
-        {/* Wrap inputs and button in a form. Use onSubmit to handle registration */}
         <Box
           component="form"
           noValidate
           autoComplete="off"
-          onSubmit={handleRegister} // This prevents a full page reload
+          onSubmit={handleRegister}
         >
           <TextField
             fullWidth
@@ -120,7 +116,6 @@ const RegisterPage = () => {
             label="Θέλω να εγγραφώ ως επαγγελματίας"
           />
 
-          {/* Button type="submit" triggers the onSubmit on the parent form */}
           <Button
             type="submit"
             fullWidth

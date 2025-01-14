@@ -19,12 +19,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-import ParentNavigation from '../components/ParentNavigation';
 import Footer from '../components/Footer';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -45,7 +43,6 @@ const DashboardPage = () => {
   const steps = [
     { icon: <PersonIcon fontSize="large" />, text: 'Συμπλήρωσε τα Στοιχεία σου' },
     { icon: <SearchIcon fontSize="large" />, text: 'Αναζήτησε Επαγγελματίες' },
-    { icon: <GroupAddIcon fontSize="large" />, text: 'Αποθήκευσε Επαγγελματίες' },
     { icon: <CalendarTodayIcon fontSize="large" />, text: 'Κλείσε Ραντεβού Γνωριμίας' },
     { icon: <AssignmentIcon fontSize="large" />, text: 'Κάνε Αίτηση Συνεργασίας' },
     { icon: <CheckCircleIcon fontSize="large" />, text: 'Υπέγραψε Συμφωνητικό' },

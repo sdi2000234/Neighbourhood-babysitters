@@ -1,61 +1,61 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Babysitter_intro from '../assets/babysitter_intro.png';
 import {
   Box,
   Container,
   Typography,
-  Button,
+  // Button,
   Grid,
-  Paper,
-  TextField,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Avatar,
+  // Paper,
+  // TextField,
+  // Select,
+  // MenuItem,
+  // FormControl,
+  // InputLabel,
+  // Avatar,
 } from '@mui/material';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+// import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Footer from '../components/Footer';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import dayjs from 'dayjs';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import dayjs from 'dayjs';
 
 // Keeper images
-import eva from '../assets/keepers/eva.jpg';
-import evaProfile from '../assets/keepers/eva_profile.jpg';
-import monika from '../assets/keepers/monika.jpg';
-import monikaProfile from '../assets/keepers/monika_profile.jpg';
-import antonia from '../assets/keepers/antonia.jpg';
-import antoniaProfile from '../assets/keepers/antonia_profile.jpg';
-import hara from '../assets/keepers/hara.jpg';
-import haraProfile from '../assets/keepers/hara_profile.jpg';
-import amilia from '../assets/keepers/amilia.jpg';
-import amiliaProfile from '../assets/keepers/amilia_profile.jpg';
-import maria from '../assets/keepers/maria.jpg';
-import mariaProfile from '../assets/keepers/maria_profile.jpg';
-import ksenia from '../assets/keepers/ksenia.jpg';
-import kseniaProfile from '../assets/keepers/ksenia_profile.jpg';
-import eftihia from '../assets/keepers/eftihia.jpg';
-import eftihiaProfile from '../assets/keepers/eftihia_profile.jpg';
-import konstantina from '../assets/keepers/konstantina.jpg';
-import konstantinaProfile from '../assets/keepers/konstantina_profile.jpg';
+// import eva from '../assets/keepers/eva.jpg';
+// import evaProfile from '../assets/keepers/eva_profile.jpg';
+// import monika from '../assets/keepers/monika.jpg';
+// import monikaProfile from '../assets/keepers/monika_profile.jpg';
+// import antonia from '../assets/keepers/antonia.jpg';
+// import antoniaProfile from '../assets/keepers/antonia_profile.jpg';
+// import hara from '../assets/keepers/hara.jpg';
+// import haraProfile from '../assets/keepers/hara_profile.jpg';
+// import amilia from '../assets/keepers/amilia.jpg';
+// import amiliaProfile from '../assets/keepers/amilia_profile.jpg';
+// import maria from '../assets/keepers/maria.jpg';
+// import mariaProfile from '../assets/keepers/maria_profile.jpg';
+// import ksenia from '../assets/keepers/ksenia.jpg';
+// import kseniaProfile from '../assets/keepers/ksenia_profile.jpg';
+// import eftihia from '../assets/keepers/eftihia.jpg';
+// import eftihiaProfile from '../assets/keepers/eftihia_profile.jpg';
+// import konstantina from '../assets/keepers/konstantina.jpg';
+// import konstantinaProfile from '../assets/keepers/konstantina_profile.jpg';
 
 const Page1 = () => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [hostingOption, setHostingOption] = useState('');
+  // const [startDate, setStartDate] = useState(null);
+  // const [endDate, setEndDate] = useState(null);
+  // const [hostingOption, setHostingOption] = useState('');
 
   const steps = [
     {
       title: 'Βήμα 1',
       description:
-        'Βρες τον ιδιώτη Babysitter που θα προσέχει το παιδί σου όπως εσύ επιθυμείς. Δες ποιος είναι κοντά σου, τι εμπειρία έχει, τι υπηρεσίες προσφέρει και επίλεξε τον καλύτερο!',
+        'Βρες τον ιδιώτη Babysitter που θα προσέχει το παιδί σου (2 μηνών έως 2,5 ετών) όπως εσύ επιθυμείς. Δες ποιος είναι κοντά σου, τι εμπειρία έχει, τι υπηρεσίες προσφέρει και επίλεξε τον καλύτερο!',
     },
     {
       title: 'Βήμα 2',
       description:
-        'Επίλεξε τον ιδανικό Babysitter με βάση το ωρολόγιο πρόγραμμα που εσύ επιλέγεις. Μπορείς να ακυρώσεις και να πάρεις πίσω τα χρήματά σου έως και 2 μέρες πριν ξεκινήσει η κράτηση.',
+        'Επίλεξε τον ιδανικό Babysitter με βάση το ωρολόγιο πρόγραμμα που εσύ επιλέγεις. Μπορείς να ακυρώσεις ανα πάσα στιγμή το συμφωνητικό. Η πληρωμή γίνεται μέσω Voucher.',
     },
     {
       title: 'Βήμα 3',
@@ -64,17 +64,17 @@ const Page1 = () => {
     },
   ];
 
-  const topKeepers = [
-    { id: 1, name: 'Εύα', rating: 10, img: eva, profileImg: evaProfile },
-    { id: 2, name: 'Μόνικα', rating: 10, img: monika, profileImg: monikaProfile },
-    { id: 3, name: 'Aντωνία', rating: 10, img: antonia, profileImg: antoniaProfile },
-    { id: 4, name: 'Χαρά', rating: 10, img: hara, profileImg: haraProfile },
-    { id: 5, name: 'Αμίλια', rating: 10, img: amilia, profileImg: amiliaProfile },
-    { id: 6, name: 'Μαρία', rating: 9.9, img: maria, profileImg: mariaProfile },
-    { id: 7, name: 'Ξένια', rating: 10, img: ksenia, profileImg: kseniaProfile },
-    { id: 8, name: 'Ευτυχία', rating: 10, img: eftihia, profileImg: eftihiaProfile },
-    { id: 9, name: 'Κωνταντίνα', rating: 10, img: konstantina, profileImg: konstantinaProfile },
-  ];
+  // const topKeepers = [
+  //   { id: 1, name: 'Εύα', rating: 10, img: eva, profileImg: evaProfile },
+  //   { id: 2, name: 'Μόνικα', rating: 10, img: monika, profileImg: monikaProfile },
+  //   { id: 3, name: 'Aντωνία', rating: 10, img: antonia, profileImg: antoniaProfile },
+  //   { id: 4, name: 'Χαρά', rating: 10, img: hara, profileImg: haraProfile },
+  //   { id: 5, name: 'Αμίλια', rating: 10, img: amilia, profileImg: amiliaProfile },
+  //   { id: 6, name: 'Μαρία', rating: 9.9, img: maria, profileImg: mariaProfile },
+  //   { id: 7, name: 'Ξένια', rating: 10, img: ksenia, profileImg: kseniaProfile },
+  //   { id: 8, name: 'Ευτυχία', rating: 10, img: eftihia, profileImg: eftihiaProfile },
+  //   { id: 9, name: 'Κωνταντίνα', rating: 10, img: konstantina, profileImg: konstantinaProfile },
+  // ];
 
   return (
     <Box>
@@ -126,7 +126,7 @@ const Page1 = () => {
       {/* How It Works Section */}
       <Container sx={{ mt: 6, mb: 6 }}>
         <Typography variant="h4" textAlign="center" fontWeight="bold" mb={4}>
-          Πώς Δουλεύει
+          Πώς λειτουργεί η πλατφόρμας μας
         </Typography>
         <Grid
           container
@@ -168,7 +168,7 @@ const Page1 = () => {
       </Container>
 
       {/* Top Keepers Section */}
-      <Container sx={{ mt: 6, mb: 6 }}>
+      {/* <Container sx={{ mt: 6, mb: 6 }}>
         <Typography variant="h4" textAlign="center" fontWeight="bold" mb={4}>
           Top νταντάδες τελευταίου μήνα
         </Typography>
@@ -218,10 +218,10 @@ const Page1 = () => {
             </Grid>
           ))}
         </Grid>
-      </Container>
+      </Container> */}
 
       {/* Safety Section */}
-      <Box
+      {/* <Box
         sx={{
           backgroundColor: '#013372',
           color: 'white',
@@ -249,7 +249,7 @@ const Page1 = () => {
             </Grid>
           </Grid>
         </Container>
-      </Box>
+      </Box> */}
 
       <Footer />
     </Box>

@@ -10,7 +10,10 @@ import {
   Link,
   Paper,
   Alert,
+  Tooltip,
+  InputAdornment,
 } from '@mui/material';
+import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
@@ -36,17 +39,19 @@ const RegisterPage = () => {
       setError('Συμπληρώστε όλα τα πεδία.');
       return;
     }
+    if (password.length < 6) {
+      setError('Ο κωδικός πρέπει να περιέχει τουλάχιστον 6 χαρακτήρες.');
+      return;
+    }
     if (password !== confirmPassword) {
       setError('Οι κωδικοί δεν ταιριάζουν.');
       return;
     }
 
     try {
-      // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Save additional user data in Firestore
       await setDoc(doc(db, 'users', user.uid), {
         email: user.email,
         isKeeper: isKeeper,
@@ -54,7 +59,6 @@ const RegisterPage = () => {
 
       setSuccess('Επιτυχής εγγραφή! Μεταφέρεστε...');
 
-      // Redirect based on whether the user is a keeper or not
       setTimeout(() => {
         if (isKeeper) {
           navigate('/profesionaleditstep1');
@@ -63,7 +67,13 @@ const RegisterPage = () => {
         }
       }, 1500);
     } catch (err) {
-      setError('Σφάλμα κατά την εγγραφή: ' + err.message);
+      if (err.code === 'auth/email-already-in-use') {
+        setError('Αυτό το email χρησιμοποιείται ήδη.');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Παρακαλώ εισάγετε έγκυρο email.');
+      } else {
+        setError('Σφάλμα κατά την εγγραφή: ' + err.message);
+      }
     }
   };
 
@@ -76,7 +86,6 @@ const RegisterPage = () => {
         mt: 5,
       }}
     >
-      {/* Main Content */}
       <Box
         sx={{
           flex: '1',
@@ -87,18 +96,12 @@ const RegisterPage = () => {
       >
         <Container maxWidth="xs">
           <Paper elevation={3} sx={{ p: 4, textAlign: 'center' }}>
-            {/* Title */}
             <Typography variant="h5" fontWeight="bold" gutterBottom>
               Κάνε εγγραφή
             </Typography>
-
-            {/* Error and Success Alerts */}
             {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
             {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}
-
-            {/* Registration Form */}
             <form onSubmit={handleRegister}>
-              {/* Email Field */}
               <Box sx={{ mb: 2 }}>
                 <TextField
                   label="Email"
@@ -110,8 +113,6 @@ const RegisterPage = () => {
                   required
                 />
               </Box>
-
-              {/* Password Field */}
               <Box sx={{ mb: 2 }}>
                 <TextField
                   label="Κωδικός"
@@ -121,10 +122,17 @@ const RegisterPage = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Tooltip title="Ο κωδικός πρέπει να περιέχει τουλάχιστον 6 χαρακτήρες.">
+                          <InfoIcon sx={{ color: '#013372', cursor: 'pointer' }} />
+                        </Tooltip>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Box>
-
-              {/* Confirm Password Field */}
               <Box sx={{ mb: 2 }}>
                 <TextField
                   label="Επιβεβαίωση Κωδικού"
@@ -136,8 +144,6 @@ const RegisterPage = () => {
                   required
                 />
               </Box>
-
-              {/* Is Keeper Checkbox */}
               <Box sx={{ mb: 2 }}>
                 <FormControlLabel
                   control={
@@ -149,8 +155,6 @@ const RegisterPage = () => {
                   label="Θέλω να εγγραφώ ως επαγγελματίας"
                 />
               </Box>
-
-              {/* Submit Button */}
               <Button
                 type="submit"
                 variant="contained"
@@ -161,26 +165,22 @@ const RegisterPage = () => {
                   '&:hover': { backgroundColor: '#002855' },
                 }}
               >
-                Εγγραφή
+                ΕΓΓΡΑΦΗ
               </Button>
             </form>
-
-            {/* Terms of Use */}
             <Typography variant="body2" sx={{ mt: 2 }}>
               Κάνοντας εγγραφή αποδέχομαι τους{' '}
               <Link href="#" underline="hover" color="#013372" fontWeight="bold">
                 Όρους Χρήσης
               </Link>.
             </Typography>
-
-            {/* Login Link */}
             <Typography variant="body2" sx={{ mt: 2 }}>
               Είσαι ήδη μέλος?{' '}
               <Link
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate('/login'); // Navigate to login page
+                  navigate('/login');
                 }}
                 sx={{ color: '#013372', fontWeight: 'bold' }}
               >
@@ -190,8 +190,6 @@ const RegisterPage = () => {
           </Paper>
         </Container>
       </Box>
-
-      {/* Footer */}
       <Footer />
     </Box>
   );

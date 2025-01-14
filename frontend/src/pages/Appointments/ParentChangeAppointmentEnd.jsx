@@ -2,16 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import './ParentChangeAppointmentEnd.css'
 import Footer from '../../components/Footer';
-import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import Breadcrumbs from '../../components/Breadcrumbs';
 
 function ParentChangeAppointmentEnd() {
     
     const navigate = useNavigate();
-
-    const breadcrumbPages = [
-        { name: 'ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ'}  //ΙΣΩΣ ΘΕΛΕΙ ΕΞΤΡΑ "ΒΗΜΑΤΑ" ΕΔΩ
-    ];
 
     const handleSubmit = () => {
         navigate('/ParentAllAppointments'); //ΠΡΕΠΕΙ ΝΑ ΑΛΛΑΖΟΥΝ ΚΑΙ ΤΑ ΣΤΟΙΧΕΙΑ ΣΤΗΝ ΣΕΛΙΔΑ
@@ -22,7 +17,7 @@ function ParentChangeAppointmentEnd() {
 
 
         {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
-        <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../ParentHireProfessional"} page2={"ΕΠΕΞΕΡΓΑΣΙΑ ΡΑΝΤΕΒΟΥ"}/>
+        <Breadcrumbs page1={"ΡΑΝΤΕΒΟΥ"} link1={"../ParentAllAppointments"} page2={"ΕΠΕΞΕΡΓΑΣΙΑ ΡΑΝΤΕΒΟΥ"}/>
 
         <div class="personInfoApEnd">
             <div className='paragraphApEnd'>

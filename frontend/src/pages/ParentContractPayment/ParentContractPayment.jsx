@@ -1,6 +1,5 @@
 import React, { useState} from 'react'
 import './ParentContractPayment.css'
-// import ParentNavigation from '../../components/ParentNavigation'
 import Voucher from '../../components/Voucher'
 import Footer from '../../components/Footer'
 import SortButton from '../../components/SortButton'
@@ -46,7 +45,6 @@ function ParentContractPayment()
 
 	return	(
         <div className='parentContractPayment'>
-            {/* <ParentNavigation currentNavPage={"parPay"}/> */}
             <Breadcrumbs page1={"ΣΥΜΦΩΝΗΤΙΚΟ"} link1={"../ParentContractPayment"} page2={"ΠΛΗΡΩΜΗ"}/>
             <SortButton sortName={sortAlphabetically} sortDate={sortByDate}/>
             {components.map((component, index) => (

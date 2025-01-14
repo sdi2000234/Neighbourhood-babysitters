@@ -39,7 +39,7 @@ const LoginPage = () => {
       if (error.code === 'auth/user-not-found') {
         setErrorMessage('Ο χρήστης δεν βρέθηκε. Παρακαλώ εγγραφείτε.');
       } else if (error.code === 'auth/wrong-password') {
-        setErrorMessage('Λάθος συνθηματικό.');
+        setErrorMessage('Λάθος κωδικός.');
       } else if (error.code === 'auth/invalid-email') {
         setErrorMessage('Μη έγκυρο email.');
       } else {
@@ -91,7 +91,7 @@ const LoginPage = () => {
               {/* Password Field */}
               <Box sx={{ mb: 2 }}>
                 <TextField
-                  label="Συνθηματικό"
+                  label="Κωδικός"
                   type="password"
                   variant="outlined"
                   fullWidth
@@ -105,9 +105,23 @@ const LoginPage = () => {
               <Box
                 sx={{
                   display: 'flex',
-                  justifyContent: 'space-between',
                   alignItems: 'center',
+                  justifyContent: 'center',
                   mb: 3,
+                }}
+              >
+                <Link href="#" variant="body2" sx={{ color: '#013372' }}>
+                  Ξέχασες τον κωδικό σου;
+                </Link>
+              </Box>
+
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  mt: 1,
+                  mb: 2
                 }}
               >
                 <FormControlLabel
@@ -119,10 +133,8 @@ const LoginPage = () => {
                   }
                   label="Μείνε συνδεδεμένος"
                 />
-                <Link href="#" variant="body2" sx={{ color: '#013372' }}>
-                  Ξέχασες τον κωδικό σου;
-                </Link>
               </Box>
+
 
               {/* Error Message */}
               {errorMessage && (
@@ -147,7 +159,7 @@ const LoginPage = () => {
             </form>
 
             {/* Sign-up Link */}
-            <Typography variant="body2" sx={{ mt: 2 }}>
+            <Typography variant="body2" sx={{ mt: 1 }}>
               Δεν είσαι μέλος?{' '}
               <Link
                 href="#"

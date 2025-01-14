@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ParentAppointment.css';
 import Footer from '../../components/Footer';
-import Breadcrumbs from '../../components/Breadcrumbs';
+import RequiredField from '../../components/RequiredField';  
 import InfoIcon from '@mui/icons-material/Info';
 import { Tooltip } from '@mui/material';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
@@ -55,61 +55,34 @@ function ParentAppointment({ babysitterName }) {
     fetchParentData();
   }, [userId]);
 
-  const handleMeetingTypeChange = (event) => {
-    setMeetingType(event.target.value);
-  };
+    const handleMeetingTypeChange = (event) => {
+        setMeetingType(event.target.value); // Ενημέρωση τύπου συνάντησης για radiobuttons 
+    };
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setAppointmentDetails((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+    const handleCancel = (event) => { // Για button Ακύρωσης 
+        event.preventDefault();  // Αποτρέπει την υποβολή της φόρμας
+        navigate('/FindProfessional_unconnected'); 
+    };
 
-  const handleCancel = (event) => {
-    event.preventDefault();
-    navigate('/ParentHireProfessional');
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (!meetingType) {
-      alert('Παρακαλώ επιλέξτε τύπο συνάντησης.');
-      return;
-    }
-
-    try {
-      const appointmentId = `${userId}_${new Date().toISOString()}`; // Unique appointment ID
-      const appointmentRef = doc(db, 'appointments', appointmentId);
-
-      await setDoc(appointmentRef, {
-        babysitterName,
-        parentId: userId,
-        parentName: `${parentData.userName} ${parentData.userLastName}`,
-        parentPhone: parentData.userPhone,
-        parentEmail: parentData.userEmail,
-        meetingType,
-        ...appointmentDetails,
-        createdAt: new Date().toISOString(),
-      });
-
-      alert('Το ραντεβού αποθηκεύτηκε επιτυχώς!');
-      navigate('/ParentAppointmentEnd');
-    } catch (error) {
-      console.error('Error saving appointment:', error);
-      alert('Υπήρξε σφάλμα κατά την αποθήκευση.');
-    }
-  };
+    const handleSubmit = (event) => { // Για button Αποστολή
+        event.preventDefault(); // Αποτρέπει την προεπιλεγμένη υποβολή
+        if (!meetingType) {
+            alert("Παρακαλώ επιλέξτε τύπο συνάντησης.");
+            return;
+        }
+        navigate('/ParentAppointmentEnd'); 
+    };
 
   return (
     <>
       <Breadcrumbs page1="ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ" link1="../ParentHireProfessional" page2="ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ" />
 
-      <div className="ApPersonInfo">
-        <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ:</h1>
-        <h1>{babysitterName}</h1>
+            {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
+            <Breadcrumbs page1={"ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../FindProfessional_unconnected"} page2={"ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ"}/>
+
+            <div className='ApPersonInfo'>
+                <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ:</h1>
+                <h1> {babysitterName}</h1>
 
         <form onSubmit={handleSubmit}>
           <p className="infoType">Όνομα:</p>

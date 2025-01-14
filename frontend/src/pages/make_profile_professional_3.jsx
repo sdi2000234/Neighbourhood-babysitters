@@ -13,7 +13,7 @@ export default function DimiourgiaProfileProfessional3() {
   };
 
   const handleCompleteProfile = () => {
-    alert('Ολοκλήρωση Δημιουργίας Προφίλ!');
+    navigate('../dashboard');
   };
 
   // Define a common style for labels (for file upload and bio texts)
@@ -40,7 +40,6 @@ export default function DimiourgiaProfileProfessional3() {
     padding: '8px 13px',
     borderRadius: '5px',
     fontSize: '20px',
-    fontWeight: 'bold',
     cursor: 'pointer',
   };
 
@@ -55,15 +54,15 @@ export default function DimiourgiaProfileProfessional3() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {/* Short Intro */}
-          <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+          <Typography style={{fontWeight: 'bold'}} variant="body1" sx={{ fontWeight: 'bold' }}>
             Σύντομη Αυτοπαρουσίαση: (εμφανίζεται στην σελίδα αναζήτησης - εύρεσης επαγγελματιών)
           </Typography>
-          <TextField multiline rows={4} placeholder="Λίγα λόγια για εσάς..." />
+          <TextField style={{backgroundColor: '#fff', borderRadius: '5px'}} multiline rows={4} placeholder="Λίγα λόγια για εσάς..." />
 
          
 
           {/* PDF Upload for Bio */}
-          <Typography variant="body2" sx={{ mt: 2, ...labelStyle }}>
+          <Typography style={{fontWeight: 'bold', marginTop: '20px', fontSize: '18px'}} variant="body2">
             Επισύναψη Βιογραφικού Σημειώματος (.pdf):
           </Typography>
           <Button variant="outlined" component="label" size="small" sx={browseButtonStyle}>

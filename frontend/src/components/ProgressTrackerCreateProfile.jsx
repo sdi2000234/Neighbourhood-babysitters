@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProgressTracker.css';
 
-function ProgressTracker_CreateProfile({ currentStep }) {
+function ProgressTrackerCreateProfile({ currentStep }) {
   return (
     <div className="progressTracker">
       <div className="progressCircles">
@@ -26,4 +26,4 @@ function ProgressTracker_CreateProfile({ currentStep }) {
   );
 }
 
-export default ProgressTracker_CreateProfile;
+export default ProgressTrackerCreateProfile;

@@ -2,7 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import './ProfessionalProfile.css'
 import Footer from '../../components/Footer';
-// import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+import { signOut } from 'firebase/auth'; // Import της signOut
+import { auth } from '../../firebaseConfig'; // Το αρχείο διαμόρφωσης Firebase
 import { Avatar} from "@mui/material";
 import Breadcrumbs from '../../components/Breadcrumbs';
 
@@ -10,27 +11,24 @@ import { Card, CardContent, Typography } from '@mui/material';
 
 function ProfessionalProfile({userName , userLastName, userEmail , userPhone , picLink , desc}) {
 
-  const breadcrumbPages = [
-    { name: 'ΠΡΟΦΙΛ'}  
-  ];
+  // Συνάρτηση για την αποσύνδεση του χρήστη
+  const handleLogout = async () => {
+    try
+    {
+      await signOut(auth); // Αποσύνδεση από το Firebase
+      console.log("Ο χρήστης αποσυνδέθηκε επιτυχώς.");
+      window.location.href = './'; // Ανακατεύθυνση στην αρχική σελίδα
+    }
+    catch (error)
+    {
+      console.error("Σφάλμα κατά την αποσύνδεση:", error);
+    }
+  };
 
   const navigate = useNavigate();
-
-  const handleMore = () => {
-    navigate('/new-page'); 
-  };
-
-  const handleChange = () => {
-    navigate('/new-page'); 
-  };
-
-  const handleMyAds = () => {
-    navigate('/ProfessionalMyAds'); 
-  };
-
-  const handleLogOut = () => {
-    navigate('/new-page'); 
-  };
+  const handleMore = () => { navigate('/new-page'); };
+  const handleChange = () => { navigate('/profesionaleditstep1'); };
+  const handleMyAds = () => { navigate('/ProfessionalMyAds'); };
 
   return (
     <>
@@ -83,7 +81,7 @@ function ProfessionalProfile({userName , userLastName, userEmail , userPhone , p
               </div>
               <div style={{ flexGrow: 1 }}>
                 <button onClick={handleMyAds}>Οι Αγγελίες μου</button>
-                <button className='logoutProfessionalProfile' onClick={handleLogOut}>Αποσύνδεση</button>
+                <button className='logoutProfessionalProfile' onClick={handleLogout}>Αποσύνδεση</button>
               </div>
           </div>
 

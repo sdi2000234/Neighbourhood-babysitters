@@ -41,7 +41,7 @@ function ProfessionalCreateAd3(canEdit) {
                         <div className="aboutMe">
                             <p className="infoType">Σύντομη Αυτοπαρουσίαση:</p>
                             <p className="subtitle">(Θα εμφανίζεται στην περίληψη της αγγελίας)</p>
-                            {canEdit===false ? <textarea readOnly placeholder="Γράψτε μια μικρή αυτοπαρουσίαση" ></textarea> : <textarea  placeholder="Γράψτε μια μικρή αυτοπαρουσίαση" ></textarea>}
+                            <textarea readOnly={!canEdit} placeholder="Γράψτε μια μικρή αυτοπαρουσίαση" ></textarea>
                         </div>
                         <br />
                         <div className="seperatorBar"></div>
@@ -55,31 +55,21 @@ function ProfessionalCreateAd3(canEdit) {
                         <div className="seperatorBar"></div>
                         <div className="municipalitiesDropdown">
                             <p className="infoType">Επιλέξτε Δήμο Δραστηριοποίησης:</p>
-                            {canEdit===false ? <Dropdown readOnly defaultoption="Επιλέξτε Δήμο" options={municipalities} /> : <Dropdown defaultoption="Επιλέξτε Δήμο" options={municipalities} />}
+                            <Dropdown canEdit={canEdit} defaultoption="Επιλέξτε Δήμο" options={municipalities} />
                         </div>
                         <div className="occupationType">
                             <p className="infoType">Επιλέξτε Είδος Απασχόλησης:</p>
-                            {canEdit===false ? 
-                                <form>
-                                    <input disabled type="radio" id="partTime" value="partTime" name="occupation" />
-                                    <label htmlFor="partTime"> Μερική Απασχόληση</label>
-                                    <br />
-                                    <input disabled type="radio" id="fullTime" value="fullTime" name="occupation" />
-                                    <label htmlFor="fullTime"> Πλήρης Απασχόληση</label>
-                                </form>
-                                :
-                                <form>
-                                    <input type="radio" id="partTime" value="partTime" name="occupation" />
-                                    <label htmlFor="partTime"> Μερική Απασχόληση</label>
-                                    <br />
-                                    <input type="radio" id="fullTime" value="fullTime" name="occupation" />
-                                    <label htmlFor="fullTime"> Πλήρης Απασχόληση</label>
-                                </form>
-                            }
+                            <form>
+                                <input disabled={!canEdit} type="radio" id="partTime" value="partTime" name="occupation" />
+                                <label htmlFor="partTime"> Μερική Απασχόληση</label>
+                                <br />
+                                <input disabled={!canEdit} type="radio" id="fullTime" value="fullTime" name="occupation" />
+                                <label htmlFor="fullTime"> Πλήρης Απασχόληση</label>
+                            </form>
                         </div>
                         <h3>Επιλέξτε Διαθεσιμότητα:</h3>
                         <div className="schedule">
-                            <Schedule />
+                            <Schedule canEdit={canEdit}/>
                         </div>
                     </div>
                     <div className="options3">

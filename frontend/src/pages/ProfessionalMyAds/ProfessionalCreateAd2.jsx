@@ -4,7 +4,7 @@ import './ProfessionalCreateAd2.css';
 import Footer from '../../components/Footer';
 import ProgressTracker from '../../components/ProgressTracker';
 
-function ProfessionalCreateAd2() {
+function ProfessionalCreateAd2(canEdit) {
     const userEducationLvl = "";
     const userEduVerification = null;
     const userFirstaidVerification = null;
@@ -16,7 +16,7 @@ function ProfessionalCreateAd2() {
 
     // Handlers για τα κουμπιά
     const handlePreviousStep = () => {
-        navigate('/ProfessionalCreateAd1'); // Πλοήγηση στο προηγούμενο βήμα
+        navigate('/ProfessionalCreateAd1', { state: { canEdit } }); // Πλοήγηση στο προηγούμενο βήμα
     };
 
     const handleSave = () => {
@@ -26,7 +26,7 @@ function ProfessionalCreateAd2() {
     };
 
     const handleNextStep = () => {
-        navigate('/ProfessionalCreateAd3'); // Πλοήγηση στο επόμενο βήμα
+        navigate('/ProfessionalCreateAd3', { state: { canEdit } }); // Πλοήγηση στο επόμενο βήμα
     };
 
     return (

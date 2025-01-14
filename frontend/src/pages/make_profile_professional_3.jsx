@@ -13,7 +13,7 @@ export default function DimiourgiaProfileProfessional3() {
   };
 
   const handleCompleteProfile = () => {
-    navigate('../dashboard');
+    navigate('../dashboard_professional');
   };
 
   // Define a common style for labels (for file upload and bio texts)

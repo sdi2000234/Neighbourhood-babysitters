@@ -4,7 +4,7 @@ import './ProfessionalCreateAd1.css';
 import Footer from '../../components/Footer';
 import ProgressTracker from '../../components/ProgressTracker';
 
-function ProfessionalCreateAd1() {
+function ProfessionalCreateAd1(canEdit) {
     const userName = "";
     const userLastName = "";
     const userBirthyear = 0;
@@ -27,7 +27,7 @@ function ProfessionalCreateAd1() {
     };
 
     const handleNextStep = () => {
-        navigate('/ProfessionalCreateAd2'); // Ανακατεύθυνση στο επόμενο βήμα
+        navigate('/ProfessionalCreateAd2', { state: { canEdit } }); // Ανακατεύθυνση στο επόμενο βήμα
     };
 
     return (

@@ -1,5 +1,6 @@
 import React from 'react'
 import './AdEditOrPreview.css'
+import { useNavigate } from 'react-router-dom';
 import viewBlack from '../assets/view_icon_black.png'
 import whiteHeart from '../assets/filled_heart_white.png'
 import whiteBin from '../assets/bin_delete_white.png'
@@ -10,6 +11,10 @@ function AdPreview({ id, canEdit, onRemove }) {
   const likeCount = 0 // Number of likes for this Ad
   const adCodeNum = id // Code number of this Ad
   const creationDate = null // Date of creation for this Ad
+
+  const navigate = useNavigate();
+  const handlePreview = () => {navigate('../ProfessionalCreateAd1', { state: { canEdit } });};
+  const handleEdit = () => {navigate('../ProfessionalCreateAd1', { state: { canEdit } });};
 
   if (canEdit === false) {
     return (
@@ -29,7 +34,7 @@ function AdPreview({ id, canEdit, onRemove }) {
         </p>
         <div className="actions">
           {/* Preview button */}
-          <button>
+          <button onClick={handlePreview}>
             ΠΡΟΕΠΙΣΚΟΠΙΣΗ
             <img alt="eye" src={viewBlack} />
           </button>
@@ -58,7 +63,7 @@ function AdPreview({ id, canEdit, onRemove }) {
           </p>
           <div className="action">
             {/* Edit button */}
-            <button>
+            <button onClick={handleEdit}>
               ΕΠΕΞΕΡΓΑΣΙΑ
               <img alt="edit" src={whiteEdit} />
             </button>

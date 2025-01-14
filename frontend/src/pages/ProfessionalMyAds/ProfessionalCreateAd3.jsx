@@ -7,7 +7,7 @@ import ProgressTracker from '../../components/ProgressTracker';
 import Dropdown from '../../components/Dropdown';
 import LanguageCertification from "../../components/LanguageCertification";
 
-function ProfessionalCreateAd3() {
+function ProfessionalCreateAd3(canEdit) {
     const municipalities = ["ΔΗΜΟΣ Α", "ΔΗΜΟΣ Β", "ΔΗΜΟΣ Γ"];
     const languages = ["αγγλικά"];
     const langCertificates = ["πιστοποιητικό_αγγλικών.pdf"];
@@ -18,7 +18,7 @@ function ProfessionalCreateAd3() {
 
     // Handlers για τα κουμπιά
     const handlePreviousStep = () => {
-        navigate('/ProfessionalCreateAd2'); // Πλοήγηση στο προηγούμενο βήμα
+        navigate('/ProfessionalCreateAd2', { state: { canEdit } }); // Πλοήγηση στο προηγούμενο βήμα
     };
 
     const handleSave = () => {
@@ -28,7 +28,7 @@ function ProfessionalCreateAd3() {
     };
 
     const handleNextStep = () => {
-        navigate('/ProfessionalCreateAd4'); // Πλοήγηση στο επόμενο βήμα
+        navigate('/ProfessionalCreateAd4', { state: { canEdit } }); // Πλοήγηση στο επόμενο βήμα
     };
 
     return (
@@ -41,7 +41,7 @@ function ProfessionalCreateAd3() {
                         <div className="aboutMe">
                             <p className="infoType">Σύντομη Αυτοπαρουσίαση:</p>
                             <p className="subtitle">(Θα εμφανίζεται στην περίληψη της αγγελίας)</p>
-                            <textarea placeholder="Γράψτε μια μικρή αυτοπαρουσίαση" ></textarea>
+                            {canEdit===false ? <textarea readOnly placeholder="Γράψτε μια μικρή αυτοπαρουσίαση" ></textarea> : <textarea  placeholder="Γράψτε μια μικρή αυτοπαρουσίαση" ></textarea>}
                         </div>
                         <br />
                         <div className="seperatorBar"></div>
@@ -55,17 +55,27 @@ function ProfessionalCreateAd3() {
                         <div className="seperatorBar"></div>
                         <div className="municipalitiesDropdown">
                             <p className="infoType">Επιλέξτε Δήμο Δραστηριοποίησης:</p>
-                            <Dropdown defaultoption="Επιλέξτε Δήμο" options={municipalities} />
+                            {canEdit===false ? <Dropdown readOnly defaultoption="Επιλέξτε Δήμο" options={municipalities} /> : <Dropdown defaultoption="Επιλέξτε Δήμο" options={municipalities} />}
                         </div>
                         <div className="occupationType">
                             <p className="infoType">Επιλέξτε Είδος Απασχόλησης:</p>
-                            <form>
-                                <input type="radio" id="partTime" value="partTime" name="occupation" />
-                                <label htmlFor="partTime"> Μερική Απασχόληση</label>
-                                <br />
-                                <input type="radio" id="fullTime" value="fullTime" name="occupation" />
-                                <label htmlFor="fullTime"> Πλήρης Απασχόληση</label>
-                            </form>
+                            {canEdit===false ? 
+                                <form>
+                                    <input disabled type="radio" id="partTime" value="partTime" name="occupation" />
+                                    <label htmlFor="partTime"> Μερική Απασχόληση</label>
+                                    <br />
+                                    <input disabled type="radio" id="fullTime" value="fullTime" name="occupation" />
+                                    <label htmlFor="fullTime"> Πλήρης Απασχόληση</label>
+                                </form>
+                                :
+                                <form>
+                                    <input type="radio" id="partTime" value="partTime" name="occupation" />
+                                    <label htmlFor="partTime"> Μερική Απασχόληση</label>
+                                    <br />
+                                    <input type="radio" id="fullTime" value="fullTime" name="occupation" />
+                                    <label htmlFor="fullTime"> Πλήρης Απασχόληση</label>
+                                </form>
+                            }
                         </div>
                         <h3>Επιλέξτε Διαθεσιμότητα:</h3>
                         <div className="schedule">

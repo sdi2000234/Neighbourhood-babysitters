@@ -4,12 +4,12 @@ import './ProfessionalCreateAd4.css';
 import Footer from '../../components/Footer';
 import ProgressTracker from '../../components/ProgressTracker';
 
-function ProfessionalCreateAd4() {
+function ProfessionalCreateAd4(canEdit) {
     const navigate = useNavigate(); // Αρχικοποίηση του useNavigate
 
     // Handlers για τα κουμπιά
     const handlePreviousStep = () => {
-        navigate('/ProfessionalCreateAd3'); // Πλοήγηση στο προηγούμενο βήμα
+        navigate('/ProfessionalCreateAd3', { state: { canEdit } }); // Πλοήγηση στο προηγούμενο βήμα
     };
 
     const handleSave = () => {

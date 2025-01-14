@@ -14,7 +14,7 @@ import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig'; // Adjust to your Firebase configuration file
 import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-
+import './make_profile_parent.css';
 import Footer from '../components/Footer';
 
 export default function ProfilePersonal() {
@@ -171,34 +171,34 @@ export default function ProfilePersonal() {
 
         <form onSubmit={handleSave}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <TextField required label="Όνομα" name="firstName" value={formData.firstName} onChange={handleChange} size="small" />
-            <TextField required label="Επώνυμο" name="lastName" value={formData.lastName} onChange={handleChange} size="small" />
-            <TextField required label="Πατρώνυμο" name="fatherName" value={formData.fatherName} onChange={handleChange} size="small" />
-            <TextField required label="Μητρώνυμο" name="motherName" value={formData.motherName} onChange={handleChange} size="small" />
-            <TextField required label="Έτος Γέννησης" name="yearOfBirth" value={formData.yearOfBirth} onChange={handleChange} size="small" type="number" />
+            <TextField className='makeproftext' required label="Όνομα" name="firstName" value={formData.firstName} onChange={handleChange} size="small" />
+            <TextField className='makeproftext' required label="Επώνυμο" name="lastName" value={formData.lastName} onChange={handleChange} size="small" />
+            <TextField className='makeproftext' required label="Πατρώνυμο" name="fatherName" value={formData.fatherName} onChange={handleChange} size="small" />
+            <TextField className='makeproftext' required label="Μητρώνυμο" name="motherName" value={formData.motherName} onChange={handleChange} size="small" />
+            <TextField className='makeproftext' required label="Έτος Γέννησης" name="yearOfBirth" value={formData.yearOfBirth} onChange={handleChange} size="small" type="number" />
             <FormControl required size="small">
               <InputLabel>Φύλο</InputLabel>
-              <Select name="gender" value={formData.gender} onChange={handleChange} label="Φύλο">
+              <Select className='makeproftext' name="gender" value={formData.gender} onChange={handleChange} label="Φύλο">
                 <MenuItem value="male">Άνδρας</MenuItem>
                 <MenuItem value="female">Γυναίκα</MenuItem>
                 <MenuItem value="other">Άλλο</MenuItem>
               </Select>
             </FormControl>
-            <TextField required label="Αριθμός Ταυτοπ. Εγγράφου" name="idNumber" value={formData.idNumber} onChange={handleChange} size="small" />
-            <TextField required label="Αριθμός Φορολογικού Μητρώου (ΑΦΜ)" name="afm" value={formData.afm} onChange={handleChange} size="small" type="number" />
-            <TextField required label="AMKA" name="amka" value={formData.amka} onChange={handleChange} size="small" type="number"/>
-            <TextField required label="Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)" name="doy" value={formData.doy} onChange={handleChange} size="small" />
-            <TextField required label="Τηλέφωνο" name="phone" value={formData.phone} onChange={handleChange} size="small" type="number"/>
-            <TextField required label="Ηλεκτρονικό Ταχυδρομείο" name="email" value={formData.email} onChange={handleChange} size="small" type='email' />
-            <TextField required label="Νομός" name="region" value={formData.region} onChange={handleChange} size="small" />
-            <TextField required label="Περιοχή" name="area" value={formData.area} onChange={handleChange} size="small" />
-            <TextField required label="Οδός" name="street" value={formData.street} onChange={handleChange} size="small" />
-            <TextField required label="Αριθμός" name="streetNumber" value={formData.streetNumber} onChange={handleChange} size="small" type='number'/>
-            <TextField required label="Τ.Κ." name="zipCode" value={formData.zipCode} onChange={handleChange} size="small" inputProps={{
+            <TextField className='makeproftext' required label="Αριθμός Ταυτοπ. Εγγράφου" name="idNumber" value={formData.idNumber} onChange={handleChange} size="small" />
+            <TextField className='makeproftext' required label="Αριθμός Φορολογικού Μητρώου (ΑΦΜ)" name="afm" value={formData.afm} onChange={handleChange} size="small" type="number" />
+            <TextField className='makeproftext' required label="AMKA" name="amka" value={formData.amka} onChange={handleChange} size="small" type="number"/>
+            <TextField className='makeproftext' required label="Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)" name="doy" value={formData.doy} onChange={handleChange} size="small" />
+            <TextField className='makeproftext' required label="Τηλέφωνο" name="phone" value={formData.phone} onChange={handleChange} size="small" type="number"/>
+            <TextField className='makeproftext' required label="Ηλεκτρονικό Ταχυδρομείο" name="email" value={formData.email} onChange={handleChange} size="small" type='email' />
+            <TextField className='makeproftext' required label="Νομός" name="region" value={formData.region} onChange={handleChange} size="small" />
+            <TextField className='makeproftext' required label="Περιοχή" name="area" value={formData.area} onChange={handleChange} size="small" />
+            <TextField className='makeproftext' required label="Οδός" name="street" value={formData.street} onChange={handleChange} size="small" />
+            <TextField className='makeproftext' required label="Αριθμός" name="streetNumber" value={formData.streetNumber} onChange={handleChange} size="small" type='number'/>
+            <TextField className='makeproftext' required label="Τ.Κ." name="zipCode" value={formData.zipCode} onChange={handleChange} size="small" inputProps={{
               pattern: '[0-9]{5}',  
               title: 'Ο ταχυδρομικός κωδικός πρέπει να έχει 5 αριθμούς'
             }}/>
-            <TextField required label="Ηλικία Παιδιού προς φύλαξη" name="kidsAge" value={formData.kidsAge} onChange={handleChange} size="small"/>
+            <TextField className='makeproftext' required label="Ηλικία Παιδιού προς φύλαξη" name="kidsAge" value={formData.kidsAge} onChange={handleChange} size="small"/>
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>

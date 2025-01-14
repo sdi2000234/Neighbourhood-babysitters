@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ParentAppointment.css';
 import Footer from '../../components/Footer';
-import RequiredField from '../../components/RequiredField';  
-import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+// import RequiredField from '../../components/RequiredField';  
+// import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import InfoIcon from '@mui/icons-material/Info';
 import { Tooltip } from '@mui/material';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig'; // Adjust path to your Firebase config
 import { getAuth } from 'firebase/auth';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 function ParentAppointment({ babysitterName }) {
   const navigate = useNavigate();
@@ -33,10 +34,7 @@ function ParentAppointment({ babysitterName }) {
 
   useEffect(() => {
     if (!userId) return;
-    const handleCancel = (event) => { // Για button Ακύρωσης 
-        event.preventDefault();  // Αποτρέπει την υποβολή της φόρμας
-        navigate('/FindProfessional_unconnected'); 
-    };
+
     const fetchParentData = async () => {
       try {
         const docRef = doc(db, 'users', userId);
@@ -77,20 +75,15 @@ function ParentAppointment({ babysitterName }) {
         navigate('/ParentAppointmentEnd'); 
     };
 
-    const breadcrumbPages = [
-        { name: 'ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ'}  // ΙΣΩΣ ΘΕΛΕΙ ΕΞΤΡΑ "ΒΗΜΑΤΑ" ΕΔΩ
-    ];
+    const handleInputChange = () => {};
 
   return (
     <>
-      <Breadcrumbs page1="ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ" link1="../ParentHireProfessional" page2="ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ" />
+      <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../ParentHireProfessional"} page2={"ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ"}/>
 
-            {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
-            <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../ParentHireProfessional"} page2={"ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ"}/>
-
-            <div className='ApPersonInfo'>
-                <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ:</h1>
-                <h1> {babysitterName}</h1>
+      <div className='ApPersonInfo'>
+        <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ:</h1>
+        <h1> {babysitterName}</h1>
 
         <form onSubmit={handleSubmit}>
           <p className="infoType">Όνομα:</p>

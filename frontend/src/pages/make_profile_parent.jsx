@@ -13,14 +13,14 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig'; // Adjust to your Firebase configuration file
 import { getAuth } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 
-// import Header from '../components/Header_starter';
 import Footer from '../components/Footer';
-import ProgressTrackerCreateProfile from '../components/ProgressTrackerCreateProfile';
 
 export default function ProfilePersonal() {
   const auth = getAuth();
   const userId = auth.currentUser?.uid; // Dynamically fetch user ID from Firebase Authentication
+  const navigate = useNavigate(); // Initialize useNavigate for redirection
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -107,6 +107,7 @@ export default function ProfilePersonal() {
       const docRef = doc(db, 'users', userId);
       await setDoc(docRef, { ...formData, email: auth.currentUser.email }, { merge: true });
       alert('Τα προσωπικά στοιχεία αποθηκεύτηκαν!');
+      navigate('/dashboard'); // Redirect to /dashboard after saving
     } catch (error) {
       console.error('Error saving user data:', error);
       alert('Υπήρξε σφάλμα κατά την αποθήκευση.');
@@ -125,8 +126,6 @@ export default function ProfilePersonal() {
 
   return (
     <Box>
-      <ProgressTrackerCreateProfile currentStep={1} />
-
       <div className="personInfo1">
         <h1>ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ</h1>
         <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>ΤΟ ΠΡΟΦΙΛ ΜΟΥ</h2>

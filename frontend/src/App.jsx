@@ -210,7 +210,7 @@ function Main() {
         <Route path='/NotificationsParent' element={<NotificationsParent />} />
         <Route path='/WriteMessageParent' element={<WriteMessageParent />} />
         <Route path='/ParentContractFinal' element={<ParentContractFinal />} />
-        <Route path='/ParentContractNotFinal' element={<ParentContractNotFinal />} />
+        <Route path='/ParentContractNotFinal' element={<ParentContractNotFinal/>} />
 
         {/* Professional Routes */}
         <Route path='/ProfessionalMyAds' element={<ProfessionalMyAds />} />

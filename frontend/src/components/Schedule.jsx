@@ -1,33 +1,52 @@
-import React, { useState } from "react";
-import './Schedule.css'
+import React, { useState, useEffect } from "react";
+import './Schedule.css';
 
-const Schedule = ({ canEdit=true }) => {
+const Schedule = ({ canEdit = true, onChange }) => {
     const hours = ["8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"];
     const days = ["ΔΕΥ", "ΤΡΙ", "ΤΕΤ", "ΠΕΜ", "ΠΑΡ", "ΣΑΒ", "ΚΥΡ"];
 
-    const [checkedState, setCheckedState] = useState(Array(hours.length).fill(Array(days.length).fill(false)));
-    
+    const [checkedState, setCheckedState] = useState(() =>
+        Array(hours.length).fill(null).map(() => Array(days.length).fill(false))
+    );
+
+    // Prevent unintended updates in the parent by only calling `onChange` when necessary
+    useEffect(() => {
+        if (onChange) {
+            const flatState = checkedState.flat();
+            if (flatState.some((state) => state)) {
+                onChange(checkedState);
+            }
+        }
+    }, [checkedState, onChange]);
+
     const handleRowCheck = (rowIndex) => {
         if (!canEdit) return;
-        const newCheckedState = [...checkedState];
-        const isChecked = !newCheckedState[rowIndex].every(Boolean);
-        newCheckedState[rowIndex] = newCheckedState[rowIndex].map(() => isChecked);
-        setCheckedState(newCheckedState);
+        setCheckedState((prevState) =>
+            prevState.map((row, i) =>
+                i === rowIndex ? row.map(() => !row.every(Boolean)) : row
+            )
+        );
     };
 
     const handleColumnCheck = (colIndex) => {
         if (!canEdit) return;
         const isChecked = !checkedState.every((row) => row[colIndex]);
-        const newCheckedState = checkedState.map((row) => row.map((cell, index) => (index === colIndex ? isChecked : cell)));
-        setCheckedState(newCheckedState);
+        setCheckedState((prevState) =>
+            prevState.map((row) =>
+                row.map((cell, index) => (index === colIndex ? isChecked : cell))
+            )
+        );
     };
 
     const handleCellCheck = (rowIndex, colIndex) => {
         if (!canEdit) return;
-        const newCheckedState = [...checkedState];
-        newCheckedState[rowIndex] = [...newCheckedState[rowIndex]];
-        newCheckedState[rowIndex][colIndex] = !newCheckedState[rowIndex][colIndex];
-        setCheckedState(newCheckedState);
+        setCheckedState((prevState) =>
+            prevState.map((row, i) =>
+                i === rowIndex
+                    ? row.map((cell, j) => (j === colIndex ? !cell : cell))
+                    : row
+            )
+        );
     };
 
     return (

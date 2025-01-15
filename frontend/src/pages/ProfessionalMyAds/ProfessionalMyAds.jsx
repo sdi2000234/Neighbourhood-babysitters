@@ -1,49 +1,84 @@
-import React, { useState } from 'react'
-import './ProfessionalMyAds.css'
-import { useNavigate } from 'react-router-dom';
-// import ProfessionalNavigation from '../../components/ProfessionalNavigation'
-import Footer from '../../components/Footer'
-import AdEditOrPreview from '../../components/AdEditOrPreview'
-import plusGrey from '../../assets/plus_grey.png'
-import Breadcrumbs from '../../components/Breadcrumbs'
-import ConfirmationDialogue from '../../components/ConfirmationDialogue'
+import React, { useState, useEffect } from "react";
+import "./ProfessionalMyAds.css";
+import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer";
+import AdEditOrPreview from "../../components/AdEditOrPreview";
+import plusGrey from "../../assets/plus_grey.png";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import ConfirmationDialogue from "../../components/ConfirmationDialogue";
+import { getAuth } from "firebase/auth";
+import { db } from "../../firebaseConfig";
+import { collection, doc, deleteDoc, getDocs, query, where } from "firebase/firestore";
 
 function ProfessionalMyAds() {
-  const [components, setComponents] = useState([
-    { id: 1, edit: false },
-    { id: 2, edit: true },
-    { id: 3, edit: true },
-    { id: 4, edit: false }
-  ])
+  const [ads, setAds] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [adToRemove, setAdToRemove] = useState(null);
+  const navigate = useNavigate();
+  const auth = getAuth();
+  const userId = auth.currentUser?.uid;
 
-  const [modalVisible, setModalVisible] = useState(false)
-  const [componentToRemove, setComponentToRemove] = useState(null)
+  // Fetch ads from Firestore
+  useEffect(() => {
+    const fetchAds = async () => {
+      if (!userId) {
+        console.error("User not logged in.");
+        return;
+      }
 
-  const showModal = (id) => {
-    setComponentToRemove(id)
-    setModalVisible(true)
-  }
+      try {
+        const q = query(
+          collection(db, "ads"),
+          where("userId", "==", userId),
+          where("status", "==", "submitted") // Fetch only submitted ads
+        );
+        const querySnapshot = await getDocs(q);
 
-  const handleConfirmRemove = () => {
-    setComponents((prevComponents) =>
-      prevComponents.filter((component) => component.id !== componentToRemove)
-    )
-    setModalVisible(false)
-    setComponentToRemove(null)
-  }
+        const fetchedAds = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        setAds(fetchedAds);
+      } catch (error) {
+        console.error("Error fetching ads:", error);
+      }
+    };
+
+    fetchAds();
+  }, [userId]);
+
+  // Handle removal confirmation
+  const showModal = (adId) => {
+    setAdToRemove(adId);
+    setModalVisible(true);
+  };
+
+  const handleConfirmRemove = async () => {
+    if (!adToRemove) return;
+
+    try {
+      await deleteDoc(doc(db, "ads", adToRemove));
+      setAds((prevAds) => prevAds.filter((ad) => ad.id !== adToRemove));
+    } catch (error) {
+      console.error("Error deleting ad:", error);
+    } finally {
+      setModalVisible(false);
+      setAdToRemove(null);
+    }
+  };
 
   const handleCancelRemove = () => {
-    setModalVisible(false)
-    setComponentToRemove(null)
-  }
+    setModalVisible(false);
+    setAdToRemove(null);
+  };
 
-    //Για περιήγηση σε υπολοιπες σελίδες
-    const navigate = useNavigate();
-    const handleNew = () => { navigate('../ProfessionalCreateAd1'); };
+  const handleNew = () => {
+    navigate("../ProfessionalCreateAd1");
+  };
 
   return (
     <div className="professionalMyAds">
-      {/* <ProfessionalNavigation currentNavPage="profAds" /> */}
       <Breadcrumbs page1="ΟΙ ΑΓΓΕΛΙΕΣ ΜΟΥ" />
 
       <p className="createText">
@@ -57,12 +92,13 @@ function ProfessionalMyAds() {
           </button>
         </div>
 
-        {components.map((component) => (
+        {ads.map((ad) => (
           <AdEditOrPreview
-            key={component.id}
-            id={component.id}
-            canEdit={component.edit}
+            key={ad.id}
+            id={ad.id}
+            canEdit={true} // Assuming all ads are editable; adjust if necessary
             onRemove={showModal}
+            data={ad} // Pass ad data for rendering
           />
         ))}
       </div>
@@ -76,7 +112,7 @@ function ProfessionalMyAds() {
 
       <Footer />
     </div>
-  )
+  );
 }
 
-export default ProfessionalMyAds
+export default ProfessionalMyAds;

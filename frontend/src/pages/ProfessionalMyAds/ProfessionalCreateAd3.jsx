@@ -1,87 +1,161 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; // Import του useNavigate
-import './ProfessionalCreateAd3.css';
-import Schedule from '../../components/Schedule';
-import Footer from '../../components/Footer';
-import ProgressTracker from '../../components/ProgressTracker';
-import Dropdown from '../../components/Dropdown';
-import LanguageCertification from "../../components/LanguageCertification";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import "./ProfessionalCreateAd3.css";
+import Schedule from "../../components/Schedule";
+import Footer from "../../components/Footer";
+import ProgressTracker from "../../components/ProgressTracker";
+import { FormControl, InputLabel, Select, MenuItem, Button } from "@mui/material";
+import { db } from "../../firebaseConfig";
+import { getAuth } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
-function ProfessionalCreateAd3(canEdit) {
-    const municipalities = ["ΔΗΜΟΣ Α", "ΔΗΜΟΣ Β", "ΔΗΜΟΣ Γ"];
-    const languages = ["αγγλικά"];
-    const langCertificates = ["πιστοποιητικό_αγγλικών.pdf"];
-    const signCertificate = "certificate.pdf";
-    let index = 0;
+function ProfessionalCreateAd3() {
+  const municipalities = [
+    "Δήμος Κομοτηνής",
+    "Δήμος Αρριανών",
+    // Add other municipalities
+  ];
 
-    const navigate = useNavigate(); // Αρχικοποίηση του useNavigate
+  const navigate = useNavigate();
+  const location = useLocation();
+  const auth = getAuth();
+  const userId = auth.currentUser?.uid;
 
-    // Handlers για τα κουμπιά
-    const handlePreviousStep = () => {
-        navigate('/ProfessionalCreateAd2', { state: { canEdit } }); // Πλοήγηση στο προηγούμενο βήμα
-    };
+  const [aboutMe, setAboutMe] = useState("");
+  const [selectedMunicipality, setSelectedMunicipality] = useState("");
+  const [occupationType, setOccupationType] = useState("");
+  const [availability, setAvailability] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    const handleSave = () => {
-        // Εδώ μπορείς να προσθέσεις λειτουργία προσωρινής αποθήκευσης αν χρειαστεί
-        console.log('Η αγγελία αποθηκεύτηκε προσωρινά.');
-        navigate('/ProfessionalMyAds'); // Πλοήγηση στη σελίδα "Οι Αγγελίες Μου"
-    };
+  // Pre-fill fields for editing
+  useEffect(() => {
+    if (location.state && location.state.adData) {
+      const { aboutMe, municipality, occupationType, availability } = location.state.adData;
+      setAboutMe(aboutMe || "");
+      setSelectedMunicipality(municipality || "");
+      setOccupationType(occupationType || "");
+      setAvailability(availability || []);
+    }
+  }, [location.state]);
 
-    const handleNextStep = () => {
-        navigate('/ProfessionalCreateAd4', { state: { canEdit } }); // Πλοήγηση στο επόμενο βήμα
-    };
+  const handleSave = async () => {
+    if (!userId) {
+      alert("Πρέπει να είστε συνδεδεμένοι για να αποθηκεύσετε τις πληροφορίες σας.");
+      return;
+    }
 
-    return (
-        <div>
-            <ProgressTracker currentStep={3} />
+    if (!aboutMe.trim() || !selectedMunicipality || !occupationType || availability.length === 0) {
+      alert("Παρακαλώ συμπληρώστε όλα τα απαιτούμενα πεδία.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const adData = {
+        aboutMe,
+        municipality: selectedMunicipality,
+        occupationType,
+        availability,
+        userId,
+        status: "temporary", // Save as temporary
+        createdAt: new Date().toISOString(),
+      };
+
+      const docRef = doc(db, "ads", `${userId}-${Date.now()}`);
+      await setDoc(docRef, adData);
+
+      alert("Η αγγελία αποθηκεύτηκε προσωρινά.");
+      navigate("/ProfessionalMyAds");
+    } catch (error) {
+      console.error("Error saving data:", error);
+      alert("Σφάλμα κατά την αποθήκευση των δεδομένων.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <ProgressTracker currentStep={3} />
+      <form>
+        <div className="personInfo3">
+          <h1>ΑΓΓΕΛΙΑ - ΣΤΟΙΧΕΙΑ ΠΑΡΟΧΗΣ ΥΠΗΡΕΣΙΑΣ</h1>
+
+          <div className="aboutMe">
+            <p className="infoType">Σύντομη Αυτοπαρουσίαση:</p>
+            <textarea
+              placeholder="Γράψτε μια μικρή αυτοπαρουσίαση"
+              value={aboutMe}
+              onChange={(e) => setAboutMe(e.target.value)}
+              style={{
+                width: "100%",
+                height: "150px",
+                padding: "10px",
+                borderRadius: "5px",
+                border: "1px solid #ccc",
+                resize: "none",
+                fontSize: "16px",
+              }}
+            ></textarea>
+          </div>
+
+          <div className="municipalitiesDropdown">
+            <FormControl fullWidth>
+              <InputLabel id="municipality-select-label">Επιλέξτε Δήμο Δραστηριοποίησης</InputLabel>
+              <Select
+                labelId="municipality-select-label"
+                id="municipality-select"
+                value={selectedMunicipality}
+                onChange={(e) => setSelectedMunicipality(e.target.value)}
+              >
+                {municipalities.map((municipality, index) => (
+                  <MenuItem key={index} value={municipality}>
+                    {municipality}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+
+          <div className="occupationType">
+            <p className="infoType">Επιλέξτε Είδος Απασχόλησης:</p>
             <form>
-                <div className="personInfo3">
-                    <h1>ΑΓΓΕΛΙΑ - ΣΤΟΙΧΕΙΑ ΠΑΡΟΧΗΣ ΥΠΗΡΕΣΙΑΣ</h1>
-                    <div>
-                        <div className="aboutMe">
-                            <p className="infoType">Σύντομη Αυτοπαρουσίαση:</p>
-                            <p className="subtitle">(Θα εμφανίζεται στην περίληψη της αγγελίας)</p>
-                            <textarea readOnly={!canEdit} placeholder="Γράψτε μια μικρή αυτοπαρουσίαση" ></textarea>
-                        </div>
-                        <br />
-                        <div className="seperatorBar"></div>
-                        <LanguageCertification index={index + 1} name={languages[index]} certificate={langCertificates[index]} />
-                        <LanguageCertification index={index + 2} name="νοηματική" certificate={signCertificate} />
-                        <p className="message">
-                            Τα παραπάνω στοιχεία Γλωσσομάθειας, καθώς και τα έτη εμπειρίας έχουν συμπληρωθεί αυτόματα με βάση τα στοιχεία που έχετε υποβάλει μέσω του Προφίλ σας.
-                            Αν κάποιο από αυτά λείπει ή χρειάζεται αλλαγή θα πρέπει να γίνει μέσω της επεξεργασίας του Προφίλ σας.
-                            Η αλλαγή θα εμφανιστεί αυτόματα σε όλες τις αγγελίες που έχετε δημιουργήσει.
-                        </p>
-                        <div className="seperatorBar"></div>
-                        <div className="municipalitiesDropdown">
-                            <p className="infoType">Επιλέξτε Δήμο Δραστηριοποίησης:</p>
-                            <Dropdown canEdit={canEdit} defaultoption="Επιλέξτε Δήμο" options={municipalities} />
-                        </div>
-                        <div className="occupationType">
-                            <p className="infoType">Επιλέξτε Είδος Απασχόλησης:</p>
-                            <form>
-                                <input disabled={!canEdit} type="radio" id="partTime" value="partTime" name="occupation" />
-                                <label htmlFor="partTime"> Μερική Απασχόληση</label>
-                                <br />
-                                <input disabled={!canEdit} type="radio" id="fullTime" value="fullTime" name="occupation" />
-                                <label htmlFor="fullTime"> Πλήρης Απασχόληση</label>
-                            </form>
-                        </div>
-                        <h3>Επιλέξτε Διαθεσιμότητα:</h3>
-                        <div className="schedule">
-                            <Schedule canEdit={canEdit}/>
-                        </div>
-                    </div>
-                    <div className="options3">
-                        <button onClick={handlePreviousStep}><b>Προηγούμενο Βήμα</b></button>
-                        <button onClick={handleSave}><b>Προσωρινή Αποθήκευση</b></button>
-                        <button onClick={handleNextStep}><b>Επόμενο Βήμα</b></button>
-                    </div>
-                </div>
+              <input
+                type="radio"
+                id="partTime"
+                value="partTime"
+                name="occupation"
+                checked={occupationType === "partTime"}
+                onChange={(e) => setOccupationType(e.target.value)}
+              />
+              <label htmlFor="partTime">Μερική Απασχόληση</label>
+              <br />
+              <input
+                type="radio"
+                id="fullTime"
+                value="fullTime"
+                name="occupation"
+                checked={occupationType === "fullTime"}
+                onChange={(e) => setOccupationType(e.target.value)}
+              />
+              <label htmlFor="fullTime">Πλήρης Απασχόληση</label>
             </form>
-            <Footer />
+          </div>
+
+          <h3>Επιλέξτε Διαθεσιμότητα:</h3>
+          <Schedule canEdit={true} onChange={setAvailability} />
+
+          <div className="options3">
+            <Button variant="outlined" onClick={handleSave} disabled={loading}>
+              Προσωρινή Αποθήκευση
+            </Button>
+          </div>
         </div>
-    );
+      </form>
+      <Footer />
+    </div>
+  );
 }
 
 export default ProfessionalCreateAd3;

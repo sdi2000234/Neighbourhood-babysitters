@@ -1,127 +1,128 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ParentAllAppointments.css';
 import Footer from '../../components/Footer';
-import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import AppointmentCardProfessional from '../../components/AppointmentCardProfessional';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid2'; // Correct import for Grid2
 import Breadcrumbs from '../../components/Breadcrumbs';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { auth, db } from '../../firebaseConfig'; // Adjust the path as necessary
+import { onAuthStateChanged } from 'firebase/auth';
+import { Button, Typography } from '@mui/material'; // Import Button and Typography
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-function ParentAllAppointments() { //ΙΣΩΣ ΘΕΛΕΙ ΠΕΡΙΣΣΟΤΕΡΑ ΠΧ ΠΡΟΦΙΛ/ΡΑΝΤΕΒΟΥ
-    const breadcrumbPages = [
-        { name: 'ΡΑΝΤΕΒΟΥ' }
-    ];
+function ParentAllAppointments() {
+  const [appointments, setAppointments] = useState([]);
+  const [connections, setConnections] = useState([]);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate(); // Initialize navigate
 
-    // Πίνακας ραντεβού με ημερομηνίες και ώρες
-    const appointments = [
-        {
-            picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
-            professionalName: 'Μαρία Παπαδοπούλου',
-            date: '12/02/2024',  
-            time: '12:30 μμ',
-            loc: "https://www.webex.com/test-meeting.html",
-            type: "online"
-        },
-        {
-            picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
-            professionalName: 'Γιάννης Ιωάννου',
-            date: '12/02/2024',  
-            time: '10:00 πμ',
-            loc: "Περιοχή, Αρ , Τ.Κ.",
-            type: "facetoface"
-        },
-        {
-            picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
-            professionalName: 'Αλέξανδρος Κωνσταντίνου',
-            date: '03/04/2024', 
-            time: '12:30 μμ',
-            loc: "https://www.webex.com/test-meeting.html",
-            type: "online"
-        },
-        {
-            picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
-            professionalName: 'Γιάννης Ιωάννου',
-            date: '12/03/2024',  
-            time: '10:00 πμ',
-            loc: "Αθήνα",
-            type: "facetoface"
-        },
-        {
-            picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
-            professionalName: 'Αλέξανδρος Κωνσταντίνου',
-            date: '12/03/2024', 
-            time: '8:30 πμ',
-            loc: "https://www.webex.com/test-meeting.html",
-            type: "online"
-        }
-        
-    ];
-
-    // Συνάρτηση για μετατροπή της ημερομηνίας από 'DD/MM/YYYY' σε 'YYYY-MM-DD'
-    const convertToDateObject = (dateString) => {
-        const [day, month, year] = dateString.split('/');
-        return new Date(`${year}-${month}-${day}`);
-    };
-
-    // Συνάρτηση για μετατροπή της ώρας σε 24ωρη μορφή για σύγκριση
-    const convertTo24HourFormat = (timeString) => {
-        const [time, period] = timeString.split(' ');  // Διαχωρισμός την ώρα και την περίοδο (π.χ., '12:30 μμ' -> ['12:30', 'μμ'])
-        let [hours, minutes] = time.split(':');  // Διαχωρισμός ώρες και λεπτά
-        hours = parseInt(hours);
-        
-        if (period === 'μμ' && hours !== 12) {
-            hours += 12;  // Μετατροπή PM (εκτός από 12 μ.μ.)
-        } else if (period === 'πμ' && hours === 12) {
-            hours = 0;  // Μετατροπή 12 π.μ. σε 0 ώρες
-        }
-
-        return new Date(2000, 0, 1, hours, minutes);  // Δημιουργία ένος νέου Date αντικείμενο για σύγκριση (δεν μας ενδιαφέρει η ημερομηνία)
-    };
-
-    // Ταξινόμηση του πίνακα με βάση την ημερομηνία και την ώρα
-    const sortedAppointments = [...appointments].sort((a, b) => {
-        const dateA = convertToDateObject(a.date);
-        const dateB = convertToDateObject(b.date);
-
-        // Αν οι ημερομηνίες είναι ίδιες, συγκρίνουμε την ώρα
-        if (dateA.getTime() === dateB.getTime()) {
-            const timeA = convertTo24HourFormat(a.time);
-            const timeB = convertTo24HourFormat(b.time);
-            return timeA - timeB;  // Σύγκριση των ωρών
-        }
-
-        // Αν οι ημερομηνίες είναι διαφορετικές, συγκρίνουμε τις ημερομηνίες
-        return dateA - dateB;
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        setUser(firebaseUser);
+        await fetchAppointmentsAndConnections(firebaseUser.uid);
+      }
     });
 
-    // Συνάρτηση για την εμφάνιση της ημερομηνίας στην μορφή 'DD/MM/YYYY'
-    const formatDate = (dateString) => {
-        const [day, month, year] = dateString.split('/');
-        return `${day}/${month}/${year}`;
-    };
+    return () => unsubscribe();
+  }, []);
 
-    return (
-        <>
-            {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages} /> */}
-            <Breadcrumbs page1={"ΡΑΝΤΕΒΟΥ"}/>
+  const fetchAppointmentsAndConnections = async (userId) => {
+    try {
+      const appointmentsQuery = query(collection(db, 'appointments'), where('userId', '==', userId));
+      const connectionsQuery = query(collection(db, 'connections'), where('parentId', '==', userId));
+      
+      const [appointmentsSnapshot, connectionsSnapshot] = await Promise.all([
+        getDocs(appointmentsQuery),
+        getDocs(connectionsQuery)
+      ]);
 
-                <Grid container spacing={4} justifyContent="center" alignItems="flex-start" className="appointments">
-                    {sortedAppointments.map((appointment, index) => (
-                        <Grid item xs={12} sm={6} md={4} key={index}>
-                            <AppointmentCardProfessional 
-                                picLink={appointment.picLink} 
-                                professionalName={appointment.professionalName} 
-                                date={formatDate(appointment.date)}  // Εμφάνιση ημερομηνίας με την επιθυμητή μορφή
-                                loc={appointment.loc} 
-                                time={appointment.time} 
-                                type={appointment.type} 
-                            />
-                        </Grid>
-                    ))}
-                </Grid>
+      const appointmentsList = appointmentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const connectionsList = connectionsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-            <Footer />
-        </>
-    );
+      setAppointments(appointmentsList);
+      setConnections(connectionsList);
+    } catch (error) {
+      console.error('Error fetching appointments and connections:', error);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+  };
+
+  const convertToDateObject = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return new Date(year, month - 1, day);
+  };
+
+  const findConnectionId = (appointmentId) => {
+    const connection = connections.find(conn => conn.appointmentId === appointmentId);
+    return connection ? connection.id : null;
+  };
+
+  const sortedAppointments = [...appointments].sort((a, b) => {
+    const dateA = convertToDateObject(a.date);
+    const dateB = convertToDateObject(b.date);
+
+    if (dateA.getTime() === dateB.getTime()) {
+      return a.time.localeCompare(b.time);
+    }
+    return dateA - dateB;
+  });
+
+  return (
+    <>
+      <Breadcrumbs page1={"ΡΑΝΤΕΒΟΥ"} />
+
+      {sortedAppointments.length === 0 ? (
+        <div className="no-appointments">
+          <Typography variant="h6" gutterBottom mb={2}>
+            Δεν υπάρχουν προγραμματισμένα Ραντεβού
+          </Typography>
+          <Button
+            variant="contained"
+            onClick={() => navigate('/FindProfessional_unconnected')}
+            sx={{
+                backgroundColor: '#013372',
+                color: '#fff',
+                textTransform: 'none', // Ensures the text is not capitalized
+                '&:hover': {
+                backgroundColor: '#00264d', // Slightly darker shade for hover effect
+                },
+            }}
+            >
+            Βρείτε Επαγγελματία
+            </Button>
+
+        </div>
+      ) : (
+        <Grid container spacing={4} justifyContent="center" alignItems="flex-start" className="appointments">
+          {sortedAppointments.map((appointment) => {
+            const connectionId = findConnectionId(appointment.id);
+
+            return (
+              <Grid item xs={12} sm={6} md={4} key={appointment.id}>
+                <AppointmentCardProfessional 
+                  id={appointment.id}
+                  connectionId={connectionId}
+                  picLink={appointment.link || appointment.location} 
+                  professionalName={appointment.ProfessionalName} 
+                  date={formatDate(appointment.date)}  
+                  loc={appointment.link || appointment.location} 
+                  time={appointment.time} 
+                  type={appointment.meetingType} 
+                />
+              </Grid>
+            );
+          })}
+        </Grid>
+      )}
+
+      <Footer />
+    </>
+  );
 }
 
 export default ParentAllAppointments;

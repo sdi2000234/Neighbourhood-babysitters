@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ParentAppointment.css';
 import Footer from '../../components/Footer';
-// import RequiredField from '../../components/RequiredField';  
-// import MyBreadcrumbs from '../../components/MyBreadcrumbs';
 import InfoIcon from '@mui/icons-material/Info';
 import { Tooltip } from '@mui/material';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig'; // Adjust path to your Firebase config
 import { getAuth } from 'firebase/auth';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import { useLocation } from 'react-router-dom';
 
-function ParentAppointment({ babysitterName }) {
+function ParentAppointment() {
+
+  const location = useLocation();
+  const { babysitterName, ProfadId } = location.state || {};
+
   const navigate = useNavigate();
   const auth = getAuth();
   const userId = auth.currentUser?.uid;
@@ -28,7 +31,6 @@ function ParentAppointment({ babysitterName }) {
     date: '',
     time: '',
     location: '',
-    link: '',
     message: '',
   });
 
@@ -57,33 +59,63 @@ function ParentAppointment({ babysitterName }) {
     fetchParentData();
   }, [userId]);
 
-    const handleMeetingTypeChange = (event) => {
-        setMeetingType(event.target.value); // Ενημέρωση τύπου συνάντησης για radiobuttons 
+  const handleMeetingTypeChange = (event) => {
+    setMeetingType(event.target.value);
+  };
+
+  const handleCancel = (event) => {
+    event.preventDefault();
+    navigate('/ParentHireProfessional'); 
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!meetingType) {
+      alert("Παρακαλώ επιλέξτε τύπο συνάντησης.");
+      return;
+    }
+
+    const appointmentData = {
+      ...appointmentDetails,
+      meetingType: meetingType,
+      ProfessionalName: babysitterName,
+      userId: userId,
+      createdAt: new Date(),
     };
 
-    const handleCancel = (event) => { // Για button Ακύρωσης 
-        event.preventDefault();  // Αποτρέπει την υποβολή της φόρμας
-        navigate('/ParentHireProfessional'); 
+    const connectionData = {
+      parentId: userId,
+      professionalId: ProfadId,
+      status: 'pending',
+      createdAt: new Date(),
+      type: 'appointment',
     };
 
-    const handleSubmit = (event) => { // Για button Αποστολή
-        event.preventDefault(); // Αποτρέπει την προεπιλεγμένη υποβολή
-        if (!meetingType) {
-            alert("Παρακαλώ επιλέξτε τύπο συνάντησης.");
-            return;
-        }
-        navigate('/ParentAppointmentEnd'); 
-    };
+    try {
+      await setDoc(doc(db, 'appointments', `${userId}_${Date.now()}`), appointmentData);
+      await setDoc(doc(db, 'connections', `${userId}_${Date.now()}`), connectionData);
+      navigate('/ParentAppointmentEnd');
+    } catch (error) {
+      console.error("Error saving appointment:", error);
+      alert("Παρουσιάστηκε σφάλμα κατά την αποθήκευση του ραντεβού. Δοκιμάστε ξανά.");
+    }
+  };
 
-    const handleInputChange = () => {};
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setAppointmentDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  };
 
   return (
     <>
-      <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../ParentHireProfessional"} page2={"ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ"}/>
+      <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../ParentHireProfessional"} page2={"ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ"} />
 
       <div className='ApPersonInfo'>
         <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ:</h1>
-        <h1> {babysitterName}</h1>
+        <h1>{babysitterName}</h1>
 
         <form onSubmit={handleSubmit}>
           <p className="infoType">Όνομα:</p>
@@ -144,7 +176,7 @@ function ParentAppointment({ babysitterName }) {
             <div>
               <br />
               <br />
-              <label>Τύπος Συνάντησης:</label>
+              <label htmlFor="date" className="infoType">Τύπος Συνάντησης:</label>
             </div>
 
             <div className="meeting">
@@ -152,7 +184,7 @@ function ParentAppointment({ babysitterName }) {
                 <label id="radiobutton">
                   <input
                     type="radio"
-                    value="FaceToFace"
+                    value="facetoface"
                     name="meeting"
                     onChange={handleMeetingTypeChange}
                     required
@@ -164,7 +196,7 @@ function ParentAppointment({ babysitterName }) {
                 <label id="radiobutton">
                   <input
                     type="radio"
-                    value="Online"
+                    value="online"
                     name="meeting"
                     onChange={handleMeetingTypeChange}
                     required
@@ -176,7 +208,33 @@ function ParentAppointment({ babysitterName }) {
             <br />
             <br />
 
-            {meetingType === 'FaceToFace' && (
+            {meetingType === 'online' && (
+              <div>
+                <label htmlFor="location" className="infoType">
+                  Link online συνάντησης:
+                </label>
+                <Tooltip
+                  title="Δημιουργήστε ένα online meeting σε κάποια πλατφόρμα όπως webex, zoom...και συμπληρώστε εδώ τον σύνδεσμο"
+                  arrow
+                >
+                  <InfoIcon sx={{ marginLeft: '5px', cursor: 'pointer' }} />
+                </Tooltip>
+                <input
+                  type="url"
+                  id="location"
+                  name="location"
+                  className="infoBox"
+                  placeholder="Link online συνάντησης"
+                  value={appointmentDetails.location}
+                  onChange={handleInputChange}
+                  pattern="https?://.*"
+                  title="Συμπληρώστε έναν έγκυρο σύνδεσμο URL (π.χ., https://example.com)"
+                  required
+                />
+              </div>
+            )}
+
+            {meetingType === 'facetoface' && (
               <div>
                 <label htmlFor="location" className="infoType">
                   Διεύθυνση Ραντεβού:
@@ -186,37 +244,9 @@ function ParentAppointment({ babysitterName }) {
                   id="location"
                   name="location"
                   className="infoBox"
-                  placeholder="Οδός Αριθμός, Περιοχή , Τ.Κ."
+                  placeholder="Οδός Αριθμός, Περιοχή, Τ.Κ."
                   value={appointmentDetails.location}
                   onChange={handleInputChange}
-                  pattern="^[^,]+?\s*,\s*[^,]+?\s*,\s*[0-9]{5}$"
-                  title="Η διεύθυνση πρέπει να έχει τη μορφή 'Οδός Αριθμός, Περιοχή, Τ.Κ.' π.χ. 'Ερμού 15, Αθήνα, 10563'"
-                  required
-                />
-              </div>
-            )}
-
-            {meetingType === 'Online' && (
-              <div>
-                <label htmlFor="link" className="infoType">
-                  Link online συνάντησης:
-                </label>
-                <Tooltip
-                  title="Δημιουργήστε ένα online meeting σε κάποια πλατφόρμα όπως webex,zoom...και συμπληρώστε εδώ τον σύνδεσμο"
-                  arrow
-                >
-                  <InfoIcon sx={{ marginLeft: '5px', cursor: 'pointer' }} />
-                </Tooltip>
-                <input
-                  type="url"
-                  id="link"
-                  name="link"
-                  className="infoBox"
-                  placeholder="Link online συνάντησης"
-                  value={appointmentDetails.link}
-                  onChange={handleInputChange}
-                  pattern="https?://.*"
-                  title="Συμπληρώστε έναν έγκυρο σύνδεσμο URL (π.χ., https://example.com)"
                   required
                 />
               </div>

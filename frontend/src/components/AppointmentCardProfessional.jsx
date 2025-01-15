@@ -6,11 +6,12 @@ import dateIcon from '../assets/dateIcon.png';
 import timeIcon from '../assets/timeIcon.png';
 import linkIcon from '../assets/linkIcon.png';
 import { Avatar } from "@mui/material";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from '../firebaseConfig'; // Adjust the path to your Firebase config
 
-function AppointmentCardProfessional({ type, picLink, professionalName, date, loc, time }) {
-    
-    const [status, setStatus] = useState("none"); // Κατάσταση ραντεβού (none, canceled)
-    const [showModal, setShowModal] = useState(false); // Εμφάνιση modal
+function AppointmentCardProfessional({ id, connectionId, type, picLink, professionalName, date, loc, time }) {
+    const [status, setStatus] = useState("none");
+    const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
 
     const handleMoreButton = () => {
@@ -26,20 +27,37 @@ function AppointmentCardProfessional({ type, picLink, professionalName, date, lo
     };
 
     const handleCancelButton = () => {
-        setShowModal(true); // Εμφάνιση modal για επιβεβαίωση ακύρωσης
+        setShowModal(true);
     };
 
-    const confirmCancel = () => {
-        setStatus("canceled"); // Ορισμός κατάστασης σε "canceled"
-        setShowModal(false); // Κλείσιμο modal
+    const confirmCancel = async () => {
+        try {
+            console.log("Attempting to delete appointment with ID:", id);
+            console.log("Attempting to delete connection with ID:", connectionId);
+
+            // Delete from 'appointments' collection
+            await deleteDoc(doc(db, 'appointments', id));
+
+            // Delete from 'connections' collection
+            alert(id);
+            alert(connectionId);
+            // await deleteDoc(doc(db, 'connections', connectionId));
+
+            setStatus("canceled");
+            setShowModal(false);
+            alert("Το ραντεβού ακυρώθηκε επιτυχώς.");
+        } catch (error) {
+            console.error("Error deleting appointment or connection:", error);
+            alert("Παρουσιάστηκε σφάλμα κατά την ακύρωση του ραντεβού. Δοκιμάστε ξανά.");
+        }
     };
 
     const cancelCancel = () => {
-        setShowModal(false); // Ακύρωση διαδικασίας ακύρωσης
+        setShowModal(false);
     };
 
     if (status === "canceled") {
-        return null; // Εξαφανίζεται η κάρτα αν το ραντεβού ακυρωθεί
+        return null;
     }
 
     return (
@@ -80,7 +98,6 @@ function AppointmentCardProfessional({ type, picLink, professionalName, date, lo
                 </div>
             </div>
 
-            {/* Modal για επιβεβαίωση ακύρωσης */}
             {showModal && (
                 <div className="modalOverlay">
                     <div className="modalContent">

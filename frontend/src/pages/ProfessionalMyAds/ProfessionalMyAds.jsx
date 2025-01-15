@@ -27,11 +27,7 @@ function ProfessionalMyAds() {
       }
 
       try {
-        const q = query(
-          collection(db, "ads"),
-          where("userId", "==", userId),
-          where("status", "==", "submitted") // Fetch only submitted ads
-        );
+        const q = query(collection(db, "ads"), where("userId", "==", userId));
         const querySnapshot = await getDocs(q);
 
         const fetchedAds = querySnapshot.docs.map((doc) => ({
@@ -93,13 +89,17 @@ function ProfessionalMyAds() {
         </div>
 
         {ads.map((ad) => (
-          <AdEditOrPreview
+          <div
             key={ad.id}
-            id={ad.id}
-            canEdit={true} // Assuming all ads are editable; adjust if necessary
-            onRemove={showModal}
-            data={ad} // Pass ad data for rendering
-          />
+            className={`adBox ${ad.status === "submitted" ? "blueBox" : "greyBox"}`}
+          >
+            <AdEditOrPreview
+              id={ad.id}
+              canEdit={ad.status !== "submitted"} // Only allow editing if not submitted
+              onRemove={showModal}
+              data={ad} // Pass ad data for rendering
+            />
+          </div>
         ))}
       </div>
 

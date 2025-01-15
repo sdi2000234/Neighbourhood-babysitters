@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   TextField,
@@ -13,6 +13,8 @@ import {
 import ProgressTracker from '../components/ProgressTrackerCreateProfile';
 import Footer from '../components/Footer';
 
+import { getAuth } from 'firebase/auth';
+
 export default function DimiourgiaProfileProfessional1() {
   const navigate = useNavigate();
 
@@ -22,6 +24,39 @@ export default function DimiourgiaProfileProfessional1() {
     // Navigate to the next step if all required fields are valid
     navigate('/profesionaleditstep2'); // Replace with your actual route
   };
+
+  const auth = getAuth(); // Initialize Firebase Auth
+  const user = auth.currentUser; // Get the current user
+
+  // State for form data
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    fatherName: '',
+    motherName: '',
+    yearOfBirth: '',
+    gender: '',
+    idNumber: '',
+    afm: '',
+    amka: '',
+    doy: '',
+    phone: '',
+    email: '', // This will be auto-filled from Firebase
+    region: '',
+    area: '',
+    street: '',
+    streetNumber: '',
+    zipCode: '',
+    adults: '',
+    minors: '',
+  });
+
+  useEffect(() => {
+    // Populate email field if user is logged in
+    if (user) {
+      setFormData((prev) => ({ ...prev, email: user.email }));
+    }
+  }, [user]);
 
   // State to track checkbox status
   const [isChecked, setIsChecked] = useState(false);
@@ -150,8 +185,9 @@ export default function DimiourgiaProfileProfessional1() {
               size="small"
               fullWidth
               required
+              type='number'
             />
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="AMKA" size="small" fullWidth required />
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="AMKA" size="small" fullWidth required type='number'/>
             <TextField
               style={{ backgroundColor: '#fff', borderRadius: '5px' }}
               label="Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)"
@@ -159,21 +195,18 @@ export default function DimiourgiaProfileProfessional1() {
               fullWidth
               required
             />
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Τηλέφωνο" size="small" fullWidth required />
-            <TextField
-              style={{ backgroundColor: '#fff', borderRadius: '5px' }}
-              label="Ηλεκτρονικό Ταχυδρομείο"
-              size="small"
-              fullWidth
-              required
-              type="email"
-            />
-
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Τηλέφωνο" size="small" fullWidth required type='number'/>
+            <TextField required label="Ηλεκτρονικό Ταχυδρομείο" value={formData.email} size="small" type='email'   style={{ backgroundColor: '#fff', borderRadius: '5px' }}/>
             <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Νομός" size="small" fullWidth required />
             <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Περιοχή" size="small" fullWidth required />
             <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Οδός" size="small" fullWidth required />
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Αριθμός" size="small" fullWidth required />
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Τ.Κ." size="small" fullWidth required />
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Αριθμός" size="small" fullWidth required type='number'/>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Τ.Κ." size="small" fullWidth required 
+            inputProps={{
+              pattern: '[0-9]{5}',  
+              title: 'Ο ταχυδρομικός κωδικός πρέπει να έχει 5 αριθμούς'
+            }}
+            />
 
             <div>
               <div style={{ display: 'flex' }}>
@@ -226,6 +259,7 @@ export default function DimiourgiaProfileProfessional1() {
                 backgroundColor: '#013372',
                 fontWeight: 'bold',
                 color: 'white',
+                textTransform: 'none',
               }}
             >
               Επόμενο Βήμα

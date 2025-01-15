@@ -79,7 +79,7 @@ export default function DimiourgiaProfileProfessional2() {
         <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>ΠΙΣΤΟΠΟΙΗΤΙΚΑ</h2>
 
         <Typography style={{ fontWeight: 'bold', marginBottom: '20px' }}>
-          Επίπεδο Εκπαίδευσης:
+          Επίπεδο Εκπαίδευσης: *
         </Typography>
         <TextField
           style={{ backgroundColor: '#fff', borderRadius: '5px' }}
@@ -90,7 +90,7 @@ export default function DimiourgiaProfileProfessional2() {
         />
 
         <Typography style={{ fontWeight: 'bold', marginTop: '30px' }}>
-          Πιστοποίηση Εκπαίδευσης (.pdf):
+          Πιστοποίηση Εκπαίδευσης (.pdf): *
         </Typography>
         <Button
           variant="outlined"
@@ -99,6 +99,7 @@ export default function DimiourgiaProfileProfessional2() {
           sx={{
             backgroundColor: '#013372',
             color: 'white',
+            textTransform: 'none',
             '&:hover': {
               backgroundColor: '#013372',
             },
@@ -119,7 +120,7 @@ export default function DimiourgiaProfileProfessional2() {
         )}
 
         <Typography style={{ fontWeight: 'bold', marginTop: '30px' }}>
-          Πιστοποίηση Πρώτων Βοηθειών (.pdf):
+          Πιστοποίηση Πρώτων Βοηθειών (.pdf): *
         </Typography>
         <Button
           variant="outlined"
@@ -128,6 +129,7 @@ export default function DimiourgiaProfileProfessional2() {
           sx={{
             backgroundColor: '#013372',
             color: 'white',
+            textTransform: 'none',
             '&:hover': {
               backgroundColor: '#013372',
             },

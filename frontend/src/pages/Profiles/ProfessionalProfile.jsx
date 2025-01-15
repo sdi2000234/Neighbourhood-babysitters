@@ -1,63 +1,102 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ProfessionalProfile.css'
+import './ProfessionalProfile.css';
 import Footer from '../../components/Footer';
-import { signOut } from 'firebase/auth'; // Import της signOut
-import { auth } from '../../firebaseConfig'; // Το αρχείο διαμόρφωσης Firebase
-import { Avatar} from "@mui/material";
+import { signOut } from 'firebase/auth';
+import { auth, db } from '../../firebaseConfig'; // Firebase configuration
+import { Avatar } from '@mui/material';
 import Breadcrumbs from '../../components/Breadcrumbs';
-
+import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
 import { Card, CardContent, Typography } from '@mui/material';
 
-function ProfessionalProfile({userName , userLastName, userEmail , userPhone , picLink , desc}) {
+function ProfessionalProfile() {
+  const [userData, setUserData] = useState({
+    userName: '',
+    userLastName: '',
+    userEmail: '',
+    userPhone: '',
+    picLink: '',
+    desc: '',
+  });
 
-  // Συνάρτηση για την αποσύνδεση του χρήστη
+  const navigate = useNavigate();
+
+  // Fetch user data from Firestore
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userId = auth.currentUser?.uid; // Get current user's ID
+        if (!userId) return;
+
+        const userDoc = doc(db, 'users', userId);
+        const userSnapshot = await getDoc(userDoc);
+
+        if (userSnapshot.exists()) {
+          setUserData(userSnapshot.data());
+        } else {
+          console.log('No such user data found!');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  // Sign out the user
   const handleLogout = async () => {
-    try
-    {
-      await signOut(auth); // Αποσύνδεση από το Firebase
-      console.log("Ο χρήστης αποσυνδέθηκε επιτυχώς.");
-      window.location.href = './'; // Ανακατεύθυνση στην αρχική σελίδα
-    }
-    catch (error)
-    {
-      console.error("Σφάλμα κατά την αποσύνδεση:", error);
+    try {
+      await signOut(auth);
+      console.log('User successfully signed out.');
+      window.location.href = './'; // Redirect to the home page
+    } catch (error) {
+      console.error('Error signing out:', error);
     }
   };
 
-  const navigate = useNavigate();
-  const handleMore = () => { navigate('/new-page'); };
-  const handleChange = () => { navigate('/profesionaleditstep1'); };
-  const handleMyAds = () => { navigate('/ProfessionalMyAds'); };
+  const handleMore = () => {
+    navigate('/new-page');
+  };
+
+  const handleChange = () => {
+    navigate('/profesionaleditstep1');
+  };
+
+  const handleMyAds = () => {
+    navigate('/ProfessionalMyAds');
+  };
 
   return (
     <>
-    {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
-    <Breadcrumbs page1={"ΠΡΟΦΙΛ"}/>
+      <Breadcrumbs page1="ΠΡΟΦΙΛ" />
 
-    <div className='PersonInfoProfessionalProfile'>
-      
-      <h1>ΤΟ ΠΡΟΦΙΛ ΜΟΥ</h1>
-      
-      <Avatar alt="Profile" src={picLink} sx={{ width: 56, height: 56 }}  className="PfpProfessionalProfile"/>
+      <div className="PersonInfoProfessionalProfile">
+        <h1>ΤΟ ΠΡΟΦΙΛ ΜΟΥ</h1>
 
-      <div>
+        <Avatar
+          alt="Profile"
+          src={userData.picLink || ''}
+          sx={{ width: 56, height: 56 }}
+          className="PfpProfessionalProfile"
+        />
 
+        <div>
           <p className="infoType">Όνομα:</p>
-          <p className="infoBox">{userName==="" ? "Όνομα" : userName}</p>
-          <br/>
+          <p className="infoBox">{userData.userName || 'Όνομα'}</p>
+          <br />
           <p className="infoType">Επώνυμο:</p>
-          <p className="infoBox">{userLastName==="" ? "Επώνυμο" : userLastName}</p>
+          <p className="infoBox">{userData.userLastName || 'Επώνυμο'}</p>
 
           <div className="phoneAndEmailProfessionalProfile">
-              <div style={{ flexGrow: 1 }}>
-                  <p className="infoType">Τηλέφωνο:</p>
-                  <p className="infoBox">{userPhone==="" ? "Τηλέφωνο" : userPhone}</p>
-              </div>
-              <div style={{ flexGrow: 1 }}>
-                  <p className="infoType">Ηλεκτρονικό Ταχυδρομίο:</p>
-                  <p className="infoBox">{userEmail==="" ? "Ηλεκτρονικό Ταχυδρομίο" : userEmail}</p>
-              </div>
+            <div style={{ flexGrow: 1 }}>
+              <p className="infoType">Τηλέφωνο:</p>
+              <p className="infoBox">{userData.userPhone || 'Τηλέφωνο'}</p>
+            </div>
+            <div style={{ flexGrow: 1 }}>
+              <p className="infoType">Ηλεκτρονικό Ταχυδρομίο:</p>
+              <p className="infoBox">{userData.email || 'Ηλεκτρονικό Ταχυδρομίο'}</p>
+            </div>
           </div>
 
           <div>
@@ -65,32 +104,31 @@ function ProfessionalProfile({userName , userLastName, userEmail , userPhone , p
 
             <Card sx={{ maxWidth: 400, margin: '20px auto', padding: '10px', marginBottom: '40px' }}>
               <CardContent sx={{ maxHeight: 150, overflow: 'auto' }}>
-                  <Typography variant="body2" color="text.primary">
-                      {desc}
-                  </Typography>
+                <Typography variant="body2" color="text.primary">
+                  {userData.desc || 'Σύντομη Αυτοπαρουσίαση'}
+                </Typography>
               </CardContent>
-          </Card>
-
+            </Card>
           </div>
 
           <div className="buttonsProfessionalProfile">
-              <div style={{ flexGrow: 1 }}>
-                  <button onClick={handleMore}>Περισσότερα</button>
-                  <button onClick={handleChange}>Επεξεργασία</button>
-                  
-              </div>
-              <div style={{ flexGrow: 1 }}>
-                <button onClick={handleMyAds}>Οι Αγγελίες μου</button>
-                <button className='logoutProfessionalProfile' onClick={handleLogout}>Αποσύνδεση</button>
-              </div>
+            <div style={{ flexGrow: 1 }}>
+              <button onClick={handleMore}>Περισσότερα</button>
+              <button onClick={handleChange}>Επεξεργασία</button>
+            </div>
+            <div style={{ flexGrow: 1 }}>
+              <button onClick={handleMyAds}>Οι Αγγελίες μου</button>
+              <button className="logoutProfessionalProfile" onClick={handleLogout}>
+                Αποσύνδεση
+              </button>
+            </div>
           </div>
-
+        </div>
       </div>
-  </div>
 
-    <Footer/>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default ProfessionalProfile
+export default ProfessionalProfile;

@@ -1,60 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   TextField,
   Button,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
   Typography,
 } from '@mui/material';
-import './HealthVerifications.css';
 import ProgressTracker from '../components/ProgressTrackerCreateProfile';
 import Footer from '../components/Footer';
+import { db } from '../firebaseConfig'; // Adjust based on your Firebase configuration
+import { doc, setDoc } from 'firebase/firestore';
 
 export default function DimiourgiaProfileProfessional2() {
   const navigate = useNavigate();
+
+  const [educationPdf, setEducationPdf] = useState(null);
+  const [firstAidPdf, setFirstAidPdf] = useState(null);
+  const [educationMsg, setEducationMsg] = useState('');
+  const [firstAidMsg, setFirstAidMsg] = useState('');
 
   const handlePrev = () => {
     navigate('/profesionaleditstep1'); // Adjust route accordingly
   };
 
-  const handleNext = () => {
-    navigate('/profesionaleditstep3'); // Adjust route accordingly
+  const handleNext = async () => {
+    if (!educationPdf || !firstAidPdf) {
+      alert('Παρακαλώ επισυνάψτε όλα τα απαραίτητα αρχεία πριν συνεχίσετε.');
+      return;
+    }
+
+    try {
+      const userId = "user-id-placeholder"; // Replace with actual user ID logic
+      const docRef = doc(db, 'users', userId);
+      await setDoc(
+        docRef,
+        {
+          educationPdf,
+          firstAidPdf,
+        },
+        { merge: true }
+      );
+      alert('Τα αρχεία αποθηκεύτηκαν με επιτυχία!');
+      navigate('/profesionaleditstep3'); // Adjust route accordingly
+    } catch (error) {
+      console.error('Error saving files:', error);
+      alert('Υπήρξε σφάλμα κατά την αποθήκευση των αρχείων.');
+    }
   };
 
-  // Define a common style for labels (for file upload and certificate texts)
-  const labelStyle = { fontSize: '1.1rem' };
+  const handleFileUpload = (event, setFile, setMessage) => {
+    const file = event.target.files[0];
 
-  // For the Browse buttons, use MUI styling via the sx prop
-  const browseButtonStyle = {
-    minWidth: '120px',
-    alignSelf: 'flex-start',
-    backgroundColor: '#013372',
-    color: 'white',
-    borderColor: '#013372',
-    '&:hover': {
-      backgroundColor: '#013372',
-      color: 'white',
-    },
+    if (file) {
+      if (file.type !== 'application/pdf') {
+        setMessage('Παρακαλώ επιλέξτε ένα αρχείο τύπου PDF.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64Pdf = reader.result;
+        setFile(base64Pdf);
+        setMessage('Το αρχείο επισυνάφθηκε επιτυχώς!');
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setFile(null);
+      setMessage('Αποτυχία επισύναψης αρχείου.');
+    }
   };
-
-  // Style for the navigation buttons (plain HTML buttons)
-  const navButtonStyle = {
-    backgroundColor: '#013372',
-    color: 'white',
-    border: 'none',
-    padding: '8px 13px',
-    borderRadius: '5px',
-    fontSize: '20px',
-    cursor: 'pointer',
-  };
-
-  //Μεταβλητές για αν υπάρχουν ή όχι τα πιστοποιητικά υγείας
-  const userGenHealthVerification = false;
-  const userDermatologyVerification = false;
-  const userMentalHealthVerification = false;
 
   return (
     <div>
@@ -65,71 +78,75 @@ export default function DimiourgiaProfileProfessional2() {
         <h1>ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ</h1>
         <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>ΠΙΣΤΟΠΟΙΗΤΙΚΑ</h2>
 
-        <Typography style={{fontWeight: 'bold', marginBottom: '20px'}} variant="body2" sx={labelStyle}>
+        <Typography style={{ fontWeight: 'bold', marginBottom: '20px' }}>
           Επίπεδο Εκπαίδευσης:
         </Typography>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {/* Education Level Field */}
-          <TextField style={{backgroundColor: '#fff', borderRadius: '5px'}}
-            label="Επίπεδο Εκπαίδευσης"
-            placeholder="π.χ. Πτυχίο ΕΠΑΛ πώς: 'Βοηθός Βρεφοκομικών'"
-            size="small"
-            fullWidth
+        <TextField
+          style={{ backgroundColor: '#fff', borderRadius: '5px' }}
+          label="Επίπεδο Εκπαίδευσης"
+          placeholder="π.χ. Πτυχίο ΕΠΑΛ πώς: 'Βοηθός Βρεφοκομικών'"
+          size="small"
+          fullWidth
+        />
+
+        <Typography style={{ fontWeight: 'bold', marginTop: '30px' }}>
+          Πιστοποίηση Εκπαίδευσης (.pdf):
+        </Typography>
+        <Button
+          variant="outlined"
+          component="label"
+          size="small"
+          sx={{
+            backgroundColor: '#013372',
+            color: 'white',
+            '&:hover': {
+              backgroundColor: '#013372',
+            },
+          }}
+        >
+          Επιλογή Αρχείου
+          <input
+            hidden
+            type="file"
+            accept=".pdf"
+            onChange={(e) => handleFileUpload(e, setEducationPdf, setEducationMsg)}
           />
-
-          {/* PDF Upload fields for Education */}
-          <Typography style={{fontWeight: 'bold', marginTop: '30px'}} variant="body2" sx={labelStyle}>
-            Πιστοποίηση Εκπαίδευσης (.pdf):
+        </Button>
+        {educationMsg && (
+          <Typography style={{ marginTop: '10px', color: educationMsg.includes('επιτυχώς') ? 'green' : 'red' }}>
+            {educationMsg}
           </Typography>
-          <Button variant="outlined" component="label" size="small" sx={browseButtonStyle}>
-            Browse
-            <input hidden type="file" accept=".pdf" />
-          </Button>
+        )}
 
-          <Typography style={{fontWeight: 'bold', marginTop: '30px'}} variant="body2" sx={labelStyle}>
-            Πιστοποίηση Πρώτων Βοηθειών (.pdf):
+        <Typography style={{ fontWeight: 'bold', marginTop: '30px' }}>
+          Πιστοποίηση Πρώτων Βοηθειών (.pdf):
+        </Typography>
+        <Button
+          variant="outlined"
+          component="label"
+          size="small"
+          sx={{
+            backgroundColor: '#013372',
+            color: 'white',
+            '&:hover': {
+              backgroundColor: '#013372',
+            },
+          }}
+        >
+          Επιλογή Αρχείου
+          <input
+            hidden
+            type="file"
+            accept=".pdf"
+            onChange={(e) => handleFileUpload(e, setFirstAidPdf, setFirstAidMsg)}
+          />
+        </Button>
+        {firstAidMsg && (
+          <Typography style={{ marginTop: '10px', color: firstAidMsg.includes('επιτυχώς') ? 'green' : 'red' }}>
+            {firstAidMsg}
           </Typography>
-          <Button variant="outlined" component="label" size="small" sx={browseButtonStyle}>
-            Browse
-            <input hidden type="file" accept=".pdf" />
-          </Button>
+        )}
 
-          {/* Health Certificates Information */}
-          <Typography style={{fontWeight: 'bold'}} variant="body1" sx={{ ...labelStyle, mt: 2 }}>
-            Πιστοποιητικά Υγείας:
-          </Typography>
-          <Typography variant="body2" sx={labelStyle}>
-            (Ενημερώνονται αυτόματα από το σύστημα της ΗΔΙΚΑ. Εάν κάποιο πιστοποιητικό εμφανίζεται
-            σε κόκκινο χρώμα, παρακαλούμε επικοινωνήστε με τον γιατρό σας.)
-          </Typography>
-
-
-          <div className="healthVerificationsProfessionalCreateProfile">
-            <p className={userGenHealthVerification ? "valid" : "invalid"}>Πιστοποιητικό Παθολόγου / Γενικού Γιατρού</p>
-            <p className={userDermatologyVerification ? "valid" : "invalid"}>Πιστοποιητικό Δερματολόγου</p>
-            <p className={userMentalHealthVerification ? "valid" : "invalid"}>Πιστοποιητικό Ψυχικής Υγείας</p>
-          </div>
-          {/* <div
-            style={{
-              display: 'flex',
-              gap: '20px',
-              flexWrap: 'wrap',
-              marginTop: '10px',
-            }}
-          >
-            <Button variant="outlined" size="small" sx={browseButtonStyle}>
-              Πιστοποιητικό Παθολόγου / Γενικού Γιατρού
-            </Button>
-            <Button variant="contained" size="small" sx={browseButtonStyle}>
-              Πιστοποιητικό Δερματολόγου
-            </Button>
-            <Button variant="outlined" size="small" sx={browseButtonStyle}>
-              Πιστοποιητικό Ψυχικής Υγείας
-            </Button>
-          </div> */}
-        </div>
-
-        {/* Navigation Buttons using plain HTML buttons with inline styling */}
         <div
           className="options1"
           style={{
@@ -138,10 +155,32 @@ export default function DimiourgiaProfileProfessional2() {
             marginTop: '30px',
           }}
         >
-          <button style={navButtonStyle} onClick={handlePrev}>
+          <button
+            style={{
+              backgroundColor: '#013372',
+              color: 'white',
+              border: 'none',
+              padding: '8px 13px',
+              borderRadius: '5px',
+              fontSize: '20px',
+              cursor: 'pointer',
+            }}
+            onClick={handlePrev}
+          >
             <b>Προηγούμενο Βήμα</b>
           </button>
-          <button style={navButtonStyle} onClick={handleNext}>
+          <button
+            style={{
+              backgroundColor: '#013372',
+              color: 'white',
+              border: 'none',
+              padding: '8px 13px',
+              borderRadius: '5px',
+              fontSize: '20px',
+              cursor: 'pointer',
+            }}
+            onClick={handleNext}
+          >
             <b>Επόμενο Βήμα</b>
           </button>
         </div>

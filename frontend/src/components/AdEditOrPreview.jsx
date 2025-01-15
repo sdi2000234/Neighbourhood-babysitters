@@ -13,8 +13,8 @@ function AdPreview({ id, canEdit, onRemove }) {
   const creationDate = null // Date of creation for this Ad
 
   const navigate = useNavigate();
-  const handlePreview = () => {navigate('../ProfessionalCreateAd1', { state: { canEdit } });};
-  const handleEdit = () => {navigate('../ProfessionalCreateAd1', { state: { canEdit } });};
+  const handlePreview = () => {navigate('../ProfessionalCreateAd1', { state: false });};
+  const handleEdit = () => {navigate('../ProfessionalCreateAd1', { state: true });};
 
   if (canEdit === false) {
     return (

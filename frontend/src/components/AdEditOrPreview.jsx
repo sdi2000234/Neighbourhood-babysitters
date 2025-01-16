@@ -21,14 +21,7 @@ function AdPreview({ id, canEdit, onRemove, data }) {
 
   return (
     <div className={canEdit ? "adEditPannel" : "adPreviewPannel"}>
-      {/* Likes Section */}
-      {!canEdit && (
-        <div className="likes">
-          <img alt="heart" src={whiteHeart} />
-          <p>{likeCount}</p>
-        </div>
-      )}
-
+      
       {/* Ad Details */}
       <p>
         <b>Η αγγελία μου: #{data.number}</b>

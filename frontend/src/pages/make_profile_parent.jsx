@@ -181,11 +181,17 @@ export default function ProfilePersonal() {
 
         <form onSubmit={handleSave}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <TextField className='makeproftext' required label="Όνομα" name="firstName" value={formData.firstName} onChange={handleChange} size="small" />
-            <TextField className='makeproftext' required label="Επώνυμο" name="lastName" value={formData.lastName} onChange={handleChange} size="small" />
-            <TextField className='makeproftext' required label="Πατρώνυμο" name="fatherName" value={formData.fatherName} onChange={handleChange} size="small" />
-            <TextField className='makeproftext' required label="Μητρώνυμο" name="motherName" value={formData.motherName} onChange={handleChange} size="small" />
-            <TextField className='makeproftext' required label="Έτος Γέννησης" name="yearOfBirth" value={formData.yearOfBirth} onChange={handleChange} size="small" type="number" />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Όνομα*</p>
+            <TextField className='makeproftext' required placeholder="Όνομα" name="firstName" value={formData.firstName} onChange={handleChange} size="small" />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Επώνυμο*</p>
+            <TextField className='makeproftext' required placeholder="Επώνυμο" name="lastName" value={formData.lastName} onChange={handleChange} size="small" />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Πατρώνυμο*</p>
+            <TextField className='makeproftext' required placeholder="Πατρώνυμο" name="fatherName" value={formData.fatherName} onChange={handleChange} size="small" />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Μητρώνυμο*</p>
+            <TextField className='makeproftext' required placeholder="Μητρώνυμο" name="motherName" value={formData.motherName} onChange={handleChange} size="small" />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Έτος Γέννησης*</p>
+            <TextField className='makeproftext' required placeholder="Έτος Γέννησης" name="yearOfBirth" value={formData.yearOfBirth} onChange={handleChange} size="small" type="number" inputProps={{ min: new Date().getFullYear() - 120, max: new Date().getFullYear() - 17 }} />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Επιλέξτε Φύλο*</p>
             <FormControl required size="small">
               <InputLabel>Φύλο</InputLabel>
               <Select className='makeproftext' name="gender" value={formData.gender} onChange={handleChange} label="Φύλο">
@@ -194,17 +200,28 @@ export default function ProfilePersonal() {
                 <MenuItem value="other">Άλλο</MenuItem>
               </Select>
             </FormControl>
-            <TextField className='makeproftext' required label="Αριθμός Ταυτοπ. Εγγράφου" name="idNumber" value={formData.idNumber} onChange={handleChange} size="small" />
-            <TextField className='makeproftext' required label="Αριθμός Φορολογικού Μητρώου (ΑΦΜ)" name="afm" value={formData.afm} onChange={handleChange} size="small" type="number" />
-            <TextField className='makeproftext' required label="AMKA" name="amka" value={formData.amka} onChange={handleChange} size="small" type="number"/>
-            <TextField className='makeproftext' required label="Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)" name="doy" value={formData.doy} onChange={handleChange} size="small" />
-            <TextField className='makeproftext' required label="Τηλέφωνο" name="phone" value={formData.phone} onChange={handleChange} size="small" type="number"/>
-            <TextField className='makeproftext' required label="Ηλεκτρονικό Ταχυδρομείο" name="email" value={formData.email} onChange={handleChange} size="small" type='email' />
-            <TextField className='makeproftext' required label="Νομός" name="region" value={formData.region} onChange={handleChange} size="small" />
-            <TextField className='makeproftext' required label="Περιοχή" name="area" value={formData.area} onChange={handleChange} size="small" />
-            <TextField className='makeproftext' required label="Οδός" name="street" value={formData.street} onChange={handleChange} size="small" />
-            <TextField className='makeproftext' required label="Αριθμός" name="streetNumber" value={formData.streetNumber} onChange={handleChange} size="small" type='number'/>
-            <TextField className='makeproftext' required label="Τ.Κ." name="zipCode" value={formData.zipCode} onChange={handleChange} size="small" inputProps={{
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Αριθμός Ταυτοπ. Εγγράφου*</p>
+            <TextField className='makeproftext' required placeholder="Αριθμός Ταυτοπ. Εγγράφου" name="idNumber" value={formData.idNumber} onChange={handleChange} size="small" />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Αριθμός Φορολογικού Μητρώου (ΑΦΜ)*</p>
+            <TextField className='makeproftext' required placeholder="Αριθμός Φορολογικού Μητρώου (ΑΦΜ)" name="afm" value={formData.afm} onChange={handleChange} size="small" type="number" />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>ΑΜΚΑ*</p>
+            <TextField className='makeproftext' required placeholder="AMKA" name="amka" value={formData.amka} onChange={handleChange} size="small" type="number"/>
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)*</p>
+            <TextField className='makeproftext' required placeholder="Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)" name="doy" value={formData.doy} onChange={handleChange} size="small" />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Τηλέφωνο*</p>
+            <TextField className='makeproftext' required placeholder="Τηλέφωνο" name="phone" value={formData.phone} onChange={handleChange} size="small" type="number"/>
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Ηλεκτρονικό Ταχυδρομείο*</p>
+            <TextField className='makeproftext' required placeholder="Ηλεκτρονικό Ταχυδρομείο" name="email" value={formData.email} onChange={handleChange} size="small" type='email' />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Νομός*</p>
+            <TextField className='makeproftext' required placeholder="Νομός" name="region" value={formData.region} onChange={handleChange} size="small" />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Περιοχή*</p>
+            <TextField className='makeproftext' required placeholder="Περιοχή" name="area" value={formData.area} onChange={handleChange} size="small" />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Οδός*</p>
+            <TextField className='makeproftext' required placeholder="Οδός" name="street" value={formData.street} onChange={handleChange} size="small" />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Αριθμός*</p>
+            <TextField className='makeproftext' required placeholder="Αριθμός" name="streetNumber" value={formData.streetNumber} onChange={handleChange} size="small" type='number'/>
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Ταχυδρομικός Κώδικας*</p>
+            <TextField className='makeproftext' required placeholder="Τ.Κ." name="zipCode" value={formData.zipCode} onChange={handleChange} size="small" inputProps={{
               pattern: '[0-9]{5}',  
               title: 'Ο ταχυδρομικός κωδικός πρέπει να έχει 5 αριθμούς'
             }}/>

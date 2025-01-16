@@ -41,6 +41,7 @@ import FindProfessionalUnconnected from './pages/FindProfessional_unconnected.js
 import ProfessionalDetails from './pages/ProfessionalDetails';
 import WhoWeAre from './pages/WhoWeAre.jsx'; 
 import TermsForVoucher from './pages/TermsForVoucher';
+import FindEmployment from './pages/FindEmployment.jsx'
 
 // == Import Additional Pages ==
 import RatingParents from './pages/RatingPage/RatingParents';
@@ -186,6 +187,7 @@ function Main() {
         <Route path="/professional-details" element={<ProfessionalDetails />} />
         <Route path="/WhoWeAre" element={<WhoWeAre />} />
         <Route path="/TermsForVoucher" element={<TermsForVoucher />} />
+        <Route path="/FindEmployment" element={<FindEmployment />} />
 
         {/* Parent Routes */}
         <Route path='/ParentContractPayment' element={<ParentContractPayment />} />

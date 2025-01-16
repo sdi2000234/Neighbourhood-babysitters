@@ -55,15 +55,21 @@ const Header = () => {
           </button>
           <button
             style={styles.navButton}
+            onClick={() => navigate('/TermsForVoucher')}
+          >
+            Προϋποθέσεις για Voucher
+          </button>
+          <button
+            style={styles.navButton}
             onClick={() => navigate('/FindProfessional_unconnected')}
           >
             Βρείτε Επαγγελματία
           </button>
           <button
             style={styles.navButton}
-            onClick={() => navigate('/TermsForVoucher')}
+            onClick={() => navigate('/FindEmployment')}
           >
-            Προϋποθέσεις για Voucher
+            Βρείτε Εργασία
           </button>
 
           {/* Existing Buttons */}

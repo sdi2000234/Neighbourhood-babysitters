@@ -19,7 +19,7 @@
     width: 120px;
 }
 
-.sorting .dropdown-content button
+.sorting .dropdown-pannel button
 {
     background-color: transparent;
     color: #fff;
@@ -28,11 +28,11 @@
     display: block;
     text-align: left;
     float: none;
-    min-width: 120px;
+    width: 120px;
     cursor: pointer;
 }
 
-.sorting .dropdown-content
+.sorting .dropdown-pannel
 {
     position: absolute;
     display: none;
@@ -43,16 +43,17 @@
     border-bottom-left-radius: 5px;
 }
 
-.sorting:hover .dropdown-content
+.sorting:hover .dropdown-pannel
 {
     display: block;
 }
 
-.sorting .dropdown-content button:hover
+.sorting .dropdown-pannel button:hover
 {
     background-color: #00aeef;
     color: #000;
     border-radius: 5px;
+    
 }
 
 .sorting .arrow

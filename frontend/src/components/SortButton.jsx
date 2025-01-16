@@ -10,7 +10,7 @@ function SortButton({sortName, sortDate})
             <div className="sort">
             <button>Ταξινόμηση <img className="arrow" alt="arrow" src={arrow}/></button>
             </div>
-            <div class="dropdown-content">
+            <div class="dropdown-pannel">
                 <button onClick={() => sortName('asc')}>A → Z</button>
                 <button onClick={() => sortName('desc')}>Z → A</button>
                 <button onClick={() => sortDate('asc', 'startDate')}>Έναρξη ↑</button>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import './AppointmentCardParent.css';
 import location from '../assets/location_black.png';
@@ -7,40 +7,62 @@ import timeIcon from '../assets/timeIcon.png';
 import linkIcon from '../assets/linkIcon.png';
 import cake from '../assets/cake_black.png';
 import { Avatar } from "@mui/material";
-import AppointmentDetailsModal from './AppointmentDetailsModalForProfessionalPage'; // component για περισσότερες λεπτομέρειες
+import AppointmentDetailsModal from './AppointmentDetailsModalForProfessionalPage';
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
 
-function AppointmentCardParent({ type, picLink, parentName, date, loc, time, childAge, loc2, state, comments, email, phone }) {
-  const [status, setStatus] = useState(state || "none"); // none, accepted, rejected
-  const [showModal, setShowModal] = useState(false); // Ελέγχει αν εμφανίζεται το modal
-  const [showDetails, setShowDetails] = useState(false); // Ελέγχει αν θα εμφανίζεται το modal λεπτομερειών
-
-  const handleAccept = () => setStatus("accepted");
-
-  const handleReject = () => setShowModal(true); // Εμφάνιση modal
-
-  const confirmReject = () => {
-    setStatus("rejected"); // Απόρριψη ραντεβού
-    setShowModal(false); // Κλείσιμο modal
-  };
-
-  const cancelReject = () => setShowModal(false); // Ακύρωση απόρριψης
-
-  const handleShowDetails = () => {
-    setShowDetails(true); // Εμφάνιση του modal με τις λεπτομέρειες του ραντεβού
-  };
-
-  const handleCloseDetails = () => {
-    setShowDetails(false); // Κλείσιμο modal λεπτομέρειας
-  };
-
+function AppointmentCardParent({ id, type, picLink, parentName, date, loc, time, childAge, loc2, state, comments, email, phone }) {
+  const [status, setStatus] = useState(state || "none");
+  const [showModal, setShowModal] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
   const navigate = useNavigate();
 
-  const handleMessage = () => {
-    navigate('/WriteMessageProfessional');
-  }
+  useEffect(() => {
+    const fetchStatus = async () => {
+      try {
+        const docRef = doc(db, 'connections', id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setStatus(data.status || "none");
+        }
+      } catch (error) {
+        console.error("Error fetching appointment status:", error);
+      }
+    };
+
+    fetchStatus();
+  }, [id]);
+
+  const updateStatus = async (newStatus) => {
+    try {
+      const docRef = doc(db, 'connections', id);
+      await updateDoc(docRef, { status: newStatus });
+      setStatus(newStatus);
+    } catch (error) {
+      console.error("Error updating status:", error);
+    }
+  };
+
+  const handleAccept = () => updateStatus("accepted");
+
+  const handleReject = () => setShowModal(true);
+
+  const confirmReject = () => {
+    updateStatus("rejected");
+    setShowModal(false);
+  };
+
+  const cancelReject = () => setShowModal(false);
+
+  const handleShowDetails = () => setShowDetails(true);
+
+  const handleCloseDetails = () => setShowDetails(false);
+
+  const handleMessage = () => navigate('/WriteMessageProfessional');
 
   if (status === "rejected") {
-    return null; // Εξαφανίζεται το ραντεβού αν είναι rejected
+    return null;
   }
 
   const appointmentDetails = {
@@ -57,14 +79,12 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
 
   return (
     <div className="parentPannel">
-
       <div className="parentInfo">
         <Avatar alt="Profile" src={picLink} sx={{ width: 56, height: 56 }} className="parentPfp" />
         <p>{parentName}</p>
       </div>
 
       <div className="parentDetails">
-
         <div className="parentpersonalinfo">
           <div className="childAgeParent">
             <img src={cake} alt="childAge" />
@@ -90,7 +110,6 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
                 </p>
               </>
             )}
-
           </div>
 
           <div className="appointmentDateParent">
@@ -102,12 +121,10 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
             <img src={timeIcon} alt="time" />
             <p>Ώρα Ραντεβού: {time}</p>
           </div>
-
         </div>
-            
-        {/* Διαφορετικά κουμπία ανάλογα με την κατάσταση του Ραντεβού από την πλευρά του Επαγγελματία */}
+
         <div className="appointmentOptionsParent">
-          {status === "none" && (  
+          {status === "none" && (
             <>
               <button className="moreButtonParent" onClick={handleShowDetails}>Περισσότερες Λεπτομέρειες</button>
               <div className="yesNoButtons">
@@ -120,17 +137,15 @@ function AppointmentCardParent({ type, picLink, parentName, date, loc, time, chi
           {status === "accepted" && (
             <>
               <button className="moreButtonParent" onClick={handleShowDetails}>Περισσότερες Λεπτομέρειες</button>
-              <button className="buttonsParent">Στείλτε Μήνυμα</button>
+              <button className="buttonsParent" onClick={handleMessage}>Στείλτε Μήνυμα</button>
               <button className="cancelButtonParent" onClick={handleReject}>Ακύρωση Ραντεβού</button>
             </>
           )}
         </div>
       </div>
 
-      {/* Modal για να εμφανίζει τις λεπτομέρειες του ραντεβού */}
       {showDetails && <AppointmentDetailsModal onClose={handleCloseDetails} appointmentDetails={appointmentDetails} />}
 
-      {/* Modal για να εμφανίζει κατάλληλο μήνυμα επιβεβαίωσης αν ο επαγγελματίας πατήσει να ακυρώσει/απορρίψει το ραντεβού */}
       {showModal && (
         <div className="modalOverlay">
           <div className="modalContent">

@@ -78,7 +78,7 @@ function ParentAppointment() {
       parentId: userId,
       parentEmail: parentData.userEmail,
       professionalId: ProfadId,
-      status: 'pending',
+      status: 'none',
       type: 'appointment',
       details: {
         date: appointmentDetails.date,
@@ -110,7 +110,7 @@ function ParentAppointment() {
 
   return (
     <>
-      <Breadcrumbs page1="ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ" link1="../ParentHireProfessional" page2="ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ" />
+      <Breadcrumbs page1="ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ" link1="../FindProfessional_unconnected" page2="ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ" />
 
       <div className="ApPersonInfo">
         <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ:</h1>

@@ -12,6 +12,10 @@
     color: #000;
 }
 
+.professionalPannel {
+    position: relative; /* Ensure the panel is the positioning context */
+}
+
 .professionalPannel .professionalInfo
 {
     display: flex;
@@ -146,4 +150,25 @@
 
 .cancelButton:hover {
     background-color: #b9132efd !important; 
+}
+
+.mesParent
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+.rejmesParent
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-weight: bold;
+    color:red;
 }

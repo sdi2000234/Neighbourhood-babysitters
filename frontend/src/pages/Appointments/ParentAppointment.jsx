@@ -11,7 +11,6 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 import { useLocation } from 'react-router-dom';
 
 function ParentAppointment() {
-
   const location = useLocation();
   const { babysitterName, ProfadId } = location.state || {};
 
@@ -65,39 +64,39 @@ function ParentAppointment() {
 
   const handleCancel = (event) => {
     event.preventDefault();
-    navigate('/ParentHireProfessional'); 
+    navigate('/ParentHireProfessional');
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!meetingType) {
-      alert("Παρακαλώ επιλέξτε τύπο συνάντησης.");
+      alert('Παρακαλώ επιλέξτε τύπο συνάντησης.');
       return;
     }
 
-    const appointmentData = {
-      ...appointmentDetails,
-      meetingType: meetingType,
-      ProfessionalName: babysitterName,
-      userId: userId,
-      createdAt: new Date(),
-    };
-
     const connectionData = {
       parentId: userId,
+      parentEmail: parentData.userEmail,
       professionalId: ProfadId,
       status: 'pending',
-      createdAt: new Date(),
       type: 'appointment',
+      details: {
+        date: appointmentDetails.date,
+        time: appointmentDetails.time,
+        location: appointmentDetails.location,
+        message: appointmentDetails.message,
+        meetingType: meetingType,
+      },
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     try {
-      await setDoc(doc(db, 'appointments', `${userId}_${Date.now()}`), appointmentData);
       await setDoc(doc(db, 'connections', `${userId}_${Date.now()}`), connectionData);
       navigate('/ParentAppointmentEnd');
     } catch (error) {
-      console.error("Error saving appointment:", error);
-      alert("Παρουσιάστηκε σφάλμα κατά την αποθήκευση του ραντεβού. Δοκιμάστε ξανά.");
+      console.error('Error saving connection:', error);
+      alert('Παρουσιάστηκε σφάλμα κατά την αποθήκευση του ραντεβού. Δοκιμάστε ξανά.');
     }
   };
 
@@ -111,9 +110,9 @@ function ParentAppointment() {
 
   return (
     <>
-      <Breadcrumbs page1={"ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ"} link1={"../ParentHireProfessional"} page2={"ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ"} />
+      <Breadcrumbs page1="ΠΡΟΣΛΗΨΗ ΕΠΑΓΓΕΛΜΑΤΙΑ" link1="../ParentHireProfessional" page2="ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ" />
 
-      <div className='ApPersonInfo'>
+      <div className="ApPersonInfo">
         <h1>ΚΛΕΙΣΙΜΟ ΡΑΝΤΕΒΟΥ ΜΕ:</h1>
         <h1>{babysitterName}</h1>
 
@@ -176,7 +175,9 @@ function ParentAppointment() {
             <div>
               <br />
               <br />
-              <label htmlFor="date" className="infoType">Τύπος Συνάντησης:</label>
+              <label htmlFor="meetingType" className="infoType">
+                Τύπος Συνάντησης:
+              </label>
             </div>
 
             <div className="meeting">

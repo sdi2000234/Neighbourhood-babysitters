@@ -9,7 +9,7 @@ import { Avatar } from "@mui/material";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from '../firebaseConfig'; // Adjust the path to your Firebase config
 
-function AppointmentCardProfessional({ id, connectionId, type, picLink, professionalName, date, loc, time }) {
+function AppointmentCardProfessional({ connectionId, type, picLink, professionalName, date, loc, time }) {
     const [status, setStatus] = useState("none");
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
@@ -32,22 +32,13 @@ function AppointmentCardProfessional({ id, connectionId, type, picLink, professi
 
     const confirmCancel = async () => {
         try {
-            console.log("Attempting to delete appointment with ID:", id);
-            console.log("Attempting to delete connection with ID:", connectionId);
-
-            // Delete from 'appointments' collection
-            await deleteDoc(doc(db, 'appointments', id));
-
             // Delete from 'connections' collection
-            alert(id);
-            alert(connectionId);
-            // await deleteDoc(doc(db, 'connections', connectionId));
+            await deleteDoc(doc(db, 'connections', connectionId));
 
             setStatus("canceled");
             setShowModal(false);
-            alert("Το ραντεβού ακυρώθηκε επιτυχώς.");
         } catch (error) {
-            console.error("Error deleting appointment or connection:", error);
+            console.error("Error deleting connection:", error);
             alert("Παρουσιάστηκε σφάλμα κατά την ακύρωση του ραντεβού. Δοκιμάστε ξανά.");
         }
     };

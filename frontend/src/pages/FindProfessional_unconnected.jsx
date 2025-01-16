@@ -21,10 +21,9 @@ import {
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import { onAuthStateChanged } from 'firebase/auth';
-import { collection, getDocs } from 'firebase/firestore';
-import { doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
-import ProfessionalDetails from './ProfessionalDetails'; // Import your ProfessionalDetails component
+import ProfessionalDetails from './ProfessionalDetails';
 import Pagination from '@mui/material/Pagination';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -42,6 +41,7 @@ const FindProfessionalUnconnected = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedProfessional, setSelectedProfessional] = useState(null);
   const [ads, setAds] = useState([]);
+  const [professionalsData, setProfessionalsData] = useState({});
 
   const languages = [
     'Αγγλικά', 'Γερμανικά', 'Ολλανδικά', 'Φλαμανδικά', 'Αφρικάανς', 'Δανικά',
@@ -59,8 +59,22 @@ const FindProfessionalUnconnected = () => {
         const querySnapshot = await getDocs(collection(db, 'ads'));
         const adsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setAds(adsList);
+
+        // Fetch professionals details from 'users' collection
+        const professionalsMap = {};
+        await Promise.all(
+          adsList.map(async (ad) => {
+            if (ad.userId) {
+              const userDoc = await getDoc(doc(db, 'users', ad.userId));
+              if (userDoc.exists()) {
+                professionalsMap[ad.userId] = userDoc.data();
+              }
+            }
+          })
+        );
+        setProfessionalsData(professionalsMap);
       } catch (error) {
-        console.error('Error fetching ads:', error);
+        console.error('Error fetching ads or professionals:', error);
       }
     };
 
@@ -171,6 +185,7 @@ const FindProfessionalUnconnected = () => {
           ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ
         </Typography>
 
+        {/* Filters and search section */}
         <Box
           sx={{
             backgroundColor: '#f8f9fa',
@@ -229,55 +244,58 @@ const FindProfessionalUnconnected = () => {
             </Button>
           </Box>
         </Box>
-
+        {/* Professionals display section */}
         <Grid container spacing={2}>
-          {currentProfessionals.map((pro) => (
-            <Grid item xs={12} sm={6} md={4} key={pro.id}>
-              <Paper
-                sx={{
-                  p: 2,
-                  border: '1px solid #ddd',
-                  borderRadius: 2,
-                  position: 'relative',
-                  backgroundColor: '#013372',
-                  color: 'white',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-              >
-                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                  {pro.name}
-                </Typography>
-                <Typography variant="body2">
-                  ⭐ {pro.rating} ({pro.reviews} αξιολογήσεις)
-                </Typography>
-                <Divider sx={{ my: 1 }} />
-                <Typography variant="body2" sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1, marginTop: 3 }}>
-                  <img src={cake} alt="age" style={{ width: '20px', height: 'auto', marginRight: 8 }} />
-                  Ηλικία: {pro.age}
-                </Typography>
-                <Typography variant="body2" sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1 }}>
-                  <img src={location} alt="location" style={{ width: '20px', height: 'auto', marginRight: 8 }} />
-                  Περιοχή: {pro.area}
-                </Typography>
-                <Typography variant="body2" sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1, marginTop: 2 }}>
-                  <img src={experience} alt="experience" style={{ width: '20px', height: 'auto', marginRight: 8 }} />
-                  Εμπειρία: {pro.exp} χρόνια
-                </Typography>
-                <Button
-                  variant="contained"
-                  sx={{ mt: 2, backgroundColor: '#737373', color: '#fff', '&:hover': { backgroundColor: '#d3d3d3' } }}
-                  onClick={() => handleOpenModal(pro)}
+          {currentProfessionals.map((pro) => {
+            const professionalDetails = professionalsData[pro.userId] || {};
+            return (
+              <Grid item xs={12} sm={6} md={4} key={pro.id}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    border: '1px solid #ddd',
+                    borderRadius: 2,
+                    position: 'relative',
+                    backgroundColor: '#013372',
+                    color: 'white',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
                 >
-                  ΠΛΗΡΟΦΟΡΙΕΣ
-                </Button>
-                <Box sx={{ display: 'flex', gap: 2, mt: 4, alignContent: 'center', justifyContent: 'center' }}>
-                  <ButtonUse action={() => navigate('/ParentAppointment', { state: { ProfadId: pro.userId, babysitterName: pro.name } })}>ΡΑΝΤΕΒΟΥ</ButtonUse>
-                  <ButtonUse action={() => navigate('/ParentContractRenew')}>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ</ButtonUse>
-                </Box>
-              </Paper>
-            </Grid>
-          ))}
+                  <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                    {professionalDetails.firstName} {professionalDetails.lastName}
+                  </Typography>
+                  <Typography variant="body2">
+                    ⭐ {pro.rating} ({pro.reviews} αξιολογήσεις)
+                  </Typography>
+                  <Divider sx={{ my: 1 }} />
+                  <Typography variant="body2" sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1, marginTop: 3 }}>
+                    <img src={cake} alt="age" style={{ width: '20px', height: 'auto', marginRight: 8 }} />
+                    Ηλικία: {professionalDetails.yearOfBirth}
+                  </Typography>
+                  <Typography variant="body2" sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1 }}>
+                    <img src={location} alt="location" style={{ width: '20px', height: 'auto', marginRight: 8 }} />
+                    Περιοχή: {professionalDetails.area}
+                  </Typography>
+                  <Typography variant="body2" sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1, marginTop: 2 }}>
+                    <img src={experience} alt="experience" style={{ width: '20px', height: 'auto', marginRight: 8 }} />
+                    Εμπειρία: {professionalDetails.experience || 0} χρόνια
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    sx={{ mt: 2, backgroundColor: '#737373', color: '#fff', '&:hover': { backgroundColor: '#d3d3d3' } }}
+                    onClick={() => handleOpenModal(pro)}
+                  >
+                    ΠΛΗΡΟΦΟΡΙΕΣ
+                  </Button>
+                  <Box sx={{ display: 'flex', gap: 2, mt: 4, alignContent: 'center', justifyContent: 'center' }}>
+                    <ButtonUse action={() => navigate('/ParentAppointment', { state: { ProfadId: pro.userId, babysitterName: `${professionalDetails.firstName} ${professionalDetails.lastName}` } })}>ΡΑΝΤΕΒΟΥ</ButtonUse>
+                    <ButtonUse action={() => navigate('/ParentContractRenew')}>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ</ButtonUse>
+                  </Box>
+                </Paper>
+              </Grid>
+            );
+          })}
         </Grid>
 
         <Pagination count={totalPages} page={currentPage} onChange={handlePageChange} sx={{ mt: 4, display: 'flex', justifyContent: 'center' }} />

@@ -155,53 +155,70 @@ export default function DimiourgiaProfileProfessional1() {
               gap: '20px',
             }}
           >
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Όνομα" size="small" fullWidth required />
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Επώνυμο" size="small" fullWidth required />
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Πατρώνυμο" size="small" fullWidth required />
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Μητρώνυμο" size="small" fullWidth required />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Όνομα*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Όνομα" size="small" fullWidth required />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Επώνυμο*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Επώνυμο" size="small" fullWidth required />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Πατρώνυμο*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Πατρώνυμο" size="small" fullWidth required />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Μητρώνυμο*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Μητρώνυμο" size="small" fullWidth required />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Έτος Γέννησης*</p>
             <TextField
               style={{ backgroundColor: '#fff', borderRadius: '5px' }}
-              label="Έτος Γέννησης"
+              placeholder="Έτος Γέννησης"
               size="small"
               fullWidth
               required
               type="number"
-              inputProps={{ min: 1900, max: new Date().getFullYear() }}
+              inputProps={{ min: new Date().getFullYear() - 120, max: new Date().getFullYear() - 17 }}
             />
 
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Επιλέξτε Φύλο*</p>
             <FormControl size="small" fullWidth required>
               <InputLabel>Φύλο</InputLabel>
-              <Select style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Φύλο" defaultValue="">
+              <Select style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Φύλο" defaultValue="">
                 <MenuItem value="male">Άνδρας</MenuItem>
                 <MenuItem value="female">Γυναίκα</MenuItem>
                 <MenuItem value="other">Άλλο</MenuItem>
               </Select>
             </FormControl>
 
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Αριθμός Ταυτοπ. Εγγράφου" size="small" fullWidth required />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Αριθμός Ταυτοπ. Εγγράφου*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Αριθμός Ταυτοπ. Εγγράφου" size="small" fullWidth required />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Αριθμός Φορολογικού Μητρώου (ΑΦΜ)*</p>
             <TextField
               style={{ backgroundColor: '#fff', borderRadius: '5px' }}
-              label="Αριθμός Φορολογικού Μητρώου (ΑΦΜ)"
+              placeholder="Αριθμός Φορολογικού Μητρώου (ΑΦΜ)"
               size="small"
               fullWidth
               required
               type='number'
             />
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="AMKA" size="small" fullWidth required type='number'/>
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>ΑΜΚΑ*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="AMKA" size="small" fullWidth required type='number'/>
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)*</p>
             <TextField
               style={{ backgroundColor: '#fff', borderRadius: '5px' }}
-              label="Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)"
+              placeholder="Δημόσια Οικονομική Υπηρεσία (ΔΟΥ)"
               size="small"
               fullWidth
               required
             />
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Τηλέφωνο" size="small" fullWidth required type='number'/>
-            <TextField required label="Ηλεκτρονικό Ταχυδρομείο" value={formData.email} size="small" type='email'   style={{ backgroundColor: '#fff', borderRadius: '5px' }}/>
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Νομός" size="small" fullWidth required />
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Περιοχή" size="small" fullWidth required />
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Οδός" size="small" fullWidth required />
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Αριθμός" size="small" fullWidth required type='number'/>
-            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} label="Τ.Κ." size="small" fullWidth required 
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Τηλέφωνο*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Τηλέφωνο" size="small" fullWidth required type='number'/>
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Ηλεκτρονικό Ταχυδρομείο*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Ηλεκτρονικό Ταχυδρομείο" value={formData.email} size="small" required type='email' />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Νομός*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Νομός" size="small" fullWidth required />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Περιοχή*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Περιοχή" size="small" fullWidth required />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Οδός*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Οδός" size="small" fullWidth required />
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Αριθμός*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Αριθμός" size="small" fullWidth required type='number'/>
+            <p style={{ fontWeight: 'bold', color: '#373737' }}>Ταχυδρομικός Κώδικας*</p>
+            <TextField style={{ backgroundColor: '#fff', borderRadius: '5px' }} placeholder="Τ.Κ." size="small" fullWidth required 
             inputProps={{
               pattern: '[0-9]{5}',  
               title: 'Ο ταχυδρομικός κωδικός πρέπει να έχει 5 αριθμούς'
@@ -229,22 +246,28 @@ export default function DimiourgiaProfileProfessional1() {
                     Πλήθος ατόμων που κατοικούν στον χώρο σας:
                   </p>
                   <div style={{ display: 'flex', gap: '20px' }}>
-                    <TextField
-                      style={{ backgroundColor: '#fff', borderRadius: '5px' }}
-                      label="Ενήλικες"
-                      size="small"
-                      fullWidth
-                      required
-                      type="number"
-                    />
-                    <TextField
-                      style={{ backgroundColor: '#fff', borderRadius: '5px' }}
-                      label="Ανήλικοι"
-                      size="small"
-                      fullWidth
-                      required
-                      type="number"
-                    />
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <p style={{ fontWeight: 'bold', color: '#373737', marginBottom: '10px' }}>Ενήλικες*</p>
+                      <TextField
+                        style={{ backgroundColor: '#fff', borderRadius: '5px' }}
+                        placeholder="Ενήλικες"
+                        size="small"
+                        fullWidth
+                        required
+                        type="number"
+                      />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <p style={{ fontWeight: 'bold', color: '#373737', marginBottom: '10px' }}>Ανήλικοι*</p>
+                      <TextField
+                        style={{ backgroundColor: '#fff', borderRadius: '5px' }}
+                        placeholder="Ανήλικοι"
+                        size="small"
+                        fullWidth
+                        required
+                        type="number"
+                      />
+                    </div>
                   </div>
                 </div>
               )}

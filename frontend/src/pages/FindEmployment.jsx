@@ -15,6 +15,7 @@ const FindEmployment = () => {
 
     const navigate = useNavigate();
     const handleTerms = () => {navigate('/TermsForVoucher');};
+    const handleRegister = () => {navigate('/register');};
 
     return (
         <div className='findEmployment'>
@@ -77,6 +78,10 @@ const FindEmployment = () => {
                         <p>Η πληρωμή για την εργασία σου θα γίνεται μέσω Voucher που προσφέρει το κράτος στα άτομα που πληρούν τις απαραίτητες προϋποθέσεις.</p>
                     </div>
                 </div>
+            </div>
+            <div className='registerDIV'>
+                <h1 className='registerFindEmployment'>Κάνε εγγραφή ως επαγγελματίας πατώντας το παρακάτω κουμπί και έπειτα τσεκάροντας το κουτάκι "Θέλω να εγγραφώ ως επαγγελματίας"</h1>
+                <button onClick={handleRegister} className='registerButtonFindEmployment'>Εγγραφή</button>
             </div>
             <Footer/>
         </div>

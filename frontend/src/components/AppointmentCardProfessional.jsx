@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { db } from '../firebaseConfig'; // Adjust the path to your Firebase config
 
-function AppointmentCardProfessional({ connectionId, type, picLink, professionalName, date, loc, time }) {
+function AppointmentCardProfessional({ connectionId, type, picLink, professionalName, date, loc, time, profId }) {
     const [status, setStatus] = useState("none");
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
@@ -65,7 +65,9 @@ function AppointmentCardProfessional({ connectionId, type, picLink, professional
     };
 
     const handleChangeButton = () => {
-        navigate('/ParentChangeAppointment');
+        navigate('/ParentChangeAppointment', {
+            state: { connectionId, profId }, // Περάστε το connectionId και το profId στο ParentChangeAppointment
+        })
     };
 
     const handleApplButton = () => {
@@ -126,7 +128,7 @@ function AppointmentCardProfessional({ connectionId, type, picLink, professional
                     </div>
                 </div>
                 <div className="appointmentOptions">
-                    {status === "none" && (
+                    {(status === "none" || status ==="changed") && (
                         <>
                             <div className="mesParent">
                                 <p>Αναμένετε απάντηση από επαγγελματία</p>
@@ -140,7 +142,7 @@ function AppointmentCardProfessional({ connectionId, type, picLink, professional
                     {status === "accepted" && (
                         <>
                             <div className="mesParent">
-                                <p>Το ραντεβού έχει γίνει αποδεκτό</p>
+                                <p>Ο επαγγελματίας αποδέχτηκε το ραντεβού</p>
                             </div>
                             <button className="moreButton" onClick={handleMoreButton}>Δείτε Προφίλ Επαγγελματία</button>
                             <button className="buttons" onClick={handleChangeButton}>Αλλαγή Στοιχείων Ραντεβού</button>

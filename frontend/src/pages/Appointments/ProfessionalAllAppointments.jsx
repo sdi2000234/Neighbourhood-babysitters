@@ -99,6 +99,11 @@ function ProfessionalAllAppointments() {
     navigate('../ProfessionalContract');
   };
 
+  const formatDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+  };
+
   return (
     <>
       <Breadcrumbs page1={"ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ"} link1={"../ProfessionalContract"} page2={"ΡΑΝΤΕΒΟΥ"} />
@@ -126,7 +131,7 @@ function ProfessionalAllAppointments() {
                     id={appointment.id}
                     picLink={appointment.details.picLink || ''} 
                     parentName={parentName} 
-                    date={appointment.details.date || ''} 
+                    date={formatDate(appointment.details.date) || ''} 
                     time={appointment.details.time || ''} 
                     loc={appointment.details.location || ''} 
                     loc2={parentDetails.careArea ||parentDetails.area || ''}

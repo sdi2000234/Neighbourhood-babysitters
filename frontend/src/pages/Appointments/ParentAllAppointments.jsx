@@ -124,6 +124,7 @@ function ParentAllAppointments() {
                   loc={details.location} // Appointment location
                   time={details.time} // Appointment time
                   type={details.meetingType} // Meeting type (e.g., online or in-person)
+                  profId={connection.professionalId}
                 />
               </Grid>
             );

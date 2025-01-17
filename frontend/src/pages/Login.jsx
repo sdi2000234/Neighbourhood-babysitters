@@ -32,7 +32,6 @@ const LoginPage = () => {
 
       // Attempt to log in the user
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      alert('Login Successful!');
       navigate('/dashboard'); // Ανακατεύθυνση στη σελίδα Dashboard
     } catch (error) {
       // Διαχείριση σφαλμάτων

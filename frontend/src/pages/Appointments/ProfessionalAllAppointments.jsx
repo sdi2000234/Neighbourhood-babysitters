@@ -1,195 +1,152 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AppointmentCardParent from '../../components/AppointmentCardParent'
+import AppointmentCardParent from '../../components/AppointmentCardParent';
 import Footer from '../../components/Footer';
-import MyBreadcrumbs from '../../components/MyBreadcrumbs';
-import Grid from '@mui/material/Grid2';  
-import './ProfessionalAllAppointments.css';
 import Breadcrumbs from '../../components/Breadcrumbs';
+import Grid from '@mui/material/Grid2';
+import './ProfessionalAllAppointments.css';
+import { collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
+import { auth, db } from '../../firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function ProfessionalAllAppointments() {
+  const [appointments, setAppointments] = useState([]);
+  const [user, setUser] = useState(null);
+  const [parentsData, setParentsData] = useState({});
+  const navigate = useNavigate();
 
-   const breadcrumbPages = [
-        { name: 'ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑ' },
-        { name: 'ΡΑΝΤΕΒΟΥ' }
-    ];
-
-    // Πίνακας ραντεβού με ημερομηνίες και ώρες
-    const appointments = [
-        {
-            picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
-            parentName: 'Μαρία Παπαδοπούλου',
-            date: '12/02/2024',  
-            time: '12:30 μμ',
-            loc: "https://www.webex.com/test-meeting.html",
-            loc2: "Σπίτι Επαγγελματία",
-            childAge: "6 μηνών" ,
-            type: "online",
-            state: "none", // none, accepted, rejected
-            email: "test@test.com",
-            phone: "6942785630",
-            comments: ""
-        },
-        {
-            picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
-            parentName: 'Γιάννης Ιωάννου',
-            date: '12/02/2024',  
-            time: '10:00 πμ',
-            loc: "Περιοχή, Αρ , Τ.Κ.",
-            loc2: "Σπίτι Επαγγελματία",
-            childAge: "6 μηνών" ,
-            type: "facetoface",
-            state: "none", // none, accepted, rejected
-            email: "test@test.com",
-            phone: "6942785630",
-            comments: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis provident reiciendis hic dolore sapiente eum ullam facere nostrum blanditiis! Nam id fuga ad accusantium atque recusandae dolor asperiores, distinctio alias!"
-        },
-        {
-            picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
-            parentName: 'Αλέξανδρος Κωνσταντίνου',
-            date: '03/04/2024', 
-            time: '12:30 μμ',
-            loc: "https://www.webex.com/test-meeting.html",
-            loc2: "Σπίτι Επαγγελματία",
-            childAge: "6 μηνών" ,
-            type: "online",
-            state: "accepted", // none, accepted, rejected
-            email: "test@test.com",
-            phone: "6942785630",
-            comments: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti aliquam reiciendis numquam reprehenderit nihil. Quis est, illum error repellendus, assumenda quo rerum incidunt consectetur id laboriosam, quia distinctio reiciendis exercitationem. Aut modi repellat laborum corporis iusto ratione atque voluptates, quia harum doloremque nobis odit quaerat velit exercitationem voluptatem reiciendis aspernatur cum? Quas officia provident quo soluta voluptatibus rem, expedita dolorem. Corporis animi numquam illo, quos, similique ab incidunt distinctio expedita enim totam commodi eos vero itaque! Illo optio beatae nihil sapiente enim perspiciatis! Animi voluptates voluptate aperiam, molestiae sed assumenda!"
-        },
-        {
-            picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
-            parentName: 'Τάσος Ιωάννου',
-            date: '12/03/2024',  
-            time: '10:00 πμ',
-            loc: "Αθήνα",
-            loc2: "Σπίτι Επαγγελματία",
-            childAge: "6 μηνών" ,
-            type: "facetoface",
-            state: "none", // none, accepted, rejected
-            email: "test@test.com",
-            phone: "6942785630",
-            comments: ""
-        },
-        {
-            picLink: 'https://hips.hearstapps.com/hmg-prod/images/best-small-dog-breeds-chihuahua-1598967884.jpg?crop=0.449xw:0.842xh;0.245xw,0.0337xh&resize=980:*',
-            parentName: 'Άννα Κωνσταντίνου',
-            date: '12/03/2024', 
-            time: '8:30 πμ',
-            loc: "https://www.webex.com/test-meeting.html",
-            loc2: "Σπίτι Επαγγελματία",
-            childAge: "6 μηνών" ,
-            type: "online",
-            state: "accepted", // none, accepted, rejected
-            email: "test@test.com",
-            phone: "6942785630",
-            comments: "Nothing"
-        }
-        
-    ];
-
-    // Συνάρτηση για μετατροπή της ημερομηνίας από 'DD/MM/YYYY' σε 'YYYY-MM-DD'
-    const convertToDateObject = (dateString) => {
-        const [day, month, year] = dateString.split('/');
-        return new Date(`${year}-${month}-${day}`);
-    };
-
-    // Συνάρτηση για μετατροπή της ώρας σε 24ωρη μορφή για σύγκριση
-    const convertTo24HourFormat = (timeString) => {
-        const [time, period] = timeString.split(' ');  // Διαχωρισμός την ώρα και την περίοδο (π.χ., '12:30 μμ' -> ['12:30', 'μμ'])
-        let [hours, minutes] = time.split(':');  // Διαχωρισμός ώρες και λεπτά
-        hours = parseInt(hours);
-        
-        if (period === 'μμ' && hours !== 12) {
-            hours += 12;  // Μετατροπή PM (εκτός από 12 μ.μ.)
-        } else if (period === 'πμ' && hours === 12) {
-            hours = 0;  // Μετατροπή 12 π.μ. σε 0 ώρες
-        }
-
-        return new Date(2000, 0, 1, hours, minutes);  // Δημιουργία ένος νέου Date αντικείμενο για σύγκριση (δεν μας ενδιαφέρει η ημερομηνία)
-    };
-
-    // Ταξινόμηση του πίνακα με βάση την ημερομηνία και την ώρα
-    const sortedAppointments = [...appointments].sort((a, b) => {
-        const dateA = convertToDateObject(a.date);
-        const dateB = convertToDateObject(b.date);
-
-        // Αν οι ημερομηνίες είναι ίδιες, συγκρίνουμε την ώρα
-        if (dateA.getTime() === dateB.getTime()) {
-            const timeA = convertTo24HourFormat(a.time);
-            const timeB = convertTo24HourFormat(b.time);
-            return timeA - timeB;  // Σύγκριση των ωρών
-        }
-
-        // Αν οι ημερομηνίες είναι διαφορετικές, συγκρίνουμε τις ημερομηνίες
-        return dateA - dateB;
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        setUser(firebaseUser);
+        fetchAppointments(firebaseUser.uid);
+      } else {
+        setUser(null);
+        setAppointments([]);
+      }
     });
 
-    // Συνάρτηση για την εμφάνιση της ημερομηνίας στην μορφή 'DD/MM/YYYY'
-    const formatDate = (dateString) => {
-        const [day, month, year] = dateString.split('/');
-        return `${day}/${month}/${year}`;
-    };
+    return () => unsubscribe();
+  }, []);
 
-    //Για περιήγηση σε υπολοιπες σελίδες
-    const navigate = useNavigate();
+  const fetchAppointments = async (professionalId) => {
+    try {
+      const q = query(
+        collection(db, 'connections'),
+        where('type', '==', 'appointment'),
+        where('professionalId', '==', professionalId)
+      );
+      const querySnapshot = await getDocs(q);
+      const fetchedAppointments = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-    const handle1 = () => {
-        navigate('../ProfessionalAllAppointments');
-    };
+      // Fetch parent details for each appointment
+      const parentsMap = {};
+      await Promise.all(
+        fetchedAppointments.map(async (appointment) => {
+          const parentId = appointment.parentId;
+          if (!parentsMap[parentId]) {
+            const parentDoc = await getDoc(doc(db, 'users', parentId));
+            if (parentDoc.exists()) {
+              parentsMap[parentId] = parentDoc.data();
+            }
+          }
+        })
+      );
+      setParentsData(parentsMap);
+      setAppointments(fetchedAppointments);
+    } catch (error) {
+      console.error('Error fetching appointments:', error);
+    }
+  };
 
-    const handle2 = () => {
-        navigate('../ProfessionalContract');
-    };
+  const convertToDateObject = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return new Date(`${year}-${month}-${day}`);
+  };
 
-    return (
-        <>
-            {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages} /> */}
-            <Breadcrumbs page1={"ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ"} link1={"../ProfessionalContract"} page2={"ΡΑΝΤΕΒΟΥ"}/>
+  const convertTo24HourFormat = (timeString) => {
+    const [time, period] = timeString.split(' ');
+    let [hours, minutes] = time.split(':');
+    hours = parseInt(hours);
 
-                <div className='ProfessionalAllAppointments'>
+    if (period === 'μμ' && hours !== 12) {
+      hours += 12;
+    } else if (period === 'πμ' && hours === 12) {
+      hours = 0;
+    }
 
-                    <div className='card1 text-center'>
-                        <div className='card-header1'>
-                            <ul className='nav1 nav-tabs1 card-header-tabs'>
-                            <li className='nav-item1'>
-                                <button className='nav-link1 active' onClick={handle1}>ΡΑΝΤΕΒΟΥ</button>
-                            </li>
-                            <li className='nav-item1'>
-                                <button className='nav-link1 ' onClick={handle2}>ΑΙΤΗΣΕΙΣ ΣΥΝΕΡΓΑΣΙΑΣ</button>
-                            </li>
-                            </ul>
-                        </div>
+    return new Date(2000, 0, 1, hours, minutes);
+  };
 
+  const sortedAppointments = [...appointments].sort((a, b) => {
+    const dateA = convertToDateObject(a.details.date);
+    const dateB = convertToDateObject(b.details.date);
 
-                        <Grid container spacing={4} justifyContent="center" alignItems="flex-start" className="appointmentsProfessionals">
-                            {sortedAppointments.map((appointment, index) => (
-                                <Grid item xs={12} sm={6} md={4} key={index}>
-                                    <AppointmentCardParent 
-                                        picLink={appointment.picLink} 
-                                        parentName={appointment.parentName} 
-                                        date={formatDate(appointment.date)}  // Εμφάνιση ημερομηνίας με την επιθυμητή μορφή
-                                        time={appointment.time} 
-                                        loc={appointment.loc} 
-                                        loc2={appointment.loc2}
-                                        childAge={appointment.childAge}
-                                        type={appointment.type} 
-                                        state={appointment.state}
-                                        comments={appointment.comments}
-                                        email={appointment.email}
-                                        phone={appointment.phone}
-                                    />
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </div>
-                </div>
-                
-            <Footer />
-        </>
-    );
+    if (dateA.getTime() === dateB.getTime()) {
+      const timeA = convertTo24HourFormat(a.details.time);
+      const timeB = convertTo24HourFormat(b.details.time);
+      return timeA - timeB;
+    }
+
+    return dateA - dateB;
+  });
+
+  const handle1 = () => {
+    navigate('../ProfessionalAllAppointments');
+  };
+
+  const handle2 = () => {
+    navigate('../ProfessionalContract');
+  };
+
+  return (
+    <>
+      <Breadcrumbs page1={"ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ"} link1={"../ProfessionalContract"} page2={"ΡΑΝΤΕΒΟΥ"} />
+
+      <div className='ProfessionalAllAppointments'>
+        <div className='card1 text-center'>
+          <div className='card-header1'>
+            <ul className='nav1 nav-tabs1 card-header-tabs'>
+              <li className='nav-item1'>
+                <button className='nav-link1 active' onClick={handle1}>ΡΑΝΤΕΒΟΥ</button>
+              </li>
+              <li className='nav-item1'>
+                <button className='nav-link1 ' onClick={handle2}>ΑΙΤΗΣΕΙΣ ΣΥΝΕΡΓΑΣΙΑΣ</button>
+              </li>
+            </ul>
+          </div>
+
+          <Grid container spacing={4} justifyContent="center" alignItems="flex-start" className="appointmentsProfessionals">
+            {sortedAppointments.map((appointment) => {
+              const parentDetails = parentsData[appointment.parentId] || {};
+              const parentName = `${parentDetails.firstName || ''} ${parentDetails.lastName || ''}`.trim();
+              return (
+                <Grid item xs={12} sm={6} md={4} key={appointment.id}>
+                  <AppointmentCardParent 
+                    id={appointment.id}
+                    picLink={appointment.details.picLink || ''} 
+                    parentName={parentName} 
+                    date={appointment.details.date || ''} 
+                    time={appointment.details.time || ''} 
+                    loc={appointment.details.location || ''} 
+                    loc2={parentDetails.careArea ||parentDetails.area || ''}
+                    childAge={parentDetails.kidsAge || ''}
+                    type={appointment.details.type || ''} 
+                    state={appointment.details.status || ''}
+                    comments={appointment.details.message || ''}
+                    email={parentDetails.email || ''}
+                    phone={parentDetails.phone || ''}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </div>
+      </div>
+      
+      <Footer />
+    </>
+  );
 }
 
-
-export default ProfessionalAllAppointments
+export default ProfessionalAllAppointments;

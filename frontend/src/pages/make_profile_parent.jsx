@@ -8,19 +8,22 @@ import {
   Select,
   MenuItem,
   Typography,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
 } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { db } from '../firebaseConfig'; // Adjust to your Firebase configuration file
+import { db } from '../firebaseConfig';
 import { getAuth } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom';
 import './make_profile_parent.css';
 import Footer from '../components/Footer';
 
 export default function ProfilePersonal() {
   const auth = getAuth();
-  const userId = auth.currentUser?.uid; // Dynamically fetch user ID from Firebase Authentication
-  const navigate = useNavigate(); // Initialize useNavigate for redirection
+  const userId = auth.currentUser?.uid;
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -41,6 +44,8 @@ export default function ProfilePersonal() {
     streetNumber: '',
     zipCode: '',
     kidsAge: '',
+    careLocation: 'homeOfProfessional',
+    careArea: '',
   });
 
   const [profileImage, setProfileImage] = useState(null);
@@ -98,19 +103,24 @@ export default function ProfilePersonal() {
   };
 
   const handleSave = async (event) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
 
     if (!userId) {
       alert('You must be logged in to save your profile.');
       return;
     }
 
+    // Ορισμός του careArea ανάλογα με την επιλογή του χρήστη
+    const updatedCareArea = formData.careLocation === 'homeOfProfessional'
+      ? 'Σπίτι Επαγγελματία'
+      : formData.careArea || formData.area;
+
     setLoading(true);
     try {
       const docRef = doc(db, 'users', userId);
-      await setDoc(docRef, { ...formData, email: auth.currentUser.email }, { merge: true });
+      await setDoc(docRef, { ...formData, careArea: updatedCareArea, email: auth.currentUser.email }, { merge: true });
       alert('Τα προσωπικά στοιχεία αποθηκεύτηκαν!');
-      navigate('/dashboard'); // Redirect to /dashboard after saving
+      navigate('/dashboard');
     } catch (error) {
       console.error('Error saving user data:', error);
       alert('Υπήρξε σφάλμα κατά την αποθήκευση.');
@@ -215,8 +225,43 @@ export default function ProfilePersonal() {
               pattern: '[0-9]{5}',  
               title: 'Ο ταχυδρομικός κωδικός πρέπει να έχει 5 αριθμούς'
             }}/>
-            <p style={{ fontWeight: 'bold', color: '#373737' }}>Ηλικία Παιδιού προς φύλαξη*</p>
-            <TextField className='makeproftext' required placeholder="Ηλικία Παιδιού προς φύλαξη" name="kidsAge" value={formData.kidsAge} onChange={handleChange} size="small"/>
+            <TextField className='makeproftext' required label="Ηλικία Παιδιού προς φύλαξη" name="kidsAge" value={formData.kidsAge} onChange={handleChange} size="small"/>
+
+            <FormControl component="fieldset" sx={{ mt: 2 }}>
+              <Typography variant="subtitle1" gutterBottom>
+                Περιοχή Φύλαξης
+              </Typography>
+              <RadioGroup
+                name="careLocation"
+                value={formData.careLocation}
+                onChange={handleChange}
+                row
+              >
+                <FormControlLabel
+                  value="homeOfProfessional"
+                  control={<Radio />}
+                  label="Σπίτι Επαγγελματία"
+                  sx={{ marginRight: 2 }}
+                />
+                <FormControlLabel
+                  value="homeOfParent"
+                  control={<Radio />}
+                  label="Σπίτι Γονέα/Κηδεμόνα"
+                />
+              </RadioGroup>
+            </FormControl>
+
+            {formData.careLocation === 'homeOfParent' && (
+              <TextField
+                className='makeproftext'
+                required
+                label="Περιοχή Φύλαξης"
+                name="careArea"
+                value={formData.careArea || formData.area}
+                onChange={handleChange}
+                size="small"
+              />
+            )}
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>

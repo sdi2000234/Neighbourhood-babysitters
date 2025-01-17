@@ -1,18 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import './AppointmentCardProfessional.css';
 import location from '../assets/location_black.png';
 import dateIcon from '../assets/dateIcon.png';
 import timeIcon from '../assets/timeIcon.png';
 import linkIcon from '../assets/linkIcon.png';
-import { Avatar } from "@mui/material";
-import { doc, deleteDoc } from "firebase/firestore";
+import { Avatar, IconButton } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { db } from '../firebaseConfig'; // Adjust the path to your Firebase config
 
 function AppointmentCardProfessional({ connectionId, type, picLink, professionalName, date, loc, time }) {
     const [status, setStatus] = useState("none");
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchStatus = async () => {
+            try {
+                const docRef = doc(db, 'connections', connectionId);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    setStatus(data.status || "none");
+                }
+            } catch (error) {
+                console.error("Error fetching status:", error);
+            }
+        };
+
+        fetchStatus();
+    }, [connectionId]);
+
+    const handleDelete = async () => {
+        try {
+            await deleteDoc(doc(db, 'connections', connectionId)); // Delete the document
+            setStatus("deleted"); // Update local state to hide the card
+        } catch (error) {
+            console.error("Error deleting appointment:", error);
+        }
+    };
+
+    const handleCancelButton = () => {
+        setShowModal(true);
+    };
+
+    const confirmCancel = async () => {
+        try {
+            await deleteDoc(doc(db, 'connections', connectionId));
+            setStatus("deleted");
+            setShowModal(false);
+        } catch (error) {
+            console.error("Error canceling appointment:", error);
+            alert("Παρουσιάστηκε σφάλμα κατά την ακύρωση του ραντεβού. Δοκιμάστε ξανά.");
+        }
+    };
+
+    const cancelCancel = () => {
+        setShowModal(false);
+    };
 
     const handleMoreButton = () => {
         navigate('/new-page');
@@ -26,29 +72,12 @@ function AppointmentCardProfessional({ connectionId, type, picLink, professional
         navigate('/new-page');
     };
 
-    const handleCancelButton = () => {
-        setShowModal(true);
+    const handleMessage = () => {
+        navigate('/WriteMessageProfessional');
     };
 
-    const confirmCancel = async () => {
-        try {
-            // Delete from 'connections' collection
-            await deleteDoc(doc(db, 'connections', connectionId));
-
-            setStatus("canceled");
-            setShowModal(false);
-        } catch (error) {
-            console.error("Error deleting connection:", error);
-            alert("Παρουσιάστηκε σφάλμα κατά την ακύρωση του ραντεβού. Δοκιμάστε ξανά.");
-        }
-    };
-
-    const cancelCancel = () => {
-        setShowModal(false);
-    };
-
-    if (status === "canceled") {
-        return null;
+    if (status === "deleted" || status === "canceled") {
+        return null; // Hide the appointment if it's deleted or canceled
     }
 
     return (
@@ -56,6 +85,21 @@ function AppointmentCardProfessional({ connectionId, type, picLink, professional
             <div className="professionalInfo">
                 <Avatar alt="Profile" src={picLink} sx={{ width: 56, height: 56 }} className="professionalPfp" />
                 <p>{professionalName}</p>
+                {status === "rejected" && (
+                    <IconButton
+                        onClick={handleDelete}
+                        aria-label="delete"
+                        className="deleteIcon"
+                        sx={{
+                            position: 'absolute',
+                            top: 10,
+                            right: 10,
+                            color: 'red'
+                        }}
+                    >
+                        <DeleteIcon />
+                    </IconButton>
+                )}
             </div>
             <div className="professionalDetails">
                 <div className="professionalpersonalinfo">
@@ -78,14 +122,41 @@ function AppointmentCardProfessional({ connectionId, type, picLink, professional
                     </div>
                     <div className="appointmentTime">
                         <img src={timeIcon} alt='time' />
-                        <p>Ώρα Ραντεβού: {time} </p>
+                        <p>Ώρα Ραντεβού: {time}</p>
                     </div>
                 </div>
                 <div className="appointmentOptions">
-                    <button className="moreButton" onClick={handleMoreButton}>Δείτε Προφίλ Επαγγελματία</button>
-                    <button className="buttons" onClick={handleChangeButton}>Αλλαγή Στοιχείων Ραντεβού</button>
-                    <button className="buttons" onClick={handleApplButton}>Κάντε Αίτηση Συνεργασίας</button>
-                    <button className="cancelButtonProfessional" onClick={handleCancelButton}>Ακύρωση Ραντεβού</button>
+                    {status === "none" && (
+                        <>
+                            <div className="mesParent">
+                                <p>Αναμένετε απάντηση από επαγγελματία</p>
+                            </div>
+                            <button className="moreButton" onClick={handleMoreButton}>Δείτε Προφίλ Επαγγελματία</button>
+                            <button className="buttons" onClick={handleChangeButton}>Αλλαγή Στοιχείων Ραντεβού</button>
+                            <button className="buttons" onClick={handleApplButton}>Κάντε Αίτηση Συνεργασίας</button>
+                            <button className="cancelButtonProfessional" onClick={handleCancelButton}>Ακύρωση Ραντεβού</button>
+                        </>
+                    )}
+                    {status === "accepted" && (
+                        <>
+                            <div className="mesParent">
+                                <p>Το ραντεβού έχει γίνει αποδεκτό</p>
+                            </div>
+                            <button className="moreButton" onClick={handleMoreButton}>Δείτε Προφίλ Επαγγελματία</button>
+                            <button className="buttons" onClick={handleChangeButton}>Αλλαγή Στοιχείων Ραντεβού</button>
+                            <button className="buttons" onClick={handleApplButton}>Κάντε Αίτηση Συνεργασίας</button>
+                            <button className="cancelButtonProfessional" onClick={handleCancelButton}>Ακύρωση Ραντεβού</button>
+                        </>
+                    )}
+                    {status === "rejected" && (
+                        <>
+                            <div className="rejmesParent">
+                                <p>Το ραντεβού έχει απορριφθεί</p>
+                            </div>
+                            <button className="moreButton" onClick={handleMoreButton}>Δείτε Προφίλ Επαγγελματία</button>
+                            <button className="buttons" onClick={handleMessage}>Στείλτε Μήνυμα</button>
+                        </>
+                    )}
                 </div>
             </div>
 

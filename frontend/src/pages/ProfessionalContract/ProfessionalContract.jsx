@@ -1,38 +1,85 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import ContractProfessionalCard from '../../components/ContractProfessionalCard';
-import './ProfessionalContract.css';
-import Footer from '../../components/Footer';
-import Breadcrumbs from '../../components/Breadcrumbs';
-import { Menu, MenuItem, Button, Typography } from '@mui/material';
-import arrow_white from '../../assets/arrow_white.png';
-import { auth, db } from '../../firebaseConfig';
-import { collection, query, where, onSnapshot, orderBy } from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
+// File: src/pages/ProfessionalContract.jsx
+
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ContractProfessionalCard from "../../components/ContractProfessionalCard";
+import "./ProfessionalContract.css";
+import Footer from "../../components/Footer";
+import Breadcrumbs from "../../components/Breadcrumbs";
+import { Menu, MenuItem, Button, Typography } from "@mui/material";
+import arrow_white from "../../assets/arrow_white.png";
+import { auth, db } from "../../firebaseConfig";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  orderBy,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 function ProfessionalContract() {
-  // Breadcrumbs for navigation display
-  const breadcrumbPages = [
-    { name: 'ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ' },
-    { name: 'ΑΙΤΗΣΕΙΣ' },
-  ];
-
-  // State for dropdown and notifications
   const [anchorEl, setAnchorEl] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
-  
   const navigate = useNavigate();
 
-  // Listen for authentication state changes and store current user
   useEffect(() => {
-    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+    const unsub = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
     });
-    return () => unsubscribeAuth();
+    return () => unsub();
   }, []);
 
-  // Dropdown menu handlers
+  // Accept => status = "accepted"
+  const handleAccept = async (notifId) => {
+    try {
+      const notifRef = doc(db, "notifications", notifId);
+      await updateDoc(notifRef, { status: "accepted" });
+    } catch (error) {
+      console.error("Error updating notification status:", error);
+    }
+  };
+
+  // Decline => status = "declined"
+  const handleDecline = async (notifId) => {
+    try {
+      const notifRef = doc(db, "notifications", notifId);
+      await updateDoc(notifRef, { status: "declined" });
+    } catch (error) {
+      console.error("Error updating notification status:", error);
+    }
+  };
+
+  // Helper for computing one month later
+  const calculateEndDate = (startJSDate) => {
+    const end = new Date(startJSDate.getTime());
+    end.setMonth(end.getMonth() + 1);
+    return end.toLocaleDateString("el-GR");
+  };
+
+  // Fetch notifications for the current professional
+  useEffect(() => {
+    if (!currentUser) return;
+
+    const q = query(
+      collection(db, "notifications"),
+      where("to", "==", currentUser.uid),
+      orderBy("timestamp", "desc")
+    );
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const notifList = snapshot.docs.map((docSnap, index) => ({
+        id: docSnap.id,
+        index: index + 1, // e.g. "Αίτηση #1"
+        ...docSnap.data(),
+      }));
+      setNotifications(notifList);
+    });
+    return () => unsubscribe();
+  }, [currentUser]);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -40,46 +87,12 @@ function ProfessionalContract() {
     setAnchorEl(null);
   };
 
-  // Navigation functions for switching between sections
-  const handle1 = () => {
-    navigate('../ProfessionalAllAppointments');
-  };
-  const handle2 = () => {
-    navigate('../ProfessionalContract');
-  };
-
-  // Listen for notifications directed to the logged-in professional.
-  // The query orders by 'timestamp', so we filter out any documents that are missing the timestamp.
-  useEffect(() => {
-    if (!currentUser) return; // Do not run query until currentUser is available
-
-    const q = query(
-      collection(db, 'notifications'),
-      where('to', '==', currentUser.uid),
-      orderBy('timestamp', 'desc')
-    );
-
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      try {
-        const notifList = snapshot.docs
-          .map((doc) => ({ id: doc.id, ...doc.data() }))
-          // Filter out documents that are missing the timestamp (to avoid ordering issues)
-          .filter((notif) => notif.timestamp);
-        setNotifications(notifList);
-      } catch (error) {
-        console.error("Error processing snapshot: ", error);
-      }
-    });
-
-    return () => unsubscribe();
-  }, [currentUser]);
-
   return (
     <>
       <Breadcrumbs
-        page1={'ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ'}
-        link1={'../ProfessionalContract'}
-        page2={'ΑΙΤΗΣΕΙΣ'}
+        page1={"ΑΙΤΗΜΑΤΑ ΣΥΝΕΡΓΑΣΙΑΣ"}
+        link1={"../ProfessionalContract"}
+        page2={"ΑΙΤΗΣΕΙΣ"}
       />
 
       <div className="ProfessionalContractContainer">
@@ -87,19 +100,25 @@ function ProfessionalContract() {
           <div className="card-header1">
             <ul className="nav1 nav-tabs1 card-header-tabs">
               <li className="nav-item1">
-                <button className="nav-link1" onClick={handle1}>
+                <button
+                  className="nav-link1"
+                  onClick={() => navigate("../ProfessionalAllAppointments")}
+                >
                   ΡΑΝΤΕΒΟΥ
                 </button>
               </li>
               <li className="nav-item1">
-                <button className="nav-link1 active" onClick={handle2}>
+                <button
+                  className="nav-link1 active"
+                  onClick={() => navigate("../ProfessionalContract")}
+                >
                   ΑΙΤΗΣΕΙΣ ΣΥΝΕΡΓΑΣΙΑΣ
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Dropdown menu for sorting by date */}
+          {/* Sorting button */}
           <div>
             <Button
               aria-controls="simple-menu"
@@ -111,7 +130,7 @@ function ProfessionalContract() {
                 <img
                   src={arrow_white}
                   alt="arrow"
-                  style={{ width: '13px', height: '13px', marginLeft: '8px' }}
+                  style={{ width: "13px", height: "13px", marginLeft: "8px" }}
                 />
               }
             >
@@ -130,31 +149,42 @@ function ProfessionalContract() {
           </div>
 
           <div className="card-body1">
-            <div>
-              {notifications.length > 0 ? (
-                notifications.map((notif) => (
+            {notifications.length > 0 ? (
+              notifications.map((notif) => {
+                // Convert Firestore timestamp -> JS Date
+                let startJSDate = null;
+                if (notif.startDate && notif.startDate.seconds) {
+                  startJSDate = new Date(notif.startDate.seconds * 1000);
+                }
+                const startDisplay = startJSDate
+                  ? startJSDate.toLocaleDateString("el-GR")
+                  : "N/A";
+
+                const endDate = startJSDate
+                  ? calculateEndDate(startJSDate)
+                  : "N/A";
+
+                return (
                   <div key={notif.id}>
                     <ContractProfessionalCard
-                      type={notif.type}      // e.g., collaborationRequest
-                      number={notif.adId}     // Advertisement ID
-                      name={notif.parentEmail}  // Display parent's email (or other info)
-                      start={
-                        notif.timestamp
-                          ? new Date(notif.timestamp.seconds * 1000).toLocaleDateString()
-                          : ''
-                      }
-                      finish={''}
-                      age={''}
+                      number={notif.index}
+                      name={notif.parentEmail || "N/A"}
+                      start={startDisplay}
+                      finish={endDate}
+                      age={notif.childAge || "N/A"} // <--- Show child's age
+                      status={notif.status}
+                      onAccept={() => handleAccept(notif.id)}
+                      onDecline={() => handleDecline(notif.id)}
                     />
                     <br />
                   </div>
-                ))
-              ) : (
-                <Typography variant="body2">
-                  Δεν υπάρχουν αιτήματα συνεργασίας.
-                </Typography>
-              )}
-            </div>
+                );
+              })
+            ) : (
+              <Typography variant="body2">
+                Δεν υπάρχουν αιτήματα συνεργασίας.
+              </Typography>
+            )}
           </div>
         </div>
       </div>

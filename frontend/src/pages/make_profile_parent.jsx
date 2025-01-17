@@ -140,7 +140,7 @@ export default function ProfilePersonal() {
   return (
     <Box>
       <div className="personInfo1">
-        <h1>ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ</h1>
+        <h1>ΔΗΜΙΟΥΡΓΙΑ/ΕΠΕΞΕΡΓΑΣΙΑ ΠΡΟΦΙΛ</h1>
         <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>ΤΟ ΠΡΟΦΙΛ ΜΟΥ</h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>

@@ -283,7 +283,6 @@ export default function ProfileProfessional() {
                 title: 'Ο ταχυδρομικός κωδικός πρέπει να έχει 5 αριθμούς',
               }}
             />
-            <TextField required placeholder="Ηλικία Παιδιού προς φύλαξη" name="kidsAge" label="Ηλικία Παιδιού" value={formData.kidsAge} onChange={handleChange} size="small" />
 
             {/* Optional cohabitant checkbox and extra fields */}
             <div style={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}>

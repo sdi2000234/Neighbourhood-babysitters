@@ -21,7 +21,14 @@ import {
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import { onAuthStateChanged } from 'firebase/auth';
-import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  addDoc,
+  serverTimestamp,
+} from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
 import ProfessionalDetails from './ProfessionalDetails';
 import Pagination from '@mui/material/Pagination';
@@ -53,14 +60,18 @@ const FindProfessionalUnconnected = () => {
     'Ελληνικά', 'Ουαλικά', 'Αλβανικά', 'Αρμενικά', 'Γεωργιανά',
   ];
 
+  // Fetch ads from Firestore and load linked professional details
   useEffect(() => {
     const fetchAds = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'ads'));
-        const adsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const adsList = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
         setAds(adsList);
 
-        // Fetch professionals details from 'users' collection
+        // For each ad, fetch the corresponding professional details
         const professionalsMap = {};
         await Promise.all(
           adsList.map(async (ad) => {
@@ -81,6 +92,7 @@ const FindProfessionalUnconnected = () => {
     fetchAds();
   }, []);
 
+  // Listen for auth state to determine logged-in user and whether they’re a keeper (child care provider)
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (!firebaseUser) {
@@ -88,7 +100,6 @@ const FindProfessionalUnconnected = () => {
         setIsKeeper(false);
       } else {
         setUser(firebaseUser);
-
         try {
           const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
           if (userDoc.exists()) {
@@ -127,6 +138,7 @@ const FindProfessionalUnconnected = () => {
     setSelectedProfessional(null);
   };
 
+  // A reusable component for buttons that may require login or different styling based on user role
   const ButtonUse = ({ action, children }) => {
     if (!user) {
       return (
@@ -176,6 +188,33 @@ const FindProfessionalUnconnected = () => {
         {children}
       </Button>
     );
+  };
+
+  // When a parent clicks the "ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ" button,
+  // create a notification document in Firestore for the professional.
+  const handleSendCollaborationRequest = async (ad, proDetails) => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+    try {
+      const notificationData = {
+        from: user.uid, // Parent's ID
+        to: ad.userId, // Professional's ID (owner of the ad)
+        adId: ad.id, // The advertisement ID
+        type: 'collaborationRequest',
+        timestamp: serverTimestamp(),
+        status: 'pending',
+        parentEmail: user.email,
+        professionalName: `${proDetails.firstName} ${proDetails.lastName}`,
+      };
+
+      await addDoc(collection(db, 'notifications'), notificationData);
+      alert('Η αίτηση συνεργασίας εστάλη!');
+    } catch (error) {
+      console.error('Error sending collaboration request:', error);
+      alert('Κάτι πήγε στραβά. Παρακαλώ δοκιμάστε ξανά αργότερα.');
+    }
   };
 
   return (
@@ -244,6 +283,7 @@ const FindProfessionalUnconnected = () => {
             </Button>
           </Box>
         </Box>
+
         {/* Professionals display section */}
         <Grid container spacing={2}>
           {currentProfessionals.map((pro) => {
@@ -269,28 +309,89 @@ const FindProfessionalUnconnected = () => {
                     ⭐ {pro.rating} ({pro.reviews} αξιολογήσεις)
                   </Typography>
                   <Divider sx={{ my: 1 }} />
-                  <Typography variant="body2" sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1, marginTop: 3 }}>
-                    <img src={cake} alt="age" style={{ width: '20px', height: 'auto', marginRight: 8 }} />
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      alignSelf: 'center',
+                      fontSize: 18,
+                      marginBottom: 1,
+                      marginTop: 3,
+                    }}
+                  >
+                    <img
+                      src={cake}
+                      alt="age"
+                      style={{ width: '20px', height: 'auto', marginRight: 8 }}
+                    />
                     Ηλικία: {professionalDetails.yearOfBirth}
                   </Typography>
-                  <Typography variant="body2" sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1 }}>
-                    <img src={location} alt="location" style={{ width: '20px', height: 'auto', marginRight: 8 }} />
+                  <Typography
+                    variant="body2"
+                    sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1 }}
+                  >
+                    <img
+                      src={location}
+                      alt="location"
+                      style={{ width: '20px', height: 'auto', marginRight: 8 }}
+                    />
                     Περιοχή: {professionalDetails.area}
                   </Typography>
-                  <Typography variant="body2" sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1, marginTop: 2 }}>
-                    <img src={experience} alt="experience" style={{ width: '20px', height: 'auto', marginRight: 8 }} />
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      alignSelf: 'center',
+                      fontSize: 18,
+                      marginBottom: 1,
+                      marginTop: 2,
+                    }}
+                  >
+                    <img
+                      src={experience}
+                      alt="experience"
+                      style={{ width: '20px', height: 'auto', marginRight: 8 }}
+                    />
                     Εμπειρία: {professionalDetails.experience || 0} χρόνια
                   </Typography>
                   <Button
                     variant="contained"
-                    sx={{ mt: 2, backgroundColor: '#737373', color: '#fff', '&:hover': { backgroundColor: '#d3d3d3' } }}
+                    sx={{
+                      mt: 2,
+                      backgroundColor: '#737373',
+                      color: '#fff',
+                      '&:hover': { backgroundColor: '#d3d3d3' },
+                    }}
                     onClick={() => handleOpenModal(pro)}
                   >
                     ΠΛΗΡΟΦΟΡΙΕΣ
                   </Button>
-                  <Box sx={{ display: 'flex', gap: 2, mt: 4, alignContent: 'center', justifyContent: 'center' }}>
-                    <ButtonUse action={() => navigate('/ParentAppointment', { state: { ProfadId: pro.userId, babysitterName: `${professionalDetails.firstName} ${professionalDetails.lastName}` } })}>ΡΑΝΤΕΒΟΥ</ButtonUse>
-                    <ButtonUse action={() => navigate('/ParentContractRenew')}>ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ</ButtonUse>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      gap: 2,
+                      mt: 4,
+                      alignContent: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <ButtonUse
+                      action={() =>
+                        navigate('/ParentAppointment', {
+                          state: {
+                            ProfadId: pro.userId,
+                            babysitterName: `${professionalDetails.firstName} ${professionalDetails.lastName}`,
+                          },
+                        })
+                      }
+                    >
+                      ΡΑΝΤΕΒΟΥ
+                    </ButtonUse>
+                    <ButtonUse
+                      action={() =>
+                        handleSendCollaborationRequest(pro, professionalDetails)
+                      }
+                    >
+                      ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ
+                    </ButtonUse>
                   </Box>
                 </Paper>
               </Grid>
@@ -298,15 +399,49 @@ const FindProfessionalUnconnected = () => {
           })}
         </Grid>
 
-        <Pagination count={totalPages} page={currentPage} onChange={handlePageChange} sx={{ mt: 4, display: 'flex', justifyContent: 'center' }} />
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}
+        />
       </Container>
 
-      <Modal open={openModal} onClose={handleCloseModal} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Box sx={{ width: '90%', maxWidth: '800px', maxHeight: '90vh', bgcolor: 'background.paper', borderRadius: 2, p: 4, boxShadow: 24, overflowY: 'auto', position: 'relative' }}>
-          <Button onClick={handleCloseModal} sx={{ position: 'absolute', top: 12, right: 10, minWidth: 'auto', padding: 1, color: '#013372', '&:hover': { color: 'red' } }}>
+      <Modal
+        open={openModal}
+        onClose={handleCloseModal}
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <Box
+          sx={{
+            width: '90%',
+            maxWidth: '800px',
+            maxHeight: '90vh',
+            bgcolor: 'background.paper',
+            borderRadius: 2,
+            p: 4,
+            boxShadow: 24,
+            overflowY: 'auto',
+            position: 'relative',
+          }}
+        >
+          <Button
+            onClick={handleCloseModal}
+            sx={{
+              position: 'absolute',
+              top: 12,
+              right: 10,
+              minWidth: 'auto',
+              padding: 1,
+              color: '#013372',
+              '&:hover': { color: 'red' },
+            }}
+          >
             <CloseIcon />
           </Button>
-          {selectedProfessional && <ProfessionalDetails professional={selectedProfessional} />}
+          {selectedProfessional && (
+            <ProfessionalDetails professional={selectedProfessional} />
+          )}
         </Box>
       </Modal>
 

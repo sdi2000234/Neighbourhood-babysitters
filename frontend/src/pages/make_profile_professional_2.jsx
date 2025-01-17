@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   TextField,
@@ -7,33 +7,59 @@ import {
 } from '@mui/material';
 import ProgressTracker from '../components/ProgressTrackerCreateProfile';
 import Footer from '../components/Footer';
-import { db } from '../firebaseConfig'; // Adjust based on your Firebase configuration
-import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebaseConfig'; 
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 export default function DimiourgiaProfileProfessional2() {
   const navigate = useNavigate();
+  const auth = getAuth();
+  const userId = auth.currentUser?.uid;
 
+  const [educationLevel, setEducationLevel] = useState('');
   const [educationPdf, setEducationPdf] = useState(null);
   const [firstAidPdf, setFirstAidPdf] = useState(null);
   const [educationMsg, setEducationMsg] = useState('');
   const [firstAidMsg, setFirstAidMsg] = useState('');
+
+  // If you want to pre-fill the educationLevel from Firestore (if already exists):
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!userId) return;
+      try {
+        const docRef = doc(db, 'users', userId);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          if (data.educationLevel) setEducationLevel(data.educationLevel);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+    fetchData();
+  }, [userId]);
 
   const handlePrev = () => {
     navigate('/profesionaleditstep1'); // Adjust route accordingly
   };
 
   const handleNext = async () => {
+    if (!userId) {
+      alert('Πρέπει πρώτα να συνδεθείτε.');
+      return;
+    }
     if (!educationPdf || !firstAidPdf) {
       alert('Παρακαλώ επισυνάψτε όλα τα απαραίτητα αρχεία πριν συνεχίσετε.');
       return;
     }
 
     try {
-      const userId = "user-id-placeholder"; // Replace with actual user ID logic
       const docRef = doc(db, 'users', userId);
       await setDoc(
         docRef,
         {
+          educationLevel: educationLevel || '',  // Also save the typed education level
           educationPdf,
           firstAidPdf,
         },
@@ -49,24 +75,25 @@ export default function DimiourgiaProfileProfessional2() {
 
   const handleFileUpload = (event, setFile, setMessage) => {
     const file = event.target.files[0];
-
-    if (file) {
-      if (file.type !== 'application/pdf') {
-        setMessage('Παρακαλώ επιλέξτε ένα αρχείο τύπου PDF.');
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = () => {
-        const base64Pdf = reader.result;
-        setFile(base64Pdf);
-        setMessage('Το αρχείο επισυνάφθηκε επιτυχώς!');
-      };
-      reader.readAsDataURL(file);
-    } else {
+    if (!file) {
       setFile(null);
-      setMessage('Αποτυχία επισύναψης αρχείου.');
+      setMessage('Δεν επιλέχθηκε κάποιο αρχείο.');
+      return;
     }
+
+    if (file.type !== 'application/pdf') {
+      setFile(null);
+      setMessage('Παρακαλώ επιλέξτε ένα αρχείο τύπου PDF.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64Pdf = reader.result; // e.g. "data:application/pdf;base64,JVBERi0xLjQK..."
+      setFile(base64Pdf);
+      setMessage('Το αρχείο επισυνάφθηκε επιτυχώς!');
+    };
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -84,9 +111,11 @@ export default function DimiourgiaProfileProfessional2() {
         <TextField
           style={{ backgroundColor: '#fff', borderRadius: '5px' }}
           label="Επίπεδο Εκπαίδευσης"
-          placeholder="π.χ. Πτυχίο ΕΠΑΛ πώς: 'Βοηθός Βρεφοκομικών'"
+          placeholder="π.χ. Πτυχίο ΕΠΑΛ (Βοηθός Βρεφοκομικών)"
           size="small"
           fullWidth
+          value={educationLevel}
+          onChange={(e) => setEducationLevel(e.target.value)}
         />
 
         <Typography style={{ fontWeight: 'bold', marginTop: '30px' }}>
@@ -114,7 +143,12 @@ export default function DimiourgiaProfileProfessional2() {
           />
         </Button>
         {educationMsg && (
-          <Typography style={{ marginTop: '10px', color: educationMsg.includes('επιτυχώς') ? 'green' : 'red' }}>
+          <Typography
+            style={{
+              marginTop: '10px',
+              color: educationMsg.includes('επιτυχώς') ? 'green' : 'red',
+            }}
+          >
             {educationMsg}
           </Typography>
         )}
@@ -144,7 +178,12 @@ export default function DimiourgiaProfileProfessional2() {
           />
         </Button>
         {firstAidMsg && (
-          <Typography style={{ marginTop: '10px', color: firstAidMsg.includes('επιτυχώς') ? 'green' : 'red' }}>
+          <Typography
+            style={{
+              marginTop: '10px',
+              color: firstAidMsg.includes('επιτυχώς') ? 'green' : 'red',
+            }}
+          >
             {firstAidMsg}
           </Typography>
         )}

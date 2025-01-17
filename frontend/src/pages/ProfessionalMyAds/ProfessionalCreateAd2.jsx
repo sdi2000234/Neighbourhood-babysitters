@@ -7,7 +7,7 @@ import { getAuth } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 
-function ProfessionalCreateAd2(canEdit) {
+function ProfessionalCreateAd2({ canEdit }) {
   const navigate = useNavigate();
   const auth = getAuth();
   const userId = auth.currentUser?.uid;
@@ -33,7 +33,7 @@ function ProfessionalCreateAd2(canEdit) {
         if (docSnap.exists()) {
           setUserData(docSnap.data());
         } else {
-          console.error("No user data found in Firestore.");
+          console.error("No user data found in Firestore for this user.");
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -70,6 +70,7 @@ function ProfessionalCreateAd2(canEdit) {
             <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p>
           )}
           <br />
+
           <p className="infoType">Πιστοποιητικό Εκπαίδευσης:</p>
           {userData.educationPdf ? (
             <p className="infoBox">
@@ -85,6 +86,7 @@ function ProfessionalCreateAd2(canEdit) {
             <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p>
           )}
           <br />
+
           <p className="infoType">Πιστοποιητικό Πρώτων Βοηθειών:</p>
           {userData.firstAidPdf ? (
             <p className="infoBox">
@@ -99,13 +101,15 @@ function ProfessionalCreateAd2(canEdit) {
           ) : (
             <p className="missingInfo">*Αυτό το στοιχείο λείπει*</p>
           )}
+
           <p className="message">
             Τα παραπάνω στοιχεία έχουν συμπληρωθεί αυτόματα με βάση τα στοιχεία
             που έχετε υποβάλλει μέσω του Προφίλ σας. Αν κάποιο από αυτά λείπει
-            ή χρειάζεται αλλαγή θα πρέπει να γίνει μέσω της επεξεργασίας του
+            ή χρειάζεται αλλαγή, θα πρέπει να γίνει μέσω της επεξεργασίας του
             Προφίλ σας. Η αλλαγή θα εμφανιστεί αυτόματα σε όλες τις αγγελίες που
             έχετε δημιουργήσει.
           </p>
+
           <h3>Πιστοποιητικά Υγείας:</h3>
           <p className="message">
             Ενημερώνονται αυτόματα από τα συστήματα της ΗΔΙΚΑ. Αν κάποιο
@@ -136,6 +140,7 @@ function ProfessionalCreateAd2(canEdit) {
             </p>
           </div>
         </div>
+
         <div className="options2">
           <button onClick={handlePreviousStep}>
             <b>Προηγούμενο Βήμα</b>

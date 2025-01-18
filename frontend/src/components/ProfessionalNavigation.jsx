@@ -41,10 +41,16 @@ function ProfessionalNavigation({ currentNavPage }) {
   return (
     <div>
       <div className="navBar">
-        <img className="logo" alt="logo" src={govgr} />
+        <button className="logoButton" onClick={() => navigate('/')}>
+          <img className="logo" alt="logo" src={govgr} />
+        </button>
         <div className="switchRole">
           <p>Έχετε συνδεθεί ως Επαγγελματίας</p>
           <button onClick={handleSwitchRole}>Σύνδεση ως Γονέας/Κηδεμόνας</button>
+        </div>
+        <div className='navmoreButtons'>
+          <button onClick={() => navigate('/TermsForVoucher')}>Προϋποθέσεις για Voucher</button>
+          <button onClick={() => navigate('/FindEmployment')}>Βρείτε Εργασία</button>
         </div>
         <div className="profile">
           <img className="pfp" alt="profile" src={userPfp === "" ? emptyProfile : userPfp} />

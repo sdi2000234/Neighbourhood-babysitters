@@ -42,10 +42,17 @@ function ParentNavigation({ currentNavPage }) {
   return (
     <div>
       <div className="navBar">
-        <img className="logo" alt="logo" src={govgr} />
+        <button className="logoButton" onClick={() => navigate('/')}>
+          <img className="logo" alt="logo" src={govgr} />
+        </button>
+
         <div className="switchRole">
           <p>Έχετε συνδεθεί ως Γονέας/Κηδεμόνας</p>
           <button onClick={handleSwitchRole}>Σύνδεση ως Επαγγελματίας</button>
+        </div>
+        <div className='navmoreButtons'>
+          <button onClick={() => navigate('/whoweare')}>Σχετικά με την υπηρεσία</button>
+          <button onClick={() => navigate('/TermsForVoucher')}>Προϋποθέσεις για Voucher</button>
         </div>
         <div className="profile">
           <img className="pfp" alt="profile" src={userPfp === "" ? emptyProfile : userPfp} />

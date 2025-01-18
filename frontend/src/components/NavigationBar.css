@@ -34,7 +34,7 @@
     position: relative;
     display: flex;
     padding: 10px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -51,12 +51,17 @@
     color: #000;
 }
 
-/* Logo του gov */
-.navBar .logo {
-    height: 50px;
-    cursor: pointer;
-    padding: 10px;
+.logoButton {
+    background: none; /* Αφαιρεί το background */
+    border: none; /* Αφαιρεί το περίγραμμα */
+    padding: 0; /* Αφαιρεί padding για να είναι μόνο η εικόνα */
+    cursor: pointer; /* Προσθέτει δείκτη για button */
 }
+
+.logo {
+    height: 50px; /* Προσαρμόζεις το μέγεθος της εικόνας */
+}
+
 
 /* Ό,τι μπει ενδιάμεσα από το προφίλ και το σήμα gov */
 .navOptions {
@@ -144,11 +149,15 @@
     color: #00aeef;
     font-weight: bold;
     font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
 }
 
 .switchRole p {
     padding: 8px;
     margin-right: 15px;
+    align-self: center;
 }
 
 .switchRole button {
@@ -161,6 +170,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    align-self: center;
 }
 
 .switchRole button a {
@@ -190,4 +200,26 @@
 .coOpReq
 {
     width: 235px;
+}
+
+.navmoreButtons {
+    margin-left: auto; /* Πιέζει τα κουμπιά προς τα δεξιά */
+    display: flex;
+    gap: 8px; /* Μικρό κενό ανάμεσα στα κουμπιά */
+}
+
+.navmoreButtons button {
+    background-color: #013372;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px; /* Μειωμένο padding για να φαίνονται μικρότερα */
+    cursor: pointer;
+    font-size: 14px; /* Μικρότερη γραμματοσειρά */
+    font-weight: bold;
+}
+
+
+.profile {
+    margin-right: 10px; /* Μειώνει το διάστημα μεταξύ profile και των κουμπιών */
 }

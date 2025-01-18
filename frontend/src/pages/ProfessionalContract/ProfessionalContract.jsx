@@ -1,4 +1,4 @@
-// File: src/pages/ProfessionalContract.jsx
+// src/pages/ProfessionalContract.jsx
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -151,15 +151,21 @@ function ProfessionalContract() {
           <div className="card-body1">
             {notifications.length > 0 ? (
               notifications.map((notif) => {
-                // Convert Firestore timestamp -> JS Date
+                // The parent stores "startContract" as a string
+                const { startContract } = notif; // e.g. "2023-01-20" or fallback
+
                 let startJSDate = null;
-                if (notif.startDate && notif.startDate.seconds) {
-                  startJSDate = new Date(notif.startDate.seconds * 1000);
+                if (startContract) {
+                  const parsed = new Date(startContract);
+                  if (!isNaN(parsed)) {
+                    startJSDate = parsed;
+                  }
                 }
                 const startDisplay = startJSDate
                   ? startJSDate.toLocaleDateString("el-GR")
                   : "N/A";
 
+                // We can compute end date if a valid start
                 const endDate = startJSDate
                   ? calculateEndDate(startJSDate)
                   : "N/A";
@@ -171,7 +177,7 @@ function ProfessionalContract() {
                       name={notif.parentEmail || "N/A"}
                       start={startDisplay}
                       finish={endDate}
-                      age={notif.childAge || "N/A"} // <--- Show child's age
+                      age={notif.childAge || "N/A"}
                       status={notif.status}
                       onAccept={() => handleAccept(notif.id)}
                       onDecline={() => handleDecline(notif.id)}

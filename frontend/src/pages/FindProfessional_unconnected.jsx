@@ -36,36 +36,24 @@ import ProfessionalDetails from './ProfessionalDetails';
 import Pagination from '@mui/material/Pagination';
 import CloseIcon from '@mui/icons-material/Close';
 
-// Example images (adjust to your own file paths)
 import cake from '../assets/cake_black.png';
 import location from '../assets/location_black.png';
 import experience from '../assets/briefcase_black.png';
 
 const FindProfessionalUnconnected = () => {
-  // For filters
   const [selectedLanguage, setSelectedLanguage] = useState('');
-  
-  // For pagination
   const [currentPage, setCurrentPage] = useState(1);
   const professionalsPerPage = 9;
-
-  // Navigation & user state
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [isKeeper, setIsKeeper] = useState(false);
-
-  // For the modal with more professional details
   const [openModal, setOpenModal] = useState(false);
   const [selectedProfessional, setSelectedProfessional] = useState(null);
-
-  // Data from Firestore
   const [ads, setAds] = useState([]);
   const [professionalsData, setProfessionalsData] = useState({});
-
-  // We’ll store the parent's child's age from their user doc
   const [kidsAge, setKidsAge] = useState(null);
+  const [connections, setConnections] = useState({});
 
-  // A sample list of languages (adjust as needed)
   const languages = [
     'Αγγλικά', 'Γερμανικά', 'Ολλανδικά', 'Φλαμανδικά', 'Αφρικάανς', 'Δανικά',
     'Σουηδικά', 'Νορβηγικά', 'Ισλανδικά', 'Φεροϊκά', 'Ισπανικά', 'Πορτογαλικά',
@@ -76,7 +64,6 @@ const FindProfessionalUnconnected = () => {
     'Ελληνικά', 'Ουαλικά', 'Αλβανικά', 'Αρμενικά', 'Γεωργιανά',
   ];
 
-  // 1) Listen for auth state changes & get parent's kidsAge
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (!firebaseUser) {
@@ -89,8 +76,6 @@ const FindProfessionalUnconnected = () => {
           if (userDoc.exists()) {
             const data = userDoc.data();
             setIsKeeper(!!data.isKeeper);
-
-            // Suppose parent's user doc has a "kidsAge" field
             if (data.kidsAge) {
               setKidsAge(data.kidsAge);
             }
@@ -106,7 +91,6 @@ const FindProfessionalUnconnected = () => {
     return () => unsubscribe();
   }, []);
 
-  // 2) Fetch all ads & corresponding professionals
   useEffect(() => {
     const fetchAds = async () => {
       try {
@@ -117,7 +101,6 @@ const FindProfessionalUnconnected = () => {
         }));
         setAds(adsList);
 
-        // For each ad, fetch the pro's user doc
         const professionalsMap = {};
         await Promise.all(
           adsList.map(async (ad) => {
@@ -138,7 +121,28 @@ const FindProfessionalUnconnected = () => {
     fetchAds();
   }, []);
 
-  // 3) Pagination logic
+  useEffect(() => {
+    if (user) {
+      const fetchConnections = async () => {
+        try {
+          const querySnapshot = await getDocs(collection(db, 'connections'));
+          const parentConnections = {};
+          querySnapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            if (data.parentId === user.uid && data.type === 'appointment') {
+              parentConnections[data.professionalId] = true;
+            }
+          });
+          setConnections(parentConnections);
+        } catch (error) {
+          console.error('Error fetching connections:', error);
+        }
+      };
+
+      fetchConnections();
+    }
+  }, [user]);
+
   const totalPages = Math.ceil(ads.length / professionalsPerPage);
   const currentProfessionals = ads.slice(
     (currentPage - 1) * professionalsPerPage,
@@ -149,7 +153,6 @@ const FindProfessionalUnconnected = () => {
     setCurrentPage(value);
   };
 
-  // 4) Modal open/close
   const handleOpenModal = (ad) => {
     setSelectedProfessional(ad);
     setOpenModal(true);
@@ -159,8 +162,7 @@ const FindProfessionalUnconnected = () => {
     setSelectedProfessional(null);
   };
 
-  // 5) Button logic: disable if not logged in or if isKeeper
-  const ButtonUse = ({ action, children }) => {
+  const ButtonUse = ({ action, children, disabled }) => {
     if (!user) {
       return (
         <Button
@@ -178,7 +180,7 @@ const FindProfessionalUnconnected = () => {
         </Button>
       );
     }
-    if (isKeeper) {
+    if (isKeeper || disabled) {
       return (
         <Button
           variant="outlined"
@@ -209,19 +211,15 @@ const FindProfessionalUnconnected = () => {
     );
   };
 
-  /**
-   * Creates a 'notifications' doc in Firestore with child's age
-   */
   const handleSendCollaborationRequest = async (ad, proDetails) => {
     if (!user) {
-      // Must be logged in first
       navigate('/login');
       return;
     }
     try {
       await addDoc(collection(db, 'notifications'), {
-        from: user.uid,                // parent's UID
-        to: ad.userId,                 // professional's UID
+        from: user.uid,
+        to: ad.userId,
         adId: ad.id,
         type: 'collaborationRequest',
         timestamp: serverTimestamp(),
@@ -229,7 +227,7 @@ const FindProfessionalUnconnected = () => {
         status: 'pending',
         parentEmail: user.email,
         professionalName: `${proDetails.firstName} ${proDetails.lastName}`,
-        childAge: kidsAge || 'N/A',    // <-- Here we include the child's age
+        childAge: kidsAge || 'N/A',
       });
       alert('Η αίτηση συνεργασίας εστάλη!');
     } catch (error) {
@@ -245,9 +243,6 @@ const FindProfessionalUnconnected = () => {
           ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ
         </Typography>
 
-        {/* ==========================
-            FILTER / SEARCH SECTION
-           ========================== */}
         <Box
           sx={{
             backgroundColor: '#f8f9fa',
@@ -345,12 +340,8 @@ const FindProfessionalUnconnected = () => {
           </Box>
         </Box>
 
-        {/* ==========================
-            PROFESSIONALS SECTION
-           ========================== */}
         <Grid container spacing={2}>
           {currentProfessionals.map((adItem) => {
-            // Retrieve the professional's details
             const professionalDetails = professionalsData[adItem.userId] || {};
 
             return (
@@ -374,8 +365,6 @@ const FindProfessionalUnconnected = () => {
                     ⭐ {adItem.rating || 0} ({adItem.reviews || 0} αξιολογήσεις)
                   </Typography>
                   <Divider sx={{ my: 1 }} />
-
-                  {/* Some info: age, location, experience */}
                   <Typography
                     variant="body2"
                     sx={{
@@ -419,8 +408,6 @@ const FindProfessionalUnconnected = () => {
                     />
                     Εμπειρία: {professionalDetails.experience || 0} χρόνια
                   </Typography>
-
-                  {/* Button: show modal with more info */}
                   <Button
                     variant="contained"
                     sx={{
@@ -433,8 +420,6 @@ const FindProfessionalUnconnected = () => {
                   >
                     ΠΛΗΡΟΦΟΡΙΕΣ
                   </Button>
-
-                  {/* Ραντεβού / Αίτηση Buttons */}
                   <Box
                     sx={{
                       display: 'flex',
@@ -448,11 +433,12 @@ const FindProfessionalUnconnected = () => {
                       action={() =>
                         navigate('/ParentAppointment', {
                           state: {
-                            ProfadId: adItem.userId,
-                            babysitterName: `${professionalDetails.firstName} ${professionalDetails.lastName}`,
+                          ProfadId: adItem.userId,
+                          ProfadId: adItem.userId,babysitterName: `${professionalDetails.firstName} ${professionalDetails.lastName}`,
                           },
                         })
                       }
+                      disabled={connections[adItem.userId]}
                     >
                       ΡΑΝΤΕΒΟΥ
                     </ButtonUse>
@@ -461,7 +447,7 @@ const FindProfessionalUnconnected = () => {
                         handleSendCollaborationRequest(adItem, professionalDetails)
                       }
                     >
-                      ΑΙΤΗΣΕΙΣ ΣΥΝΕΡΓΑΣΙΑΣ
+                      ΑΙΤΗΣΗ ΣΥΝΕΡΓΑΣΙΑΣ
                     </ButtonUse>
                   </Box>
                 </Paper>
@@ -469,7 +455,6 @@ const FindProfessionalUnconnected = () => {
             );
           })}
         </Grid>
-
         {/* Pagination */}
         <Pagination
           count={totalPages}
@@ -478,7 +463,6 @@ const FindProfessionalUnconnected = () => {
           sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}
         />
       </Container>
-
       {/* ==========================
           MODAL FOR MORE DETAILS
          ========================== */}
@@ -519,7 +503,6 @@ const FindProfessionalUnconnected = () => {
           )}
         </Box>
       </Modal>
-
       <Footer />
     </Box>
   );

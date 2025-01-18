@@ -63,7 +63,7 @@ function ParentProfile() {
     navigate('/profile-epeksergasia-parent');
   };
   const handleMoreAds = () => {
-    navigate('/ParentHireProfessional');
+    navigate('/FindProfessional_unconnected');
   };
 
   return (
@@ -100,7 +100,7 @@ function ParentProfile() {
               <button onClick={handleChange}>Επεξεργασία</button>
             </div>
             <div style={{ flexGrow: 1 }}>
-              <button onClick={handleMoreAds}>Αγαπημένες Αγγελίες</button>
+              <button onClick={handleMoreAds}>Εύρεση Επαγγελματία</button>
               <button className="logoutParentProfile" onClick={handleLogout}>
                 Αποσύνδεση
               </button>

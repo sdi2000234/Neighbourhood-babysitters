@@ -5,13 +5,15 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig'; // Adjust this to your Firebase configuration file
 import Footer from '../components/Footer';
 import ProgressTracker from '../components/ProgressTrackerCreateProfile';
+import { getAuth } from 'firebase/auth';
 
 export default function DimiourgiaProfileProfessional3() {
   const navigate = useNavigate();
   const [bioText, setBioText] = useState(''); // State for the bio text
   const [cvPdf, setCvPdf] = useState(null); // State for the PDF file
   const [uploadMsg, setUploadMsg] = useState(''); // Upload message
-  const userId = 'user-123'; // Replace with actual user ID from authentication
+  const auth = getAuth();
+  const userId = auth.currentUser?.uid; // Replace with actual user ID from authentication
 
   const handlePrev = () => {
     navigate('/profesionaleditstep2'); // Adjust route accordingly

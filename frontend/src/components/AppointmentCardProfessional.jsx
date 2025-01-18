@@ -71,7 +71,7 @@ function AppointmentCardProfessional({ connectionId, type, picLink, professional
     };
 
     const handleApplButton = () => {
-        navigate('/new-page');
+        navigate('/ParentContractRenew');
     };
 
     const handleMessage = () => {

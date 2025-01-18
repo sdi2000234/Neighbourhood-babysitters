@@ -64,7 +64,7 @@ function ParentAppointment() {
 
   const handleCancel = (event) => {
     event.preventDefault();
-    navigate('/ParentHireProfessional');
+    navigate('/FindProfessional_unconnected');
   };
 
   const handleSubmit = async (event) => {

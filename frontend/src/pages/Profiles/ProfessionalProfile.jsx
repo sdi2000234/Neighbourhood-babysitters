@@ -83,15 +83,15 @@ function ProfessionalProfile() {
 
         <div>
           <p className="infoType">Όνομα:</p>
-          <p className="infoBox">{userData.userName || 'Όνομα'}</p>
+          <p className="infoBox">{userData.firstName || 'Όνομα'}</p>
           <br />
           <p className="infoType">Επώνυμο:</p>
-          <p className="infoBox">{userData.userLastName || 'Επώνυμο'}</p>
+          <p className="infoBox">{userData.lastName || 'Επώνυμο'}</p>
 
           <div className="phoneAndEmailProfessionalProfile">
             <div style={{ flexGrow: 1 }}>
               <p className="infoType">Τηλέφωνο:</p>
-              <p className="infoBox">{userData.userPhone || 'Τηλέφωνο'}</p>
+              <p className="infoBox">{userData.phone || 'Τηλέφωνο'}</p>
             </div>
             <div style={{ flexGrow: 1 }}>
               <p className="infoType">Ηλεκτρονικό Ταχυδρομίο:</p>
@@ -105,7 +105,7 @@ function ProfessionalProfile() {
             <Card sx={{ maxWidth: 400, margin: '20px auto', padding: '10px', marginBottom: '40px' }}>
               <CardContent sx={{ maxHeight: 150, overflow: 'auto' }}>
                 <Typography variant="body2" color="text.primary">
-                  {userData.desc || 'Σύντομη Αυτοπαρουσίαση'}
+                  {userData.bioText || 'Σύντομη Αυτοπαρουσίαση'}
                 </Typography>
               </CardContent>
             </Card>

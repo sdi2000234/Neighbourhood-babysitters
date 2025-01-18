@@ -28,8 +28,6 @@ import {
   getDocs,
   doc,
   getDoc,
-  addDoc,
-  serverTimestamp,
 } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
 import ProfessionalDetails from './ProfessionalDetails';
@@ -50,6 +48,7 @@ const FindProfessionalUnconnected = () => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedProfessional, setSelectedProfessional] = useState(null);
   const [ads, setAds] = useState([]);
+  // Mapping pro userIds to user docs
   const [professionalsData, setProfessionalsData] = useState({});
   const [kidsAge, setKidsAge] = useState(null);
   const [connections, setConnections] = useState({});
@@ -72,9 +71,10 @@ const FindProfessionalUnconnected = () => {
       } else {
         setUser(firebaseUser);
         try {
-          const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
-          if (userDoc.exists()) {
-            const data = userDoc.data();
+          const userDocRef = doc(db, 'users', firebaseUser.uid);
+          const userDocSnap = await getDoc(userDocRef);
+          if (userDocSnap.exists()) {
+            const data = userDocSnap.data();
             setIsKeeper(!!data.isKeeper);
             if (data.kidsAge) {
               setKidsAge(data.kidsAge);
@@ -84,7 +84,6 @@ const FindProfessionalUnconnected = () => {
           }
         } catch (error) {
           console.error('Error checking if user is keeper:', error);
-          setIsKeeper(false);
         }
       }
     });
@@ -94,8 +93,8 @@ const FindProfessionalUnconnected = () => {
   useEffect(() => {
     const fetchAds = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'ads'));
-        const adsList = querySnapshot.docs.map((docSnap) => ({
+        const adsSnap = await getDocs(collection(db, 'ads'));
+        const adsList = adsSnap.docs.map((docSnap) => ({
           id: docSnap.id,
           ...docSnap.data(),
         }));
@@ -103,21 +102,20 @@ const FindProfessionalUnconnected = () => {
 
         const professionalsMap = {};
         await Promise.all(
-          adsList.map(async (ad) => {
-            if (ad.userId) {
-              const userDoc = await getDoc(doc(db, 'users', ad.userId));
-              if (userDoc.exists()) {
-                professionalsMap[ad.userId] = userDoc.data();
+          adsList.map(async (adItem) => {
+            if (adItem.userId) {
+              const pDoc = await getDoc(doc(db, 'users', adItem.userId));
+              if (pDoc.exists()) {
+                prosMap[adItem.userId] = pDoc.data();
               }
             }
           })
         );
-        setProfessionalsData(professionalsMap);
+        setProfessionalsData(prosMap);
       } catch (error) {
-        console.error('Error fetching ads or professionals:', error);
+        console.error('Error fetching ads/professionals:', error);
       }
     };
-
     fetchAds();
   }, []);
 
@@ -148,7 +146,6 @@ const FindProfessionalUnconnected = () => {
     (currentPage - 1) * professionalsPerPage,
     currentPage * professionalsPerPage
   );
-
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
@@ -168,13 +165,7 @@ const FindProfessionalUnconnected = () => {
         <Button
           variant="outlined"
           onClick={() => navigate('/login')}
-          sx={{
-            backgroundColor: '#fff',
-            color: '#013372',
-            '&:hover': {
-              backgroundColor: '#f0f0f0',
-            },
-          }}
+          sx={{ backgroundColor: '#fff', color: '#013372' }}
         >
           {children}
         </Button>
@@ -185,10 +176,7 @@ const FindProfessionalUnconnected = () => {
         <Button
           variant="outlined"
           disabled
-          sx={{
-            backgroundColor: '#fff',
-            color: '#d3d3d3',
-          }}
+          sx={{ backgroundColor: '#fff', color: '#d3d3d3' }}
         >
           {children}
         </Button>
@@ -198,13 +186,7 @@ const FindProfessionalUnconnected = () => {
       <Button
         variant="outlined"
         onClick={action}
-        sx={{
-          backgroundColor: '#fff',
-          color: '#013372',
-          '&:hover': {
-            backgroundColor: '#f0f0f0',
-          },
-        }}
+        sx={{ backgroundColor: '#fff', color: '#013372' }}
       >
         {children}
       </Button>
@@ -256,34 +238,11 @@ const FindProfessionalUnconnected = () => {
             Φίλτρα
           </Typography>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
-            {/* Περιοχή */}
-            <TextField
-              label="Περιοχή"
-              size="small"
-              sx={{ width: '200px' }}
-            />
-            {/* Ηλικία Από */}
-            <TextField
-              label="Ηλικία Από"
-              type="number"
-              size="small"
-              sx={{ width: '150px' }}
-            />
-            {/* Ηλικία Έως */}
-            <TextField
-              label="Ηλικία Έως"
-              type="number"
-              size="small"
-              sx={{ width: '150px' }}
-            />
-            {/* Έτη Εμπειρίας */}
-            <TextField
-              label="Έτη Εμπειρίας"
-              size="small"
-              sx={{ width: '150px' }}
-            />
+            <TextField label="Περιοχή" size="small" sx={{ width: '200px' }} />
+            <TextField label="Ηλικία Από" type="number" size="small" sx={{ width: '150px' }} />
+            <TextField label="Ηλικία Έως" type="number" size="small" sx={{ width: '150px' }} />
+            <TextField label="Έτη Εμπειρίας" size="small" sx={{ width: '150px' }} />
 
-            {/* Select Language */}
             <FormControl sx={{ width: '200px' }} size="small">
               <InputLabel id="language-label">Ξένη Γλώσσα</InputLabel>
               <Select
@@ -291,28 +250,17 @@ const FindProfessionalUnconnected = () => {
                 value={selectedLanguage}
                 onChange={(e) => setSelectedLanguage(e.target.value)}
                 label="Ξένη Γλώσσα"
-                MenuProps={{ PaperProps: { style: { maxHeight: 200 } } }}
               >
-                {languages.map((lang, index) => (
-                  <MenuItem key={index} value={lang}>
-                    {lang}
-                  </MenuItem>
-                ))}
+                {/* Example languages */}
+                <MenuItem value="Αγγλικά">Αγγλικά</MenuItem>
+                <MenuItem value="Γερμανικά">Γερμανικά</MenuItem>
               </Select>
             </FormControl>
 
-            {/* Checkboxes */}
-            <FormControlLabel
-              control={<Checkbox size="small" />}
-              label="Γνώση Νηπιακής Ψυχολογίας"
-            />
-            <FormControlLabel
-              control={<Checkbox size="small" />}
-              label="Γνώση Νοηματικής"
-            />
+            <FormControlLabel control={<Checkbox size="small" />} label="Γνώση Νηπιακής Ψυχολογίας" />
+            <FormControlLabel control={<Checkbox size="small" />} label="Γνώση Νοηματικής" />
           </Box>
 
-          {/* Radio for Πλήρης/Μερική */}
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
             <RadioGroup row sx={{ flexGrow: 1 }}>
               <FormControlLabel
@@ -326,15 +274,7 @@ const FindProfessionalUnconnected = () => {
                 label="Μερική Απασχόληση"
               />
             </RadioGroup>
-            {/* Search button */}
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: '#004080',
-                color: 'white',
-                '&:hover': { backgroundColor: '#003366' },
-              }}
-            >
+            <Button variant="contained" sx={{ backgroundColor: '#004080', color: 'white' }}>
               ΑΝΑΖΗΤΗΣΗ
             </Button>
           </Box>
@@ -359,7 +299,7 @@ const FindProfessionalUnconnected = () => {
                   }}
                 >
                   <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                    {professionalDetails.firstName} {professionalDetails.lastName}
+                    {professionalInfo.firstName} {professionalInfo.lastName}
                   </Typography>
                   <Typography variant="body2">
                     ⭐ {adItem.rating || 0} ({adItem.reviews || 0} αξιολογήσεις)
@@ -367,19 +307,14 @@ const FindProfessionalUnconnected = () => {
                   <Divider sx={{ my: 1 }} />
                   <Typography
                     variant="body2"
-                    sx={{
-                      alignSelf: 'center',
-                      fontSize: 18,
-                      marginBottom: 1,
-                      marginTop: 3,
-                    }}
+                    sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1, marginTop: 3 }}
                   >
                     <img
                       src={cake}
                       alt="age"
-                      style={{ width: '20px', height: 'auto', marginRight: 8 }}
+                      style={{ width: '20px', marginRight: 8 }}
                     />
-                    Ηλικία: {professionalDetails.yearOfBirth || 'N/A'}
+                    Ηλικία: {professionalInfo.yearOfBirth || 'N/A'}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -388,25 +323,20 @@ const FindProfessionalUnconnected = () => {
                     <img
                       src={location}
                       alt="location"
-                      style={{ width: '20px', height: 'auto', marginRight: 8 }}
+                      style={{ width: '20px', marginRight: 8 }}
                     />
-                    Περιοχή: {professionalDetails.area || 'N/A'}
+                    Περιοχή: {professionalInfo.area || 'N/A'}
                   </Typography>
                   <Typography
                     variant="body2"
-                    sx={{
-                      alignSelf: 'center',
-                      fontSize: 18,
-                      marginBottom: 1,
-                      marginTop: 2,
-                    }}
+                    sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1, marginTop: 2 }}
                   >
                     <img
                       src={experience}
                       alt="experience"
-                      style={{ width: '20px', height: 'auto', marginRight: 8 }}
+                      style={{ width: '20px', marginRight: 8 }}
                     />
-                    Εμπειρία: {professionalDetails.experience || 0} χρόνια
+                    Εμπειρία: {professionalInfo.experience || 0} χρόνια
                   </Typography>
                   <Button
                     variant="contained"

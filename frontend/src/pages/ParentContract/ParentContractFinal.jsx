@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+// src/pages/ParentContractFinal.jsx
+
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ContractFinalCard from '../../components/ContractFinalCard';
 import './ParentContractFinal.css';
 import Footer from '../../components/Footer';
-import MyBreadcrumbs from '../../components/MyBreadcrumbs';
+import Breadcrumbs from '../../components/Breadcrumbs';
 import { Menu, MenuItem, Button } from '@mui/material';
 import arrow_white from '../../assets/arrow_white.png';
-import Breadcrumbs from '../../components/Breadcrumbs';
+import { auth, db } from '../../firebaseConfig';
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  orderBy,
+} from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function ParentContractFinal() {
   const breadcrumbPages = [
@@ -14,120 +24,126 @@ function ParentContractFinal() {
     { name: 'ΟΡΙΣΤΙΚΑ ΑΠΟΘΗΚΕΥΜΕΝΕΣ' },
   ];
 
-  // Ορισμός του array με τα δεδομένα 
-  const ParentContractFinalData = [
-    {
-        type: 1,
-        number: "004",
-        name: "Μαρία Παπαδοπούλου",
-        start: "12/2/25",
-        finish: "12/2/25"
-    },
-    {
-        type: 1,
-        number: "004",
-        name: "Μαρία Παπαδοπούλου",
-        start: "12/2/25",
-        finish: "12/2/25"
-    },
-    {
-        type: 1,
-        number: "004",
-        name: "Μαρία Παπαδοπούλου",
-        start: "12/2/25",
-        finish: "12/2/25"
-    }
-  ];
-
-  // Κατάσταση για το ανοίγμα και το κλείσιμο του dropdown menu
   const [anchorEl, setAnchorEl] = useState(null);
+  const [contracts, setContracts] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
 
-  // Λειτουργία για το άνοιγμα του dropdown
+  useEffect(() => {
+    const unsubAuth = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return () => unsubAuth();
+  }, []);
+
+  useEffect(() => {
+    if (!currentUser) return;
+
+    // For example, fetch "notifications" where from == currentUser.uid
+    // and status is "accepted" or any final state you want
+    const q = query(
+      collection(db, 'notifications'),
+      where('from', '==', currentUser.uid),
+      where('status', '==', 'accepted'),
+      orderBy('timestamp', 'desc')
+    );
+
+    const unsub = onSnapshot(q, (snapshot) => {
+      const arr = snapshot.docs.map((docSnap) => ({
+        id: docSnap.id,
+        ...docSnap.data(),
+      }));
+      setContracts(arr);
+    });
+
+    return () => unsub();
+  }, [currentUser]);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
-  // Λειτουργία για το κλείσιμο του dropdown
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  //Για περιήγηση σε υπολοιπες σελίδες
-  const navigate = useNavigate();
-
-  const handle1 = () => {
-    navigate('../ParentContractFinal');
-  };
-
-  const handle2 = () => {
-    navigate('../ParentContractNotFinal');
-  };
-
-
   return (
     <>
-      {/* <MyBreadcrumbs breadcrumbPages={breadcrumbPages}></MyBreadcrumbs> */}
-      <Breadcrumbs page1={"ΑΙΤΗΣΕΙΣ"} link1={"../ParentContractFinal"} page2={"ΟΡΙΣΤΙΚΑ ΑΠΟΘΗΚΕΥΜΕΝΕΣ"}/>
+      <Breadcrumbs
+        page1="ΑΙΤΗΣΕΙΣ"
+        link1="../ParentContractFinal"
+        page2="ΟΡΙΣΤΙΚΑ ΑΠΟΘΗΚΕΥΜΕΝΕΣ"
+      />
 
-      <div className='ParentContractFinalContainer'>
-
-        <div className='card1 text-center'>
-
-          <div className='card-header1'>
-
-            <ul className='nav1 nav-tabs1 card-header-tabs'>
-              <li className='nav-item1'>
-                <button className='nav-link1 active' onClick={handle1}>ΟΡΙΣΤΙΚΑ ΑΠΟΘΗΚΕΥΜΕΝΕΣ</button>
+      <div className="ParentContractFinalContainer">
+        <div className="card1 text-center">
+          <div className="card-header1">
+            <ul className="nav1 nav-tabs1 card-header-tabs">
+              <li className="nav-item1">
+                <button className="nav-link1 active">
+                  ΟΡΙΣΤΙΚΑ ΑΠΟΘΗΚΕΥΜΕΝΕΣ
+                </button>
               </li>
-              <li className='nav-item1'>
-                <button className='nav-link1' onClick={handle2}>ΠΡΟΣΩΡΙΝΑ ΑΠΟΘΗΚΕΥΜΕΝΕΣ</button>
+              <li className="nav-item1">
+                <button className="nav-link1" onClick={() => navigate('../ParentContractNotFinal')}>
+                  ΠΡΟΣΩΡΙΝΑ ΑΠΟΘΗΚΕΥΜΕΝΕΣ
+                </button>
               </li>
             </ul>
           </div>
 
-          {/* dropdown menu για ταξινόμηση το Material UI  */}
+          {/* dropdown menu */}
           <div>
-              <Button 
-                aria-controls="simple-menu" 
-                aria-haspopup="true" 
-                onClick={handleClick}
-                variant="contained" 
-                className='ButtonParentContractFinal'
-                endIcon={<img src={arrow_white} alt="arrow" style={{ width: '13px', height: '13px', marginLeft: '8px' }} />}
-              >
-                Ταξινόμηση ανά Ημερομηνίας
-              </Button>
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Αύξουσα</MenuItem>
-                <MenuItem onClick={handleClose}>Φθίνουσα</MenuItem>
-              </Menu>
-            </div>
+            <Button
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={handleClick}
+              variant="contained"
+              className="ButtonParentContractFinal"
+              endIcon={
+                <img
+                  src={arrow_white}
+                  alt="arrow"
+                  style={{ width: '13px', height: '13px', marginLeft: '8px' }}
+                />
+              }
+            >
+              Ταξινόμηση ανά Ημερομηνίας
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Αύξουσα</MenuItem>
+              <MenuItem onClick={handleClose}>Φθίνουσα</MenuItem>
+            </Menu>
+          </div>
 
-          <div className='card-body1'>
+          <div className="card-body1">
             <div>
-              {ParentContractFinalData.map((data, index) => (
-                <div key={index}>
-                  <ContractFinalCard
-                    type={data.type}
-                    number={data.number}
-                    name={data.name}
-                    start={data.start}
-                    finish={data.finish}
-                  />
-                  <br />
-                </div>
-              ))}
+              {contracts.length > 0 ? (
+                contracts.map((data) => (
+                  <div key={data.id}>
+                    <ContractFinalCard
+                      type="accepted"  // or whatever
+                      number={data.adId}
+                      name={data.parentEmail}
+                      start={data.startDate ? new Date(data.startDate.seconds * 1000).toLocaleDateString('el-GR') : ''}
+                      finish="(maybe compute 1 month later...)"
+                      // etc. pass anything else
+                    />
+                    <br />
+                  </div>
+                ))
+              ) : (
+                <p>Δεν υπάρχουν οριστικά αποθηκευμένες.</p>
+              )}
             </div>
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   );

@@ -37,17 +37,18 @@ function ContractProfessionalCard({
               Ο γονέας έχει κάνει Αίτηση. Αποδεχτείτε συνεργασία υπογράφοντας το συμφωνητικό ή απορρίψτε.
             </p>
             <button
-              className="ContractProfessionalCardButton"
-              onClick={() => setShowAcceptModal(true)}
-            >
-              Υπογραφή Συμφωνητικού
-            </button>
-            <button
-              className="ContractProfessionalCardButton"
-              onClick={() => setShowRejectModal(true)}
-            >
-              Απόρριψη Συμφωνητικού
-            </button>
+  className="ContractProfessionalCardButton acceptButton"
+  onClick={() => setShowAcceptModal(true)}
+>
+  Υπογραφή Συμφωνητικού
+</button>
+<button
+  className="ContractProfessionalCardButton rejectButton"
+  onClick={() => setShowRejectModal(true)}
+>
+  Απόρριψη Συμφωνητικού
+</button>
+
           </div>
         );
       case 'accepted':

@@ -36,15 +36,13 @@ function ParentContractFinal() {
     return () => unsubAuth();
   }, []);
 
+  // Show *all* statuses
   useEffect(() => {
     if (!currentUser) return;
 
-    // For example, fetch "notifications" where from == currentUser.uid
-    // and status is "accepted" or any final state you want
     const q = query(
       collection(db, 'notifications'),
       where('from', '==', currentUser.uid),
-      where('status', '==', 'accepted'),
       orderBy('timestamp', 'desc')
     );
 
@@ -55,7 +53,6 @@ function ParentContractFinal() {
       }));
       setContracts(arr);
     });
-
     return () => unsub();
   }, [currentUser]);
 
@@ -64,6 +61,15 @@ function ParentContractFinal() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  // Compute +1 month if no endContract
+  const computeEndDate = (startStr) => {
+    if (!startStr) return '';
+    const d = new Date(startStr);
+    if (isNaN(d)) return '';
+    d.setMonth(d.getMonth() + 1);
+    return d.toLocaleDateString('el-GR');
   };
 
   return (
@@ -84,14 +90,17 @@ function ParentContractFinal() {
                 </button>
               </li>
               <li className="nav-item1">
-                <button className="nav-link1" onClick={() => navigate('../ParentContractNotFinal')}>
+                <button
+                  className="nav-link1"
+                  onClick={() => navigate('../ParentContractNotFinal')}
+                >
                   ΠΡΟΣΩΡΙΝΑ ΑΠΟΘΗΚΕΥΜΕΝΕΣ
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* dropdown menu */}
+          {/* Sorting dropdown */}
           <div>
             <Button
               aria-controls="simple-menu"
@@ -122,25 +131,44 @@ function ParentContractFinal() {
           </div>
 
           <div className="card-body1">
-            <div>
-              {contracts.length > 0 ? (
-                contracts.map((data) => (
+            {contracts.length > 0 ? (
+              contracts.map((data, index) => {
+                let startDisp = 'N/A';
+                if (data.startContract) {
+                  const parsed = new Date(data.startContract);
+                  if (!isNaN(parsed)) {
+                    startDisp = parsed.toLocaleDateString('el-GR');
+                  }
+                }
+
+                let finishDisp = 'N/A';
+                if (data.endContract) {
+                  const parsed2 = new Date(data.endContract);
+                  if (!isNaN(parsed2)) {
+                    finishDisp = parsed2.toLocaleDateString('el-GR');
+                  }
+                } else if (startDisp !== 'N/A') {
+                  finishDisp = computeEndDate(data.startContract);
+                }
+
+                return (
                   <div key={data.id}>
                     <ContractFinalCard
-                      type="accepted"  // or whatever
-                      number={data.adId}
-                      name={data.parentEmail}
-                      start={data.startDate ? new Date(data.startDate.seconds * 1000).toLocaleDateString('el-GR') : ''}
-                      finish="(maybe compute 1 month later...)"
-                      // etc. pass anything else
+                      // Show e.g. "Αίτηση #1"
+                      number={`#${index + 1}`}
+                      // name => professionalName
+                      name={data.professionalName || 'N/A'}
+                      start={startDisp}
+                      finish={finishDisp}
+                      status={data.status} 
                     />
                     <br />
                   </div>
-                ))
-              ) : (
-                <p>Δεν υπάρχουν οριστικά αποθηκευμένες.</p>
-              )}
-            </div>
+                );
+              })
+            ) : (
+              <p>Δεν υπάρχουν οριστικές αιτήσεις.</p>
+            )}
           </div>
         </div>
       </div>

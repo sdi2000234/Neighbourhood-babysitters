@@ -62,13 +62,22 @@ background-color: #0056a3 ;
   }
   
 
-.ContractProfessionalCardstate1 .ContractProfessionalCardButton{
-    background-color: #B5001E ;
-    margin-top: 14px;
+  .ContractProfessionalCardstate1 .acceptButton {
+    background-color: #28a745; /* Green for Υπογραφή Συμφωνητικού */
+    color: #ffffff;
 }
 
-.ContractProfessionalCardstate1 .ContractProfessionalCardButton:hover{
-    background-color: #b11f37  ;
+.ContractProfessionalCardstate1 .acceptButton:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+/* Red styling for Απόρριψη Συμφωνητικού */
+.ContractProfessionalCardstate1 .rejectButton {
+    background-color: #B5001E; /* Red */
+    color: #ffffff; /* White text */
+}
+
+.ContractProfessionalCardstate1 .rejectButton:hover {
+    background-color: #b11f37; /* Darker red on hover */
 }
 
 .ContractProfessionalCardText2

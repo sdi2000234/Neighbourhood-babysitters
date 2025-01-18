@@ -1,4 +1,4 @@
-// src/pages/ParentContractRenew.jsx
+// File: src/pages/ParentContractRenew.jsx
 
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -10,11 +10,14 @@ import { db } from '../../firebaseConfig';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 function ParentContractRenew() {
+  // ------------------------------------------
+  // 1) Basic Setup: Auth & Navigation
+  // ------------------------------------------
   const auth = getAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // We read "adData" & "professionalDetails" from location.state
+  // We read "adData" & "professionalDetails" (which has userId, firstName, lastName)
   const { adData, professionalDetails } = location.state || {};
 
   // We'll parse out the ID and name
@@ -26,7 +29,7 @@ function ParentContractRenew() {
   // Current user (parent)
   const [userId, setUserId] = useState(null);
 
-  // Listen for auth
+  // Listen for auth changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -38,7 +41,9 @@ function ParentContractRenew() {
     return () => unsubscribe();
   }, [auth, navigate]);
 
-  // Fetch parent's user doc
+  // ------------------------------------------
+  // 2) Parent's Firestore Data
+  // ------------------------------------------
   const [parentData, setParentData] = useState({
     firstName: '',
     lastName: '',
@@ -48,12 +53,15 @@ function ParentContractRenew() {
     address: '',
   });
 
+  // Fetch parent's user doc to auto‐fill
   useEffect(() => {
     if (!userId) return;
-    const fetchParentDoc = async () => {
+
+    const fetchParentData = async () => {
       try {
         const docRef = doc(db, 'users', userId);
         const docSnap = await getDoc(docRef);
+
         if (docSnap.exists()) {
           const data = docSnap.data() || {};
           setParentData({
@@ -69,62 +77,66 @@ function ParentContractRenew() {
         console.error('Error fetching parent data:', error);
       }
     };
-    fetchParentDoc();
+
+    fetchParentData();
   }, [userId]);
 
-  // Additional contract details
+  // ------------------------------------------
+  // 3) Contract Details State
+  // ------------------------------------------
   const [contractDetails, setContractDetails] = useState({
-    houseOption: '',
+    houseOption: '',       // 'parentsHouse' or 'professionalsHouse'
     startDate: '',
     endDate: '',
     message: '',
     signContract: false,
-    // possibly schedule
   });
 
+  // Handle changes for the fields we let the user fill in
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
-    setContractDetails((prev) => ({
-      ...prev,
+    setContractDetails((prevDetails) => ({
+      ...prevDetails,
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
-  // If your <Schedule /> returns some data, store it
+  // If your <Schedule /> returns data, store it here
   const handleScheduleChange = (scheduleData) => {
-    // setContractDetails((prev) => ({ ...prev, schedule: scheduleData }));
+    // setContractDetails((prev) => ({
+    //   ...prev,
+    //   schedule: scheduleData
+    // }));
   };
 
+  // ------------------------------------------
+  // 4) Final Submission: Writing to "notifications"
+  // ------------------------------------------
   const handleSubmit = async () => {
-    // Must have user
+    // must have a logged‐in parent
     if (!userId) {
       alert('Απαιτείται σύνδεση.');
       return;
     }
-    // Must have professional
     if (!professionalId) {
       alert('Λείπει το ID του επαγγελματία. Επιστρέψτε και επιλέξτε επαγγελματία.');
       return;
     }
-    // Must sign contract
     if (!contractDetails.signContract) {
-      alert('Παρακαλώ επιβεβαιώστε την επιθυμία συνεργασίας...');
+      alert('Παρακαλώ επιβεβαιώστε την επιθυμία συνεργασίας και υπογραφής συμφωνητικού.');
       return;
     }
 
-    // If the user didn't pick any date, fallback to "today" for startContract.
+    // If the user left startDate empty, store "today"
     let finalStart = contractDetails.startDate.trim();
     if (!finalStart) {
-      // fallback: "YYYY-MM-DD" from today's date
-      const today = new Date().toISOString().slice(0,10); 
-      finalStart = today; 
+      const today = new Date().toISOString().slice(0, 10);
+      finalStart = today;
     }
-
-    // optional fallback for endDate if you want
-    let finalEnd = contractDetails.endDate.trim(); 
-    // or leave it empty if user didn't pick
+    const finalEnd = contractDetails.endDate.trim();
 
     try {
+      // Add doc to "notifications" with parent's name
       await addDoc(collection(db, 'notifications'), {
         from: userId,
         to: professionalId,
@@ -133,29 +145,36 @@ function ParentContractRenew() {
         timestamp: serverTimestamp(),
         status: 'pending',
 
-        // parent's email, child age, address
+        // parent's name & email
+        parentName: `${parentData.firstName} ${parentData.lastName}`,
         parentEmail: parentData.email,
+
+        // parent's child info
         childAge: parentData.kidsAge,
         address: parentData.address,
 
-        // user-chosen but ensure we don't store an empty string for startContract
-        startContract: finalStart, // store fallback if empty
+        // user-chosen fields
+        startContract: finalStart,
         endContract: finalEnd,
         locationChoice: contractDetails.houseOption,
         message: contractDetails.message,
         signContract: contractDetails.signContract,
 
         createdAt: new Date(),
-        // schedule: contractDetails.schedule
       });
+
       alert('Η αίτηση συνεργασίας καταχωρήθηκε επιτυχώς!');
-      navigate('/ParentContractEnd');
+      // Navigate the parent to the "ParentContractFinal" page
+      navigate('/ParentContractFinal');
     } catch (error) {
       console.error('Error creating doc:', error);
       alert('Σφάλμα κατά την αποθήκευση.');
     }
   };
 
+  // ------------------------------------------
+  // 5) Render
+  // ------------------------------------------
   return (
     <div className="parentContractRenew">
       <div className="personInfo">
@@ -183,6 +202,7 @@ function ParentContractRenew() {
 
           <div className="seperatorBar"></div>
 
+          {/* Child Age & Address read-only from parent's doc */}
           <div className="kidsAge">
             <p className="infoType">Ηλικία Παιδιού (σε μήνες):</p>
             <p className="infoBox">
@@ -199,7 +219,7 @@ function ParentContractRenew() {
 
           <div className="seperatorBar"></div>
 
-          {/* House Option */}
+          {/* Radio for houseOption */}
           <div className="where">
             <p className="infoType">Επιλέξτε το μέρος φύλαξης του παιδιού:</p>
             <form>
@@ -227,7 +247,7 @@ function ParentContractRenew() {
 
           <div className="seperatorBar"></div>
 
-          {/* Start & End Date */}
+          {/* Start & End Dates */}
           <div className="duration">
             <label htmlFor="startDate">Έναρξη Συνεργασίας:</label>
             <input
@@ -248,7 +268,7 @@ function ParentContractRenew() {
             />
           </div>
 
-          {/* Schedule */}
+          {/* Optional schedule component */}
           <div className="schedule">
             <Schedule onChange={handleScheduleChange} />
           </div>
@@ -267,7 +287,7 @@ function ParentContractRenew() {
 
           <div className="seperatorBar"></div>
 
-          {/* Sign check */}
+          {/* Sign contract checkbox */}
           <div className="signContract">
             <input
               type="checkbox"
@@ -287,6 +307,7 @@ function ParentContractRenew() {
           </p>
         </div>
 
+        {/* Footer Buttons */}
         <div className="options">
           <button onClick={() => navigate('../ParentContractEnd')} className="cancel">
             <b>Ακύρωση</b>

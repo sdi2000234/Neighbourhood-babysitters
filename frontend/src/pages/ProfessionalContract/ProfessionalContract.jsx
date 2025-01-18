@@ -33,7 +33,7 @@ function ProfessionalContract() {
     return () => unsub();
   }, []);
 
-  // Accept => status = "accepted"
+  // Mark status="accepted"
   const handleAccept = async (notifId) => {
     try {
       const notifRef = doc(db, "notifications", notifId);
@@ -43,7 +43,7 @@ function ProfessionalContract() {
     }
   };
 
-  // Decline => status = "declined"
+  // Mark status="declined"
   const handleDecline = async (notifId) => {
     try {
       const notifRef = doc(db, "notifications", notifId);
@@ -53,7 +53,7 @@ function ProfessionalContract() {
     }
   };
 
-  // Helper for computing one month later
+  // For computing 1 month after the chosen start
   const calculateEndDate = (startJSDate) => {
     const end = new Date(startJSDate.getTime());
     end.setMonth(end.getMonth() + 1);
@@ -70,9 +70,10 @@ function ProfessionalContract() {
       orderBy("timestamp", "desc")
     );
     const unsubscribe = onSnapshot(q, (snapshot) => {
+      // We label each doc with (index+1)
       const notifList = snapshot.docs.map((docSnap, index) => ({
         id: docSnap.id,
-        index: index + 1, // e.g. "Αίτηση #1"
+        index: index + 1,
         ...docSnap.data(),
       }));
       setNotifications(notifList);
@@ -151,9 +152,9 @@ function ProfessionalContract() {
           <div className="card-body1">
             {notifications.length > 0 ? (
               notifications.map((notif) => {
-                // The parent stores "startContract" as a string
-                const { startContract } = notif; // e.g. "2023-01-20" or fallback
+                const { startContract, parentName, parentEmail } = notif;
 
+                // parse startContract
                 let startJSDate = null;
                 if (startContract) {
                   const parsed = new Date(startContract);
@@ -165,16 +166,18 @@ function ProfessionalContract() {
                   ? startJSDate.toLocaleDateString("el-GR")
                   : "N/A";
 
-                // We can compute end date if a valid start
                 const endDate = startJSDate
                   ? calculateEndDate(startJSDate)
                   : "N/A";
 
+                // Show parent's name if you have it; else fallback to parent's email
+                const displayParentName = parentName || parentEmail || "N/A";
+
                 return (
                   <div key={notif.id}>
                     <ContractProfessionalCard
-                      number={notif.index}
-                      name={notif.parentEmail || "N/A"}
+                      number={notif.index} // "Αίτηση #1"
+                      name={displayParentName} 
                       start={startDisplay}
                       finish={endDate}
                       age={notif.childAge || "N/A"}

@@ -70,10 +70,9 @@ function ProfessionalContract() {
       orderBy("timestamp", "desc")
     );
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      // We label each doc with (index+1)
       const notifList = snapshot.docs.map((docSnap, index) => ({
         id: docSnap.id,
-        index: index + 1,
+        index: index + 1, // e.g. "Αίτηση #1"
         ...docSnap.data(),
       }));
       setNotifications(notifList);
@@ -170,7 +169,7 @@ function ProfessionalContract() {
                   ? calculateEndDate(startJSDate)
                   : "N/A";
 
-                // Show parent's name if you have it; else fallback to parent's email
+                // Show parent's name if you have it; else show parent's email
                 const displayParentName = parentName || parentEmail || "N/A";
 
                 return (

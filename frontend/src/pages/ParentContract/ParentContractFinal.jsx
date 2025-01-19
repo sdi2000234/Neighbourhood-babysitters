@@ -36,10 +36,10 @@ function ParentContractFinal() {
     return () => unsubAuth();
   }, []);
 
-  // Show *all* statuses
   useEffect(() => {
     if (!currentUser) return;
 
+    // Show *all* statuses for "notifications" from this parent
     const q = query(
       collection(db, 'notifications'),
       where('from', '==', currentUser.uid),
@@ -56,6 +56,7 @@ function ParentContractFinal() {
     return () => unsub();
   }, [currentUser]);
 
+  // For the "Ταξινόμηση..." button if you want sorting logic
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -63,7 +64,7 @@ function ParentContractFinal() {
     setAnchorEl(null);
   };
 
-  // Compute +1 month if no endContract
+  // Optionally compute a fallback end date if the doc has none
   const computeEndDate = (startStr) => {
     if (!startStr) return '';
     const d = new Date(startStr);
@@ -133,6 +134,8 @@ function ParentContractFinal() {
           <div className="card-body1">
             {contracts.length > 0 ? (
               contracts.map((data, index) => {
+                // We'll show "Αίτηση #doc.id" or "#(index+1)"
+                // For date formatting
                 let startDisp = 'N/A';
                 if (data.startContract) {
                   const parsed = new Date(data.startContract);
@@ -141,6 +144,7 @@ function ParentContractFinal() {
                   }
                 }
 
+                // If endContract is empty, compute fallback
                 let finishDisp = 'N/A';
                 if (data.endContract) {
                   const parsed2 = new Date(data.endContract);
@@ -154,9 +158,8 @@ function ParentContractFinal() {
                 return (
                   <div key={data.id}>
                     <ContractFinalCard
-                      // Show e.g. "Αίτηση #1"
-                      number={`#${index + 1}`}
-                      // name => professionalName
+                      // Show doc.id or index+1
+                      number={`#${data.id.slice(0, 8)}`} 
                       name={data.professionalName || 'N/A'}
                       start={startDisp}
                       finish={finishDisp}

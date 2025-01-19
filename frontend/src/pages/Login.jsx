@@ -11,7 +11,7 @@ import {
   Link,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth';
+import { setPersistence, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth';
 import { auth } from '../firebaseConfig'; // Εισάγουμε το Firebase Auth
 import Footer from '../components/Footer'; // Footer Component
 
@@ -31,7 +31,7 @@ const LoginPage = () => {
       await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
 
       // Attempt to log in the user
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    
       navigate('/dashboard'); // Ανακατεύθυνση στη σελίδα Dashboard
     } catch (error) {
       // Διαχείριση σφαλμάτων
@@ -153,7 +153,7 @@ const LoginPage = () => {
                   '&:hover': { backgroundColor: '#002855' },
                 }}
               >
-                Σύνδεση
+                ΣΥΝΔΕΣΗ
               </Button>
             </form>
 

@@ -1,4 +1,4 @@
-// File: src/pages/FindProfessionalUnconnected.jsx
+// src/pages/FindProfessionalUnconnected.jsx
 
 import React, { useEffect, useState } from 'react';
 import {
@@ -28,46 +28,47 @@ import {
   getDocs,
   doc,
   getDoc,
-  addDoc,
-  serverTimestamp,
+  // remove addDoc, serverTimestamp
 } from 'firebase/firestore';
 import { auth, db } from '../firebaseConfig';
 import ProfessionalDetails from './ProfessionalDetails';
 import Pagination from '@mui/material/Pagination';
 import CloseIcon from '@mui/icons-material/Close';
 
-// Example assets
+// Example icons
 import cake from '../assets/cake_black.png';
 import location from '../assets/location_black.png';
 import experience from '../assets/briefcase_black.png';
 
 const FindProfessionalUnconnected = () => {
-  // ============================
-  // 1) Basic States
-  // ============================
+  // ================================
+  // 1) States & Setup
+  // ================================
   const [selectedLanguage, setSelectedLanguage] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const professionalsPerPage = 9;
   const navigate = useNavigate();
 
-  // Auth & user role
+  // Auth
   const [user, setUser] = useState(null);
   const [isKeeper, setIsKeeper] = useState(false);
 
-  // For the modal with “ΠΛΗΡΟΦΟΡΙΕΣ”
+  // For modal
   const [openModal, setOpenModal] = useState(false);
   const [selectedProfessional, setSelectedProfessional] = useState(null);
 
-  // Ads from 'ads' collection
+  // Ads
   const [ads, setAds] = useState([]);
-  // Mapping userId -> professional user doc
+  // userId -> user doc
   const [professionalsData, setProfessionalsData] = useState({});
 
-  // For a parent, we store kidsAge & connections (disable “ΡΑΝΤΕΒΟΥ” if connected)
+  // Possibly store parent's childAge
   const [kidsAge, setKidsAge] = useState(null);
+
+  // For disabling “ΡΑΝΤΕΒΟΥ”
   const [connections, setConnections] = useState({});
 
-  // Languages array for filter
+  // Example languages
   const languages = [
     'Αγγλικά', 'Γερμανικά', 'Ολλανδικά', 'Φλαμανδικά', 'Αφρικάανς', 'Δανικά',
     'Σουηδικά', 'Νορβηγικά', 'Ισλανδικά', 'Φεροϊκά', 'Ισπανικά', 'Πορτογαλικά',
@@ -78,9 +79,9 @@ const FindProfessionalUnconnected = () => {
     'Ελληνικά', 'Ουαλικά', 'Αλβανικά', 'Αρμενικά', 'Γεωργιανά',
   ];
 
-  // ============================
-  // 2) Auth Changes
-  // ============================
+  // ================================
+  // 2) Listen for Auth
+  // ================================
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (!firebaseUser) {
@@ -94,7 +95,6 @@ const FindProfessionalUnconnected = () => {
           if (userDocSnap.exists()) {
             const data = userDocSnap.data();
             setIsKeeper(!!data.isKeeper);
-            // If parent has kidsAge in doc, store it
             if (data.kidsAge) {
               setKidsAge(data.kidsAge);
             }
@@ -109,33 +109,31 @@ const FindProfessionalUnconnected = () => {
     return () => unsubscribe();
   }, []);
 
-  // ============================
-  // 3) Fetch Ads + Professionals
-  // ============================
+  // ================================
+  // 3) Fetch Ads & Professionals
+  // ================================
   useEffect(() => {
     const fetchAdsAndPros = async () => {
       try {
-        // Fetch ads from "ads" collection
-        const adsSnap = await getDocs(collection(db, 'ads'));
-        const adsList = adsSnap.docs.map((docSnap) => ({
+        const querySnapshot = await getDocs(collection(db, 'ads'));
+        const adsList = querySnapshot.docs.map((docSnap) => ({
           id: docSnap.id,
           ...docSnap.data(),
         }));
         setAds(adsList);
 
-        // For each ad, fetch the professional's user doc
-        const prosMap = {};
+        const professionalsMap = {};
         await Promise.all(
           adsList.map(async (adItem) => {
             if (adItem.userId) {
-              const pDoc = await getDoc(doc(db, 'users', adItem.userId));
-              if (pDoc.exists()) {
-                prosMap[adItem.userId] = pDoc.data();
+              const userDocSnap = await getDoc(doc(db, 'users', adItem.userId));
+              if (userDocSnap.exists()) {
+                professionalsMap[adItem.userId] = userDocSnap.data();
               }
             }
           })
         );
-        setProfessionalsData(prosMap);
+        setProfessionalsData(professionalsMap);
       } catch (error) {
         console.error('Error fetching ads/professionals:', error);
       }
@@ -143,10 +141,9 @@ const FindProfessionalUnconnected = () => {
     fetchAdsAndPros();
   }, []);
 
-  // ============================
+  // ================================
   // 4) Fetch Connections
-  // ============================
-  // If the user is parent, we disable “ΡΑΝΤΕΒΟΥ” if we have a connection
+  // ================================
   useEffect(() => {
     if (!user) return;
     const fetchConnections = async () => {
@@ -167,21 +164,22 @@ const FindProfessionalUnconnected = () => {
     fetchConnections();
   }, [user]);
 
-  // ============================
+  // ================================
   // 5) Pagination
-  // ============================
+  // ================================
   const totalPages = Math.ceil(ads.length / professionalsPerPage);
   const currentProfessionals = ads.slice(
     (currentPage - 1) * professionalsPerPage,
     currentPage * professionalsPerPage
   );
+
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
 
-  // ============================
+  // ================================
   // 6) Modal open/close
-  // ============================
+  // ================================
   const handleOpenModal = (adItem) => {
     setSelectedProfessional(adItem);
     setOpenModal(true);
@@ -191,11 +189,10 @@ const FindProfessionalUnconnected = () => {
     setSelectedProfessional(null);
   };
 
-  // ============================
-  // 7) Button Wrapper
-  // ============================
+  // ================================
+  // 7) ButtonUse Wrapper
+  // ================================
   const ButtonUse = ({ action, children, disabled }) => {
-    // If not logged in => go to login
     if (!user) {
       return (
         <Button
@@ -207,7 +204,6 @@ const FindProfessionalUnconnected = () => {
         </Button>
       );
     }
-    // If caretaker or flagged => disabled
     if (isKeeper || disabled) {
       return (
         <Button
@@ -219,7 +215,6 @@ const FindProfessionalUnconnected = () => {
         </Button>
       );
     }
-    // Otherwise normal
     return (
       <Button
         variant="outlined"
@@ -231,44 +226,33 @@ const FindProfessionalUnconnected = () => {
     );
   };
 
-  // ============================
-  // 8) Send Collaboration Request
-  // ============================
-  const handleSendCollaborationRequest = async (adItem, proDetails) => {
+  // ================================
+  // 8) Instead of sending doc to "notifications" here,
+  //    we navigate to /ParentContractRenew
+  // ================================
+  const handleGoToParentContractRenew = (adItem, proDetails) => {
     if (!user) {
-      // must log in first
       navigate('/login');
       return;
     }
-    try {
-      // create doc in "notifications"
-      await addDoc(collection(db, 'notifications'), {
-        from: user.uid,
-        to: adItem.userId,
-        adId: adItem.id,
-        type: 'collaborationRequest',
-        timestamp: serverTimestamp(),
-        // store a serverTimestamp for "startDate"
-        startDate: serverTimestamp(),
-        status: 'pending',
+    if (isKeeper) return; // caretaker can't do this
 
-        // parent's email & child's age if you want
-        parentEmail: user.email,
-        childAge: kidsAge || 'N/A',
-
-        // store professional's name from user doc
-        professionalName: `${proDetails.firstName} ${proDetails.lastName}`,
-      });
-      alert('Η αίτηση συνεργασίας εστάλη!');
-    } catch (error) {
-      console.error('Error sending collaboration request:', error);
-      alert('Κάτι πήγε στραβά. Παρακαλώ δοκιμάστε ξανά.');
-    }
+    // We'll pass adItem + professional's name & userId
+    navigate('/ParentContractRenew', {
+      state: {
+        adData: adItem,
+        professionalDetails: {
+          firstName: proDetails.firstName || '',
+          lastName: proDetails.lastName || '',
+          userId: adItem.userId,
+        },
+      },
+    });
   };
 
-  // ============================
+  // ================================
   // 9) Render
-  // ============================
+  // ================================
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Container sx={{ flexGrow: 1, mt: 4, mb: 4 }}>
@@ -276,7 +260,7 @@ const FindProfessionalUnconnected = () => {
           ΕΥΡΕΣΗ ΕΠΑΓΓΕΛΜΑΤΙΑ
         </Typography>
 
-        {/* ================ FILTER / SEARCH SECTION ================ */}
+        {/* FILTERS / SEARCH SECTION */}
         <Box
           sx={{
             backgroundColor: '#f8f9fa',
@@ -291,23 +275,9 @@ const FindProfessionalUnconnected = () => {
           </Typography>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
             <TextField label="Περιοχή" size="small" sx={{ width: '200px' }} />
-            <TextField
-              label="Ηλικία Από"
-              type="number"
-              size="small"
-              sx={{ width: '150px' }}
-            />
-            <TextField
-              label="Ηλικία Έως"
-              type="number"
-              size="small"
-              sx={{ width: '150px' }}
-            />
-            <TextField
-              label="Έτη Εμπειρίας"
-              size="small"
-              sx={{ width: '150px' }}
-            />
+            <TextField label="Ηλικία Από" type="number" size="small" sx={{ width: '150px' }} />
+            <TextField label="Ηλικία Έως" type="number" size="small" sx={{ width: '150px' }} />
+            <TextField label="Έτη Εμπειρίας" size="small" sx={{ width: '150px' }} />
 
             <FormControl sx={{ width: '200px' }} size="small">
               <InputLabel id="language-label">Ξένη Γλώσσα</InputLabel>
@@ -357,10 +327,9 @@ const FindProfessionalUnconnected = () => {
           </Box>
         </Box>
 
-        {/* ================ PROFESSIONALS SECTION ================ */}
+        {/* PROFESSIONALS GRID */}
         <Grid container spacing={2}>
           {currentProfessionals.map((adItem) => {
-            // get the professional's doc from professionalsData
             const professionalDetails = professionalsData[adItem.userId] || {};
 
             return (
@@ -377,6 +346,7 @@ const FindProfessionalUnconnected = () => {
                     flexDirection: 'column',
                   }}
                 >
+                  {/* Display pro's name, rating, etc. */}
                   <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                     {professionalDetails.firstName} {professionalDetails.lastName}
                   </Typography>
@@ -385,6 +355,7 @@ const FindProfessionalUnconnected = () => {
                   </Typography>
                   <Divider sx={{ my: 1 }} />
 
+                  {/* Age / location / experience */}
                   <Typography
                     variant="body2"
                     sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1, marginTop: 3 }}
@@ -409,7 +380,12 @@ const FindProfessionalUnconnected = () => {
                   </Typography>
                   <Typography
                     variant="body2"
-                    sx={{ alignSelf: 'center', fontSize: 18, marginBottom: 1, marginTop: 2 }}
+                    sx={{
+                      alignSelf: 'center',
+                      fontSize: 18,
+                      marginBottom: 1,
+                      marginTop: 2,
+                    }}
                   >
                     <img
                       src={experience}
@@ -419,7 +395,7 @@ const FindProfessionalUnconnected = () => {
                     Εμπειρία: {professionalDetails.experience || 0} χρόνια
                   </Typography>
 
-                  {/* ΠΛΗΡΟΦΟΡΙΕΣ => open modal */}
+                  {/* Modal trigger */}
                   <Button
                     variant="contained"
                     sx={{
@@ -433,7 +409,7 @@ const FindProfessionalUnconnected = () => {
                     ΠΛΗΡΟΦΟΡΙΕΣ
                   </Button>
 
-                  {/* ΡΑΝΤΕΒΟΥ / ΑΙΤΗΣΗ SΥΝΕΡΓΑΣΙΑΣ */}
+                  {/* Buttons: ΡΑΝΤΕΒΟΥ & AΙΤΗΣΕΙΣ ΣΥΝΕΡΓΑΣΙΑΣ */}
                   <Box
                     sx={{
                       display: 'flex',
@@ -457,8 +433,9 @@ const FindProfessionalUnconnected = () => {
                       ΡΑΝΤΕΒΟΥ
                     </ButtonUse>
 
+                    {/* Instead of sending doc, we navigate to /ParentContractRenew */}
                     <ButtonUse
-                      action={() => handleSendCollaborationRequest(adItem, professionalDetails)}
+                      action={() => handleGoToParentContractRenew(adItem, professionalDetails)}
                     >
                       ΑΙΤΗΣΕΙΣ ΣΥΝΕΡΓΑΣΙΑΣ
                     </ButtonUse>
@@ -478,7 +455,7 @@ const FindProfessionalUnconnected = () => {
         />
       </Container>
 
-      {/* ================ MODAL FOR MORE DETAILS ================ */}
+      {/* Modal for more details */}
       <Modal
         open={openModal}
         onClose={handleCloseModal}

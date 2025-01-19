@@ -188,7 +188,6 @@ export default function ProfileProfessional() {
 
       <div className="personInfo1">
         <h1>ΔΗΜΙΟΥΡΓΙΑ ΠΡΟΦΙΛ</h1>
-        <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>ΤΟ ΠΡΟΦΙΛ ΜΟΥ</h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
           {imagePreview ? (
@@ -325,7 +324,7 @@ export default function ProfileProfessional() {
 
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
             <Button type="submit" sx={saveButtonStyle} disabled={loading}>
-              {loading ? 'Αποθήκευση...' : 'Αποθήκευση'}
+              {loading ? 'Αποθήκευση...' : 'Επόμενο Βήμα'}
             </Button>
           </div>
         </form>

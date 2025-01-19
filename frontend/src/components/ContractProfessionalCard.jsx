@@ -54,7 +54,7 @@ function ContractProfessionalCard({
       case 'accepted':
         return (
           <p className="ContractProfessionalCardText2">
-            Το συμβόλαιο είναι ενεργό.
+            Το συμφωνητικό είναι ενεργό.
           </p>
         );
       case 'declined':

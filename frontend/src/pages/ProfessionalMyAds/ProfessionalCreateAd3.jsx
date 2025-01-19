@@ -534,7 +534,7 @@ function ProfessionalCreateAd3({ canEdit = true }) {
               onClick={handlePreviousStep}
               disabled={loading}
             >
-              Προηγούμενο Βήμα
+              Προηγουμενο Βήμα
             </Button>
             <Button
               variant="outlined"
@@ -542,7 +542,7 @@ function ProfessionalCreateAd3({ canEdit = true }) {
               onClick={handleSave}
               disabled={loading}
             >
-              Προσωρινή Αποθήκευση
+              Προσωρινη Αποθήκευση
             </Button>
             <Button
               variant="contained"
@@ -550,7 +550,7 @@ function ProfessionalCreateAd3({ canEdit = true }) {
               onClick={handleNextStep}
               disabled={loading}
             >
-              Επόμενο Βήμα
+              Επομενο Βήμα
             </Button>
           </div>
         </div>

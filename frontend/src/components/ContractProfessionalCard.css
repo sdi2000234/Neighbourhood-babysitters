@@ -63,12 +63,12 @@ background-color: #0056a3 ;
   
 
   .ContractProfessionalCardstate1 .acceptButton {
-    background-color: #28a745; /* Green for Υπογραφή Συμφωνητικού */
+    background-color: #013372; /* Green for Υπογραφή Συμφωνητικού */
     color: #ffffff;
 }
 
 .ContractProfessionalCardstate1 .acceptButton:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #013372; /* Darker green on hover */
 }
 /* Red styling for Απόρριψη Συμφωνητικού */
 .ContractProfessionalCardstate1 .rejectButton {

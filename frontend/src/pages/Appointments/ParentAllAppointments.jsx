@@ -1,3 +1,5 @@
+// File: src/pages/ParentAllAppointments.jsx
+
 import React, { useState, useEffect } from 'react';
 import './ParentAllAppointments.css';
 import Footer from '../../components/Footer';
@@ -5,17 +7,18 @@ import AppointmentCardProfessional from '../../components/AppointmentCardProfess
 import Grid from '@mui/material/Grid2'; // Correct import for Grid2
 import Breadcrumbs from '../../components/Breadcrumbs';
 import { collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
-import { auth, db } from '../../firebaseConfig'; // Adjust the path as necessary
+import { auth, db } from '../../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
-import { Button, Typography } from '@mui/material'; // Import Button and Typography
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Button, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function ParentAllAppointments() {
   const [connections, setConnections] = useState([]);
   const [professionalDetails, setProfessionalDetails] = useState({});
   const [user, setUser] = useState(null);
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
+  // On mount, listen for auth changes & fetch connections
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
@@ -27,58 +30,76 @@ function ParentAllAppointments() {
     return () => unsubscribe();
   }, []);
 
+  // Fetch connections from Firestore
   const fetchConnections = async (userId) => {
     try {
-      // Query connections where the parentId matches the user's ID
+      // Query connections where parentId == userId
       const connectionsQuery = query(collection(db, 'connections'), where('parentId', '==', userId));
       const connectionsSnapshot = await getDocs(connectionsQuery);
 
-      const connectionsList = connectionsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      const connectionsList = connectionsSnapshot.docs.map((docSnap) => ({
+        id: docSnap.id,
+        ...docSnap.data(),
+      }));
+
       setConnections(connectionsList);
 
-      // Fetch professional details for all connections
-      const professionalIds = [...new Set(connectionsList.map((conn) => conn.professionalId))]; // Unique IDs
+      // Also fetch professional details for each connection
+      const professionalIds = [...new Set(connectionsList.map((conn) => conn.professionalId))];
       const professionals = await fetchProfessionals(professionalIds);
       setProfessionalDetails(professionals);
+
     } catch (error) {
       console.error('Error fetching connections:', error);
     }
   };
 
+  // Fetch multiple professionals from 'users'
   const fetchProfessionals = async (professionalIds) => {
     const professionalData = {};
-
-    // Fetch each professional's details from the users collection
     for (const id of professionalIds) {
       try {
         const professionalDoc = await getDoc(doc(db, 'users', id));
         if (professionalDoc.exists()) {
-          professionalData[id] = professionalDoc.data(); // Store the professional's data in the dictionary
+          professionalData[id] = professionalDoc.data();
         }
       } catch (error) {
         console.error(`Error fetching professional (${id}):`, error);
       }
     }
-
     return professionalData;
   };
 
+  // Helper: If dateString is missing, return some fallback
+  const safeDateString = (dateString) => {
+    if (!dateString) return '1970-01-01'; // fallback
+    return dateString;
+  };
+
+  // For display in UI
   const formatDate = (dateString) => {
-    const [year, month, day] = dateString.split('-');
+    const safeStr = safeDateString(dateString);
+    const [year, month, day] = safeStr.split('-');
     return `${day}/${month}/${year}`;
   };
 
+  // For sorting
   const convertToDateObject = (dateString) => {
-    const [year, month, day] = dateString.split('-');
-    return new Date(year, month - 1, day);
+    const safeStr = safeDateString(dateString);
+    const [year, month, day] = safeStr.split('-');
+    return new Date(+year, +month - 1, +day);
   };
 
+  // Sort connections by date/time
   const sortedConnections = [...connections].sort((a, b) => {
-    const dateA = convertToDateObject(a.details.date);
-    const dateB = convertToDateObject(b.details.date);
+    const dateA = convertToDateObject(a.details?.date);
+    const dateB = convertToDateObject(b.details?.date);
 
+    // If same date, compare times
     if (dateA.getTime() === dateB.getTime()) {
-      return a.details.time.localeCompare(b.details.time);
+      const timeA = a.details?.time || '';
+      const timeB = b.details?.time || '';
+      return timeA.localeCompare(timeB);
     }
     return dateA - dateB;
   });
@@ -108,22 +129,32 @@ function ParentAllAppointments() {
           </Button>
         </div>
       ) : (
-        <Grid container spacing={4} justifyContent="center" alignItems="flex-start" className="appointments">
+        <Grid
+          container
+          spacing={4}
+          justifyContent="center"
+          alignItems="flex-start"
+          className="appointments"
+        >
           {sortedConnections.map((connection) => {
-            const details = connection.details;
+            const details = connection.details || {};
             const professional = professionalDetails[connection.professionalId] || {};
             const { firstName, lastName, profileImage } = professional;
+
+            // Make sure date/time exist
+            const finalDate = details.date ? formatDate(details.date) : '—';
+            const finalTime = details.time || '—';
 
             return (
               <Grid item xs={12} sm={6} md={4} key={connection.id}>
                 <AppointmentCardProfessional
                   connectionId={connection.id}
-                  picLink={profileImage || ''} // Use profileImage if available
-                  professionalName={`${firstName || ''} ${lastName || ''}`.trim()} // Combine firstName and lastName
-                  date={formatDate(details.date)} // Format the date for display
-                  loc={details.location} // Appointment location
-                  time={details.time} // Appointment time
-                  type={details.meetingType} // Meeting type (e.g., online or in-person)
+                  picLink={profileImage || ''}
+                  professionalName={`${firstName || ''} ${lastName || ''}`.trim()}
+                  date={finalDate}
+                  loc={details.location || '—'}
+                  time={finalTime}
+                  type={details.meetingType || '—'}
                   profId={connection.professionalId}
                 />
               </Grid>

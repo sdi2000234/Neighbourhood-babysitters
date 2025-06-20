@@ -1,25 +1,25 @@
-AM: 1115202000166, 1115202000083, 1115202000234
+Student IDs: 1115202000166, 1115202000083, 1115202000234
 
-ΟΝΟΜΑΤΑ: ΔΑΝΑΗ-ΠΑΣΧΑΛΙΑ ΠΑΠΑΔΟΠΟΥΛΟΥ, ΧΡΙΣΤΙΝΑ ΚΟΚΚΙΝΑΚΗ, ΧΡΗΣΤΟΣ ΚΡΑΤΗΜΕΝΟΣ
+Names: Danae-Pashalia Papadopoulou, Christina Kokkinaki, Christos Kratimenos
 
-ΑΡΙΘΜΟΣ ΟΜΑΔΑΣ: 29
+Group Number: 29
 
-Τι εχει υλοποιηθει: Πληρης διεπαφη frontend, για καθε πιθανη επιλογη του χρηστη, συμφωνα με την εκφωνηση(επιπλεον προσθηκη wireframes για ειδοποιησεις και μηνυματα) πληρης υλοποιηση των wireframes της 2ης εργασίας(με διορθωσεις απο προηγουμενες υποδειξεις). Λειτουργουν μεσω βασης: Εγγραφη, συνδεση, Δημιουργια προφιλ, επεξεργασια προφιλ, δημιουργια αγγελιας, ραντεβου(αμφιδρομη συνδεση μεταξυ Γονεα-Επαγγελματια), αιτησεις(αμφιδρομη συνδεση μεταξυ Γονεα-Επαγγελματια). 
+The goal of this project is to implement a web application, which represents a professional networking application for nannies
 
-Αν και εχουν δημιουργηθει τα frames για την πληρωμη, το ιστορικο, συμφωνητικα δεν εχει υλοποιηθει η επικοινωνια με την βαση για την ληψη real time στοιχειων.
 
-Test accounts επαγγελματιων:
+Implemented Features:
+Full frontend interface for every possible user choice, according to the assignment instructions (including additional wireframes for notifications and messages). Complete implementation of the wireframes from the 2nd assignment (with corrections based on previous feedback). The following functions are working through the database: registration, login, profile creation, profile editing, ad creation, appointment management (bidirectional connection between Parent–Professional), application management (bidirectional connection between Parent–Professional).
 
-User: new10@new.com 
-Pass: 123456
+Although frames have been created for payment, history, and agreements, the real-time communication with the database for retrieving data has not yet been implemented.
 
-User:prof_ch4@gmail.com
-Pass:123456
+Test accounts for Professionals:
 
-User: prof_1@gmail.com
-Pass:123456
+User: new10@new.com   Pass: 123456
 
-Test accounts Γονεα:
+User: prof_ch4@gmail.com   Pass: 123456
 
-User: chris@parent.com
-Pass: chris@parent.com
+User: prof_1@gmail.com   Pass: 123456
+
+Test accounts for Parents:
+
+User: chris@parent.com   Pass: chris@parent.com
